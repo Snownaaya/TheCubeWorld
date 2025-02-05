@@ -34,7 +34,7 @@ public class Movement
 
     public void OnGingerDown(Finger touchFingerScreen)
     {
-        if (_movementFinger == null && touchFingerScreen.screenPosition.x <= Screen.width / _joystickSizeDivider)
+        if (_movementFinger == null)
         {
             _movementFinger = touchFingerScreen;
             _moveDirection = Vector2.zero;
@@ -52,11 +52,9 @@ public class Movement
 
             ETouch.Touch currentTouch = move.currentTouch;
 
-            if (Vector2.Distance(currentTouch.screenPosition, _floatingJoystick.RectTransform.anchoredPosition)
-                > maxMovement)
+            if (Vector2.Distance(currentTouch.screenPosition, _floatingJoystick.RectTransform.anchoredPosition) > maxMovement)
 
-                positionKnob = currentTouch.screenPosition -
-                    _floatingJoystick.RectTransform.anchoredPosition.normalized * maxMovement;
+                positionKnob = (currentTouch.screenPosition - _floatingJoystick.RectTransform.anchoredPosition).normalized * maxMovement;
             else
                 positionKnob = currentTouch.screenPosition - _floatingJoystick.RectTransform.anchoredPosition;
 

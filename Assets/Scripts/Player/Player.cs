@@ -5,7 +5,7 @@ using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 [RequireComponent(typeof(PlayerInput), typeof(ResourceCollected), typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed = 3f;
     [SerializeField] private FloatingJoystick _floatingJoystick;
     [SerializeField] private Movement _movement;
 
