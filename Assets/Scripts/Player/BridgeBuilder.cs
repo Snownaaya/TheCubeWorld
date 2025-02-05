@@ -12,8 +12,8 @@ public class BridgeBuilder : MonoBehaviour
     private RaycastHit _hitInfo;
 
     private Player _player;
-    private PlayerInventory _playerInventory;
     private Transform _transform;
+    private PlayerInventory _playerInventory;
 
     public Vector3 BuildPosition => _hitInfo.point;
 
@@ -21,6 +21,7 @@ public class BridgeBuilder : MonoBehaviour
     {
         _transform = transform;
         _player = GetComponent<Player>();
+        _playerInventory = new PlayerInventory();
     }
 
     public void TryBuild(BridgeData bridgeData)
@@ -35,6 +36,7 @@ public class BridgeBuilder : MonoBehaviour
 
         if (Physics.Raycast(_transform.position, BuildPosition, _bridgeLayer, (int)QueryTriggerInteraction.Ignore))
         {
+
         }
     }
 

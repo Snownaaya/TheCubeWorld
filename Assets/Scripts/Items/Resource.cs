@@ -16,15 +16,9 @@ public abstract class Resource : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    public void PickUp()
-    {
-        _collider.enabled = false;
+    public void PickUp() =>
         _gameObject.SetActive(false);
-    }
 
-    public void Release()
-    {
-        _collider.enabled = true;
+    public void Release() =>
         _gameObject.SetActive(true);
-    }
 }

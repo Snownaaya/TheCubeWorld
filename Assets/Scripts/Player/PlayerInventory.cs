@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Items;
-using UnityEngine;
-using System;
+﻿using System;
+using Assets.Scripts.Items;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Player
@@ -8,13 +7,11 @@ namespace Assets.Scripts.Player
     [Serializable]
     public class PlayerInventory
     {
-        [SerializeField] private ResourceStorage _resourceStorage;
-
         private Dictionary<Resource, int> _resouceCount = new Dictionary<Resource, int>();
 
         public IReadOnlyDictionary<Resource, int> ResouceCount => _resouceCount;
 
-        public void CollectResource(Resource resource)
+        public void CollectResource(Resource resource, ResourceStorage resourceStorage)
         {
             if (resource == null)
                 return;
@@ -22,18 +19,18 @@ namespace Assets.Scripts.Player
             if (_resouceCount.ContainsKey(resource) == false)
                 _resouceCount[resource] = 0;
 
-            var resourceStorage = _resourceStorage.GetResourceType(resource);
+            resourceStorage.GetResourceType(resource);
             _resouceCount[resource] += resource.Amount;
-            _resourceStorage.AddResource(resourceStorage);
+            resourceStorage.AddResource(resource);
         }
 
-        public void UseResource(Resource resource)
+        public void UseResource(Resource resource, ResourceStorage resourceStorage)
         {
 
             if (_resouceCount.ContainsKey(resource) && _resouceCount[resource] > 0)
             {
                 _resouceCount[resource] -= resource.Amount;
-                _resourceStorage.RemoveCube(resource);
+                resourceStorage.RemoveCube(resource);
             }
         }
 

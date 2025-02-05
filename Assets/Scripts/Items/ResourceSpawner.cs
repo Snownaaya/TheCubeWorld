@@ -1,18 +1,17 @@
-using Assets.Scripts.Interfaces;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class ResourceSpawner : PoolObject<Resource>, IPlaceable
+public class ResourceSpawner : PoolObject<Resource>
 {
     private const string Resource = nameof(Resource);
     private const string Pool = nameof(Pool);
 
     [Header(Resource)]
     [SerializeField] private List<Resource> _resources = new List<Resource>();
-    [SerializeField] private List<Ground> _ground = new List<Ground>();
-    [SerializeField] private int _maxResources = 19;
-    [SerializeField] private float _delay;
+    [SerializeField] private int _maxResources = 20;
+    [SerializeField] private float _spawnInterval = 0.1f;
 
     private Transform _transform;
 
@@ -20,37 +19,37 @@ public class ResourceSpawner : PoolObject<Resource>, IPlaceable
     {
         if (_resources.Count == 0)
             return;
-
-        if (_ground.Count == 0)
-            return;
     }
 
     private void Awake() =>
         _transform = transform;
 
-    private void Start() =>
-        StartCoroutine(SpawnRoutine());
-
-    private IEnumerator SpawnRoutine()
+    public IEnumerator SpawnRoutine(Ground currentGround)
     {
-        var wait = new WaitForSeconds(_delay);
-
         while (enabled)
         {
-            SpawnResource();
-            yield return new WaitUntil(() => GetActiveCount() <= _maxResources);
-            yield return wait;
+            SpawnResource(currentGround);
+            yield return new WaitForSeconds(_spawnInterval);
+            yield return new WaitUntil(() => GetActiveCount() >= _maxResources);
         }
     }
 
-    public void SpawnResource()
+    private void SpawnResource(Ground currentGround)
     {
-        var resourcePrefab = _resources[Random.Range(0, _resources.Count)];
-        var resource = Pull(resourcePrefab);
-        var randomGround = _ground[Random.Range(0, _ground.Count)];
-        resource.transform.position = randomGround.GetRandomPosition();
+        if (_resources.Count == 0 || currentGround == null || currentGround.Points == null || currentGround.Points.Length == 0)
+            return;
+
+        for (int i = 0; i < _maxResources; i++)
+        {
+            int randomPointIndex = Random.Range(0, currentGround.Points.Length);
+            Transform spawnPoint = currentGround.Points[randomPointIndex];
+
+            Resource resourcePrefab = _resources[Random.Range(0, _resources.Count)];
+            resourcePrefab = Pull(resourcePrefab);
+            resourcePrefab.transform.position = spawnPoint.position;
+        }
     }
 
-    public void ReturnCube(Resource resource) =>
+    public void ReturnResource(Resource resource) =>
         Push(resource);
 }

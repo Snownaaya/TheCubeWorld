@@ -31,7 +31,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""7db84f21-59b8-4221-b34f-0b8b79979f0e"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Stick"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -41,7 +41,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""123cefd9-54ce-4b5f-aa4c-908da62bb9d5"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<Joystick>/stick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -1,39 +1,89 @@
-using UnityEngine.InputSystem;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
+using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
+[Serializable]
 public class Movement
 {
-    private Vector3 _moveDirection;
+    [SerializeField] private Vector2 _joystickSize = new Vector2(300, 300);
+    private Vector2 _moveDirection;
+
     private Transform _transform;
+    private Finger _movementFinger;
+    private FloatingJoystick _floatingJoystick;
 
     private float _speed;
+    private float _joystickSizeDivider = 2f;
 
-    public Movement(Transform transform, float speed)
+    public Movement(Transform transform, float speed, FloatingJoystick floating)
     {
         _transform = transform;
         _speed = speed;
         _moveDirection = Vector3.zero;
+        _floatingJoystick = floating;
     }
 
-    public void OnJoystickMove(InputAction.CallbackContext context)
+    public void MovementUpdate()
     {
-        if (context.canceled)
-        {
-            _moveDirection = Vector3.zero;
-            return;
-        }
+        Vector3 scaleMovement = _speed * Time.deltaTime * new Vector3(_moveDirection.x,
+            0, _moveDirection.y);
 
-        if (context.performed)
+        _transform.Translate(scaleMovement);
+    }
+
+    public void OnGingerDown(Finger touchFingerScreen)
+    {
+        if (_movementFinger == null && touchFingerScreen.screenPosition.x <= Screen.width / _joystickSizeDivider)
         {
-            _moveDirection = context.action.ReadValue<Vector2>();
-            Move();
+            _movementFinger = touchFingerScreen;
+            _moveDirection = Vector2.zero;
+            _floatingJoystick.gameObject.SetActive(true);
+            _floatingJoystick.RectTransform.anchoredPosition = ClampStartPosition(touchFingerScreen.screenPosition);
         }
     }
 
-    private void Move()
+    public void OnFingerMove(Finger move)
     {
-        float scaleDirection = _speed * Time.deltaTime;
-        Vector3 offset = new Vector3(_moveDirection.x, 0, _moveDirection.y) * scaleDirection;
-        _transform.Translate(offset);
+        if (move == _movementFinger)
+        {
+            Vector2 positionKnob;
+            float maxMovement = _joystickSize.x / _joystickSizeDivider;
+
+            ETouch.Touch currentTouch = move.currentTouch;
+
+            if (Vector2.Distance(currentTouch.screenPosition, _floatingJoystick.RectTransform.anchoredPosition)
+                > maxMovement)
+
+                positionKnob = currentTouch.screenPosition -
+                    _floatingJoystick.RectTransform.anchoredPosition.normalized * maxMovement;
+            else
+                positionKnob = currentTouch.screenPosition - _floatingJoystick.RectTransform.anchoredPosition;
+
+            _floatingJoystick.Knob.anchoredPosition = positionKnob;
+            _moveDirection = positionKnob / maxMovement;
+        }
+    }
+
+    private Vector2 ClampStartPosition(Vector2 screenPosition)
+    {
+        if (screenPosition.x < _joystickSize.x / _joystickSizeDivider)
+            screenPosition.x = _joystickSize.x / _joystickSizeDivider;
+
+        if (screenPosition.y < _joystickSize.y / _joystickSizeDivider)
+            screenPosition.y = _joystickSize.y / _joystickSizeDivider;
+
+        else if (screenPosition.y > Screen.height - _joystickSize.y / _joystickSizeDivider)
+            screenPosition.y = Screen.height - _joystickSize.y / _joystickSizeDivider;
+
+        return screenPosition;
+    }
+
+    public void OnFingerUp(Finger finger)
+    {
+        _movementFinger = null;
+        _floatingJoystick.Knob.anchoredPosition = Vector2.zero;
+        _floatingJoystick.gameObject.SetActive(false);
+        _moveDirection = Vector2.zero;
     }
 }
