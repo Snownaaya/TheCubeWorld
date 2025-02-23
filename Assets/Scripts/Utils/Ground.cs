@@ -1,10 +1,13 @@
 using UnityEngine;
+using Assets.Scripts.Items;
 
 public class Ground : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
+    [SerializeField] private ResourceType _resourceType;
 
     public Transform[] Points => _points;
+    public ResourceType ResourceType => _resourceType;
 
 #if UNITY_EDITOR
     [ContextMenu("Refresh Child Array")]

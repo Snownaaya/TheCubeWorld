@@ -1,19 +1,21 @@
 using UnityEngine;
+using Assets.Scripts.Items;
 
 [RequireComponent(typeof(Collider))]
-public abstract class Resource : MonoBehaviour
+public class Resource : MonoBehaviour
 {
-    private Collider _collider;
+    [SerializeField] private ResourceType _resourceType;
+
     private Transform _transform;
     private GameObject _gameObject;
 
-    public abstract int Amount { get; }
+    public ResourceType ResourceType => _resourceType;
+    public int Amount { get; private set; }
 
     private void Awake()
     {
         _transform = transform;
         _gameObject = gameObject;
-        _collider = GetComponent<Collider>();
     }
 
     public void PickUp() =>

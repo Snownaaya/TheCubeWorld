@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using Assets.Scripts.Items;
+using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
 public class ResourceSpawner : PoolObject<Resource>
@@ -9,20 +10,24 @@ public class ResourceSpawner : PoolObject<Resource>
     private const string Pool = nameof(Pool);
 
     [Header(Resource)]
-    [SerializeField] private List<Resource> _resources = new List<Resource>();
+    [SerializeField] private Resource[] _resource;
     [SerializeField] private int _maxResources = 20;
     [SerializeField] private float _spawnInterval = 0.1f;
 
+    private Dictionary<ResourceType, Resource> _resources;
     private Transform _transform;
 
-    private void OnValidate()
+    private void Awake()
     {
-        if (_resources.Count == 0)
-            return;
-    }
+        _resources = new Dictionary<ResourceType, Resource>()
+        {
+            {ResourceType.Dirt, _resource[0]},
+            {ResourceType.Wood, _resource[1]},
+            {ResourceType.Stone, _resource[2]}
+        };
 
-    private void Awake() =>
         _transform = transform;
+    }
 
     public IEnumerator SpawnRoutine(Ground currentGround)
     {
@@ -39,14 +44,17 @@ public class ResourceSpawner : PoolObject<Resource>
         if (_resources.Count == 0 || currentGround == null || currentGround.Points == null || currentGround.Points.Length == 0)
             return;
 
+        if (_resources.TryGetValue(currentGround.ResourceType, out Resource resourcePrefab) == false)
+            return;
+
         for (int i = 0; i < _maxResources; i++)
         {
             int randomPointIndex = Random.Range(0, currentGround.Points.Length);
             Transform spawnPoint = currentGround.Points[randomPointIndex];
 
-            Resource resourcePrefab = _resources[Random.Range(0, _resources.Count)];
-            resourcePrefab = Pull(resourcePrefab);
-            resourcePrefab.transform.position = spawnPoint.position;
+            Resource resourceInstance = Pull(resourcePrefab);
+            resourceInstance.transform.position = spawnPoint.position;
+            resourceInstance.gameObject.SetActive(true);
         }
     }
 

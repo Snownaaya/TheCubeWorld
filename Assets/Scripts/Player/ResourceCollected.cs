@@ -15,7 +15,7 @@ public class ResourceCollected : MonoBehaviour
             resource.PickUp();
             _resourceStorage.AddResource(resource);
             _resourceSpawner.ReturnResource(resource);
-            _inventory.CollectResource(resource, _resourceStorage);
+            _inventory.CollectResource(resource);
         }
     }
 }

@@ -24,29 +24,29 @@ public class BridgeBuilder : MonoBehaviour
         _playerInventory = new PlayerInventory();
     }
 
-    public void TryBuild(BridgeData bridgeData)
-    {
-        if (_hitInfo.transform == null)
-            return;
+    //public void TryBuild(BridgeData bridgeData)
+    //{
+    //    if (_hitInfo.transform == null)
+    //        return;
 
-        if (_playerInventory.HasEnoughResource(bridgeData.Resource, 0) == false)
-            return;
+    //    if (_playerInventory.HasEnoughResource(bridgeData.Resource, 0) == false)
+    //        return;
 
-        var resource = _storage.GetResourceType(bridgeData.Resource);
+    //    var resource = _storage.GetResourceType(bridgeData.Resource);
 
-        if (Physics.Raycast(_transform.position, BuildPosition, _bridgeLayer, (int)QueryTriggerInteraction.Ignore))
-        {
+    //    if (Physics.Raycast(_transform.position, BuildPosition, _bridgeLayer, (int)QueryTriggerInteraction.Ignore))
+    //    {
 
-        }
-    }
+    //    }
+    //}
 
-    private void Build(BridgeData bridgeData)
-    {
-        if (_playerInventory.HasEnoughResource(bridgeData.Resource, 0))
-        {
+    //private void Build(BridgeData bridgeData)
+    //{
+    //    if (_playerInventory.HasEnoughResource(bridgeData.Resource, 0))
+    //    {
 
-        }
-    }
+    //    }
+    //}
 
     private void OnDrawGizmos()
     {
