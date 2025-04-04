@@ -9,12 +9,14 @@ public class ResourceSpawner : PoolObject<Resource>
     private const string Resource = nameof(Resource);
     private const string Pool = nameof(Pool);
 
+    [SerializeField] private AnimationCurve _spawnProbability;
+
     [Header(Resource)]
     [SerializeField] private Resource[] _resource;
     [SerializeField] private int _maxResources = 20;
-    [SerializeField] private float _spawnInterval = 0.1f;
+    [SerializeField] private float _spawnInterval = 2f;
 
-    private Dictionary<ResourceType, Resource> _resources;
+    private Dictionary<ResourceType, Resource> _resources = new Dictionary<ResourceType, Resource>();
     private Transform _transform;
 
     private void Awake()
@@ -33,24 +35,26 @@ public class ResourceSpawner : PoolObject<Resource>
     {
         while (enabled)
         {
+            currentGround.ResetPoints();
             SpawnResource(currentGround);
             yield return new WaitForSeconds(_spawnInterval);
-            yield return new WaitUntil(() => GetActiveCount() >= _maxResources);
+            yield return new WaitUntil(() => GetActiveCount() == 0);
         }
     }
 
     private void SpawnResource(Ground currentGround)
     {
-        if (_resources.Count == 0 || currentGround == null || currentGround.Points == null || currentGround.Points.Length == 0)
+        if (_resources.Count == 0 || currentGround == null || currentGround.Points == null || currentGround.Points.Count == 0)
             return;
 
-        if (_resources.TryGetValue(currentGround.ResourceType, out Resource resourcePrefab) == false)
-            return;
+        int spawnCount = Mathf.Min(_maxResources - GetActiveCount(), currentGround.Points.Count);
 
-        for (int i = 0; i < _maxResources; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
-            int randomPointIndex = Random.Range(0, currentGround.Points.Length);
-            Transform spawnPoint = currentGround.Points[randomPointIndex];
+            Transform spawnPoint = currentGround.GetRandomPoint();
+
+            int randomPrefab = Random.Range(0, _resources.Count);
+            Resource resourcePrefab = _resource[randomPrefab];
 
             Resource resourceInstance = Pull(resourcePrefab);
             resourceInstance.transform.position = spawnPoint.position;
@@ -60,4 +64,9 @@ public class ResourceSpawner : PoolObject<Resource>
 
     public void ReturnResource(Resource resource) =>
         Push(resource);
+
+    private void Reset()
+    {
+        ClearPool();
+    }
 }

@@ -1,79 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
 using Assets.Scripts.Items;
+using Assets.Scripts.Utils;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Player
 {
     [Serializable]
     public class PlayerInventory
     {
-        private Dictionary<ResourceType, Stack<ResourceData>> _resourceStacks = new Dictionary<ResourceType, Stack<ResourceData>>();
+        private Dictionary<ResourceType, NotLessZeroProperty<int>> _resources = new Dictionary<ResourceType, NotLessZeroProperty<int>>();
 
-        public IReadOnlyDictionary<ResourceType, Stack<ResourceData>> ResourceStacks => _resourceStacks;
+        public PlayerInventory()
+        {
+            _resources[ResourceType.Dirt] = new NotLessZeroProperty<int>(0);
+            _resources[ResourceType.Wood] = new NotLessZeroProperty<int>(0);
+            _resources[ResourceType.Stone] = new NotLessZeroProperty<int>(0);
+        }
+
+        public IReadOnlyDictionary<ResourceType, NotLessZeroProperty<int>> ResourceStacks => _resources;
 
         public void CollectResource(Resource resource)
         {
-            if (resource == null)
-                return;
+            if(resource == null) 
+             return;
 
             ResourceType type = resource.ResourceType;
 
-            if (!_resourceStacks.ContainsKey(type))
-                _resourceStacks[type] = new Stack<ResourceData>();
+            if (_resources.ContainsKey(resource.ResourceType) == false)
+                _resources[type] = new NotLessZeroProperty<int>(0);
 
-            if (_resourceStacks[type].Count > 0 && _resourceStacks[type].Peek().Type == type)
-            {
-                ResourceData topResource = _resourceStacks[type].Pop();
-                topResource.Amount += 1;
-                _resourceStacks[type].Push(topResource);
-            }
-            else
-            {
-                _resourceStacks[type].Push(new ResourceData(type, 1));
-            }
-
+            _resources[type].Value++;
             resource.PickUp();
         }
 
-        public bool UseResource(ResourceType type)
+        public void UseResource(ResourceType resourceType)
         {
-            if (_resourceStacks.TryGetValue(type, out Stack<ResourceData> stack) && stack.Count > 0)
-            {
-                ResourceData topResource = stack.Pop();
-                if (topResource.Amount > 1)
-                {
-                    topResource.Amount -= 1;
-                    stack.Push(topResource);
-                }
-                return true;
-            }
-            return false;
+            if(_resources.ContainsKey(resourceType) == false) 
+                return;
+
+            if(_resources.TryGetValue(resourceType, out NotLessZeroProperty<int> resource) && resource.Value > 0)
+                resource.Value--;
         }
 
-        public bool HasEnoughResource(ResourceType type, int amount)
+        public bool HasResource(ResourceType resourceType, int amount = 0)
         {
-            if (_resourceStacks.TryGetValue(type, out Stack<ResourceData> stack))
-            {
-                int totalAmount = 0;
-                foreach (var resource in stack)
-                    totalAmount += resource.Amount;
+            if (_resources.TryGetValue(resourceType, out NotLessZeroProperty<int> resource))
+                return resource.Value >= amount;
 
-                return totalAmount >= amount;
-            }
             return false;
-        }
-    }
-
-    [Serializable]
-    public struct ResourceData
-    {
-        public ResourceType Type;
-        public int Amount;
-
-        public ResourceData(ResourceType type, int amount)
-        {
-            Type = type;
-            Amount = amount;
         }
     }
 }

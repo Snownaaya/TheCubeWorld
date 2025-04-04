@@ -1,36 +1,44 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private Transform _container;
 
     private Queue<T> _queue = new Queue<T>();
+    private List<T> _activeObjects = new List<T>();
 
     public void Push(T @object)
     {
         @object.gameObject.SetActive(false);
+        _activeObjects.Remove(@object);
         _queue.Enqueue(@object);
     }
 
     public T Pull(T @object)
     {
+        T instance;
         if (_queue.Count > 0)
         {
-            @object = _queue.Dequeue();
-            @object.gameObject.SetActive(true);
-            return @object;
+            instance = _queue.Dequeue();
+            instance.gameObject.SetActive(true);
+        }
+        else
+        {
+            instance = Instantiate(@object, _container);
         }
 
-        return Instantiate(@object, _container);
+        _activeObjects.Add(instance); 
+        return instance;
     }
 
-    public int GetActiveCount() =>
-        _queue.Count;
+    public int GetActiveCount() => _activeObjects.Count;
 
     public void ClearPool()
     {
-        if (GetActiveCount() < 0)
-            _queue.Clear();
+        foreach (var obj in _activeObjects)
+            Destroy(obj.gameObject);
+        _activeObjects.Clear();
+        _queue.Clear();
     }
 }

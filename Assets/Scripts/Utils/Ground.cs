@@ -1,23 +1,49 @@
-using UnityEngine;
 using Assets.Scripts.Items;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    [SerializeField] private Transform[] _points;
-    [SerializeField] private ResourceType _resourceType;
+    [SerializeField] private List<Transform> _points;
+    private List<Transform> _originalPoints;
 
-    public Transform[] Points => _points;
-    public ResourceType ResourceType => _resourceType;
+    public List<Transform> Points => _points;
+
+    private void Awake()
+    {
+        if (_points == null)
+            _points = new List<Transform>();
+
+        _originalPoints = new List<Transform>(_points);
+    }
 
 #if UNITY_EDITOR
     [ContextMenu("Refresh Child Array")]
     private void RefreshChildArray()
     {
-        int pointCount = transform.childCount;
-        _points = new Transform[pointCount];
-
-        for (int i = 0; i < pointCount; i++)
-            _points[i] = transform.GetChild(i);
+        _points.Clear();
+        for (int i = 0; i < transform.childCount; i++)
+            _points.Add(transform.GetChild(i));
+        _originalPoints = new List<Transform>(_points);
     }
 #endif
+
+    public Transform GetRandomPoint()
+    {
+        if (_points.Count == 0)
+            return null;
+
+        int randomIndex = Random.Range(0, _points.Count);
+        Transform point = _points[randomIndex];
+        _points.RemoveAt(randomIndex);
+        return point;
+    }
+
+    public void ResetPoints()
+    {
+        _points.Clear();
+        _points.AddRange(_originalPoints); 
+    }
+
+    private void Reset() => RefreshChildArray();
 }

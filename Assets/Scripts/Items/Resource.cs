@@ -8,14 +8,16 @@ public class Resource : MonoBehaviour
 
     private Transform _transform;
     private GameObject _gameObject;
+    private Material _material;
 
     public ResourceType ResourceType => _resourceType;
-    public int Amount { get; private set; }
+    public Material Material => _material;
 
     private void Awake()
     {
         _transform = transform;
         _gameObject = gameObject;
+        _material = GetComponent<Renderer>().material;
     }
 
     public void PickUp() =>

@@ -8,7 +8,6 @@ public class FloatingJoystick : MonoBehaviour
     private RectTransform _rectTransform;
     [SerializeField] private RectTransform _knob;
 
-
     public RectTransform RectTransform
     {
         get
@@ -21,8 +20,6 @@ public class FloatingJoystick : MonoBehaviour
 
     public RectTransform Knob => _knob;
 
-    private void Awake()
-    {
+    private void Awake() =>
         _rectTransform = GetComponent<RectTransform>();
-    }
 }
