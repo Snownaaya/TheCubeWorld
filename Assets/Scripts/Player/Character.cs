@@ -9,27 +9,25 @@ public class Character : MonoBehaviour, IMoveble
     [SerializeField] private float _speed = 3f;
     [SerializeField] private FloatingJoystick _floatingJoystick;
     [SerializeField] private Movement _movement;
+    [SerializeField] private CharacterView _characterView;
 
     private PlayerInput _playerInput;
-    private Transform _transform;
     private Rigidbody _rigidbody;
 
     private void Awake()
     {
-        _transform = transform;
+        _characterView.Initialize();
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput = new PlayerInput();
         _movement = new Movement(this, _floatingJoystick);
     }
 
     public float Speed => _speed;
-    public Transform Transform => _transform;
-    public Rigidbody Player => _rigidbody;
+    public Rigidbody Rigidbody => _rigidbody;
+    public CharacterView CharacterView => _characterView;
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() =>
         _movement.MovementUpdate();
-    }
 
     private void OnEnable()
     {

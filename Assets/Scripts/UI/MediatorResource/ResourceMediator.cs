@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI
         {
             if (_playerInventory == null)
                 return;
-
+       
             foreach (var resourceType in _playerInventory.ResourceStacks.Keys)
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
         }
@@ -30,8 +30,10 @@ namespace Assets.Scripts.UI
         public void UpdateCountText(ResourceType type, int count)
         {
             foreach (ResourceCountView view in _view)
-                if (view.ResourceType == type)
+            {
+                if (view.Config.ResourceType == type)
                     view.UpdateText(count);
+            }
         }
     }
 }

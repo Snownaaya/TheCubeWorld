@@ -65,8 +65,6 @@ public class ResourceSpawner : PoolObject<Resource>
     public void ReturnResource(Resource resource) =>
         Push(resource);
 
-    private void Reset()
-    {
+    private void Reset() =>
         ClearPool();
-    }
 }

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3235564567825244781}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,7 +80,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.46, y: 0.46, z: 0.46}
+  m_LocalScale: {x: 0.44, y: 0.44, z: 0.44}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5475174961288013162}
@@ -115,7 +115,7 @@ MonoBehaviour:
   - {fileID: 1709931649700521868}
   - {fileID: 4306066624390422116}
   _buildingArea: {fileID: 7408489041563867361}
-  _blueprintMaterial: {fileID: 2100000, guid: 3175cb13b4078bb48aca1c049b19a472, type: 2}
+  _blueprintMaterial: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
   _invisibleMaterial: {fileID: 2100000, guid: 80a3ffecb1a5be345bb853a66c2d1ec5, type: 2}
 --- !u!1 &5511508034779868101
 GameObject:
@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 5511508034779868101}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -303,15 +303,15 @@ PrefabInstance:
     - target: {fileID: 710154952205141977, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3175cb13b4078bb48aca1c049b19a472, type: 2}
+      objectReference: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
     - target: {fileID: 1735573308639422838, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3175cb13b4078bb48aca1c049b19a472, type: 2}
+      objectReference: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
     - target: {fileID: 3009048655908761604, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3175cb13b4078bb48aca1c049b19a472, type: 2}
+      objectReference: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
     - target: {fileID: 7825254702669394233, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Name
       value: BridgePart
@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 8389986981551214386, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3175cb13b4078bb48aca1c049b19a472, type: 2}
+      objectReference: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
     - target: {fileID: 8938894454475424633, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1

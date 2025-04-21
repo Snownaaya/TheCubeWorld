@@ -22,7 +22,7 @@ public class ResourceCollected : MonoBehaviour
         {
             _resourceStorage.AddResource(resource);
             _resourceSpawner.ReturnResource(resource);
-            _inventory.CollectResource(resource);
+            _inventory.AddResource(resource);
         }
     }
 }

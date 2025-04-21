@@ -28,29 +28,13 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public void RemoveCube(Resource resource)
+        public void RemoveResource(Resource resource)
         {
             if (_cubes.TryGetValue(resource.GetType(), out Queue<Resource> resources))
             {
                 Queue<Resource> newQueue = new Queue<Resource>(resources.Where(r => r != resource));
                 _cubes[resource.GetType()] = newQueue;
             }
-        }
-
-        public int GetResourceCount(Resource resource)
-        {
-            if (_cubes.TryGetValue(resource.GetType(), out Queue<Resource> resources))
-                return resources.Count;
-
-            return 0;
-        }
-
-        public Resource GetResourceType(Resource resource)
-        {
-            if (_cubes.TryGetValue(resource.GetType(), out Queue<Resource> resources))
-                return resource;
-
-            return null;
         }
     }
 }

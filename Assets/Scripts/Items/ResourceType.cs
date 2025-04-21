@@ -2,8 +2,8 @@
 {
     public enum ResourceType
     {
-        Dirt = 10,
-        Wood = 15,
-        Stone = 20,
+        Dirt,
+        Wood,
+        Stone,
     }
 }

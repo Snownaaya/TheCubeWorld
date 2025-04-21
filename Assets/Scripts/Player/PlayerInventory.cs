@@ -19,7 +19,7 @@ namespace Assets.Scripts.Player
 
         public IReadOnlyDictionary<ResourceType, NotLessZeroProperty<int>> ResourceStacks => _resources;
 
-        public void CollectResource(Resource resource)
+        public void AddResource(Resource resource)
         {
             if(resource == null) 
              return;

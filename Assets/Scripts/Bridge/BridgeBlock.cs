@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class BridgeBlock : MonoBehaviour
+namespace Assets.Scripts.Bridge
 {
-    [SerializeField] private Renderer _renderer;
-
-    private void OnValidate()
+    public class BridgeBlock : MonoBehaviour
     {
-        _renderer = GetComponent<Renderer>();
-    }
+        [SerializeField] private Renderer _renderer;
 
-    public void SetMaterial(Material material)
-    {
-        _renderer.material = material;
+#if UNITY_EDITOR
+        private void OnValidate() =>
+            _renderer = GetComponent<Renderer>();
+#endif
+
+        public void SetMaterial(Material material) =>
+            _renderer.material = material;
     }
 }

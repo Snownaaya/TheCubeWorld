@@ -3,7 +3,7 @@ using System;
 
 namespace Assets.Scripts.Utils
 {
-    public abstract class Property<T>: IReadOnlyProperty<T> where T : IComparable
+    public abstract class Property<T> : IReadOnlyProperty<T> where T : IComparable
     {
         public event Action<T> Changed;
 

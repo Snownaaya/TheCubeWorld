@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.gustavopsantos.reflex": {
+      "version": "https://github.com/gustavopsantos/Reflex.git?path=/Assets/Reflex",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c31714ec59de51a85d233f6ccb9d55d3fdc9df26"
+    },
     "com.unity.cinemachine": {
       "version": "2.9.7",
       "depth": 0,

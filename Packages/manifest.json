@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.gustavopsantos.reflex": "https://github.com/gustavopsantos/Reflex.git?path=/Assets/Reflex",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.development": "1.0.1",
