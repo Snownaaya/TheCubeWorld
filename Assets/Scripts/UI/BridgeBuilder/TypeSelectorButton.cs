@@ -1,22 +1,23 @@
 ﻿using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Other;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {
     public class TypeSelectorButton : ButtonBase
     {
-        [SerializeField] private BridgeSpawner _bridgeSpawner;
-        [SerializeField] private BridgeType _bridgeType;
+        [SerializeField] private BridgeConfig _bridgeConfig;
+        [SerializeField] private SpawnerSelector _spawnerSelector;
+
+        [SerializeField] private float _distance;
 
         protected override void OnClickButton()
         {
-            //if (Vector3.Distance(transform.position, _bridgeSpawner.Point.transform.position) < 1)
-                _bridgeSpawner.SelectBridge(_bridgeType);
-        }
+            Vector3 playerPosition = PlayerPositionUtils.GetPlayerPosition();
+            BridgeSpawner bridgeSpawner = _spawnerSelector.SetCurrentSpawner(_spawnerSelector.GetClosestSpawner(playerPosition));
 
-        public void GetBridgeCount(BridgeType bridgeType)
-        {
-            
+            if (Vector3.Distance(playerPosition, bridgeSpawner.Point.position) < _distance)
+                bridgeSpawner.SelectBridge(_bridgeConfig.BridgeType);
         }
     }
 }

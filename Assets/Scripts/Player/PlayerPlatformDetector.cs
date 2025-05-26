@@ -23,6 +23,7 @@ public class PlayerPlatformDetector : MonoBehaviour
             if (_coroutine != null)
             {
                 StopCoroutine(_coroutine);
+                _spawner.ClearPool();
                 _coroutine = null;
             }
         }

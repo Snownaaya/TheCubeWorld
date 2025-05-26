@@ -1,9 +1,6 @@
 ﻿using Assets.Scripts.Datas;
-using Assets.Scripts.Items;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using YG;
 
 namespace Assets.Scripts.UI
 {

@@ -8,22 +8,17 @@ namespace Assets.Scripts.UI.BridgeBuilder
 {
     public abstract class ButtonBase : MonoBehaviour, IButtonWidget
     {
-        [SerializeField] protected Button _button;
+        [field: SerializeField] public Button Button { get; private set; }
 
         protected virtual void OnEnable() =>
-            _button.onClick.AddListener(OnClickButton);
+            Button.onClick.AddListener(OnClickButton);
 
         protected virtual void OnDisable() =>
-            _button.onClick.RemoveListener(OnClickButton);
+            Button.onClick.RemoveListener(OnClickButton);
 
+        public void OnPointerDown(PointerEventData eventData) => AnimatePress();
 
-        public void OnPointerDown(PointerEventData eventData) =>
-                AnimatePress();
-
-        public void OnPointerUp(PointerEventData eventData) =>
-                AnimateRelease();
-
-        protected abstract void OnClickButton();
+        public void OnPointerUp(PointerEventData eventData) => AnimateRelease();
 
         public void AnimatePress()
         {
@@ -36,5 +31,7 @@ namespace Assets.Scripts.UI.BridgeBuilder
             transform.DOKill();
             transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
         }
+
+        protected abstract void OnClickButton();
     }
 }

@@ -12,8 +12,7 @@ namespace Assets.Scripts.Bridge.Factory
         private BridgeType _selectedType = BridgeType.Easy;
 
         public Transform Point => _point;
-
-        public event Action<Bridge> OnBridgeSpawned;
+        public Bridge CurrentBridge => _currentBridge;
 
         public void SpawnBridge()
         {
@@ -21,7 +20,6 @@ namespace Assets.Scripts.Bridge.Factory
                 Destroy(_currentBridge.gameObject);
 
             _currentBridge = _factory.Get(_selectedType, _point.position);
-            OnBridgeSpawned?.Invoke(_currentBridge);
         }
 
         public void SelectBridge(BridgeType bridgeType)

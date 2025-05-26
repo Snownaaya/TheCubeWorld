@@ -13,7 +13,7 @@ public class ResourceSpawner : PoolObject<Resource>
 
     [Header(Resource)]
     [SerializeField] private Resource[] _resource;
-    [SerializeField] private int _maxResources = 20;
+    [SerializeField] private int _maxResources = 16;
     [SerializeField] private float _spawnInterval = 2f;
 
     private Dictionary<ResourceType, Resource> _resources = new Dictionary<ResourceType, Resource>();
@@ -35,7 +35,9 @@ public class ResourceSpawner : PoolObject<Resource>
     {
         while (enabled)
         {
-            currentGround.ResetPoints();
+            if (GetActiveCount() == 0)
+                currentGround.ResetPoints();
+
             SpawnResource(currentGround);
             yield return new WaitForSeconds(_spawnInterval);
             yield return new WaitUntil(() => GetActiveCount() == 0);
@@ -47,9 +49,9 @@ public class ResourceSpawner : PoolObject<Resource>
         if (_resources.Count == 0 || currentGround == null || currentGround.Points == null || currentGround.Points.Count == 0)
             return;
 
-        int spawnCount = Mathf.Min(_maxResources - GetActiveCount(), currentGround.Points.Count);
+        int spawnCount = Mathf.Max(_maxResources - GetActiveCount(), currentGround.Points.Count);
 
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < _maxResources; i++)
         {
             Transform spawnPoint = currentGround.GetRandomPoint();
 

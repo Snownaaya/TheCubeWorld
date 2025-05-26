@@ -1,13 +1,14 @@
 using Assets.Scripts.Bridge;
 using UnityEngine;
 using System;
+using Assets.Scripts.Bridge.Factory;
 
 [Serializable]
 public class BridgeConfig
 {
     [SerializeField] private Bridge _bridgePrefab;
-    [SerializeField] private int _count;
+    [SerializeField] private BridgeType _type;
 
     public Bridge BridgePrefab => _bridgePrefab;
-    public int Count => _count;
+    public BridgeType BridgeType => _type;
 }

@@ -9,10 +9,8 @@ namespace Assets.Scripts.Utils
 
         private T _value;
 
-        protected Property(T value)
-        {
+        protected Property(T value) =>
             Value = value;
-        }
 
         public T Value
         {
@@ -23,6 +21,7 @@ namespace Assets.Scripts.Utils
                     throw new ArgumentException(nameof(value));
 
                 T oldValue = _value;
+
                 _value = value;
 
                 if (_value.CompareTo(oldValue) != 0)

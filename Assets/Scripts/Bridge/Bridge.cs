@@ -1,4 +1,7 @@
 using Assets.Scripts.Datas;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Properties;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Bridge
@@ -11,9 +14,9 @@ namespace Assets.Scripts.Bridge
         [SerializeField] private Material _blueprintMaterial;
         [SerializeField] private Material _invisibleMaterial;
 
-        private int _buildedPartsCount = 0;
+        private NotLimitedProperty<int> _buildedPartsCount = new(0);
 
-        public BridgePart BridgeParts => GetComponentInChildren<BridgePart>();
+        public event Action OnBridgeCompleted;
 
         private void OnValidate()
         {
@@ -31,21 +34,23 @@ namespace Assets.Scripts.Bridge
             _buildingArea.ResourceDelivered += Build;
 
         private void OnDisable() =>
-            _buildingArea.ResourceDelivered += Build;
+            _buildingArea.ResourceDelivered -= Build;
 
         private void Build(ResourceConfig resource)
         {
-            _bridgeParts[_buildedPartsCount].TryBuild(resource.Material);
-
-            if (_bridgeParts[_buildedPartsCount].IsBuilded)
+            if (_buildedPartsCount.Value >= _bridgeParts.Length)
             {
-                _buildedPartsCount++;
-                _buildingArea.MoveBarrier();
+                _buildingArea.gameObject.SetActive(false);
+                OnBridgeCompleted.Invoke();
+                return;
+            }
 
-                if (_bridgeParts[_buildedPartsCount].IsBuilded)
-                {
-                    Debug.LogError("При попытке достроить блок в деталь");
-                }
+            _bridgeParts[_buildedPartsCount.Value].TryBuild(resource.Material);
+
+            if (_bridgeParts[_buildedPartsCount.Value].IsBuilded)
+            {
+                _buildedPartsCount.Value++;
+                _buildingArea.MoveBarrier();
             }
         }
     }

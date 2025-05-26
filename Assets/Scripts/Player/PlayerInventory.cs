@@ -2,11 +2,14 @@
 using Assets.Scripts.Items;
 using Assets.Scripts.Utils;
 using System.Collections.Generic;
+using UnityEngine;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Assets.Scripts.Interfaces;
 
 namespace Assets.Scripts.Player
 {
     [Serializable]
-    public class PlayerInventory
+    public class PlayerInventory : IInventory
     {
         private Dictionary<ResourceType, NotLessZeroProperty<int>> _resources = new Dictionary<ResourceType, NotLessZeroProperty<int>>();
 
@@ -27,7 +30,7 @@ namespace Assets.Scripts.Player
             ResourceType type = resource.ResourceType;
 
             if (_resources.ContainsKey(resource.ResourceType) == false)
-                _resources[type] = new NotLessZeroProperty<int>(0);
+                _resources[type] = new NotLessZeroProperty<int>(100);
 
             _resources[type].Value++;
             resource.PickUp();

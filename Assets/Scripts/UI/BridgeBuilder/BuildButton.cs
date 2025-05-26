@@ -1,38 +1,59 @@
-﻿using Assets.Scripts.Bridge;
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Datas;
+﻿using Assets.Scripts.Datas;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Other;
+using Reflex.Attributes;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {
-    public class BuildButton : ButtonBase
+    public class BuildButton : MonoBehaviour
     {
-        [SerializeField] private ResourceConfig _resource;
-        [SerializeField] private BridgeSpawner _bridgeSpawner;
+        [field: SerializeField] public ResourceConfig[] ResourceConfig { get; private set; }
+        [field: SerializeField] public SpawnerSelector SpawnerSelector { get; private set; }
+        [field: SerializeField] public Button DirtButton { get; private set; }
+        [field: SerializeField] public Button WoodButton { get; private set; }
+        [field: SerializeField] public Button StoneButton { get; private set; }
 
-        private Assets.Scripts.Bridge.Bridge _bridge;
+        private IResourceStorage _resourceStorage;
+        private IInventory _inventory;
+        private BuildBridgeState _state;
 
-        protected override void OnEnable()
+        private void Awake() =>
+            _state = new BuildBridgeState(this);
+
+        [Inject]
+        private void Construct(IResourceStorage resourceStorage, IInventory inventory)
         {
-            base.OnEnable();
-
-            _bridgeSpawner.OnBridgeSpawned += UpdateBridge;
+            _resourceStorage = resourceStorage;
+            _inventory = inventory;
         }
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
+        public IResourceStorage ResourceStorage => _resourceStorage;
+        public IInventory Inventory => _inventory;
+        public BuildBridgeState State => _state;
 
-            _bridgeSpawner.OnBridgeSpawned -= UpdateBridge;
+        protected void OnEnable()
+        {
+            DirtButton.onClick.AddListener(OnDirtButtonClick);
+            WoodButton.onClick.AddListener(OnWoodButtonClick);
+            StoneButton.onClick.AddListener(OnStoneButtonClick);
         }
 
-        protected override void OnClickButton()
+        protected void OnDisable()
         {
-            BuildingArea buildingArea = _bridge.GetComponentInChildren<BuildingArea>();
-            buildingArea.DeliveResource(_resource);
+            DirtButton.onClick.RemoveListener(OnDirtButtonClick);
+            WoodButton.onClick.RemoveListener(OnWoodButtonClick);
+            StoneButton.onClick.RemoveListener(OnStoneButtonClick);
         }
 
-        private void UpdateBridge(Assets.Scripts.Bridge.Bridge newBridge) =>
-            _bridge = newBridge;
+        private void OnDirtButtonClick() =>
+            State.SwitchState<DirtSelectedState>();
+
+        private void OnWoodButtonClick() =>
+            State.SwitchState<WoodSelectedState>();
+
+        private void OnStoneButtonClick() =>
+            State.SwitchState<StoneSelectedState>();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Items;
+﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ namespace Assets.Scripts.UI
     {
         [SerializeField] private ResourceCountView[] _view;
 
-        private PlayerInventory _playerInventory;
+        private IInventory _playerInventory;
 
-        public void Initialize(PlayerInventory playerInventory)
+        public void Initialize(IInventory playerInventory)
         {
             _playerInventory = playerInventory;
 
-            foreach (var resourceType in _playerInventory.ResourceStacks.Keys)
+            foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
                 _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
         }
 
@@ -23,7 +24,7 @@ namespace Assets.Scripts.UI
             if (_playerInventory == null)
                 return;
        
-            foreach (var resourceType in _playerInventory.ResourceStacks.Keys)
+            foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
         }
 

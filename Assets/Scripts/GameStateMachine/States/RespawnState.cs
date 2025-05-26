@@ -1,0 +1,22 @@
+﻿using Assets.Scripts.Interfaces;
+
+namespace Assets.Scripts.GameStateMachine.States
+{
+    internal class RespawnState : BaseGameState
+    {
+        public RespawnState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
+
+        public override void Enter()
+        {
+            base.Enter();
+
+            GameFlow.LossScreen.Close();
+            Switcher.SwitchState<StartLevelState>();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+    }
+}
