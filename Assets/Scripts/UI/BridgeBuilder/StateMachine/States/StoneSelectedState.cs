@@ -1,6 +1,6 @@
+using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.UI.BridgeBuilder;
 using DG.Tweening;
 
 public class StoneSelectedState : BaseBridgeState
@@ -13,10 +13,10 @@ public class StoneSelectedState : BaseBridgeState
     {
         base.Enter();
 
+        DeliverResourceToBridge(_stoneType);
+
         BuildButton.StoneButton.transform.DOKill();
         BuildButton.StoneButton.transform.DOScale(0.8f, 0);
-
-        DeliverResourceToBridge(_stoneType);
     }
 
     public override void Exit()

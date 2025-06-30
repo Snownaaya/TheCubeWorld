@@ -9,10 +9,7 @@ namespace Assets.Scripts.Utils
 
         protected override bool IsValid(T value)
         {
-            if (Comparer<T>.Default.Compare(value, default(T)) < 0)
-                return false;
-            else
-                return true;
+            return Comparer<T>.Default.Compare(value, default(T)) >= 0;
         }
     }
 }

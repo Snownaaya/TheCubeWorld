@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Platform;
+using UnityEngine;
 
 public class PlayerPlatformDetector : MonoBehaviour
 {

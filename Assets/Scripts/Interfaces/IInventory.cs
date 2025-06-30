@@ -12,6 +12,6 @@ namespace Assets.Scripts.Interfaces
 
         public void UseResource(ResourceType resourceType);
 
-        public bool HasResource(ResourceType resourceType, int amount = 0);
+        public bool HasResource(ResourceType resourceType, NotLessZeroProperty<int> amount);
     }
 }

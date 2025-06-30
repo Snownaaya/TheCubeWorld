@@ -1,6 +1,6 @@
+using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.UI.BridgeBuilder;
 using DG.Tweening;
 
 public class DirtSelectedState : BaseBridgeState
@@ -13,10 +13,10 @@ public class DirtSelectedState : BaseBridgeState
     {
         base.Enter();
 
+        DeliverResourceToBridge(_dirtType);
+            
         BuildButton.DirtButton.transform.DOKill();
         BuildButton.DirtButton.transform.DOScale(0.8f, 0);
-
-        DeliverResourceToBridge(_dirtType);
     }
 
     public override void Exit()

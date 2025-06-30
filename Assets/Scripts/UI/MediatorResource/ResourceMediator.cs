@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.UI
@@ -11,12 +12,19 @@ namespace Assets.Scripts.UI
 
         private IInventory _playerInventory;
 
+        [Inject]
+        private void Construct(IInventory inventory) =>
+            _playerInventory = inventory;
+
         public void Initialize(IInventory playerInventory)
         {
             _playerInventory = playerInventory;
 
             foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
+            {
                 _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
+
+            }
         }
 
         private void OnDisable()
@@ -25,7 +33,10 @@ namespace Assets.Scripts.UI
                 return;
        
             foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
+            {
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
+
+            }
         }
 
         public void UpdateCountText(ResourceType type, int count)

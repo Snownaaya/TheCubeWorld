@@ -1,10 +1,12 @@
-﻿using Assets.Scripts.Interfaces;
-using System;
+﻿using Assets.Scripts.HealthCharacters;
+using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.Interfaces;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.LevelLoader
 {
-    [RequireComponent(typeof(Assets.Scripts.Health.Health))]
+    [RequireComponent(typeof(BossHealth))]
     public class EndLevel : MonoBehaviour
     {
         private IHealth _health;
@@ -12,9 +14,27 @@ namespace Assets.Scripts.LevelLoader
         public event Action LevelEnded;
 
         private void Awake() =>
-            _health = GetComponent<Assets.Scripts.Health.Health>();
+            _health = GetComponent<Health>();
 
-        public bool IsDeath() =>
-            _health.CheckHealth();
+        private void OnEnable() =>
+               _health.Died += OnDied;
+
+        private void OnDisable() =>
+               _health.Died -= OnDied;
+
+        public bool IsDeath()
+        {
+            if (IsDeath())
+            {
+                _health.CheckHealth();
+                LevelEnded?.Invoke();
+                return true;
+            }
+
+            return false;
+        }
+
+        private void OnDied(ILoss loss) =>
+            LevelEnded?.Invoke();
     }
 }

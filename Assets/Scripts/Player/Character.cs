@@ -1,84 +1,102 @@
 using UnityEngine;
 using Assets.Scripts.Interfaces;
-using UnityEngine.InputSystem.EnhancedTouch;
-using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 using Reflex.Attributes;
-using Assets.Scripts.Other;
-using System;
+using Assets.Scripts.Player.Input;
+using Assets.Scripts.HealthCharacters;
+using Assets.Scripts.GameStateMachine.States;
+using Assets.Scripts.Loss;
+using Assets.Scripts.HealthCharacters.Characters;
 
-[RequireComponent(typeof(PlayerInput), typeof(Rigidbody), typeof(CharacterView))]
-[RequireComponent(typeof(CollisionHandler))]
+[RequireComponent(typeof(PlayerInput), typeof(Rigidbody), typeof(CollisionHandler))]
+[RequireComponent(typeof(CharacterHealth))]
 public class Character : MonoBehaviour, IMoveble
 {
     [SerializeField] private float _speed = 3f;
-    [SerializeField] private FloatingJoystick _floatingJoystick;
-    [SerializeField] private Movement _movement;
+    [SerializeField] private Joystick _joystick;
+    [SerializeField] private CharacterView _characterView;
+    [SerializeField] private Transform _characterModel;
 
-    private CharacterView _characterView;
-    private PlayerInput _playerInput;
     private Rigidbody _rigidbody;
     private CollisionHandler _collisionHandler;
+    private Transform _transform;
+    private Health _health;
 
     private IInventory _playerInventory;
-    private ILoss _loss;
+    private IInput _input;
+    private ISwitcher _stateSwitcher;
 
-    private bool _isAlive;
+    private float _speedRate = 1.5f;
+    private bool _isMoving;
 
     [Inject]
-    private void Construct(IInventory inventory)
+    private void Construct(ISwitcher stateSwitcher,IInventory inventory)
     {
         _playerInventory = inventory;
+        _stateSwitcher = stateSwitcher;
     }
 
     private void Awake()
     {
-        _playerInput = new PlayerInput();
-        _movement = new Movement(this, _floatingJoystick);
+        _transform = transform;
+        PlayerInput = new PlayerInput();
+        _input = new DesktopInput(this);
         _rigidbody = GetComponent<Rigidbody>();
-        _characterView = GetComponent<CharacterView>();
         _collisionHandler = GetComponent<CollisionHandler>();
+        _health = GetComponent<Health>();
         _characterView.Initialize();
     }
 
+    public PlayerInput PlayerInput { get; private set; }
     public Rigidbody Rigidbody => _rigidbody;
     public CharacterView CharacterView => _characterView;
     public IInventory PlayerInventory => _playerInventory;
     public float Speed => _speed;
-
-    public event Action GameOver;
-
-    private void FixedUpdate()
-    {
-        _isAlive = true;
-        _movement.MovementUpdate();
-    }
+    public Joystick Joystick => _joystick;
 
     private void OnEnable()
     {
+        PlayerInput.Enable();
         _collisionHandler.Died += ProccesCollision;
-        EnhancedTouchSupport.Enable();
-        ETouch.Touch.onFingerDown += _movement.OnFingerDown;
-        ETouch.Touch.onFingerUp += _movement.OnFingerUp;
-        ETouch.Touch.onFingerMove += _movement.OnFingerMove;
-
+        _health.Died += ProccesCollision;
     }
 
     private void OnDisable()
     {
+        PlayerInput.Disable();
         _collisionHandler.Died -= ProccesCollision;
-        ETouch.Touch.onFingerDown -= _movement.OnFingerDown;
-        ETouch.Touch.onFingerUp -= _movement.OnFingerUp;
-        ETouch.Touch.onFingerMove -= _movement.OnFingerMove;
-        EnhancedTouchSupport.Disable();
+        _health.Died -= ProccesCollision;
+    }
 
+    public void Move(Vector3 direction)
+    {
+        _characterModel.LookAt(_characterModel.position + direction);
+        _rigidbody.velocity = direction * _speed * _speedRate;
+
+        _characterView.StartMovement();
+        _characterView.StartWalk();
+        _characterView.StopIdle();
+        _isMoving = true;
+    }
+
+    public void StopMove()
+    {
+        if (_rigidbody != null)
+            _rigidbody.velocity = Vector3.zero;
+
+        _characterView.StartMovement();
+        _characterView.StartIdle();
+        _characterView.StopWalk();
+        _isMoving = false;
     }
 
     private void ProccesCollision(ILoss loss)
     {
-        if (loss is LossCollision && _isAlive)
+        if (loss is LossCollision || loss is LossHealth)
         {
-            _isAlive = false;
-            GameOver?.Invoke();
+            _stateSwitcher.SwitchState<LossState>();
+            _characterView.StopWalk();
+            _characterView.StopIdle();
+            _characterView.StopAttack();
         }
     }
 }

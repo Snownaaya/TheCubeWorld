@@ -58,6 +58,7 @@ namespace Assets.Scripts.UI.GameUI
             CanvasGroup.alpha = 0;
             RectTransform.gameObject.SetActive(false);
             CanvasGroup.blocksRaycasts = false;
+            SetPause(false);
         }
 
         public void SetPause(bool isPaused)

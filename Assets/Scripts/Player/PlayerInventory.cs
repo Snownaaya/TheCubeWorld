@@ -2,8 +2,6 @@
 using Assets.Scripts.Items;
 using Assets.Scripts.Utils;
 using System.Collections.Generic;
-using UnityEngine;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Assets.Scripts.Interfaces;
 
 namespace Assets.Scripts.Player
@@ -30,7 +28,7 @@ namespace Assets.Scripts.Player
             ResourceType type = resource.ResourceType;
 
             if (_resources.ContainsKey(resource.ResourceType) == false)
-                _resources[type] = new NotLessZeroProperty<int>(100);
+                _resources[type] = new NotLessZeroProperty<int>(1);
 
             _resources[type].Value++;
             resource.PickUp();
@@ -45,10 +43,10 @@ namespace Assets.Scripts.Player
                 resource.Value--;
         }
 
-        public bool HasResource(ResourceType resourceType, int amount = 0)
+        public bool HasResource(ResourceType resourceType, NotLessZeroProperty<int> amount)
         {
             if (_resources.TryGetValue(resourceType, out NotLessZeroProperty<int> resource))
-                return resource.Value >= amount;
+                return resource.Value > amount.Value;
 
             return false;
         }

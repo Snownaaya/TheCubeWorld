@@ -1,14 +1,10 @@
 ﻿using Assets.Scripts.LevelLoader.Loader;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Interfaces
 {
-    internal interface ILevelLoader
+    public interface ILevelLoader
     {
-        void Load(LevelLoadingData levelLoadingData);
+        AsyncOperation Load(string name);
     }
 }

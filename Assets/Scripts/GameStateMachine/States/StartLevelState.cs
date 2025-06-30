@@ -10,7 +10,7 @@ namespace Assets.Scripts.GameStateMachine.States
         {
             base.Enter();
 
-            GameFlow.StartLevel.gameObject.SetActive(true);
+            GameFlow.LevelPool.SpawnLevel();
         }
 
         public override void Exit()

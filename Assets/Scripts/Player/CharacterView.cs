@@ -22,6 +22,21 @@ public class CharacterView : MonoBehaviour
     public void StartWalk() =>
         _animator?.SetBool(IsWalking, true);
 
+    public void StartMovement() =>
+        _animator?.SetBool(IsMovement, true);
+
+    public void StartAttackState() =>
+        _animator?.SetBool(AttackState, true);
+
+    public void StopMovement() =>
+        _animator?.SetBool(IsMovement, false);
+
     public void StopWalk() =>
         _animator?.SetBool(IsWalking, false);
+
+    public void StartAttack() =>
+        _animator?.SetBool(IsAttack, true);
+
+    public void StopAttack() =>
+        _animator?.SetBool(IsAttack, false);
 }

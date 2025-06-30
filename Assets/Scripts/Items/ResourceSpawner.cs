@@ -3,6 +3,7 @@ using System.Collections;
 using Assets.Scripts.Items;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using Assets.Scripts.Platform;
 
 public class ResourceSpawner : PoolObject<Resource>
 {
@@ -51,7 +52,7 @@ public class ResourceSpawner : PoolObject<Resource>
 
         int spawnCount = Mathf.Max(_maxResources - GetActiveCount(), currentGround.Points.Count);
 
-        for (int i = 0; i < _maxResources; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
             Transform spawnPoint = currentGround.GetRandomPoint();
 
@@ -59,6 +60,7 @@ public class ResourceSpawner : PoolObject<Resource>
             Resource resourcePrefab = _resource[randomPrefab];
 
             Resource resourceInstance = Pull(resourcePrefab);
+            resourceInstance.PrepareForCollection();
             resourceInstance.transform.position = spawnPoint.position;
             resourceInstance.gameObject.SetActive(true);
         }

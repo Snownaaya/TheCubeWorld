@@ -2,14 +2,14 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Character",
             "id": "f7bd8f79-601d-4f6c-bc42-c21d156dede1",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
                     "id": "7db84f21-59b8-4221-b34f-0b8b79979f0e",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -19,10 +19,10 @@
                 {
                     "name": "",
                     "id": "123cefd9-54ce-4b5f-aa4c-908da62bb9d5",
-                    "path": "<Joystick>/stick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false

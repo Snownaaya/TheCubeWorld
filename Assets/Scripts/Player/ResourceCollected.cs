@@ -9,11 +9,15 @@ public class ResourceCollected : MonoBehaviour
     [SerializeField] private ResourceSpawner _resourceSpawner;
     [SerializeField] private ResourceMediator _resourceMediator;
 
-    IResourceStorage _resourceStorage;
+    private IResourceStorage _resourceStorage;
+    private IInventory _playerInventory;
 
     [Inject]
-    private void Construct(IResourceStorage resourceStorage) =>
+    private void Construct(IResourceStorage resourceStorage, IInventory inventory)
+    {
         _resourceStorage = resourceStorage;
+        _playerInventory = inventory;
+    }
 
     private Character _character;
 
@@ -24,10 +28,11 @@ public class ResourceCollected : MonoBehaviour
     {
         if (other.TryGetComponent(out Resource resource))
         {
-            _resourceMediator.Initialize(_character.PlayerInventory);
+            resource.PrepareForCollection();
+            _resourceMediator.Initialize(_playerInventory);
             _resourceStorage.AddResource(resource);
             _resourceSpawner.ReturnResource(resource);
-            _character.PlayerInventory.AddResource(resource);
+            _playerInventory.AddResource(resource);
         }
     }
 }

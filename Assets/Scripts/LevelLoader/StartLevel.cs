@@ -2,7 +2,5 @@
 
 namespace Assets.Scripts.LevelLoader
 {
-    public class StartLevel : MonoBehaviour
-    {
-    }
+    public class StartLevel : MonoBehaviour { }
 }

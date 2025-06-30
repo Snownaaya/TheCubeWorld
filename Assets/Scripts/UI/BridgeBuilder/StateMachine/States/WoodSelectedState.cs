@@ -1,6 +1,6 @@
+using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.UI.BridgeBuilder;
 using DG.Tweening;
 
 public class WoodSelectedState : BaseBridgeState
@@ -23,7 +23,7 @@ public class WoodSelectedState : BaseBridgeState
     {
         base.Exit();
 
-        BuildButton.StoneButton.transform.DOKill();
-        BuildButton.StoneButton.transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
+        BuildButton.WoodButton.transform.DOKill();
+        BuildButton.WoodButton.transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
     }
 }
