@@ -1,25 +1,29 @@
 using UnityEngine;
-using Assets.Scripts.Interfaces;
 using Reflex.Attributes;
-using Assets.Scripts.Player.Input;
-using Assets.Scripts.HealthCharacters;
-using Assets.Scripts.GameStateMachine.States;
 using Assets.Scripts.Loss;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player.Input;
+using Assets.Scripts.GameStateMachine.States;
 using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.Particles.ParticliesSpawners;
 
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody), typeof(CollisionHandler))]
 [RequireComponent(typeof(CharacterHealth))]
 public class Character : MonoBehaviour, IMoveble
 {
-    [SerializeField] private float _speed = 3f;
     [SerializeField] private Joystick _joystick;
     [SerializeField] private CharacterView _characterView;
     [SerializeField] private Transform _characterModel;
+    [SerializeField] private CharacterDeathEffect _characterEffects;
+    [SerializeField] private PooledParticle _pooledParticle;
+
+    [SerializeField] private float _speed = 3f;
 
     private Rigidbody _rigidbody;
     private CollisionHandler _collisionHandler;
     private Transform _transform;
-    private Health _health;
+    private CharacterHealth _health;
 
     private IInventory _playerInventory;
     private IInput _input;
@@ -29,7 +33,7 @@ public class Character : MonoBehaviour, IMoveble
     private bool _isMoving;
 
     [Inject]
-    private void Construct(ISwitcher stateSwitcher,IInventory inventory)
+    private void Construct(ISwitcher stateSwitcher, IInventory inventory)
     {
         _playerInventory = inventory;
         _stateSwitcher = stateSwitcher;
@@ -42,8 +46,9 @@ public class Character : MonoBehaviour, IMoveble
         _input = new DesktopInput(this);
         _rigidbody = GetComponent<Rigidbody>();
         _collisionHandler = GetComponent<CollisionHandler>();
-        _health = GetComponent<Health>();
+        _health = GetComponent<CharacterHealth>();
         _characterView.Initialize();
+        _characterEffects.Initialize(_pooledParticle, _transform);
     }
 
     public PlayerInput PlayerInput { get; private set; }
@@ -93,10 +98,12 @@ public class Character : MonoBehaviour, IMoveble
     {
         if (loss is LossCollision || loss is LossHealth)
         {
-            _stateSwitcher.SwitchState<LossState>();
+            _characterEffects.SpawnParticle();
             _characterView.StopWalk();
             _characterView.StopIdle();
             _characterView.StopAttack();
+            _characterModel.gameObject.SetActive(false);
+            _stateSwitcher.SwitchState<LossState>();
         }
     }
 }

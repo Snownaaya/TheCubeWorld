@@ -24,9 +24,6 @@ namespace Assets.Scripts.GameStateMachine
                 new EndLevelState(this, _gameFlow),
                 new RespawnState(this, _gameFlow)
             };
-
-            _currentState = _states[0];
-            _currentState.Enter();
         }
 
         public void SwitchState<T>() where T : IStates
@@ -35,7 +32,7 @@ namespace Assets.Scripts.GameStateMachine
 
             _currentState?.Exit();
             _currentState = state;
-            _currentState?.Enter();
+            _currentState.Enter();
         }
     }
 }

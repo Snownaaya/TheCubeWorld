@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
+    [RequireComponent(typeof(ParticleSystem))]
     public class PooledParticle : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem _particleSystem;
+
+        public void Awake() =>
+            _particleSystem = GetComponent<ParticleSystem>();
+
+        public void Play() =>
+            _particleSystem.Play();
+
+        public void Stop() =>
+            _particleSystem.Stop();
     }
 }

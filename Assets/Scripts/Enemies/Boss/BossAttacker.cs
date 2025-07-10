@@ -33,7 +33,7 @@ namespace Assets.Scripts.Enemies.Boss
         {
             Collider[] hitEnemy = Physics.OverlapSphere(_attackPoint.position, _attackRadius, _enemyLayer);
 
-            foreach (var enemyCollider in hitEnemy)
+            foreach (Collider enemyCollider in hitEnemy)
             {
                 if (enemyCollider.TryGetComponent(out CharacterHealth health))
                     health.TakeDamage(_damage);

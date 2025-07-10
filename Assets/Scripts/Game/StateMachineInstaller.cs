@@ -11,7 +11,7 @@ namespace Assets.Scripts.Game
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton<ISwitcher>(_ => new GameState(_gameFlow));
+            containerBuilder.AddSingleton(new GameState(_gameFlow), typeof(ISwitcher));
         }
     }
 }

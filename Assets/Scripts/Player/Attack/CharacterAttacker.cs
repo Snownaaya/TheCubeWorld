@@ -11,7 +11,6 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private CharacterView _characterView;
         [SerializeField] private EnemyCollisionDetector _enemyCollision;
         [SerializeField] private ResourceConsumer _resourceConsumer;
-        [SerializeField] private ParticleSystem _attackParticle;
 
         [Header("Settings")]
         [SerializeField] private float _speed;
@@ -41,7 +40,6 @@ namespace Assets.Scripts.Player.Attack
                 {
                     if (_resourceConsumer.TryConsumeResource())
                     {
-                        _attackParticle.Play();
                         _characterView.StartAttackState();
                         _characterView.StopMovement();
                         _characterView.StopIdle();

@@ -1,13 +1,12 @@
-﻿using Assets.Scripts.Enemies.Boss;
-using Assets.Scripts.GameStateMachine.States;
+﻿using Assets.Scripts.GameStateMachine.States;
+using Assets.Scripts.Enemies.Boss;
+using Random = UnityEngine.Random;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.UI;
-using Assets.Scripts.Utils;
 using Reflex.Attributes;
-using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using System;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -42,11 +41,11 @@ namespace Assets.Scripts.Player.Attack
         {
             ResourceType selectedConfig = (ResourceType)Random.Range(0, Enum.GetValues(typeof(ResourceType)).Length);
 
-            if (_inventory.HasResource(selectedConfig, new NotLessZeroProperty<int>(0)) == false)
-            {
-                _switcher.SwitchState<LossState>();
-                return false;
-            }
+            //if (_inventory.HasResource(selectedConfig, new NotLessZeroProperty<int>(0)) == false)
+            //{
+            //    //_switcher.SwitchState<LossState>();
+            //    return false;
+            //}
 
             SpawnResource(selectedConfig);
             _inventory.UseResource(selectedConfig);
@@ -63,6 +62,7 @@ namespace Assets.Scripts.Player.Attack
 
             resourcePrefab.transform.position = _attackPoint.transform.position;
             resourcePrefab.transform.rotation = _attackPoint.transform.rotation;
+
             resourcePrefab.PrepareForThrow();
             resourcePrefab.MovePosition(_bossTarget);
             resourcePrefab.Release();

@@ -5,7 +5,6 @@ using Assets.Scripts.Player;
 using Assets.Scripts.Other;
 using Assets.Scripts.LevelLoader.Loader;
 using Assets.Scripts.Items;
-using Assets.Scripts.Ground;
 
 public class GameInstaller : MonoBehaviour, IInstaller
 {

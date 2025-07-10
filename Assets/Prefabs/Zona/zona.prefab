@@ -4081,6 +4081,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0dff8425cdb47843ab59920ea09e173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _finalPlatform: {fileID: 4467637301488939482}
+  _bossTarget: {fileID: 6341277103554135589}
+  _startLevel: {fileID: 6063383732920738109}
+  _endLevel: {fileID: 1419224722240515264}
 --- !u!1 &7014007545435803751
 GameObject:
   m_ObjectHideFlags: 0
@@ -5020,7 +5024,7 @@ Transform:
   m_GameObject: {fileID: 8445730028657109867}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.04, y: 1.248, z: 0.49}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5605,7 +5609,7 @@ MonoBehaviour:
       m_Bits: 64
     _attackPoint: {fileID: 8035056842090307966}
     _attackRadius: 10
-    _damage: 1
+    _damage: 5
     _delay: 1
 --- !u!114 &1732262211079559682
 MonoBehaviour:
@@ -5643,7 +5647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe26a305ae3c8e043924c72a858559b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bossAnimationDuration: 2
+  _bossAnimationDuration: 1
 --- !u!114 &1752495074747730970
 MonoBehaviour:
   m_ObjectHideFlags: 0

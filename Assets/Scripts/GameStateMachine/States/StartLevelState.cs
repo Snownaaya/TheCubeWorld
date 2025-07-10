@@ -9,8 +9,6 @@ namespace Assets.Scripts.GameStateMachine.States
         public override void Enter()
         {
             base.Enter();
-
-            GameFlow.LevelPool.SpawnLevel();
         }
 
         public override void Exit()

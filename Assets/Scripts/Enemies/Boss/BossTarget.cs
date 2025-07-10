@@ -32,9 +32,9 @@ namespace Assets.Scripts.Enemies.Boss
         {
             var wait = new WaitForSeconds(_bossAnimationDuration);
 
-            _bossView.StartDeath();
             _bossView.StopAttack();
             _bossView.StopIdle();
+            _bossView.StartDeath();
 
             yield return wait;
             gameObject.SetActive(false);

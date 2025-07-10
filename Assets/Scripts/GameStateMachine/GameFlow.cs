@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.HealthCharacters;
-using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.LevelLoader;
-using Assets.Scripts.Other;
 using Assets.Scripts.UI.GameUI;
+using Assets.Scripts.Other;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Assets.Scripts.GameStateMachine
         [SerializeField] private Character _character;
         [SerializeField] private EndLevel _endLevel;
         [SerializeField] private StartLevel _startLevel;
-        [SerializeField] private LevelPool _levelPool;
+        [SerializeField] private LevelSelected _levelSelected;
 
         private GameState _gameState;
         private PauseHandler _pauseHandler;
@@ -31,13 +30,13 @@ namespace Assets.Scripts.GameStateMachine
             _pauseHandler = pauseHandler;
             _levelLoader = levelLoader;
         }
-        
+
         public LossScreen LossScreen => _lossScreen;
         public Character Character => _character;
         public PauseHandler PauseHandler => _pauseHandler;
         public EndLevel EndLevel => _endLevel;
         public StartLevel StartLevel => _startLevel;
         public ILevelLoader LevelLoader => _levelLoader;
-        public LevelPool LevelPool => _levelPool;
+        public LevelSelected LevelSelected => _levelSelected;
     }
 }

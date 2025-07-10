@@ -5,7 +5,6 @@ namespace Assets.Scripts.GameStateMachine.States
 {
     public class EndLevelState : BaseGameState
     {
-        private const string Level_1 = nameof(Level_1);
 
         public EndLevelState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
 
@@ -13,10 +12,8 @@ namespace Assets.Scripts.GameStateMachine.States
         {
             base.Enter();
 
+            GameFlow.LevelLoader.Load(GameFlow.LevelSelected.GetNextLevel());
             GameFlow.EndLevel.LevelEnded += Switcher.SwitchState<StartLevelState>;
-            //GameFlow.LevelLoader.Load(Level_1);
-            GameFlow.LevelPool.SpawnLevel();
-            GameFlow.StartLevel.gameObject.SetActive(false);
         }
 
         public override void Exit()
@@ -24,7 +21,6 @@ namespace Assets.Scripts.GameStateMachine.States
             base.Exit();
 
             GameFlow.EndLevel.LevelEnded -= Switcher.SwitchState<StartLevelState>;
-            //GameFlow.LevelPool.Push();
         }
     }
 }

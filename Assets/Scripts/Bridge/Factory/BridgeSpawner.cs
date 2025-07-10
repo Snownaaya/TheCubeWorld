@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Scripts.Particles;
+using Assets.Scripts.Particles.ParticliesSpawners;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Bridge.Factory
@@ -7,6 +9,8 @@ namespace Assets.Scripts.Bridge.Factory
     {
         [SerializeField] private BridgeFactory _factory;
         [SerializeField] private Transform _point;
+        [SerializeField] private BridgeEffect _bridgeEffect;
+        [SerializeField] private PooledParticle _pooledParticle;
 
         private Bridge _currentBridge;
         private BridgeType _selectedType = BridgeType.Easy;
@@ -19,7 +23,9 @@ namespace Assets.Scripts.Bridge.Factory
             if (_currentBridge != null)
                 Destroy(_currentBridge.gameObject);
 
+            _bridgeEffect.Initialize(_pooledParticle, transform);
             _currentBridge = _factory.Get(_selectedType, _point.position);
+            _bridgeEffect.SpawnParticle();
         }
 
         public void SelectBridge(BridgeType bridgeType)

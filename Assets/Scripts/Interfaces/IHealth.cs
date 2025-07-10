@@ -8,8 +8,7 @@ namespace Assets.Scripts.Interfaces
         float CurrentHealth { get; }
 
         event Action Changed;
-        event Action<ILoss> Died;
-        public void TakeDamage(float damage);
-        public bool CheckHealth(float heal = 0);
+
+        void TakeDamage(float damage);
     }
 }

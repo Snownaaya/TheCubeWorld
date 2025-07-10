@@ -1,40 +1,37 @@
-﻿using Assets.Scripts.HealthCharacters;
-using Assets.Scripts.HealthCharacters.Characters;
-using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.HealthCharacters.Characters;
 using UnityEngine;
 using System;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.GameStateMachine.States;
+using Reflex.Attributes;
 
 namespace Assets.Scripts.LevelLoader
 {
     [RequireComponent(typeof(BossHealth))]
     public class EndLevel : MonoBehaviour
     {
-        private IHealth _health;
+        private BossHealth _health;
+        private ISwitcher _switcher;
 
         public event Action LevelEnded;
 
         private void Awake() =>
-            _health = GetComponent<Health>();
+            _health = GetComponent<BossHealth>();
+
+        [Inject]
+        private void Construct(ISwitcher switcher) =>
+            _switcher = switcher;
 
         private void OnEnable() =>
-               _health.Died += OnDied;
+            _health.Died += OnDied;
 
         private void OnDisable() =>
-               _health.Died -= OnDied;
+            _health.Died -= OnDied;
 
-        public bool IsDeath()
+        private void OnDied()
         {
-            if (IsDeath())
-            {
-                _health.CheckHealth();
-                LevelEnded?.Invoke();
-                return true;
-            }
-
-            return false;
-        }
-
-        private void OnDied(ILoss loss) =>
+            _switcher.SwitchState<EndLevelState>();
             LevelEnded?.Invoke();
+        }
     }
 }

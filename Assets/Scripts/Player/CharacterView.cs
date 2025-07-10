@@ -1,3 +1,6 @@
+using Assets.Scripts.Enemies.Boss;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Particles.ParticliesSpawners;
 using UnityEngine;
 
 public class CharacterView : MonoBehaviour
@@ -8,10 +11,17 @@ public class CharacterView : MonoBehaviour
     private const string IsAttack = nameof(IsAttack);
     private const string AttackState = nameof(AttackState);
 
+    [SerializeField] private CharacterAttackEffects _effects;
+    [SerializeField] private PooledParticle _pooledParticle;
+    [SerializeField] private BossTarget _bossTarget;
+
     private Animator _animator;
 
-    public void Initialize() =>
+    public void Initialize()
+    {
         _animator = GetComponent<Animator>();
+        _effects.Initialize(_pooledParticle, _bossTarget.transform);
+    }
 
     public void StartIdle() =>
         _animator?.SetBool(IsIdling, true);
@@ -34,9 +44,15 @@ public class CharacterView : MonoBehaviour
     public void StopWalk() =>
         _animator?.SetBool(IsWalking, false);
 
-    public void StartAttack() =>
+    public void StartAttack()
+    {
+        _effects.SpawnParticle();
         _animator?.SetBool(IsAttack, true);
+    }
 
-    public void StopAttack() =>
+    public void StopAttack()
+    {
+        _effects.ReturnParticle(_pooledParticle);
         _animator?.SetBool(IsAttack, false);
+    }
 }

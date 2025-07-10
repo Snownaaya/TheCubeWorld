@@ -26,7 +26,7 @@ namespace Assets.Scripts.UI.GameUI
         private void Construct(ISwitcher switcher, PauseHandler pauseHandler)
         {
             _switcher = switcher;
-            _pauseHandler = pauseHandler ?? throw new ArgumentNullException(nameof(pauseHandler));
+            _pauseHandler = pauseHandler;
             pauseHandler.Add(this);
         }
 

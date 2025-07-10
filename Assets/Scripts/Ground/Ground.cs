@@ -23,9 +23,9 @@ namespace Assets.Scripts.Platform
         [ContextMenu("Refresh Child Array")]
         private void RefreshChildArray()
         {
-            _points.Clear();
             for (int i = 0; i < transform.childCount; i++)
                 _points.Add(transform.GetChild(i));
+
             _originalPoints = new List<Transform>(_points);
         }
 #endif

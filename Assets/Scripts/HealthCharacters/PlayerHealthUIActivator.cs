@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Ground;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.HealthCharacters
@@ -6,19 +7,15 @@ namespace Assets.Scripts.HealthCharacters
     public class PlayerHealthUIActivator : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
-
-        private FinalPlatform _finalPlatform;
+        [SerializeField] private FinalPlatform _finalPlatform;
 
         private void OnEnable() =>
-            _finalPlatform.PlayerReachedFinalPlatform += OnActivedHealth;
+             _finalPlatform.PlayerReachedFinalPlatform += OnActivedHealth;
 
-        private void OnDisable() =>
+        public void OnDisable() =>
             _finalPlatform.PlayerReachedFinalPlatform -= OnActivedHealth;
 
-        private void OnActivedHealth(FinalPlatform finalPlatform)
-        {
-            _finalPlatform = finalPlatform;
+        private void OnActivedHealth() =>
             _rectTransform.gameObject.SetActive(true);
-        }
     }
 }

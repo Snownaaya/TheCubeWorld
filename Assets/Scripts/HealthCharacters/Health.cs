@@ -10,7 +10,6 @@ namespace Assets.Scripts.HealthCharacters
         [SerializeField] private float _maxHealth;
 
         public event Action Changed;
-        public event Action<ILoss> Died;
 
         private float _currentHealth;
         private bool _isDead = false;
@@ -29,21 +28,16 @@ namespace Assets.Scripts.HealthCharacters
             Die();
         }
 
-        public virtual bool CheckHealth(float health = 0)
+        public void Die()
         {
-            if (_currentHealth < health)
-                return true;
-
-            return false;
-        }
-
-        public virtual void Die()
-        {
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0 && _isDead == false)
             {
                 _isDead = true;
-                Died?.Invoke(new LossHealth());
+                _currentHealth = 0;
+                NotifyDeath();
             }
         }
+
+        public abstract void NotifyDeath();
     }
 }

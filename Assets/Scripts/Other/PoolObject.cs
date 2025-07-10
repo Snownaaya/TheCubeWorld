@@ -19,6 +19,7 @@ public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
     public T Pull(T @object)
     {
         T instance;
+
         if (_queue.Count > 0)
         {
             instance = _queue.Dequeue();
