@@ -7,7 +7,7 @@ namespace Assets.Scripts.Items
 {
     public class ResourceStorage : MonoBehaviour, IResourceStorage
     {
-        private Dictionary<ResourceType, Queue<Resource>> _cubes = new Dictionary<ResourceType, Queue<Resource>>();
+        private Dictionary<ResourceTypes, Queue<Resource>> _cubes = new Dictionary<ResourceTypes, Queue<Resource>>();
 
         public void AddResource(Resource resource)
         {
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public void RemoveResource(ResourceType resourceType, int amount)
+        public void RemoveResource(ResourceTypes resourceType, int amount)
         {
             if (_cubes.TryGetValue(resourceType, out Queue<Resource> resources))
             {
@@ -38,7 +38,7 @@ namespace Assets.Scripts.Items
             }
         }
 
-        public Resource GetResource(ResourceType resourceType)
+        public Resource GetResource(ResourceTypes resourceType)
         {
             if (_cubes.TryGetValue(resourceType, out Queue<Resource> resources) && resources.Count > 0)
                 return resources.Peek();

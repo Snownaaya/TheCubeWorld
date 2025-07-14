@@ -1,17 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
     public class ParticleSpawner : PoolObject<PooledParticle>
     {
-        private PooledParticle _pooledParticle;
+        [SerializeField] private List<ParticlePrefabEntry> _particleEntries = new();
+
         private Transform _transform;
 
-        public void Initialize(PooledParticle pooledParticle, Transform transform)
-        {
-            _pooledParticle = pooledParticle;
+        private Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
+
+        public void Initialize(Transform transform) =>
             _transform = transform;
-        }
 
         public void ReturnParticle(PooledParticle pooledParticle)
         {
@@ -19,12 +21,31 @@ namespace Assets.Scripts.Particles
             pooledParticle.Stop();
         }
 
-        public PooledParticle SpawnParticle()
+        public PooledParticle SpawnParticle(ParticleTypes particleType, Transform transform)
         {
-            PooledParticle pooledParticle = Pull(_pooledParticle);
-            pooledParticle.transform.position = _transform.position;
+            foreach (ParticlePrefabEntry entry in _particleEntries)
+            {
+                if (!_partilclies.ContainsKey(entry.Type))
+                    _partilclies.Add(entry.Type, entry.Prefab);
+            }
+
+            if (!_partilclies.TryGetValue(particleType, out PooledParticle prefab))
+                return null;
+
+            PooledParticle pooledParticle = Pull(prefab);
+            pooledParticle.transform.position = transform.position;
             pooledParticle.Play();
             return pooledParticle;
+        }
+
+        [Serializable]
+        private struct ParticlePrefabEntry
+        {
+            [SerializeField] private ParticleTypes _particleType;
+            [SerializeField] private PooledParticle _pooledParticle;
+
+            public PooledParticle Prefab => _pooledParticle;
+            public ParticleTypes Type => _particleType;
         }
     }
 }

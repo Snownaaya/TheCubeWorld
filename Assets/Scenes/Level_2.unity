@@ -1546,8 +1546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 699997101}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,8 +1889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 768033587}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &769412154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,8 +2858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 1132263006}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &1145670518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,10 +3622,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ad3f9f20b6319409217f5b20fd057e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
   _joystick: {fileID: 845995677}
   _characterView: {fileID: 1551937952}
   _characterModel: {fileID: 543450652942595734}
+  _characterEffects: {fileID: 1399710237}
+  _speed: 5
 --- !u!114 &1330678845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3830,6 +3828,7 @@ GameObject:
   - component: {fileID: 1399710234}
   - component: {fileID: 1399710236}
   - component: {fileID: 1399710235}
+  - component: {fileID: 1399710237}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -3889,6 +3888,26 @@ MonoBehaviour:
   - {fileID: 200318883929492410, guid: 267a44787ab96a64c835185ab966ad32, type: 3}
   _maxResources: 16
   _spawnInterval: 0.1
+--- !u!114 &1399710237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399710233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1986d10cd9d2545ba6836350218cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 1399710234}
+  _particleEntries:
+  - _particleType: 0
+    _pooledParticle: {fileID: 7227843142170015114, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  - _particleType: 1
+    _pooledParticle: {fileID: -494052019766445809, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
+  - _particleType: 4
+    _pooledParticle: {fileID: 5472766101912079489, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
 --- !u!1 &1408999698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4503,8 +4522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48201d92ab0eea347838619dcc80cbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _effects: {fileID: 1399710237}
   _bossTarget: {fileID: 1941806634}
 --- !u!95 &1551937953
 Animator:

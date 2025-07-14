@@ -9,6 +9,7 @@ public class ResourceCollected : MonoBehaviour
     [SerializeField] private ResourceSpawner _resourceSpawner;
     [SerializeField] private ResourceMediator _resourceMediator;
 
+    private Character _character;
     private IResourceStorage _resourceStorage;
     private IInventory _playerInventory;
 
@@ -18,8 +19,6 @@ public class ResourceCollected : MonoBehaviour
         _resourceStorage = resourceStorage;
         _playerInventory = inventory;
     }
-
-    private Character _character;
 
     private void Awake() =>
         _character = GetComponent<Character>();

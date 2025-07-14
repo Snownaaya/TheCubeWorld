@@ -5,7 +5,7 @@ namespace Assets.Scripts.Interfaces
     public interface IResourceStorage
     {
         public void AddResource(Resource resource);
-        public void RemoveResource(ResourceType resourceType, int amount);
-        public Resource GetResource(ResourceType resourceType);
+        public void RemoveResource(ResourceTypes resourceType, int amount);
+        public Resource GetResource(ResourceTypes resourceType);
     }
 }

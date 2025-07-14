@@ -10,7 +10,7 @@ public class Resource : MonoBehaviour
     [SerializeField] private float _speed;
 
     private Transform _targetPosition;
-    private ResourceType _resourceType;
+    private ResourceTypes _resourceType;
     private Rigidbody _rigidbody;
     private Collider _collider;
 
@@ -21,7 +21,7 @@ public class Resource : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    public ResourceType ResourceType => _resourceType;
+    public ResourceTypes ResourceType => _resourceType;
 
     public void PickUp() =>
         gameObject.SetActive(false);

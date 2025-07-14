@@ -6,7 +6,6 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player.Input;
 using Assets.Scripts.GameStateMachine.States;
 using Assets.Scripts.HealthCharacters.Characters;
-using Assets.Scripts.Particles.ParticliesSpawners;
 
 [RequireComponent(typeof(PlayerInput), typeof(Rigidbody), typeof(CollisionHandler))]
 [RequireComponent(typeof(CharacterHealth))]
@@ -15,8 +14,7 @@ public class Character : MonoBehaviour, IMoveble
     [SerializeField] private Joystick _joystick;
     [SerializeField] private CharacterView _characterView;
     [SerializeField] private Transform _characterModel;
-    [SerializeField] private CharacterDeathEffect _characterEffects;
-    [SerializeField] private PooledParticle _pooledParticle;
+    [SerializeField] private ParticleSpawner _characterEffects;
 
     [SerializeField] private float _speed = 3f;
 
@@ -48,7 +46,7 @@ public class Character : MonoBehaviour, IMoveble
         _collisionHandler = GetComponent<CollisionHandler>();
         _health = GetComponent<CharacterHealth>();
         _characterView.Initialize();
-        _characterEffects.Initialize(_pooledParticle, _transform);
+        _characterEffects.Initialize(_transform);
     }
 
     public PlayerInput PlayerInput { get; private set; }
@@ -98,7 +96,7 @@ public class Character : MonoBehaviour, IMoveble
     {
         if (loss is LossCollision || loss is LossHealth)
         {
-            _characterEffects.SpawnParticle();
+            _characterEffects.SpawnParticle(ParticleTypes.CharacterDeath, transform);
             _characterView.StopWalk();
             _characterView.StopIdle();
             _characterView.StopAttack();

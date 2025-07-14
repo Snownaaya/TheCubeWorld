@@ -47,7 +47,7 @@ namespace Assets.Scripts.Platform
             _points.AddRange(_originalPoints);
         }
 
-        private void Reset() =>
-            RefreshChildArray();
+        //private void Reset() =>
+        //    RefreshChildArray();
     }
 }

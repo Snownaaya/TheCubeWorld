@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class PooledParticle : MonoBehaviour
     {
+        [SerializeField] private ParticleTypes _particleType;
         [SerializeField] private ParticleSystem _particleSystem;
 
         public void Awake() =>

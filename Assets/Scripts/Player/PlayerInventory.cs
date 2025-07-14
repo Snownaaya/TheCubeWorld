@@ -9,23 +9,23 @@ namespace Assets.Scripts.Player
     [Serializable]
     public class PlayerInventory : IInventory
     {
-        private Dictionary<ResourceType, NotLessZeroProperty<int>> _resources = new Dictionary<ResourceType, NotLessZeroProperty<int>>();
+        private Dictionary<ResourceTypes, NotLessZeroProperty<int>> _resources = new Dictionary<ResourceTypes, NotLessZeroProperty<int>>();
 
         public PlayerInventory()
         {
-            _resources[ResourceType.Dirt] = new NotLessZeroProperty<int>(0);
-            _resources[ResourceType.Wood] = new NotLessZeroProperty<int>(0);
-            _resources[ResourceType.Stone] = new NotLessZeroProperty<int>(0);
+            _resources[ResourceTypes.Dirt] = new NotLessZeroProperty<int>(0);
+            _resources[ResourceTypes.Wood] = new NotLessZeroProperty<int>(0);
+            _resources[ResourceTypes.Stone] = new NotLessZeroProperty<int>(0);
         }
 
-        public IReadOnlyDictionary<ResourceType, NotLessZeroProperty<int>> ResourceStacks => _resources;
+        public IReadOnlyDictionary<ResourceTypes, NotLessZeroProperty<int>> ResourceStacks => _resources;
 
         public void AddResource(Resource resource)
         {
             if(resource == null) 
              return;
 
-            ResourceType type = resource.ResourceType;
+            ResourceTypes type = resource.ResourceType;
 
             if (_resources.ContainsKey(resource.ResourceType) == false)
                 _resources[type] = new NotLessZeroProperty<int>(1);
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Player
             resource.PickUp();
         }
 
-        public void UseResource(ResourceType resourceType)
+        public void UseResource(ResourceTypes resourceType)
         {
             if(_resources.ContainsKey(resourceType) == false) 
                 return;
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Player
                 resource.Value--;
         }
 
-        public bool HasResource(ResourceType resourceType, NotLessZeroProperty<int> amount)
+        public bool HasResource(ResourceTypes resourceType, NotLessZeroProperty<int> amount)
         {
             if (_resources.TryGetValue(resourceType, out NotLessZeroProperty<int> resource))
                 return resource.Value > amount.Value;

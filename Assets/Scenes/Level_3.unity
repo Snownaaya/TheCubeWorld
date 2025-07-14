@@ -1985,8 +1985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 699997101}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,8 +2359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 768033587}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &769412154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,7 +3546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3606031705224045774, guid: 19fc12bda2c74e849af9980b7a8175d3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8248
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 3606031705224045774, guid: 19fc12bda2c74e849af9980b7a8175d3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3568,11 +3566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3606031705224045774, guid: 19fc12bda2c74e849af9980b7a8175d3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.0645
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3606031705224045774, guid: 19fc12bda2c74e849af9980b7a8175d3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7.12
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 3606031705224045774, guid: 19fc12bda2c74e849af9980b7a8175d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3788,8 +3786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _factory: {fileID: 11400000, guid: e48f68bfe6773744999c2034749c26bc, type: 2}
   _point: {fileID: 1132263006}
-  _bridgeEffect: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _bridgeEffect: {fileID: 1399710237}
 --- !u!1 &1145670518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,8 +4726,7 @@ MonoBehaviour:
   _joystick: {fileID: 845995677}
   _characterView: {fileID: 1551937952}
   _characterModel: {fileID: 543450652942595734}
-  _characterEffects: {fileID: 0}
-  _pooledParticle: {fileID: 0}
+  _characterEffects: {fileID: 1399710237}
   _speed: 5
 --- !u!114 &1330678845
 MonoBehaviour:
@@ -5062,6 +5058,7 @@ GameObject:
   - component: {fileID: 1399710234}
   - component: {fileID: 1399710236}
   - component: {fileID: 1399710235}
+  - component: {fileID: 1399710237}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -5121,6 +5118,26 @@ MonoBehaviour:
   - {fileID: 200318883929492410, guid: 267a44787ab96a64c835185ab966ad32, type: 3}
   _maxResources: 16
   _spawnInterval: 0.1
+--- !u!114 &1399710237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399710233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1986d10cd9d2545ba6836350218cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _container: {fileID: 1399710234}
+  _particleEntries:
+  - _particleType: 0
+    _pooledParticle: {fileID: 7227843142170015114, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  - _particleType: 1
+    _pooledParticle: {fileID: -494052019766445809, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
+  - _particleType: 4
+    _pooledParticle: {fileID: 5472766101912079489, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
 --- !u!4 &1402909254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 525830641252642033, guid: f2de1eede83134d4f946ac340ed836dd, type: 3}
@@ -5960,9 +5977,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48201d92ab0eea347838619dcc80cbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effects: {fileID: 0}
-  _pooledParticle: {fileID: 0}
-  _bossTarget: {fileID: 0}
+  _effects: {fileID: 1399710237}
+  _bossTarget: {fileID: 1701770076}
 --- !u!95 &1551937953
 Animator:
   serializedVersion: 5
@@ -7255,7 +7271,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1806729201}
-  - component: {fileID: 1806729202}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -7279,18 +7294,6 @@ Transform:
   - {fileID: 249225552}
   m_Father: {fileID: 1617450314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1806729202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806729200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8794762b183fdd84da52439f6c9fb499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1813655344
 GameObject:
   m_ObjectHideFlags: 0
@@ -7826,6 +7829,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6077168872989578746, guid: f514474ff8e94554d8477de1f2f601b0, type: 3}
       propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6077168872989578746, guid: f514474ff8e94554d8477de1f2f601b0, type: 3}
+      propertyPath: SizeModule.separateAxes
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6077168872989578746, guid: f514474ff8e94554d8477de1f2f601b0, type: 3}

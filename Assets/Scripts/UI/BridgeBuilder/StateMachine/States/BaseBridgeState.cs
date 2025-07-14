@@ -27,7 +27,7 @@ public abstract class BaseBridgeState : IStates
 
     public virtual void Exit() { }
 
-    public void DeliverResourceToBridge(ResourceType resourceType)
+    public void DeliverResourceToBridge(ResourceTypes resourceType)
     {
         BridgeSpawner currentSpawner = BuildButton.SpawnerSelector.GetCurrentSpawner();
         Bridge bridge = currentSpawner.CurrentBridge;

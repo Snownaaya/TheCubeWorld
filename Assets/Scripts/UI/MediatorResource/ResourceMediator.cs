@@ -20,7 +20,7 @@ namespace Assets.Scripts.UI
         {
             _playerInventory = playerInventory;
 
-            foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
+            foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
                 _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
 
@@ -32,14 +32,14 @@ namespace Assets.Scripts.UI
             if (_playerInventory == null)
                 return;
        
-            foreach (ResourceType resourceType in _playerInventory.ResourceStacks.Keys)
+            foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
 
             }
         }
 
-        public void UpdateCountText(ResourceType type, int count)
+        public void UpdateCountText(ResourceTypes type, int count)
         {
             foreach (ResourceCountView view in _view)
             {

@@ -6,16 +6,16 @@ namespace Assets.Scripts.Other
     {
         private static Character _character;
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         public static Vector3 GetPlayerPosition()
         {
             Character character = GetPlayer();
             Vector3 position = character.transform.position;
             return position;
         }
-#endif
+//#endif
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         private static Character GetPlayer()
         {
             if(_character == null)
@@ -23,6 +23,6 @@ namespace Assets.Scripts.Other
 
             return _character;
         }
-#endif
+//#endif
     }
 }

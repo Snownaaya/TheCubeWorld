@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.GameStateMachine.States;
-using Assets.Scripts.Enemies.Boss;
+﻿using Assets.Scripts.Enemies.Boss;
 using Random = UnityEngine.Random;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
@@ -14,7 +13,7 @@ namespace Assets.Scripts.Player.Attack
     {
         [Header("Settings")]
         [SerializeField] private Resource[] _resourcePrefabs;
-        [SerializeField] private ResourceType[] _resourceType;
+        [SerializeField] private ResourceTypes[] _resourceType;
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private ResourceMediator _resourceMediator;
 
@@ -39,7 +38,7 @@ namespace Assets.Scripts.Player.Attack
 
         public bool TryConsumeResource()
         {
-            ResourceType selectedConfig = (ResourceType)Random.Range(0, Enum.GetValues(typeof(ResourceType)).Length);
+            ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
 
             //if (_inventory.HasResource(selectedConfig, new NotLessZeroProperty<int>(0)) == false)
             //{
@@ -54,7 +53,7 @@ namespace Assets.Scripts.Player.Attack
             return true;
         }
 
-        private void SpawnResource(ResourceType resourceType)
+        private void SpawnResource(ResourceTypes resourceType)
         {
             int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
             Resource resource = _resourcePrefabs[prefabIndex];

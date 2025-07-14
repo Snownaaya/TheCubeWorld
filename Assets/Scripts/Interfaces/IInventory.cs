@@ -6,12 +6,12 @@ namespace Assets.Scripts.Interfaces
 {
     public interface IInventory
     {
-        public IReadOnlyDictionary<ResourceType, NotLessZeroProperty<int>> ResourceStacks { get; }
+        public IReadOnlyDictionary<ResourceTypes, NotLessZeroProperty<int>> ResourceStacks { get; }
 
         public void AddResource(Resource resource);
 
-        public void UseResource(ResourceType resourceType);
+        public void UseResource(ResourceTypes resourceType);
 
-        public bool HasResource(ResourceType resourceType, NotLessZeroProperty<int> amount);
+        public bool HasResource(ResourceTypes resourceType, NotLessZeroProperty<int> amount);
     }
 }

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class StoneSelectedState : BaseBridgeState
 {
-    private ResourceType _stoneType = ResourceType.Stone;
+    private ResourceTypes _stoneType = ResourceTypes.Stone;
 
     public StoneSelectedState(ISwitcher switcher, BuildButton buildButton) : base(switcher, buildButton) { }
 

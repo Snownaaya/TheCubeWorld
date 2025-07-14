@@ -17,16 +17,16 @@ public class ResourceSpawner : PoolObject<Resource>
     [SerializeField] private int _maxResources = 16;
     [SerializeField] private float _spawnInterval = 2f;
 
-    private Dictionary<ResourceType, Resource> _resources = new Dictionary<ResourceType, Resource>();
+    private Dictionary<ResourceTypes, Resource> _resources = new Dictionary<ResourceTypes, Resource>();
     private Transform _transform;
 
     private void Awake()
     {
-        _resources = new Dictionary<ResourceType, Resource>()
+        _resources = new Dictionary<ResourceTypes, Resource>()
         {
-            {ResourceType.Dirt, _resource[0]},
-            {ResourceType.Wood, _resource[1]},
-            {ResourceType.Stone, _resource[2]}
+            {ResourceTypes.Dirt, _resource[0]},
+            {ResourceTypes.Wood, _resource[1]},
+            {ResourceTypes.Stone, _resource[2]}
         };
 
         _transform = transform;

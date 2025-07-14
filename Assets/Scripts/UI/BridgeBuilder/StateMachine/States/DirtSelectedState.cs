@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class DirtSelectedState : BaseBridgeState
 {
-    private ResourceType _dirtType = ResourceType.Dirt;
+    private ResourceTypes _dirtType = ResourceTypes.Dirt;
 
     public DirtSelectedState(ISwitcher switcher, BuildButton buildButton) : base(switcher, buildButton) { }
 
