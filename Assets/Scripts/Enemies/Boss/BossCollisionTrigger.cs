@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Boss
 {
@@ -35,13 +36,5 @@ namespace Assets.Scripts.Enemies.Boss
                 _bossView.StopAttack();
             }
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(transform.position, _attacker.AttackRadius);
-        }
-#endif
     }
 }

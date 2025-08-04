@@ -9,7 +9,6 @@ public class Resource : MonoBehaviour
     [SerializeField] private ResourceConfig _config;
     [SerializeField] private float _speed;
 
-    private Transform _targetPosition;
     private ResourceTypes _resourceType;
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -29,9 +28,9 @@ public class Resource : MonoBehaviour
     public void Release() =>
         gameObject.SetActive(true);
 
-    public void MovePosition(BossTarget bossTarget)
+    public void MovePosition(Transform position)
     {
-        Vector3 direction = bossTarget.transform.position + Vector3.up - transform.position;
+        Vector3 direction = position.position + Vector3.up - transform.position;
         _rigidbody.velocity = direction * _speed;
     }
 

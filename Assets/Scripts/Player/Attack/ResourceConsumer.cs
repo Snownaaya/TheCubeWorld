@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enemies.Boss;
+﻿using Assets.Scripts.Player.Inventory;
 using Random = UnityEngine.Random;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
@@ -6,6 +6,7 @@ using Assets.Scripts.UI;
 using Reflex.Attributes;
 using UnityEngine;
 using System;
+using Assets.Scripts.Enemies.Boss;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -19,21 +20,21 @@ namespace Assets.Scripts.Player.Attack
 
         [Header("Dependencies")]
         [SerializeField] private ResourceSpawner _resource;
-        [SerializeField] private BossTarget _bossTarget;
 
         private IResourceStorage _resourceStorage;
         private IInventory _inventory;
         private ISwitcher _switcher;
+        private IBossTargetService _bossTargetService;
 
-        public ResourceSpawner ResourceSpawner => _resource;
         private int _resourceCount = 20;
 
         [Inject]
-        private void Construct(IInventory inventory, IResourceStorage resourceStorage, ISwitcher switcher)
+        private void Construct(IInventory inventory, IResourceStorage resourceStorage, ISwitcher switcher, IBossTargetService bossTargetService)
         {
             _inventory = inventory;
             _resourceStorage = resourceStorage;
             _switcher = switcher;
+            _bossTargetService = bossTargetService;
         }
 
         public bool TryConsumeResource()
@@ -62,8 +63,10 @@ namespace Assets.Scripts.Player.Attack
             resourcePrefab.transform.position = _attackPoint.transform.position;
             resourcePrefab.transform.rotation = _attackPoint.transform.rotation;
 
+            IBossTarget currentBoss = _bossTargetService.GetCurrentBoss();
+
             resourcePrefab.PrepareForThrow();
-            resourcePrefab.MovePosition(_bossTarget);
+            resourcePrefab.MovePosition(currentBoss.GetTargetTransform());
             resourcePrefab.Release();
         }
     }

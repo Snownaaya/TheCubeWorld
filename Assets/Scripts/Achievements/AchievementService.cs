@@ -23,10 +23,8 @@ namespace Assets.Scripts.Achievements
 
         public IReadOnlyDictionary<AchievementNames, bool> AchievementsStatuses;
 
-        public void RecordAchievements()
-        {
+        public void RecordAchievements() =>
             _dataProvider.SetAchievements(_achievementsStatuses);
-        }
 
         public bool Achieve(AchievementNames achievementName)
         {

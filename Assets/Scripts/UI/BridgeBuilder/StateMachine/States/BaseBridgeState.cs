@@ -1,10 +1,10 @@
-using Assets.Scripts.UI.BridgeBuilder;
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Bridge;
+using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Datas;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.Utils;
+using Assets.Scripts.Properties;
+using Assets.Scripts.UI.BridgeBuilder;
 using System.Linq;
 
 public abstract class BaseBridgeState : IStates
@@ -39,7 +39,7 @@ public abstract class BaseBridgeState : IStates
         ResourceConfig selectedConfig = BuildButton.ResourceConfig
             .FirstOrDefault(config => config.ResourceType == resourceType);
 
-        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new NotLessZeroProperty<int>(_resourceCost)))
+        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new NotLimitedProperty<int>(_resourceCost)))
         {
             BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
             BuildButton.ResourceStorage.RemoveResource(selectedConfig.ResourceType, 1);

@@ -1,56 +1,65 @@
+using Assets.Scripts.Datas;
 using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Particles;
 using UnityEngine;
 
-public class CharacterView : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    private const string IsIdling = nameof(IsIdling);
-    private const string IsWalking = nameof(IsWalking);
-    private const string IsMovement = nameof(IsMovement);
-    private const string IsAttack = nameof(IsAttack);
-    private const string AttackState = nameof(AttackState);
-
-    [SerializeField] private ParticleSpawner _effects;
-    [SerializeField] private BossTarget _bossTarget;
-
-    private Animator _animator;
-
-    public void Initialize()
+    public class CharacterView : MonoBehaviour
     {
-        _animator = GetComponent<Animator>();
-        _effects.Initialize(_bossTarget.transform);
-    }
+        private const string IsIdling = nameof(IsIdling);
+        private const string IsWalking = nameof(IsWalking);
+        private const string IsMovement = nameof(IsMovement);
+        private const string IsAttack = nameof(IsAttack);
+        private const string AttackState = nameof(AttackState);
 
-    public void StartIdle() =>
-        _animator?.SetBool(IsIdling, true);
+        [SerializeField] private ParticleSpawner _effects;
 
-    public void StopIdle() =>
-        _animator?.SetBool(IsIdling, false);
+        private Animator _animator;
+        private IBossTargetService _bossTargetService;
 
-    public void StartWalk() =>
-        _animator?.SetBool(IsWalking, true);
+        private void Construct(IBossTargetService bossTargetService) =>
+            _bossTargetService = bossTargetService;
 
-    public void StartMovement() =>
-        _animator?.SetBool(IsMovement, true);
+        public void Initialize()
+        {
+            _animator = GetComponent<Animator>();
+            IBossTarget bossTarget = _bossTargetService.GetCurrentBoss();
+            _effects.Initialize(bossTarget.GetTargetTransform());
+        }
 
-    public void StartAttackState() =>
-        _animator?.SetBool(AttackState, true);
+        public void StartIdle() =>
+            _animator?.SetBool(IsIdling, true);
 
-    public void StopMovement() =>
-        _animator?.SetBool(IsMovement, false);
+        public void StopIdle() =>
+            _animator?.SetBool(IsIdling, false);
 
-    public void StopWalk() =>
-        _animator?.SetBool(IsWalking, false);
+        public void StartWalk() =>
+            _animator?.SetBool(IsWalking, true);
 
-    public void StartAttack()
-    {
-        _effects.SpawnParticle(ParticleTypes.CharacterAttack, _bossTarget.transform);
-        _animator?.SetBool(IsAttack, true);
-    }
+        public void StartMovement() =>
+            _animator?.SetBool(IsMovement, true);
 
-    public void StopAttack()
-    {
-        //_effects.ReturnParticle();
-        _animator?.SetBool(IsAttack, false);
+        public void StartAttackState() =>
+            _animator?.SetBool(AttackState, true);
+
+        public void StopMovement() =>
+            _animator?.SetBool(IsMovement, false);
+
+        public void StopWalk() =>
+            _animator?.SetBool(IsWalking, false);
+
+        public void StartAttack()
+        {
+            IBossTarget bossTarget = _bossTargetService?.GetCurrentBoss();
+            _effects.SpawnParticle(ParticleTypes.CharacterAttack, bossTarget.GetTargetTransform());
+            _animator?.SetBool(IsAttack, true);
+        }
+
+        public void StopAttack()
+        {
+            //_effects.ReturnParticle();
+            _animator?.SetBool(IsAttack, false);
+        }
     }
 }

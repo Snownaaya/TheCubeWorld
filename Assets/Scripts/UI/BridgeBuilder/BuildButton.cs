@@ -4,6 +4,7 @@ using Assets.Scripts.Other;
 using Reflex.Attributes;
 using UnityEngine.UI;
 using UnityEngine;
+using Assets.Scripts.Player.Inventory;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {

@@ -4,7 +4,7 @@ namespace Assets.Scripts.GameStateMachine.States
 {
     internal class StartLevelState : BaseGameState
     {
-        public StartLevelState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
+        public StartLevelState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
 
         public override void Enter()
         {

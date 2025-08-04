@@ -7,7 +7,7 @@ namespace Assets.Scripts.Game
 {
     public class StateMachineInstaller : MonoBehaviour, IInstaller
     {
-        [SerializeField] private GameFlow _gameFlow;
+        [SerializeField] private EntryPoint _gameFlow;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {

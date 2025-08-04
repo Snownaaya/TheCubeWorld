@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
-using System;
 using System.Collections;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Enemies.Boss
 {
@@ -13,10 +14,8 @@ namespace Assets.Scripts.Enemies.Boss
         [SerializeField] private Transform _attackPoint;
 
         [SerializeField] private float _attackRadius;
-        [SerializeField] private float _damage;
         [SerializeField] private float _delay;
-
-        public float AttackRadius => _attackRadius;
+        [SerializeField] private int _damage;
 
         public IEnumerator AttackRoutine()
         {
@@ -35,6 +34,7 @@ namespace Assets.Scripts.Enemies.Boss
 
             foreach (Collider enemyCollider in hitEnemy)
             {
+               BinaryFormatter formatter = new BinaryFormatter();
                 if (enemyCollider.TryGetComponent(out CharacterHealth health))
                     health.TakeDamage(_damage);
             }

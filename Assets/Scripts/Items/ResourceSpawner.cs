@@ -3,7 +3,7 @@ using System.Collections;
 using Assets.Scripts.Items;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
-using Assets.Scripts.Platform;
+using Assets.Scripts.Ground;
 
 public class ResourceSpawner : PoolObject<Resource>
 {
@@ -60,7 +60,6 @@ public class ResourceSpawner : PoolObject<Resource>
             Resource resourcePrefab = _resource[randomPrefab];
 
             Resource resourceInstance = Pull(resourcePrefab);
-            resourceInstance.PrepareForCollection();
             resourceInstance.transform.position = spawnPoint.position;
             resourceInstance.gameObject.SetActive(true);
         }

@@ -6,15 +6,15 @@ namespace Assets.Scripts.GameStateMachine.States
     public class BaseGameState : IStates
     {
         private ISwitcher _switcher;
-        private GameFlow _flow;
+        private EntryPoint _flow;
 
-        public BaseGameState(ISwitcher switcher, GameFlow flow)
+        public BaseGameState(ISwitcher switcher, EntryPoint flow)
         {
             _switcher = switcher;
             _flow = flow;
         }
 
-        public GameFlow GameFlow => _flow;
+        public EntryPoint GameFlow => _flow;
         public ISwitcher Switcher => _switcher;
 
         public virtual void Enter()

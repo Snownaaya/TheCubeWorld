@@ -1,43 +1,31 @@
-﻿using Assets.Scripts.LevelLoader;
-using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Boss
 {
-    [RequireComponent(typeof(EndLevel), typeof(BossView))]
-    public class BossTarget : MonoBehaviour
+    public class BossTarget : MonoBehaviour, IBossTarget
     {
-        [SerializeField] private float _bossAnimationDuration;
+        [SerializeField] private bool _isActive = true;
 
-        private BossView _bossView;
-        private EndLevel _endlevel;
+        private IBossTargetService _bossTargetService;
 
-        private void Awake()
-        {
-            _endlevel = GetComponent<EndLevel>();
-            _bossView = GetComponent<BossView>();
-        }
+        private Transform _transform;
 
-        private void OnEnable() =>
-            _endlevel.LevelEnded += OnLevelEnded;
+        private void Awake() =>
+            _transform = transform;
 
-        private void OnDisable() =>
-            _endlevel.LevelEnded -= OnLevelEnded;
+        private void Start() =>
+            _bossTargetService.SetTarget(this);
 
-        private void OnLevelEnded() =>
-            StartCoroutine(DieCoroutine());
+        public void Construct(IBossTargetService bossTargetService) =>
+            _bossTargetService = bossTargetService;
 
-        private IEnumerator DieCoroutine()
-        {
-            var wait = new WaitForSeconds(_bossAnimationDuration);
+        public Vector3 GetTargetPosition() =>
+            _transform.position;
 
-            _bossView.StopAttack();
-            _bossView.StopIdle();
-            _bossView.StartDeath();
+        public Transform GetTargetTransform() =>
+            _transform;
 
-            yield return wait;
-            gameObject.SetActive(false);
-        }
+        public bool IsValidTarget() =>
+            _isActive && gameObject.activeInHierarchy;
     }
 }

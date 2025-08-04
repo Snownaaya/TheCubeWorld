@@ -1,23 +1,42 @@
-using UnityEngine;
+using Assets.Scripts.Interfaces;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace Assets.Scripts.HealthCharacters
 {
-    public class HealthChanger : HealthUIElement
+    public class HealthChanger : MonoBehaviour
     {
         [SerializeField] private Slider _healthSlider;
+        [SerializeField] private Health _health;
 
-        private void UpDateHealthUI()
+        private IReadOnlyProperty<float> _maxHealth;
+        private IReadOnlyProperty<float> _currentHealth;
+
+        public Slider HealthSlider => _healthSlider;
+
+        public void Initialize(IReadOnlyProperty<float> currentHealth, IReadOnlyProperty<float> maxHealth)
+        {
+            _currentHealth = currentHealth;
+            _maxHealth = maxHealth;
+            _currentHealth.Changed += OnChangeValue;
+        }
+
+        private void OnDestroy() =>
+           _currentHealth.Changed -= OnChangeValue;
+
+        private void OnChangeValue(float newValue) =>
+            ChangeValue(newValue, _maxHealth.Value);
+
+
+        private void ChangeValue(float currentHealth, float maxHealth)
         {
             if (_healthSlider != null)
             {
-                _healthSlider.value = CurrentHealth;
-                _healthSlider.maxValue = MaxHealth;
+                _healthSlider.value = currentHealth;
+                _healthSlider.maxValue = maxHealth;
             }
         }
-
-        protected override void HealthChanged() => _health.Changed += UpDateHealthUI;
-
-        private void OnDisable() => _health.Changed -= UpDateHealthUI;
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Attack
@@ -16,10 +19,14 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private float _speed;
         [SerializeField] private float _damage;
 
+        private CancellationTokenSource _cancellationTokenSource;
+
         private float _attackTimer = 1;
 
-        private void Start() =>
+        private void Start()
+        {
             StartCoroutine(ShootCube());
+        }
 
         private IEnumerator ShootCube()
         {

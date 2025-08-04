@@ -4,7 +4,7 @@ namespace Assets.Scripts.GameStateMachine.States
 {
     internal class RespawnState : BaseGameState
     {
-        public RespawnState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
+        public RespawnState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
 
         public override void Enter()
         {

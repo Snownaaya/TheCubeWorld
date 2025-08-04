@@ -3,14 +3,17 @@ using Assets.Scripts.Interfaces;
 using System;
 using Assets.Scripts.Loss;
 
-[RequireComponent(typeof(Rigidbody))]
-public class CollisionHandler : MonoBehaviour
+namespace Assets.Scripts.Player
 {
-    public event Action<ILoss> Died;
-
-    private void OnTriggerEnter(Collider other)
+    [RequireComponent(typeof(Rigidbody))]
+    public class CollisionHandler : MonoBehaviour
     {
-        if (other.gameObject.TryGetComponent(out LossCollision loss))
-            Died?.Invoke(loss);
+        public event Action<ILoss> Died;
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.TryGetComponent(out LossCollision loss))
+                Died?.Invoke(loss);
+        }
     }
 }

@@ -1,37 +1,51 @@
 ﻿using Assets.Scripts.Interfaces;
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using System;
+using System.Threading;
 using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States
 {
     public class LossState : BaseGameState
     {
-        private Coroutine _coroutine;
-
+        private CancellationTokenSource _cancellationTokenSource;
         private float _delay = 2f;
 
-        public LossState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
+        public LossState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
 
         public override void Enter()
         {
             base.Enter();
+            _cancellationTokenSource = new CancellationTokenSource();
 
-            _coroutine = GameFlow.StartCoroutine(DelayPause());
+            DelayPause(_cancellationTokenSource.Token).Forget();
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            if (_coroutine != null)
-                GameFlow.StopCoroutine(_coroutine);
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
         }
 
-        private IEnumerator DelayPause()
+        private async UniTask DelayPause(CancellationToken cancellationToken)
         {
-            yield return new WaitForSeconds(_delay);
-            GameFlow.PauseHandler.SetPause(true);
-            GameFlow.LossScreen.Open();
+            try
+            {
+                await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
+
+                if (cancellationToken.IsCancellationRequested)
+                    return;
+
+                GameFlow.PauseHandler.SetPause(true);
+                GameFlow.LossScreen.Open();
+            }
+            catch(OperationCanceledException)
+            {
+                Debug.Log("LossState DelayPause was cancelled");
+            }
         }
     }
 }

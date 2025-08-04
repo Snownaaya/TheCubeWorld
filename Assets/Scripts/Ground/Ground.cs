@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Platform
+namespace Assets.Scripts.Ground
 {
     public class Ground : MonoBehaviour
     {

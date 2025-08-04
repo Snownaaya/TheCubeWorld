@@ -14,13 +14,7 @@ namespace Assets.Scripts.Saves
 
             try
             {
-                JsonSerializerSettings settings = new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto,
-                    Converters = new List<JsonConverter> { new Newtonsoft.Json.Converters.StringEnumConverter() }
-                };
-
-                return JsonConvert.DeserializeObject<T>(json, settings);
+                return JsonConvert.DeserializeObject<T>(json, GetSettings());
             }
             catch (Exception ex)
             {
@@ -29,23 +23,30 @@ namespace Assets.Scripts.Saves
             }
         }
 
-        public string Serialize<T>(T t)
+        public string Serialize<T>(T obj)
         {
             try
             {
-                JsonSerializerSettings settings = new JsonSerializerSettings
-                {
-                    TypeNameHandling = TypeNameHandling.Auto,
-                    Converters = new List<JsonConverter> { new Newtonsoft.Json.Converters.StringEnumConverter() }
-                };
-
-                return JsonConvert.SerializeObject(t, Formatting.Indented, settings);
+                return JsonConvert.SerializeObject(obj, Formatting.Indented, GetSettings());
             }
             catch (Exception ex)
             {
                 UnityEngine.Debug.LogError($"Ошибка сериализации в JSON: {ex.Message}");
                 return string.Empty;
             }
+        }
+
+        private JsonSerializerSettings GetSettings()
+        {
+            return new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+
+                Converters = new List<JsonConverter>
+                {
+                    new Newtonsoft.Json.Converters.StringEnumConverter()
+                }
+            };
         }
     }
 }

@@ -1,39 +1,40 @@
 using UnityEngine;
-using System;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Loss;
+using Assets.Scripts.Properties;
 
 namespace Assets.Scripts.HealthCharacters
 {
     public abstract class Health : MonoBehaviour, IHealth
     {
-        [SerializeField] private float _maxHealth;
+        [SerializeField] private float _maxHealthValue = 100f;
 
-        public event Action Changed;
+        private NotLimitedProperty<float> _maxHealth;
+        private NotLimitedProperty<float> _currentHealth;
 
-        private float _currentHealth;
         private bool _isDead = false;
 
-        public float MaxHealth => _maxHealth;
-        public float CurrentHealth => _currentHealth;
+        private void Awake()
+        {
+            _maxHealth = new NotLimitedProperty<float>(_maxHealthValue);
+            _currentHealth = new NotLimitedProperty<float>(_maxHealthValue);
+        }
 
-        private void Awake() =>
-            _currentHealth = MaxHealth;
+        public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
+        public IReadOnlyProperty<float> MaxHealth => _maxHealth;
 
         public virtual void TakeDamage(float damage)
         {
-            _currentHealth = Mathf.Clamp(_currentHealth - damage, 0, _maxHealth);
-            Changed?.Invoke();
+            _currentHealth.Value = Mathf.Clamp(CurrentHealth.Value - damage, 0, MaxHealth.Value);
 
             Die();
         }
 
         public void Die()
         {
-            if (CurrentHealth <= 0 && _isDead == false)
+            if (CurrentHealth.Value <= 0 && _isDead == false)
             {
                 _isDead = true;
-                _currentHealth = 0;
+                _currentHealth.Value = 0;
                 NotifyDeath();
             }
         }

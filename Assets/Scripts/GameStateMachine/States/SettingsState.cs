@@ -4,7 +4,7 @@ namespace Assets.Scripts.GameStateMachine.States
 {
     public class SettingsState : BaseGameState
     {
-        public SettingsState(ISwitcher switcher, GameFlow flow) : base(switcher, flow) { }
+        public SettingsState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
 
         public override void Enter()
         {
