@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
-    public class ParticleSpawner : PoolObject<PooledParticle>
+    public class ParticleSpawner : PoolObject<PooledParticle>, IParticleSpawner
     {
         [SerializeField] private List<ParticlePrefabEntry> _particleEntries = new();
 

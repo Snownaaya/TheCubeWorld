@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
 using Reflex.Attributes;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI
@@ -32,7 +31,6 @@ namespace Assets.Scripts.UI
             foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
-
             }
         }
 

@@ -3,15 +3,17 @@ using Assets.Scripts.Interfaces;
 using Reflex.Core;
 using UnityEngine;
 
-namespace Assets.Scripts.Game
+public class StateMachineInstaller : MonoBehaviour, IInstaller
 {
-    public class StateMachineInstaller : MonoBehaviour, IInstaller
-    {
-        [SerializeField] private EntryPoint _gameFlow;
+    [SerializeField] private EntryPointState _gameFlow;
 
-        public void InstallBindings(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.AddSingleton(new GameState(_gameFlow), typeof(ISwitcher));
-        }
+    public void InstallBindings(ContainerBuilder containerBuilder)
+    {
+        BindSwitcher(containerBuilder);
+    }
+
+    private void BindSwitcher(ContainerBuilder containerBuilder)
+    {
+        containerBuilder.AddSingleton(new GameState(_gameFlow), typeof(ISwitcher));
     }
 }

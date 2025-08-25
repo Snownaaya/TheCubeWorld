@@ -1,31 +1,22 @@
 using UnityEngine;
-using Assets.Scripts.UI;
-using Assets.Scripts.Interfaces;
 using Reflex.Attributes;
 using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Items;
 
 namespace Assets.Scripts.Player
 {
-    [RequireComponent(typeof(Character))]
     public class ResourceCollected : MonoBehaviour
     {
-        [SerializeField] private ResourceSpawner _resourceSpawner;
-        //[SerializeField] private ResourceMediator _resourceMediator;
-
-        private Character _character;
         private IResourceStorage _resourceStorage;
         private IInventory _playerInventory;
+        private IResourceService _resourceSpawner;
 
         [Inject]
-        private void Construct(IResourceStorage resourceStorage, IInventory inventory)
+        private void Construct(IResourceStorage resourceStorage, IResourceService resourceSpawner,IInventory inventory)
         {
             _resourceStorage = resourceStorage;
+            _resourceSpawner = resourceSpawner;
             _playerInventory = inventory;
-        }
-
-        private void Awake()
-        {
-            _character = GetComponent<Character>();
         }
 
         private void OnTriggerEnter(Collider other)

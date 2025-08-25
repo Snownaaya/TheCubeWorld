@@ -1,7 +1,6 @@
 using UnityEngine;
 using Assets.Scripts.Items;
 using Assets.Scripts.Datas;
-using Assets.Scripts.Enemies.Boss;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class Resource : MonoBehaviour

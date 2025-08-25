@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Items;
 using Assets.Scripts.Json;
-using Assets.Scripts.Properties;
 using Assets.Scripts.Saves;
+using Assets.Scripts.Service.Properties;
 using System.Collections.Generic;
 using UnityEngine;
 

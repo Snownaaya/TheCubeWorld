@@ -3,7 +3,7 @@
     public interface IBossTargetService
     {
         IBossTarget GetCurrentBoss();
-        void SetTarget(IBossTarget target);
+        void SetCurrentTarget(IBossTarget target);
         void ClearCurrentBoss();
     }
 }

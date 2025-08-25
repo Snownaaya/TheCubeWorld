@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Items;
-using Assets.Scripts.Properties;
-using Reflex.Attributes;
+using Assets.Scripts.Service.Properties;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,10 +57,8 @@ namespace Assets.Scripts.Player.Inventory
             return false;
         }
 
-        public void Reset()
-        {
+        public void Reset() =>
             _resources.Clear();
-        }
 
         private void InitializeResources()
         {

@@ -3,7 +3,7 @@ using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Datas;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.Properties;
+using Assets.Scripts.Service.Properties;
 using Assets.Scripts.UI.BridgeBuilder;
 using System.Linq;
 
@@ -11,7 +11,6 @@ public abstract class BaseBridgeState : IStates
 {
     private BuildButton _buildButton;
     private ISwitcher _stateSwitcher;
-    private Bridge _currentBridge;
     private int _resourceCost = 1;
 
     public BaseBridgeState(ISwitcher switcher, BuildButton buildButton)

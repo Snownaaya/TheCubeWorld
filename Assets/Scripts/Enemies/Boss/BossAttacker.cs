@@ -4,22 +4,20 @@ using Assets.Scripts.Interfaces;
 using System.Collections;
 using UnityEngine;
 using System;
+using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Enemies.Boss
 {
     [Serializable]
     public class BossAttacker : IDamageable
     {
+        [SerializeField] private BossConfig _bossConfig;
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private Transform _attackPoint;
 
-        [SerializeField] private float _attackRadius;
-        [SerializeField] private float _delay;
-        [SerializeField] private int _damage;
-
         public IEnumerator AttackRoutine()
         {
-            var wait = new WaitForSeconds(_delay);
+            var wait = new WaitForSeconds(_bossConfig.Delay);
 
             while (true)
             {
@@ -30,13 +28,14 @@ namespace Assets.Scripts.Enemies.Boss
 
         public void Attack()
         {
-            Collider[] hitEnemy = Physics.OverlapSphere(_attackPoint.position, _attackRadius, _enemyLayer);
+            Collider[] hitEnemy = Physics.OverlapSphere(_attackPoint.position, _bossConfig.AttackRadius, _enemyLayer);
 
             foreach (Collider enemyCollider in hitEnemy)
             {
                BinaryFormatter formatter = new BinaryFormatter();
+
                 if (enemyCollider.TryGetComponent(out CharacterHealth health))
-                    health.TakeDamage(_damage);
+                    health.TakeDamage(_bossConfig.Damage);
             }
         }
     }

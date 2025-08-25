@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
 using Cysharp.Threading.Tasks;
-using System;
-using System.Collections;
 using System.Threading;
 using UnityEngine;
+using System;
+using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -15,25 +15,22 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private EnemyCollisionDetector _enemyCollision;
         [SerializeField] private ResourceConsumer _resourceConsumer;
 
-        [Header("Settings")]
-        [SerializeField] private float _speed;
-        [SerializeField] private float _damage;
+        [SerializeField] private CharacterConfig _characterConfig;
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        private float _attackTimer = 1;
+        private void Awake() =>
+            _cancellationTokenSource = new CancellationTokenSource();
 
-        private void Start()
-        {
-            StartCoroutine(ShootCube());
-        }
+        private void Start() =>
+            ShootCube(_cancellationTokenSource.Token).Forget();
 
-        private IEnumerator ShootCube()
+        private async UniTask ShootCube(CancellationToken cancellationToken)
         {
-            while (enabled)
+            while (cancellationToken.IsCancellationRequested == false)
             {
-                yield return new WaitForSeconds(_attackTimer);
                 Attack();
+                await UniTask.Delay(TimeSpan.FromSeconds(_characterConfig.AttackTimer), cancellationToken: cancellationToken);
             }
         }
 
@@ -52,19 +49,11 @@ namespace Assets.Scripts.Player.Attack
                         _characterView.StopIdle();
                         _characterView.StopWalk();
                         _characterView.StartAttack();
-                        health.TakeDamage(_damage);
+                        health.TakeDamage(_characterConfig.Damage);
                     }
                     //_resourceConsumer.ResourceSpawner.Push();
                 }
             }
         }
-
-#if UNITY_EDITOR
-        void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(_enemyCollision.PlayerModel.position, _enemyCollision.DetectionRadius);
-        }
-#endif
     }
 }

@@ -18,34 +18,27 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private ResourceMediator _resourceMediator;
 
-        [Header("Dependencies")]
-        [SerializeField] private ResourceSpawner _resource;
-
         private IResourceStorage _resourceStorage;
         private IInventory _inventory;
         private ISwitcher _switcher;
         private IBossTargetService _bossTargetService;
+        private IResourceService _resourceService;
 
         private int _resourceCount = 20;
 
         [Inject]
-        private void Construct(IInventory inventory, IResourceStorage resourceStorage, ISwitcher switcher, IBossTargetService bossTargetService)
+        private void Construct(IInventory inventory, IBossTargetService bossTargetService, IResourceService resourceService, IResourceStorage resourceStorage, ISwitcher switcher)
         {
             _inventory = inventory;
+            _bossTargetService = bossTargetService;
+            _resourceService = resourceService;
             _resourceStorage = resourceStorage;
             _switcher = switcher;
-            _bossTargetService = bossTargetService;
         }
 
         public bool TryConsumeResource()
         {
             ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
-
-            //if (_inventory.HasResource(selectedConfig, new NotLessZeroProperty<int>(0)) == false)
-            //{
-            //    //_switcher.SwitchState<LossState>();
-            //    return false;
-            //}
 
             SpawnResource(selectedConfig);
             _inventory.UseResource(selectedConfig);
@@ -58,15 +51,20 @@ namespace Assets.Scripts.Player.Attack
         {
             int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
             Resource resource = _resourcePrefabs[prefabIndex];
-            Resource resourcePrefab = _resource.Pull(resource);
+            Resource resourcePrefab = _resourceService.Pull(resource);
 
             resourcePrefab.transform.position = _attackPoint.transform.position;
             resourcePrefab.transform.rotation = _attackPoint.transform.rotation;
 
+            resourcePrefab.PrepareForThrow();
+
             IBossTarget currentBoss = _bossTargetService.GetCurrentBoss();
 
-            resourcePrefab.PrepareForThrow();
-            resourcePrefab.MovePosition(currentBoss.GetTargetTransform());
+            if (currentBoss != null && currentBoss.IsValidTarget())
+                resourcePrefab.MovePosition(currentBoss.GetTargetTransform());
+            else
+                Debug.LogWarning("No valid boss target found for resource movement!");
+
             resourcePrefab.Release();
         }
     }

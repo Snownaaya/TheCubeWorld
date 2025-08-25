@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.LevelLoader;
+﻿using Assets.Scripts.Datas;
+using Assets.Scripts.Service.LevelLoaderService;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
@@ -9,7 +10,7 @@ namespace Assets.Scripts.Enemies.Boss
     [RequireComponent(typeof(EndLevel), typeof(BossView))]
     public class BossDeathAnimation : MonoBehaviour
     {
-        [SerializeField] private float _animatiobnDuration = 2f;
+        [SerializeField] private BossConfig _bossConfig;
 
         private CancellationTokenSource _cancellationTokenSource;
         private BossView _bossView;
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Enemies.Boss
 
             Animator animator = _bossView.GetComponent<Animator>();
             float deathAniamtion = animator.GetCurrentAnimatorStateInfo(0).length;
-            float delay = Mathf.Max(deathAniamtion, _animatiobnDuration);
+            float delay = Mathf.Max(deathAniamtion, _bossConfig.AnimationDuration);
             await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken : cancellationToken);
             gameObject.SetActive(false);
         }

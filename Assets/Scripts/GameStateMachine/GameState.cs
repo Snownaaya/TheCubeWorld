@@ -9,9 +9,9 @@ namespace Assets.Scripts.GameStateMachine
     {
         private List<IStates> _states;
         private IStates _currentState;
-        private EntryPoint _gameFlow;
+        private EntryPointState _gameFlow;
 
-        public GameState(EntryPoint gameFlow)
+        public GameState(EntryPointState gameFlow)
         {
             _gameFlow = gameFlow;
 
@@ -19,10 +19,12 @@ namespace Assets.Scripts.GameStateMachine
             {
                 new StartLevelState(this, _gameFlow),
                 new LossState(this, _gameFlow),
-                new SettingsState(this, _gameFlow),
                 new EndLevelState(this, _gameFlow),
                 new RespawnState(this, _gameFlow)
             };
+
+            _currentState = _states[0];
+            _currentState.Enter();
         }
 
         public void SwitchState<T>() where T : IStates

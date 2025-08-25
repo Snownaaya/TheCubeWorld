@@ -1,26 +1,26 @@
 ﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States
 {
     public class BaseGameState : IStates
     {
+        private EntryPointState _entryPoint;
         private ISwitcher _switcher;
-        private EntryPoint _flow;
+        private ITransformable _player;
 
-        public BaseGameState(ISwitcher switcher, EntryPoint flow)
+        public BaseGameState(ISwitcher switcher, EntryPointState entryPoint)
         {
             _switcher = switcher;
-            _flow = flow;
+            _entryPoint = entryPoint;
         }
 
-        public EntryPoint GameFlow => _flow;
+        public EntryPointState EntryPoint => _entryPoint;
         public ISwitcher Switcher => _switcher;
 
-        public virtual void Enter()
-        {
+        public virtual void Enter() =>
             Debug.Log($"{GetType()}");
-        }
 
         public virtual void Exit() { }
     }

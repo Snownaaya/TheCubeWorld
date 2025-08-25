@@ -2,18 +2,19 @@
 
 namespace Assets.Scripts.GameStateMachine.States
 {
-    internal class RespawnState : BaseGameState
+    public class RespawnState : BaseGameState
     {
-        public RespawnState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
+        public RespawnState(ISwitcher switcher, EntryPointState entryPoint) : base(switcher, entryPoint) { }
 
         public override void Enter()
         {
             base.Enter();
 
-            GameFlow.LossScreen.Close();
-            GameFlow.LevelLoader.Load(GameFlow.LevelSelected.GetCurrentLevel());
-            GameFlow.PauseHandler.Remove(GameFlow.LossScreen);
+            EntryPoint.LossScreen.Close();
+            EntryPoint.LevelLoader.Load(EntryPoint.LevelSelected.GetCurrentLevel());
+            EntryPoint.PauseHandler.Remove(EntryPoint.LossScreen);
             Switcher.SwitchState<StartLevelState>();
+            EntryPoint.Inventory.Reset();
         }
 
         public override void Exit()

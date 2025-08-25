@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.GameStateMachine.States;
-using Assets.Scripts.Other;
 using Reflex.Attributes;
+using Assets.Scripts.Service.Pause;
 
 namespace Assets.Scripts.UI.GameUI
 {

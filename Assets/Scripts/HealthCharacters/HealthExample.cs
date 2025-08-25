@@ -14,15 +14,15 @@ namespace Assets.Scripts.HealthCharacters
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        private void Awake()
-        {
+        private void Awake() =>
             _cancellationTokenSource = new CancellationTokenSource();
 
+        private void Start()
+        {
             _healthChanger.Initialize(_health.CurrentHealth, _health.MaxHealth);
-        }
 
-        private void Start() =>
             UpdateHealth(_cancellationTokenSource.Token).Forget();
+        }
 
         private async UniTask UpdateHealth(CancellationToken cancellationToken)
         {

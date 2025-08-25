@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Other;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.BridgeBuilder

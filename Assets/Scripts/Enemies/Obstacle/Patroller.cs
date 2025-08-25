@@ -17,9 +17,7 @@ namespace Assets.Scripts.Enemies.Obstacle
             _wayPoint.StartMove();
         }
 
-        private void Update()
-        {
+        private void Update() =>
             _wayPoint?.Update();
-        }
     }
 }

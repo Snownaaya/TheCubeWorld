@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.Other

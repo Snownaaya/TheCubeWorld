@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Reflex.Attributes;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Boss
 {
@@ -13,14 +14,19 @@ namespace Assets.Scripts.Enemies.Boss
         private void Awake() =>
             _transform = transform;
 
-        private void Start() =>
-            _bossTargetService.SetTarget(this);
-
-        public void Construct(IBossTargetService bossTargetService) =>
+        [Inject]
+        public void Construct(IBossTargetService bossTargetService)
+        {
             _bossTargetService = bossTargetService;
+            _bossTargetService.SetCurrentTarget(this);
+            Debug.Log($"BossTarget constructed with service: {_bossTargetService != null}");
+        }
 
-        public Vector3 GetTargetPosition() =>
-            _transform.position;
+        //private void OnDestroy()
+        //{
+        //    if (_bossTargetService != null)
+        //        _bossTargetService.ClearCurrentBoss();
+        //}
 
         public Transform GetTargetTransform() =>
             _transform;

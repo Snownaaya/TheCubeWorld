@@ -1,38 +1,47 @@
-﻿using Assets.Scripts.Player;
+﻿using Assets.Scripts.Ground;
+using Assets.Scripts.Items;
+using Assets.Scripts.Player;
+using Assets.Scripts.Service.ReflexService;
+using Reflex.Attributes;
+using Reflex.Core;
 using UnityEngine;
 
-namespace Assets.Scripts.Ground
+[RequireComponent(typeof(Ground))]
+public class PlatformDetector : MonoBehaviour
 {
-    [RequireComponent(typeof(Ground))]
-    public class PlatformDetector : MonoBehaviour
+    private IResourceService _spawner;
+    private Ground _currentGround;
+    private Coroutine _coroutine;
+    private Container _container;
+
+    [Inject]
+    private void Construct(IResourceService resourceSpawner) =>
+        _spawner = resourceSpawner;
+
+    private void Start()
     {
-        [SerializeField] private ResourceSpawner _spawner;
+        _currentGround = GetComponent<Ground>();
+        //_spawner = _container.Resolve<IResourceService>();
 
-        private Coroutine _coroutine;
-        private Ground _currentGround;
+        if (_spawner == null)
+            Debug.LogError("Spawner is null in " + gameObject.name);
+    }
 
-        private void Awake() =>
-            _currentGround = GetComponent<Ground>();
-
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Character character))
         {
-            if (other.TryGetComponent(out Character character))
-            {
-                _coroutine = StartCoroutine(_spawner.SpawnRoutine(_currentGround));
-            }
+            _coroutine = StartCoroutine(_spawner.SpawnRoutine(_currentGround));
         }
+    }
 
-        private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out Character character) && _coroutine != null)
         {
-            if (other.TryGetComponent(out Character character))
-            {
-                if (_coroutine != null)
-                {
-                    StopCoroutine(_coroutine);
-                    _spawner.ClearPool();
-                    _coroutine = null;
-                }
-            }
+            StopCoroutine(_coroutine);
+            _spawner.ClearPool();
+            _coroutine = null;
         }
     }
 }

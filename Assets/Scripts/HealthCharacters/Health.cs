@@ -1,13 +1,13 @@
-using UnityEngine;
+using Assets.Scripts.Datas;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Properties;
+using Assets.Scripts.Service.Properties;
+using System;
+using UnityEngine;
 
 namespace Assets.Scripts.HealthCharacters
 {
     public abstract class Health : MonoBehaviour, IHealth
     {
-        [SerializeField] private float _maxHealthValue = 100f;
-
         private NotLimitedProperty<float> _maxHealth;
         private NotLimitedProperty<float> _currentHealth;
 
@@ -15,12 +15,19 @@ namespace Assets.Scripts.HealthCharacters
 
         private void Awake()
         {
-            _maxHealth = new NotLimitedProperty<float>(_maxHealthValue);
-            _currentHealth = new NotLimitedProperty<float>(_maxHealthValue);
+            _maxHealth = new NotLimitedProperty<float>(100);
+            _currentHealth = new NotLimitedProperty<float>(100);
         }
 
         public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
-        public IReadOnlyProperty<float> MaxHealth => _maxHealth;
+        public IReadOnlyProperty<float> MaxHealth
+        {
+            get => _maxHealth;
+            set
+            {
+                _maxHealth = value as NotLimitedProperty<float>;
+            }
+        }
 
         public virtual void TakeDamage(float damage)
         {

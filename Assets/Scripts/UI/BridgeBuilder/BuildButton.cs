@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.Datas;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Other;
 using Reflex.Attributes;
 using UnityEngine.UI;
 using UnityEngine;
 using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Items;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {

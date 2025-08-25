@@ -1,6 +1,6 @@
-using Assets.Scripts.Datas;
 using Assets.Scripts.Enemies.Boss;
 using Assets.Scripts.Particles;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
@@ -13,20 +13,19 @@ namespace Assets.Scripts.Player
         private const string IsAttack = nameof(IsAttack);
         private const string AttackState = nameof(AttackState);
 
-        [SerializeField] private ParticleSpawner _effects;
-
         private Animator _animator;
         private IBossTargetService _bossTargetService;
+        private IParticleSpawner _particleSpawner;
 
-        private void Construct(IBossTargetService bossTargetService) =>
-            _bossTargetService = bossTargetService;
-
-        public void Initialize()
+        [Inject]
+        private void Construct(IBossTargetService bossTargetService, IParticleSpawner particleSpawner)
         {
-            _animator = GetComponent<Animator>();
-            IBossTarget bossTarget = _bossTargetService.GetCurrentBoss();
-            _effects.Initialize(bossTarget.GetTargetTransform());
+            _bossTargetService = bossTargetService;
+            _particleSpawner = particleSpawner;
         }
+
+        public void Initialize() =>
+            _animator = GetComponent<Animator>();
 
         public void StartIdle() =>
             _animator?.SetBool(IsIdling, true);
@@ -51,14 +50,14 @@ namespace Assets.Scripts.Player
 
         public void StartAttack()
         {
-            IBossTarget bossTarget = _bossTargetService?.GetCurrentBoss();
-            _effects.SpawnParticle(ParticleTypes.CharacterAttack, bossTarget.GetTargetTransform());
+            IBossTarget currentBoss = _bossTargetService?.GetCurrentBoss();
+            _particleSpawner.SpawnParticle(ParticleTypes.CharacterAttack, currentBoss.GetTargetTransform());
             _animator?.SetBool(IsAttack, true);
         }
 
         public void StopAttack()
         {
-            //_effects.ReturnParticle();
+           // _particleSpawner.ReturnParticle(gameObject);
             _animator?.SetBool(IsAttack, false);
         }
     }

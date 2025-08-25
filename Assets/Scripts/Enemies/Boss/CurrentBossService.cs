@@ -1,16 +1,18 @@
-﻿namespace Assets.Scripts.Enemies.Boss
+﻿using Reflex.Attributes;
+
+namespace Assets.Scripts.Enemies.Boss
 {
     public class CurrentBossService : IBossTargetService
     {
         private IBossTarget _currentBoss;
 
-        public void SetTarget(IBossTarget target) =>
+        public void SetCurrentTarget(IBossTarget target) =>
             _currentBoss = target;
 
-        public void ClearCurrentBoss() => 
+        public void ClearCurrentBoss() =>
             _currentBoss = null;
 
         public IBossTarget GetCurrentBoss() =>
-            _currentBoss?.IsValidTarget() == true ? _currentBoss : null;
+                _currentBoss;
     }
 }

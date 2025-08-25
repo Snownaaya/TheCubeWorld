@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -7,13 +8,10 @@ namespace Assets.Scripts.Player.Attack
     public class EnemyCollisionDetector
     {
         [SerializeField] private LayerMask _enemyLayerMask;
-        [SerializeField] private float _detectionRadius;
+        [SerializeField] private CharacterConfig _characterConfig;
         [SerializeField] private Transform _playerModel;
 
-        public float DetectionRadius => _detectionRadius;
-        public Transform PlayerModel => _playerModel;
-
         public Collider[] DetectEnemies() =>
-            Physics.OverlapSphere(_playerModel.position, _detectionRadius, _enemyLayerMask);
+            Physics.OverlapSphere(_playerModel.position, _characterConfig.DetectionRadius, _enemyLayerMask);
     }
 }

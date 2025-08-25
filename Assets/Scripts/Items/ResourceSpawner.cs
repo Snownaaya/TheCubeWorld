@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using Assets.Scripts.Ground;
 
-public class ResourceSpawner : PoolObject<Resource>
+public class ResourceSpawner : PoolObject<Resource>, IResourceService
 {
     private const string Resource = nameof(Resource);
     private const string Pool = nameof(Pool);
@@ -17,8 +17,8 @@ public class ResourceSpawner : PoolObject<Resource>
     [SerializeField] private int _maxResources = 16;
     [SerializeField] private float _spawnInterval = 2f;
 
+    private Coroutine _coroutine;
     private Dictionary<ResourceTypes, Resource> _resources = new Dictionary<ResourceTypes, Resource>();
-    private Transform _transform;
 
     private void Awake()
     {
@@ -28,8 +28,6 @@ public class ResourceSpawner : PoolObject<Resource>
             {ResourceTypes.Wood, _resource[1]},
             {ResourceTypes.Stone, _resource[2]}
         };
-
-        _transform = transform;
     }
 
     public IEnumerator SpawnRoutine(Ground currentGround)
@@ -68,6 +66,11 @@ public class ResourceSpawner : PoolObject<Resource>
     public void ReturnResource(Resource resource) =>
         Push(resource);
 
-    private void Reset() =>
+    private void Reset()
+    {
+        if(_coroutine != null)
+            StopCoroutine(_coroutine);
+
         ClearPool();
+    }
 }

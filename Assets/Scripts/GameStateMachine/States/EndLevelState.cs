@@ -7,21 +7,22 @@ namespace Assets.Scripts.GameStateMachine.States
 {
     public class EndLevelState : BaseGameState
     {
-        public EndLevelState(ISwitcher switcher, EntryPoint flow) : base(switcher, flow) { }
+        public EndLevelState(ISwitcher switcher, EntryPointState entryPoint) : base(switcher, entryPoint) { }
 
         public override void Enter()
         {
             base.Enter();
+
             ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
-            GameFlow.LevelLoader.Load(GameFlow.LevelSelected.GetNextLevel());
-            GameFlow.EndLevel.LevelEnded += Switcher.SwitchState<StartLevelState>;
+            EntryPoint.LevelLoader.Load(EntryPoint.LevelSelected.GetNextLevel());
+            EntryPoint.EndLevel.LevelEnded += Switcher.SwitchState<StartLevelState>;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            GameFlow.EndLevel.LevelEnded -= Switcher.SwitchState<StartLevelState>;
+            EntryPoint.EndLevel.LevelEnded -= Switcher.SwitchState<StartLevelState>;
         }
     }
 }
