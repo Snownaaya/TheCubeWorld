@@ -1,15 +1,14 @@
-﻿using Assets.Scripts.Player;
-using Assets.Scripts.Service.LevelLoaderService;
-using Reflex.Attributes;
+﻿using Assets.Scripts.Service.LevelLoaderService;
+using Assets.Scripts.Player.Core;
 
 namespace Assets.Scripts.Service.CharacterService
 {
     public class CharacterTeleportService : ICharacterTeleportService
     {
-        private ITransformable _player;
+        private CharacterHolder _player;
         private IStartLevel _startLevel;
 
-        public CharacterTeleportService(ITransformable player, IStartLevel startLevel)
+        public CharacterTeleportService(CharacterHolder player, IStartLevel startLevel)
         {
             _player = player;
             _startLevel = startLevel;
@@ -17,8 +16,8 @@ namespace Assets.Scripts.Service.CharacterService
 
         public void SpawnAtStart()
         {
-            _player.CharacterModel.position = _startLevel.Transform.position;
-            _player.CharacterModel.rotation = _startLevel.Transform.rotation;
+            _player.Movement.CharacterModel.position = _startLevel.Transform.position;
+            _player.Movement.CharacterModel.rotation = _startLevel.Transform.rotation;
         }
     }
 }

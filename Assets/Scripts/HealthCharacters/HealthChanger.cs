@@ -1,6 +1,6 @@
+using Assets.Scripts.Service.Properties;
 using UnityEngine.UI;
 using UnityEngine;
-using Assets.Scripts.Service.Properties;
 
 namespace Assets.Scripts.HealthCharacters
 {

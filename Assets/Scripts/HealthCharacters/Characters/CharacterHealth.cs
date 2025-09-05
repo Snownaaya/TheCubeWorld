@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Datas;
-using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Datas;
 using Assets.Scripts.Loss;
-using System;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.HealthCharacters.Characters
 {

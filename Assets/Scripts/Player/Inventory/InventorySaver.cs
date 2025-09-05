@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Json;
-using Assets.Scripts.Saves;
-using Assets.Scripts.Service.Properties;
+﻿using Assets.Scripts.Service.Properties;
 using System.Collections.Generic;
+using Assets.Scripts.Items;
+using Assets.Scripts.Saves;
+using Assets.Scripts.Json;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Inventory

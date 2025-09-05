@@ -64,7 +64,6 @@ namespace Assets.Scripts.UI.GameUI
         public void SetPause(bool isPaused)
         {
             _isPause = isPaused;
-
             Time.timeScale = isPaused ? 0 : 1;
         }
 

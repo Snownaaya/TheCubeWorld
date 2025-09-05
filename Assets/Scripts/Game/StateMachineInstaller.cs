@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class StateMachineInstaller : MonoBehaviour, IInstaller
 {
-    [SerializeField] private EntryPointState _gameFlow;
-
     public void InstallBindings(ContainerBuilder containerBuilder)
     {
         BindSwitcher(containerBuilder);
@@ -14,6 +12,6 @@ public class StateMachineInstaller : MonoBehaviour, IInstaller
 
     private void BindSwitcher(ContainerBuilder containerBuilder)
     {
-        containerBuilder.AddSingleton(new GameState(_gameFlow), typeof(ISwitcher));
+        containerBuilder.AddSingleton(new GameState(), typeof(ISwitcher));
     }
 }

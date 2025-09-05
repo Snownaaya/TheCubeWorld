@@ -2,7 +2,7 @@
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.Service.Pause;
-using Assets.Scripts.Player;
+using Assets.Scripts.Player.Core;
 using Reflex.Core;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Game
         {
             containerBuilder.AddSingleton<ICharacterTeleportService>(container =>
             {
-                ITransformable player = container.Resolve<ITransformable>();
+                CharacterHolder player = container.Resolve<CharacterHolder>();
                 IStartLevel startLevel = container.Resolve<IStartLevel>();
                 return new CharacterTeleportService(player, startLevel);
             });

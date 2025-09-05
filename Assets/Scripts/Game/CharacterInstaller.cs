@@ -1,11 +1,8 @@
-﻿using Assets.Scripts.HealthCharacters;
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Player.Attack;
-using Assets.Scripts.Player.Move;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player;
+﻿using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Player.Core;
 using Assets.Scripts.Input;
 using Assets.Scripts.Saves;
+using Reflex.Injectors;
 using Reflex.Core;
 using UnityEngine;
 using YG;
@@ -14,18 +11,15 @@ namespace Assets.Scripts.Game
 {
     public class CharacterInstaller : MonoBehaviour, IInstaller
     {
-        [SerializeField] private CharacterAttacker _characterAttacker;
-        [SerializeField] private Character _character;
-        [SerializeField] private Movement _movement;
+        [SerializeField] private CharacterFactory _characterFactory;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             PlayerInput playerInput = InitInput(containerBuilder);
-            BindInventory(containerBuilder);
-            BindDamageable(containerBuilder);
-            InitMoveble(containerBuilder);
-            BindTransformable(containerBuilder);
             BindInput(containerBuilder, playerInput);
+            BindInventory(containerBuilder);
+            BindFactory(containerBuilder, playerInput);
+            BindCharacterHolder(containerBuilder);
         }
 
         private void BindInventory(ContainerBuilder containerBuilder)
@@ -45,23 +39,28 @@ namespace Assets.Scripts.Game
             return playerInput;
         }
 
-        private void BindDamageable(ContainerBuilder containerBuilder)
+        private void BindCharacterHolder(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton(_characterAttacker, typeof(IDamageable));
+            containerBuilder.AddSingleton<CharacterHolder>(container =>
+            {
+                CharacterFactory factory = container.Resolve<CharacterFactory>();
+                CharacterHolder holder = factory.CreateCharacter();
+
+                GameObjectInjector.InjectRecursive(holder.Character.gameObject, container);
+                return holder;
+            });
         }
 
-        private void BindHealth(ContainerBuilder containerBuilder)
+        private void BindFactory(ContainerBuilder containerBuilder, PlayerInput playerInput)
         {
-            containerBuilder.AddScoped(_ => _character,typeof(IHealth));
-        }
+            containerBuilder.AddSingleton<CharacterFactory>(container =>
+            {
+                GameObjectInjector.InjectRecursive(_characterFactory.gameObject, container);
+                containerBuilder.AddSingleton(_characterFactory);
 
-        private void InitMoveble(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.AddScoped(typeof(IMoveble));
+                return _characterFactory;
+            });
         }
-
-        private void BindTransformable(ContainerBuilder containerBuilder) =>
-            containerBuilder.AddSingleton(_character, typeof(ITransformable));
 
         private void BindInput(ContainerBuilder containerBuilder, PlayerInput playerInput)
         {

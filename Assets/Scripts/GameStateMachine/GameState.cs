@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.GameStateMachine.States;
-using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,33 +7,39 @@ namespace Assets.Scripts.GameStateMachine
 {
     public class GameState : ISwitcher
     {
-        private List<IStates> _states;
+        private Dictionary<Type ,IStates> _states = new Dictionary<Type, IStates>();
         private IStates _currentState;
-        private EntryPointState _gameFlow;
 
-        public GameState(EntryPointState gameFlow)
+        public void Initialize(params IStates[] states)
         {
-            _gameFlow = gameFlow;
+            Clear();
 
-            _states = new List<IStates>
-            {
-                new StartLevelState(this, _gameFlow),
-                new LossState(this, _gameFlow),
-                new EndLevelState(this, _gameFlow),
-                new RespawnState(this, _gameFlow)
-            };
+            foreach (var state in states)
+                _states[state.GetType()] = state;
 
-            _currentState = _states[0];
-            _currentState.Enter();
+            _currentState = states.FirstOrDefault();
+            _currentState?.Enter();
         }
 
         public void SwitchState<T>() where T : IStates
         {
-            IStates state = _states.FirstOrDefault(state => state is T);
+            if (_states.TryGetValue(typeof(T), out IStates newState))
+            {
+                _currentState?.Exit();
+                _currentState = newState;
+                _currentState?.Enter();
+            }
+            else
+            {
+                throw new ArgumentException($"Состояние типа {typeof(T).Name} не найдено в словаре!");
+            }
+        }
 
+        public void Clear()
+        {
             _currentState?.Exit();
-            _currentState = state;
-            _currentState.Enter();
+            _states.Clear();
+            _currentState = null;
         }
     }
 }

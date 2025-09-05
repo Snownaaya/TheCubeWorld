@@ -1,8 +1,7 @@
 ﻿using Random = UnityEngine.Random;
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Assets.Scripts.Service.LevelLoaderService
 {
@@ -15,8 +14,7 @@ namespace Assets.Scripts.Service.LevelLoaderService
         [ReorderableList]
         [SerializeField] private List<string> _levels;
 
-        private int _currentLevelIndex = 0;
-        private bool _randomOrder = false;
+        private string _currentLevel;
 
         private void Awake()
         {
@@ -28,22 +26,28 @@ namespace Assets.Scripts.Service.LevelLoaderService
             };
         }
 
-
         public string GetNextLevel()
         {
-            if (_randomOrder)
-                _currentLevelIndex = Random.Range(0, _levels.Count);
-            else
-                _currentLevelIndex = (_currentLevelIndex + 1) % _levels.Count;
+            if (_levels.Count == 0)
+                return null;
 
-            Debug.Log($"Next Level: {_levels[_currentLevelIndex]}");
+            List<string> availableLevels = new List<string>();
 
-            return _levels[_currentLevelIndex];
+            availableLevels.Remove(_currentLevel);
+
+            if (availableLevels.Count == 0)
+                availableLevels = new List<string>(_levels);
+
+            int randomIndex = Random.Range(0, availableLevels.Count);
+            return availableLevels[randomIndex];
         }
 
         public string GetCurrentLevel()
         {
-            return _levels[_currentLevelIndex];
+            foreach (string level in _levels)
+                return level;
+
+            return null;
         }
     }
 }

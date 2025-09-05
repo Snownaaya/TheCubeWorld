@@ -1,15 +1,15 @@
-using UnityEngine;
-using Reflex.Attributes;
-using Assets.Scripts.Loss;
-using Assets.Scripts.Particles;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.GameStateMachine.States;
 using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Loss;
+using Reflex.Attributes;
+using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(CollisionHandler))]
-    public class Character : MonoBehaviour, ITransformable
+    public class Character : MonoBehaviour
     {
         [SerializeField] private CharacterView _characterView;
         [SerializeField] private Transform _characterModel;
@@ -17,26 +17,24 @@ namespace Assets.Scripts.Player
         private CollisionHandler _collisionHandler;
         private CharacterHealth _health;
 
-        private ISwitcher _stateSwitcher;
         private IParticleSpawner _characterEffects;
 
-        public Transform CharacterModel => _characterModel;
+        //public Transform CharacterModel => _characterModel;
+        public event Action Died;
 
         [Inject]
-        private void Construct(ISwitcher stateSwitcher, IParticleSpawner particleSpawner)
+        public void Construct(IParticleSpawner particleSpawner)
         {
-            _stateSwitcher = stateSwitcher;
             _characterEffects = particleSpawner;
             _characterEffects.Initialize(_characterModel);
         }
 
         private void Awake()
         {
-            _health = GetComponent<CharacterHealth>(); 
+            _health = GetComponent<CharacterHealth>();
             _collisionHandler = GetComponent<CollisionHandler>();
             _characterModel = transform;
             _characterView.Initialize();
-            DontDestroyOnLoad(this);
         }
 
         private void OnEnable()
@@ -51,7 +49,7 @@ namespace Assets.Scripts.Player
             _health.Died -= ProccesCollision;
         }
 
-        private void ProccesCollision(ILoss loss)
+        public void ProccesCollision(ILoss loss)
         {
             if (loss is LossCollision || loss is LossHealth)
             {
@@ -60,7 +58,7 @@ namespace Assets.Scripts.Player
                 _characterView.StopIdle();
                 _characterView.StopAttack();
                 _characterModel.gameObject.SetActive(false);
-                _stateSwitcher.SwitchState<LossState>();
+                Died?.Invoke();
             }
         }
     }

@@ -1,7 +1,7 @@
-using UnityEngine;
 using Assets.Scripts.Interfaces;
-using System;
 using Assets.Scripts.Loss;
+using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Player
 {

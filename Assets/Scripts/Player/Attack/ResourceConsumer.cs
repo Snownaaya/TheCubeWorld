@@ -2,7 +2,6 @@
 using Random = UnityEngine.Random;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
-using Assets.Scripts.UI;
 using Reflex.Attributes;
 using UnityEngine;
 using System;
@@ -16,24 +15,23 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private Resource[] _resourcePrefabs;
         [SerializeField] private ResourceTypes[] _resourceType;
         [SerializeField] private Transform _attackPoint;
-        [SerializeField] private ResourceMediator _resourceMediator;
 
         private IResourceStorage _resourceStorage;
         private IInventory _inventory;
-        private ISwitcher _switcher;
         private IBossTargetService _bossTargetService;
         private IResourceService _resourceService;
 
-        private int _resourceCount = 20;
-
         [Inject]
-        private void Construct(IInventory inventory, IBossTargetService bossTargetService, IResourceService resourceService, IResourceStorage resourceStorage, ISwitcher switcher)
+        private void Construct(
+            IInventory inventory,
+            IBossTargetService bossTargetService,
+            IResourceService resourceService,
+            IResourceStorage resourceStorage)
         {
             _inventory = inventory;
             _bossTargetService = bossTargetService;
             _resourceService = resourceService;
             _resourceStorage = resourceStorage;
-            _switcher = switcher;
         }
 
         public bool TryConsumeResource()

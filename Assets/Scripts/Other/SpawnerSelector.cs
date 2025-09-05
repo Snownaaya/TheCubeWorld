@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Player;
+using Assets.Scripts.Player.Core;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.Other
@@ -9,6 +10,8 @@ namespace Assets.Scripts.Other
         [SerializeField] private BridgeSpawner[] _spawners;
 
         private BridgeSpawner _currentSpawner;
+
+        private CharacterHolder _characterHolder;
 
         private void OnValidate()
         {
@@ -22,6 +25,10 @@ namespace Assets.Scripts.Other
             }
         }
 
+        [Inject]
+        private void Construct(CharacterHolder characterHolder) =>
+            _characterHolder = characterHolder;
+
         public BridgeSpawner SetCurrentSpawner(BridgeSpawner bridgeSpawner)
         {
             _currentSpawner = bridgeSpawner;
@@ -30,7 +37,7 @@ namespace Assets.Scripts.Other
 
         public BridgeSpawner GetCurrentSpawner()
         {
-            Vector3 playerPosition = PlayerPositionUtils.GetPlayerPosition();
+            Vector3 playerPosition = _characterHolder.Movement.transform.position;
             BridgeSpawner bridgeSpawner = SetCurrentSpawner(GetClosestSpawner(playerPosition));
             return bridgeSpawner;
         }

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.Service.Pause
 {

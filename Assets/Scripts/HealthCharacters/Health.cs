@@ -1,7 +1,4 @@
-using Assets.Scripts.Datas;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Service.Properties;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.HealthCharacters

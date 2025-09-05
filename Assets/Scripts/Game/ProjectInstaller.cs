@@ -5,7 +5,7 @@ using Assets.Scripts.Input;
 using Assets.Scripts.Items;
 using Reflex.Core;
 using UnityEngine;
-using Assets.Scripts.Service.ReflexService;
+
 
 namespace Assets.Scripts.Game
 {
@@ -15,14 +15,16 @@ namespace Assets.Scripts.Game
         [SerializeField] private ParticleSpawner _particleSpawner;
         [SerializeField] private JoystickInput _joystickInput;
         [SerializeField] private StartLevel _startLevelPrefab;
+        [SerializeField] private ResourceStorage _resourceStorage;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
-            BindCurrentBoss(containerBuilder);
-            BindResourceSpawner(containerBuilder);
-            InitParticle(containerBuilder);
-            BindJoystick(containerBuilder);
             InitStartLevel(containerBuilder);
+            BindJoystick(containerBuilder);
+            BindResourceSpawner(containerBuilder);
+            BindResourceStorage(containerBuilder);
+            InitParticle(containerBuilder);
+            BindCurrentBoss(containerBuilder);
         }
 
         private void BindCurrentBoss(ContainerBuilder containerBuilder) =>
@@ -57,9 +59,17 @@ namespace Assets.Scripts.Game
         private void InitStartLevel(ContainerBuilder containerBuilder)
         {
             StartLevel startLevel = Instantiate(_startLevelPrefab);
-            //DontDestroyOnLoad(startLevel);
+            DontDestroyOnLoad(startLevel);
 
             containerBuilder.AddSingleton(startLevel, typeof(IStartLevel));
+        }
+
+        private void BindResourceStorage(ContainerBuilder containerBuilder)
+        {
+            ResourceStorage resourceStorage = Instantiate(_resourceStorage);
+            DontDestroyOnLoad(resourceStorage);
+
+            containerBuilder.AddSingleton(resourceStorage, typeof(IResourceStorage));
         }
     }
 }

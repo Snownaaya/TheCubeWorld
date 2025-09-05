@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.PluginYG
 {
-    internal class FullScreenAds
+    public class FullScreenAds
     {
     }
 }

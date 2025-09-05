@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Ground;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
-using Assets.Scripts.Service.ReflexService;
 using Reflex.Attributes;
 using Reflex.Core;
 using UnityEngine;
@@ -21,7 +20,6 @@ public class PlatformDetector : MonoBehaviour
     private void Start()
     {
         _currentGround = GetComponent<Ground>();
-        //_spawner = _container.Resolve<IResourceService>();
 
         if (_spawner == null)
             Debug.LogError("Spawner is null in " + gameObject.name);

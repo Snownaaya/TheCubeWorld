@@ -1,7 +1,7 @@
-using UnityEngine;
-using Reflex.Attributes;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Items;
+using Reflex.Attributes;
+using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
@@ -24,7 +24,6 @@ namespace Assets.Scripts.Player
             if (other.TryGetComponent(out Resource resource))
             {
                 resource.PrepareForCollection();
-                // _resourceMediator.Initialize(_playerInventory);
                 _resourceStorage.AddResource(resource);
                 _resourceSpawner.ReturnResource(resource);
                 _playerInventory.AddResource(resource);

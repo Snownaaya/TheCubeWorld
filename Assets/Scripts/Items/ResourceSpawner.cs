@@ -1,9 +1,9 @@
-using UnityEngine;
-using System.Collections;
-using Assets.Scripts.Items;
-using System.Collections.Generic;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
 using Assets.Scripts.Ground;
+using Assets.Scripts.Items;
+using System.Collections;
+using UnityEngine;
 
 public class ResourceSpawner : PoolObject<Resource>, IResourceService
 {

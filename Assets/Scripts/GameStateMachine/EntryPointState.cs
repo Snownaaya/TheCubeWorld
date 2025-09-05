@@ -1,4 +1,7 @@
-﻿using Assets.Scripts.Player.Inventory;
+﻿using Assets.Scripts.GameStateMachine.States;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player.Core;
+using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.LevelLoaderService.Loader;
@@ -15,32 +18,51 @@ namespace Assets.Scripts.GameStateMachine
         [SerializeField] private EndLevel _endLevel;
         [SerializeField] private LevelSelected _levelSelected;
 
-        private GameState _gameState;
         private PauseHandler _pauseHandler;
-        private ILevelLoader _levelLoader;
+        private CharacterHolder _characterHolder;
+        private ISwitcher _switcher;
+        private ICharacterTeleportService _characterTeleportService;
         private IInventory _inventory;
-        private ICharacterTeleportService _characterSpawnService;
-
-        private void Awake()
-        {
-            _gameState = new GameState(this);
-        }
-
-        [Inject]
-        private void Construct(ICharacterTeleportService characterSpawnService, PauseHandler pauseHandler, ILevelLoader levelLoader, IInventory inventory)
-        {
-            _characterSpawnService = characterSpawnService;
-            _pauseHandler = pauseHandler;
-            _levelLoader = levelLoader;
-            _inventory = inventory;
-        }
+        private ILevelLoader _levelLoader;
 
         public LossScreen LossScreen => _lossScreen;
-        public PauseHandler PauseHandler => _pauseHandler;
         public EndLevel EndLevel => _endLevel;
-        public ILevelLoader LevelLoader => _levelLoader;
-        public IInventory Inventory => _inventory;
         public LevelSelected LevelSelected => _levelSelected;
-        public ICharacterTeleportService CharacterSpawnService => _characterSpawnService;
+
+        private void Awake() =>
+            InitializeStates();
+       
+        [Inject]
+        private void Construct(ISwitcher switcher,
+            PauseHandler pauseHandler,
+            ICharacterTeleportService characterTeleportService,
+            IInventory inventory,
+            ILevelLoader levelLoader,
+            CharacterHolder characterHolder
+            )
+        {
+            _switcher = switcher;
+            _pauseHandler = pauseHandler;
+            _characterTeleportService = characterTeleportService;
+            _inventory = inventory;
+            _levelLoader = levelLoader;
+            _characterHolder = characterHolder;
+        }
+
+        private void InitializeStates()
+        {
+            if (_switcher is GameState gameState)
+            {
+                gameState.Initialize(
+
+                    new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder),
+                    new EndLevelState(_switcher, this, _levelLoader),
+                    new LossState(_switcher, this, _inventory, _pauseHandler),
+                    new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory)
+                );
+
+                _switcher.SwitchState<StartLevelState>();
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Service.Properties;
+﻿using Assets.Scripts.Service.Properties;
 using System.Collections.Generic;
+using Assets.Scripts.Items;
 
 namespace Assets.Scripts.Player.Inventory
 {

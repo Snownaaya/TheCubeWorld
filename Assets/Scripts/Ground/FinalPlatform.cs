@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Player;
-using System;
+﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Ground
 {
-    public class FinalPlatform : MonoBehaviour
+    public class FinalPlatform : MonoBehaviour, ILevelProgressMediator
     {
         public event Action PlayerReachedFinalPlatform;
 

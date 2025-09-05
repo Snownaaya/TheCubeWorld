@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Datas;
 using Assets.Scripts.Input;
 using Reflex.Attributes;
-using System;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Player.Move
 {
@@ -23,6 +23,8 @@ namespace Assets.Scripts.Player.Move
         {
             _characterModel = transform;
             _rigidbody = GetComponent<Rigidbody>();
+
+            //((IMoveble)this).transform.position = Vector3.back;
         }
 
         [Inject]

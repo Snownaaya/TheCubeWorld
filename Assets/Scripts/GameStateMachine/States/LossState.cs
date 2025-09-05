@@ -1,18 +1,28 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player;
+﻿using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Service.Pause;
+using Assets.Scripts.Interfaces;
 using Cysharp.Threading.Tasks;
-using System;
 using System.Threading;
-using UnityEngine;
+using System;
 
 namespace Assets.Scripts.GameStateMachine.States
 {
     public class LossState : BaseGameState
     {
         private CancellationTokenSource _cancellationTokenSource;
+        private IInventory _inventory;
+        private PauseHandler _pauseHandler;
+
         private float _delay = 2f;
 
-        public LossState(ISwitcher switcher, EntryPointState entryPoint) : base(switcher, entryPoint) { }
+        public LossState(ISwitcher switcher,
+            EntryPointState entryPoint,
+            IInventory inventory,
+            PauseHandler pauseHandler) : base(switcher, entryPoint)
+        {
+            _inventory = inventory;
+            _pauseHandler = pauseHandler;
+        }
 
         public override void Enter()
         {
@@ -20,7 +30,7 @@ namespace Assets.Scripts.GameStateMachine.States
             _cancellationTokenSource = new CancellationTokenSource();
 
             DelayPause(_cancellationTokenSource.Token).Forget();
-            EntryPoint.Inventory.Reset();
+            _inventory.Reset();
         }
 
         public override void Exit()
@@ -39,7 +49,7 @@ namespace Assets.Scripts.GameStateMachine.States
             if (cancellationToken.IsCancellationRequested)
                 return;
 
-            EntryPoint.PauseHandler.SetPause(true);
+            _pauseHandler.SetPause(true);
             EntryPoint.LossScreen.Open();
         }
     }

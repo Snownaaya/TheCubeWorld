@@ -18,7 +18,8 @@ namespace Assets.Scripts.Player
         private IParticleSpawner _particleSpawner;
 
         [Inject]
-        private void Construct(IBossTargetService bossTargetService, IParticleSpawner particleSpawner)
+        private void Construct(IBossTargetService bossTargetService,
+            IParticleSpawner particleSpawner)
         {
             _bossTargetService = bossTargetService;
             _particleSpawner = particleSpawner;

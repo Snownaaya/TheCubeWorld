@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player;
 using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States
@@ -8,7 +7,6 @@ namespace Assets.Scripts.GameStateMachine.States
     {
         private EntryPointState _entryPoint;
         private ISwitcher _switcher;
-        private ITransformable _player;
 
         public BaseGameState(ISwitcher switcher, EntryPointState entryPoint)
         {

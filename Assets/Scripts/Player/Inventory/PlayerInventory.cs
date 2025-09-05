@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Service.Properties;
-using System;
+﻿using Assets.Scripts.Service.Properties;
 using System.Collections.Generic;
+using Assets.Scripts.Items;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Player.Inventory
 {

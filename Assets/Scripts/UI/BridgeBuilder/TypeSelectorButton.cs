@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Other;
 using Assets.Scripts.Player;
+using Assets.Scripts.Player.Core;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.BridgeBuilder
@@ -12,9 +14,15 @@ namespace Assets.Scripts.UI.BridgeBuilder
 
         [SerializeField] private float _distance;
 
+        private CharacterHolder _characterHolder;
+
+        [Inject]
+        private void Construct(CharacterHolder characterHolder) =>
+            _characterHolder = characterHolder;
+
         protected override void OnClickButton()
         {
-            Vector3 playerPosition = PlayerPositionUtils.GetPlayerPosition();
+            Vector3 playerPosition = _characterHolder.Movement.CharacterModel.position;
             BridgeSpawner bridgeSpawner = _spawnerSelector.SetCurrentSpawner(_spawnerSelector.GetClosestSpawner(playerPosition));
 
             if (Vector3.Distance(playerPosition, bridgeSpawner.Point.position) < _distance)
