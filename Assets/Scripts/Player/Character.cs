@@ -19,7 +19,8 @@ namespace Assets.Scripts.Player
 
         private IParticleSpawner _characterEffects;
 
-        //public Transform CharacterModel => _characterModel;
+        public Transform CharacterModel => _characterModel;
+        public CharacterHealth CharacterHealth => _health;
         public event Action Died;
 
         [Inject]

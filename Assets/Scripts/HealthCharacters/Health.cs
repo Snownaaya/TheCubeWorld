@@ -10,20 +10,13 @@ namespace Assets.Scripts.HealthCharacters
 
         private bool _isDead = false;
 
+        public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
+        public IReadOnlyProperty<float> MaxHealth => _maxHealth;
+
         private void Awake()
         {
             _maxHealth = new NotLimitedProperty<float>(100);
             _currentHealth = new NotLimitedProperty<float>(100);
-        }
-
-        public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
-        public IReadOnlyProperty<float> MaxHealth
-        {
-            get => _maxHealth;
-            set
-            {
-                _maxHealth = value as NotLimitedProperty<float>;
-            }
         }
 
         public virtual void TakeDamage(float damage)
@@ -42,6 +35,9 @@ namespace Assets.Scripts.HealthCharacters
                 NotifyDeath();
             }
         }
+
+        public void Reset() =>
+            _currentHealth.Value = _maxHealth.Value;
 
         public abstract void NotifyDeath();
     }

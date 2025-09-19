@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.CharacterService;
+using Assets.Scripts.Service.Saves;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Player.Core;
 using Reflex.Core;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Game
     {
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
+            BindSavesService(containerBuilder);
             BindPlayerSpawnService(containerBuilder);
             BindLevelLoader(containerBuilder);
             BindPauseHandler(containerBuilder);
@@ -32,5 +34,13 @@ namespace Assets.Scripts.Game
 
         private void BindPauseHandler(ContainerBuilder containerBuilder) =>
            containerBuilder.AddSingleton(new PauseHandler(), typeof(PauseHandler));
+
+        private void BindSavesService(ContainerBuilder containerBuilder)
+        {
+            SaveServiceFactory saveServiceFactory = new SaveServiceFactory();
+
+            containerBuilder.AddSingleton(container => saveServiceFactory.CreateSaveService());
+            containerBuilder.AddSingleton(container => saveServiceFactory.CreateJsonService());
+        }
     }
 }

@@ -16,18 +16,16 @@ namespace Assets.Scripts.HealthCharacters
 
         public void Initialize(IReadOnlyProperty<float> currentHealth, IReadOnlyProperty<float> maxHealth)
         {
-            if (currentHealth == null)
-                Debug.LogError("currentHealth is null!");
-            if (maxHealth == null)
-                Debug.LogError("maxHealth is null!");
-
             _currentHealth = currentHealth;
             _maxHealth = maxHealth;
             _currentHealth.Changed += OnChangeValue;
         }
 
-        private void OnDestroy() =>
-           _currentHealth.Changed -= OnChangeValue;
+        private void OnDestroy()
+        {
+            if (_currentHealth != null)
+                _currentHealth.Changed -= OnChangeValue;
+        }
 
         private void OnChangeValue(float newValue) =>
             ChangeValue(newValue, _maxHealth.Value);

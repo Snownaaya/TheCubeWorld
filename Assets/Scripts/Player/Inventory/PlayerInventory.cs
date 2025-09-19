@@ -26,9 +26,9 @@ namespace Assets.Scripts.Player.Inventory
             if (resource == null)
                 return;
 
-            ResourceTypes type = resource.ResourceType;
+            ResourceTypes type = resource.Config.ResourceType;
 
-            if (_resources.ContainsKey(resource.ResourceType) == false)
+            if (_resources.ContainsKey(resource.Config.ResourceType) == false)
                 _resources[type] = new NotLimitedProperty<int>(0);
 
             _resources[type].Value++;

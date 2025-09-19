@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Items;
+using Assets.Scripts.Achievements;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Datas
 {
@@ -14,8 +9,8 @@ namespace Assets.Scripts.Datas
         [SerializeField] private float _health = 100f;
 
         [Header("Attack")]
+        [SerializeField] private float _delay = 1;
         [SerializeField] private float _attackRadius = 10f;
-        [SerializeField] private float _delay = 1f;
         [SerializeField] private float _damage = 10f;
 
         [Header("Animation")]

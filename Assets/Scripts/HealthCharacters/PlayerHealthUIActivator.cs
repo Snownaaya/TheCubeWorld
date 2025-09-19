@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interfaces;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.HealthCharacters
@@ -6,24 +7,18 @@ namespace Assets.Scripts.HealthCharacters
     public class PlayerHealthUIActivator : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;
-        [SerializeField] private MonoBehaviour _mediatorSource;
 
         private ILevelProgressMediator _medtior;
 
-        private void Awake() =>
-            _medtior = _mediatorSource as ILevelProgressMediator;
-
-        private void OnEnable()
+        [Inject]
+        private void Construct(ILevelProgressMediator medtior)
         {
-            if (_medtior != null)
-                _medtior.PlayerReachedFinalPlatform += OnActivedHealth;
+            _medtior = medtior;
+            _medtior.PlayerReachedFinalPlatform += OnActivedHealth;
         }
 
-        public void OnDisable()
-        {
-            if (_medtior != null)
-                _medtior.PlayerReachedFinalPlatform -= OnActivedHealth;
-        }
+        public void OnDisable() =>
+            _medtior.PlayerReachedFinalPlatform -= OnActivedHealth;
 
         private void OnActivedHealth() =>
             _rectTransform.gameObject.SetActive(true);

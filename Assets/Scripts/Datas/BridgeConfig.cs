@@ -1,7 +1,7 @@
+using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Bridge;
 using UnityEngine;
 using System;
-using Assets.Scripts.Bridge.Factory;
 
 [Serializable]
 public class BridgeConfig

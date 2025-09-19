@@ -1,10 +1,8 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
+﻿using Assets.Scripts.Datas;
 using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
-using System.Collections;
-using UnityEngine;
 using System;
-using Assets.Scripts.Datas;
+using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Boss
 {
@@ -15,16 +13,7 @@ namespace Assets.Scripts.Enemies.Boss
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private Transform _attackPoint;
 
-        public IEnumerator AttackRoutine()
-        {
-            var wait = new WaitForSeconds(_bossConfig.Delay);
-
-            while (true)
-            {
-                yield return wait;
-                Attack();
-            }
-        }
+        public float AttackDelay => _bossConfig.Delay;
 
         public void Attack()
         {
@@ -32,8 +21,6 @@ namespace Assets.Scripts.Enemies.Boss
 
             foreach (Collider enemyCollider in hitEnemy)
             {
-               BinaryFormatter formatter = new BinaryFormatter();
-
                 if (enemyCollider.TryGetComponent(out CharacterHealth health))
                     health.TakeDamage(_bossConfig.Damage);
             }

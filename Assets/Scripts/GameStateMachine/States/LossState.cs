@@ -4,6 +4,7 @@ using Assets.Scripts.Interfaces;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using System;
+using Assets.Scripts.Achievements;
 
 namespace Assets.Scripts.GameStateMachine.States
 {
@@ -12,16 +13,19 @@ namespace Assets.Scripts.GameStateMachine.States
         private CancellationTokenSource _cancellationTokenSource;
         private IInventory _inventory;
         private PauseHandler _pauseHandler;
+        private AchievementService _achievementService;
 
-        private float _delay = 2f;
+        private float _delay = 3f;
 
         public LossState(ISwitcher switcher,
             EntryPointState entryPoint,
             IInventory inventory,
-            PauseHandler pauseHandler) : base(switcher, entryPoint)
+            PauseHandler pauseHandler,
+            AchievementService achievementService) : base(switcher, entryPoint)
         {
             _inventory = inventory;
             _pauseHandler = pauseHandler;
+            _achievementService = achievementService;
         }
 
         public override void Enter()
@@ -29,6 +33,7 @@ namespace Assets.Scripts.GameStateMachine.States
             base.Enter();
             _cancellationTokenSource = new CancellationTokenSource();
 
+            _achievementService.Achieve(AchievementNames.Aesthete);
             DelayPause(_cancellationTokenSource.Token).Forget();
             _inventory.Reset();
         }

@@ -1,10 +1,10 @@
-using Assets.Scripts.Bridge;
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Items;
 using Assets.Scripts.Service.Properties;
 using Assets.Scripts.UI.BridgeBuilder;
+using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Bridge;
+using Assets.Scripts.Datas;
+using Assets.Scripts.Items;
 using System.Linq;
 
 public abstract class BaseBridgeState : IStates

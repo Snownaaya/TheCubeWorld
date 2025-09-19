@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Datas
 {
@@ -12,7 +12,7 @@ namespace Assets.Scripts.Datas
 
         [Header("Combat")]
         [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _detectionRadius = 10f;
+        [SerializeField] private float _detectionRadius;
         [SerializeField] private float _attackTimer = 1f;
 
         [Header("Health")]

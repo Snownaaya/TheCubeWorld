@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameStateMachine.States;
+﻿using Assets.Scripts.Achievements;
+using Assets.Scripts.GameStateMachine.States;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Player.Inventory;
@@ -20,6 +21,7 @@ namespace Assets.Scripts.GameStateMachine
 
         private PauseHandler _pauseHandler;
         private CharacterHolder _characterHolder;
+        private AchievementService _achievementService;
         private ISwitcher _switcher;
         private ICharacterTeleportService _characterTeleportService;
         private IInventory _inventory;
@@ -31,14 +33,15 @@ namespace Assets.Scripts.GameStateMachine
 
         private void Awake() =>
             InitializeStates();
-       
+
         [Inject]
         private void Construct(ISwitcher switcher,
             PauseHandler pauseHandler,
             ICharacterTeleportService characterTeleportService,
             IInventory inventory,
             ILevelLoader levelLoader,
-            CharacterHolder characterHolder
+            CharacterHolder characterHolder,
+            AchievementService achievementService
             )
         {
             _switcher = switcher;
@@ -47,6 +50,7 @@ namespace Assets.Scripts.GameStateMachine
             _inventory = inventory;
             _levelLoader = levelLoader;
             _characterHolder = characterHolder;
+            _achievementService = achievementService;
         }
 
         private void InitializeStates()
@@ -56,9 +60,9 @@ namespace Assets.Scripts.GameStateMachine
                 gameState.Initialize(
 
                     new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder),
-                    new EndLevelState(_switcher, this, _levelLoader),
-                    new LossState(_switcher, this, _inventory, _pauseHandler),
-                    new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory)
+                    new EndLevelState(_switcher, this, _characterHolder, _levelLoader, _achievementService),
+                    new LossState(_switcher, this, _inventory, _pauseHandler, _achievementService),
+                    new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory, _characterHolder)
                 );
 
                 _switcher.SwitchState<StartLevelState>();

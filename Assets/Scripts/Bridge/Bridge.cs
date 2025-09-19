@@ -1,6 +1,5 @@
 using Assets.Scripts.Datas;
 using Assets.Scripts.Service.Properties;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Bridge
@@ -14,8 +13,6 @@ namespace Assets.Scripts.Bridge
         [SerializeField] private Material _invisibleMaterial;
 
         private NotLimitedProperty<int> _buildedPartsCount = new(0);
-
-        public event Action OnBridgeCompleted;
 
         private void OnValidate()
         {
@@ -40,7 +37,6 @@ namespace Assets.Scripts.Bridge
             if (_buildedPartsCount.Value >= _bridgeParts.Length)
             {
                 _buildingArea.gameObject.SetActive(false);
-                OnBridgeCompleted.Invoke();
                 return;
             }
 

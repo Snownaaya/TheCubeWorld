@@ -1,7 +1,8 @@
 ﻿using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Service.Saves;
+using Assets.Scripts.Service.Json;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Input;
-using Assets.Scripts.Saves;
 using Reflex.Injectors;
 using Reflex.Core;
 using UnityEngine;
@@ -24,11 +25,14 @@ namespace Assets.Scripts.Game
 
         private void BindInventory(ContainerBuilder containerBuilder)
         {
-            SaveServiceFactory factory = new SaveServiceFactory();
-            var jsonService = factory.CreateJsonService();
-            var saveService = factory.CreateSaveService();
-            InventorySaver inventorySaver = new InventorySaver(jsonService, saveService);
-            containerBuilder.AddSingleton(new PlayerInventory(inventorySaver), typeof(IInventory));
+            containerBuilder.AddSingleton<IInventory>(container =>
+            {
+                IJsonService jsonService = container.Resolve<IJsonService>();
+                ISaveService saveService = container.Resolve<ISaveService>();
+
+                InventorySaver inventorySaver = new InventorySaver(jsonService, saveService);
+                return new PlayerInventory(inventorySaver);
+            });
         }
 
         private PlayerInput InitInput(ContainerBuilder containerBuilder)

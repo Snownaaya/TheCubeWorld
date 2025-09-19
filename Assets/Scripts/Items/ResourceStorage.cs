@@ -12,7 +12,7 @@ namespace Assets.Scripts.Items
             if (resource == null)
                 return;
 
-            if (_cubes.TryGetValue(resource.ResourceType, out Queue<Resource> resources))
+            if (_cubes.TryGetValue(resource.Config.ResourceType, out Queue<Resource> resources))
             {
                 resources.Enqueue(resource);
             }
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Items
             {
                 resources = new Queue<Resource>();
                 resources.Enqueue(resource);
-                _cubes.Add(resource.ResourceType, resources);
+                _cubes.Add(resource.Config.ResourceType, resources);
             }
         }
 

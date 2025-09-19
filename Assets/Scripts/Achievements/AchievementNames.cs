@@ -2,9 +2,15 @@
 {
     public enum AchievementNames
     {
-        Engineer,
-        DirtMagnate,
-        Dirt,
-        Rich,
+        Beginning,
+        Aesthete,
+        Bricklayer,
+        AnnoyingSetback,
+        SkillIssue,
+        Fashionista,
+        Builder,
+        MudTycoon,
+        Mud,
+        RichMan
     }
 }

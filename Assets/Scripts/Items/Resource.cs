@@ -8,18 +8,16 @@ public class Resource : MonoBehaviour
     [SerializeField] private ResourceConfig _config;
     [SerializeField] private float _speed;
 
-    private ResourceTypes _resourceType;
     private Rigidbody _rigidbody;
     private Collider _collider;
 
     private void Awake()
     {
-        _resourceType = _config.ResourceType;
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
     }
 
-    public ResourceTypes ResourceType => _resourceType;
+    public ResourceConfig Config => _config;
 
     public void PickUp() =>
         gameObject.SetActive(false);

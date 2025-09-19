@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8493187950964134258}
   - component: {fileID: 3757840100028760213}
   - component: {fileID: 2829285500586107511}
+  - component: {fileID: 7308503517507738306}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -109,3 +110,15 @@ MonoBehaviour:
     _pooledParticle: {fileID: -494052019766445809, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
   - _particleType: 4
     _pooledParticle: {fileID: 5472766101912079489, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+--- !u!114 &7308503517507738306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6393404851177632001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25474fb7dabbd447ab3cde57a766978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

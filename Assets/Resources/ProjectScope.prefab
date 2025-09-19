@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2028444979923729694}
   - component: {fileID: 5126066763981254358}
   - component: {fileID: -7224996880172867609}
+  - component: {fileID: -2356784328252381528}
   - component: {fileID: -686865142021794176}
   m_Layer: 0
   m_Name: ProjectScope
@@ -59,11 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ca9bf1a55df254f8d6c311d5c41618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceSpawnerPrefab: {fileID: 8493187950964134258, guid: f31c55022d88938439c7830c3804a701, type: 3}
-  _particleSpawner: {fileID: 2829285500586107511, guid: f31c55022d88938439c7830c3804a701, type: 3}
   _joystickInput: {fileID: 6253291910155271551, guid: 9265a27c633c0604b9b040eb685b6728, type: 3}
   _startLevelPrefab: {fileID: 1650017795538079130, guid: 70a99a2977e4bc14b9a6244de3367ca9, type: 3}
-  _resourceStorage: {fileID: 3757840100028760213, guid: f31c55022d88938439c7830c3804a701, type: 3}
+  _spawnerRoot: {fileID: 7308503517507738306, guid: f31c55022d88938439c7830c3804a701, type: 3}
 --- !u!114 &-7224996880172867609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +73,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d6a4b658c3d6154aa102a6d7973b185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2356784328252381528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5715702712050210815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989314f34f68c194dbe9e6136044b501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-686865142021794176

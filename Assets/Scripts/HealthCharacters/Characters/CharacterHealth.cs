@@ -15,9 +15,7 @@ namespace Assets.Scripts.HealthCharacters.Characters
         public override void NotifyDeath() =>
             Died?.Invoke(new LossHealth());
 
-        public void ResetHealth()
-        {
-            _characterConfig.Health = CurrentHealth.Value;
-        }
+        public void ResetHealth() =>
+            Reset();
     }
 }

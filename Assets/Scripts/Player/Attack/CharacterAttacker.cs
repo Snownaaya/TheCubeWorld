@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
 using Cysharp.Threading.Tasks;
+using Assets.Scripts.Datas;
 using System.Threading;
 using UnityEngine;
 using System;
-using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -19,14 +19,25 @@ namespace Assets.Scripts.Player.Attack
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        private void Awake() =>
+        private void OnEnable()
+        {
             _cancellationTokenSource = new CancellationTokenSource();
 
-        private void Start() =>
             ShootCube(_cancellationTokenSource.Token).Forget();
+        }
+
+        private void OnDisable()
+        {
+            _characterView.StartIdle();
+            _characterView.StopAttack();
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
+        }
 
         private async UniTask ShootCube(CancellationToken cancellationToken)
         {
+
             while (cancellationToken.IsCancellationRequested == false)
             {
                 Attack();
@@ -51,7 +62,6 @@ namespace Assets.Scripts.Player.Attack
                         _characterView.StartAttack();
                         health.TakeDamage(_characterConfig.Damage);
                     }
-                    //_resourceConsumer.ResourceSpawner.Push();
                 }
             }
         }
