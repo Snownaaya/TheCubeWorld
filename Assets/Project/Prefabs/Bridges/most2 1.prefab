@@ -4585,6 +4585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe65e213f4cff647a51a4b53c24226e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bridgeType: 1
   _bridgeParts:
   - {fileID: 6433479384568403632}
   - {fileID: 1440934575804388998}

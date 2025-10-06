@@ -1,7 +1,8 @@
-﻿using Assets.Scripts.Input;
-using Assets.Scripts.Particles;
+﻿using Assets.Scripts.HealthCharacters.Characters;
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Input;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -40,6 +41,5 @@ namespace Assets.Scripts.Player.Core
             DontDestroyOnLoad(character);
             return holder;
         }
-
     }
 }

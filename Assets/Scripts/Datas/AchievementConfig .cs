@@ -8,7 +8,6 @@ namespace Assets.Scripts.Datas
     {
         [SerializeField] private AchievementNames _achievementNames;
         [SerializeField] private Sprite _achievementIcon;
-        //[SerializeField]
 
         public AchievementNames AchievementNames => _achievementNames;
         public Sprite AchievementIcon => _achievementIcon;

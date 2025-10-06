@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States
 {
-    public class BaseGameState : IStates
+    public abstract class BaseGameState : IStates
     {
         private EntryPointState _entryPoint;
         private ISwitcher _switcher;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1650434746045718247}
   - component: {fileID: 2889348420743369347}
   m_Layer: 5
-  m_Name: Aesthete
+  m_Name: Beginning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,26 +5,15 @@ using System;
 namespace Assets.Scripts.Datas
 {
     [Serializable]
-    public class BridgeData
+    public struct BridgeData
     {
-        private BridgeType _bridgeType;
-        private ResourceTypes _resourceTypes;
-
         public BridgeData(BridgeType bridgeType, ResourceTypes resourceTypes)
         {
-            _bridgeType = bridgeType;
-            _resourceTypes = resourceTypes;
+            BridgeType = bridgeType;
+            ResourceTypes = resourceTypes;
         }
 
-        public BridgeType BridgeType 
-        { 
-            get => _bridgeType; 
-            set => _bridgeType = value; 
-        }   
-        public ResourceTypes ResourceTypes 
-        { 
-            get => _resourceTypes; 
-            set => _resourceTypes = value; 
-        }
+        public BridgeType BridgeType { get; }
+        public ResourceTypes ResourceTypes {get;}
     }
 }

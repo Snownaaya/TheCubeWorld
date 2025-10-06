@@ -8,7 +8,7 @@ namespace Assets.Scripts.HealthCharacters
         private NotLimitedProperty<float> _maxHealth;
         private NotLimitedProperty<float> _currentHealth;
 
-        private bool _isDead = false;
+        private protected bool _isDead = false;
 
         public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
         public IReadOnlyProperty<float> MaxHealth => _maxHealth;

@@ -31,7 +31,7 @@ namespace Assets.Scripts.Player.Inventory
             if (_resources.ContainsKey(resource.Config.ResourceType) == false)
                 _resources[type] = new NotLimitedProperty<int>(0);
 
-            _resources[type].Value++;
+            _resources[type].Value += 1000; //value++
             resource.PickUp();
             _inventorySaver.SaveInventory(_resources);
             Debug.Log($"Added resource {type}, new count: {_resources[type].Value}");

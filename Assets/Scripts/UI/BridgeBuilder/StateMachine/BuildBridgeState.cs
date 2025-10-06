@@ -16,9 +16,9 @@ public class BuildBridgeState : ISwitcher
 
         _stateDictiniory = new Dictionary<Type, IStates>
         {
-            {typeof(DirtSelectedState), new DirtSelectedState(this, _buildButton)},
-            {typeof(WoodSelectedState), new WoodSelectedState(this, _buildButton)},
-            {typeof(StoneSelectedState), new StoneSelectedState(this, _buildButton)}
+            {typeof(DirtSelectedState), new DirtSelectedState(_buildButton)},
+            {typeof(WoodSelectedState), new WoodSelectedState(_buildButton)},
+            {typeof(StoneSelectedState), new StoneSelectedState(_buildButton)}
         };
     }
 

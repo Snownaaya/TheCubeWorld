@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Other;
-using Assets.Scripts.Player;
 using Assets.Scripts.Player.Core;
+using Assets.Scripts.Other;
 using Reflex.Attributes;
 using UnityEngine;
 

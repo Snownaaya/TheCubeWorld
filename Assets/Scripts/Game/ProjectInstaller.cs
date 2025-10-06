@@ -1,9 +1,11 @@
-﻿using Assets.Scripts.Service.LevelLoaderService;
+﻿using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Enemies.Boss;
-using Assets.Scripts.Particles;
 using Assets.Scripts.Input;
 using Assets.Scripts.Items;
 using Assets.Scripts.Other;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Service.AchievementServices;
+using Assets.Scripts.Service.LevelLoaderService;
 using Reflex.Core;
 using UnityEngine;
 
@@ -20,6 +22,7 @@ namespace Assets.Scripts.Game
             BindStartLevel(containerBuilder);
             BindJoystick(containerBuilder);
             InitiSpawner(containerBuilder);
+            BindBridgeTracker(containerBuilder);
             BindCurrentBoss(containerBuilder);
         }
 
@@ -52,6 +55,13 @@ namespace Assets.Scripts.Game
             containerBuilder.AddSingleton(startLevel, typeof(IStartLevel));
         }
 
-        //private void Bind
+        private void BindBridgeTracker(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<BridgeTrackerService>(container =>
+            {
+                AchievementBridgeObserver achievementBridgeObserver = container.Resolve<AchievementBridgeObserver>();
+                return new BridgeTrackerService(achievementBridgeObserver);
+            });
+        }
     }
 }

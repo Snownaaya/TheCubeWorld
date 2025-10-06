@@ -1,18 +1,23 @@
 ﻿using Assets.Scripts.Achievements;
+using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.AchievementView
 {
     public class AchievementPopupSpawner : MonoBehaviour
     {
-        [SerializeField] private List<Achievement> _achievements;
+        [SerializeField] private List<Achievement> _achievements = new();
         [SerializeField] private RectTransform _popupParent;
 
         private AchievementService _achievementService;
         private AchievementFactory _achievementFactory;
-        private Achievement _currentAchievementPopup;
+
+        private float _delay = 3f;
 
         [Inject]
         private void Construct(AchievementService achievementService) =>
@@ -29,15 +34,16 @@ namespace Assets.Scripts.UI.AchievementView
 
         private void OnShowAchievement(AchievementNames achievementNames)
         {
-            if (_currentAchievementPopup != null)
-                _currentAchievementPopup.Hide();
-
             Achievement achievement = _achievementFactory.Get(achievementNames, _popupParent);
-            _currentAchievementPopup = achievement;
-            _currentAchievementPopup.gameObject.SetActive(true);
+            achievement.Show();
 
-            if (_currentAchievementPopup != null)
-                _currentAchievementPopup.Show();
+            DelayHide(achievement).Forget();
+        }
+
+        private async UniTask DelayHide(Achievement achievement)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay));
+            achievement.Hide();
         }
     }
 }

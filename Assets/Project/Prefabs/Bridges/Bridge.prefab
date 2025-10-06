@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe65e213f4cff647a51a4b53c24226e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bridgeType: 0
   _bridgeParts:
   - {fileID: 4785419240850306348}
   - {fileID: 3328675702381558301}
@@ -320,6 +321,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6db566e545492cd49968b5a3e4921c3a, type: 2}
+    - target: {fileID: 1842490075455421622, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7124549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842490075455421622, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.701718
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842490075455421622, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 89.13
+      objectReference: {fileID: 0}
     - target: {fileID: 3009048655908761604, guid: d66f3558089ba5b4e90c53f669a6ec59, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Saves;
+using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Player.Core;
+using Assets.Scripts.Datas;
 using Assets.Scripts.Input;
 using Reflex.Injectors;
 using Reflex.Core;
@@ -20,7 +22,21 @@ namespace Assets.Scripts.Game
             BindInput(containerBuilder, playerInput);
             BindInventory(containerBuilder);
             BindFactory(containerBuilder, playerInput);
+            BindWallet(containerBuilder);
             BindCharacterHolder(containerBuilder);
+        }
+
+        private void BindWallet(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<IWallet>(container =>
+            {
+                IJsonService jsonService = container.Resolve<IJsonService>();
+                ISaveService saveService = container.Resolve<ISaveService>();
+                CharacterData characterData = new CharacterData();
+
+                WalletSaver walletSaver = new WalletSaver(jsonService, saveService);
+                return new CharacterWallet(characterData, walletSaver);
+            });
         }
 
         private void BindInventory(ContainerBuilder containerBuilder)

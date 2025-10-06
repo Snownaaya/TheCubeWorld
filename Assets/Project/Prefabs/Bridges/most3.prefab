@@ -7700,6 +7700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe65e213f4cff647a51a4b53c24226e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bridgeType: 2
   _bridgeParts:
   - {fileID: 5521314402559950147}
   - {fileID: 571928173240122345}

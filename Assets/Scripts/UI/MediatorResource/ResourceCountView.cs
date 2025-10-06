@@ -12,6 +12,6 @@ namespace Assets.Scripts.UI
         public ResourceConfig Config => _config;
 
         public void UpdateText(int count) =>
-            _countText.text = $"{count} : {_config.ResourceType}";
+            _countText.text = $"{count}:{_config.ResourceType}";
     }
 }

@@ -1,11 +1,15 @@
-using Assets.Scripts.Datas;
 using Assets.Scripts.Service.Properties;
+using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Datas;
+using Assets.Scripts.Items;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Bridge
 {
     public class Bridge : MonoBehaviour
     {
+        [SerializeField] private BridgeType _bridgeType;
         [SerializeField] private BridgePart[] _bridgeParts;
         [SerializeField] private BuildingArea _buildingArea;
 
@@ -13,6 +17,8 @@ namespace Assets.Scripts.Bridge
         [SerializeField] private Material _invisibleMaterial;
 
         private NotLimitedProperty<int> _buildedPartsCount = new(0);
+
+        public event Action<ResourceTypes, BridgeType> Completed;
 
         private void OnValidate()
         {
@@ -36,6 +42,7 @@ namespace Assets.Scripts.Bridge
         {
             if (_buildedPartsCount.Value >= _bridgeParts.Length)
             {
+                Completed?.Invoke(resource.ResourceType, _bridgeType);
                 _buildingArea.gameObject.SetActive(false);
                 return;
             }

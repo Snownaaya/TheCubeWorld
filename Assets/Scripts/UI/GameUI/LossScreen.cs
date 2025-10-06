@@ -5,6 +5,7 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.GameStateMachine.States;
 using Reflex.Attributes;
 using Assets.Scripts.Service.Pause;
+using Assets.Scripts.GameStateMachine.States.Phases;
 
 namespace Assets.Scripts.UI.GameUI
 {
@@ -19,13 +20,11 @@ namespace Assets.Scripts.UI.GameUI
         public event Action RespawnRequested;
         public event Action ExitMenuRequested;
 
-        private ISwitcher _switcher;
         private PauseHandler _pauseHandler;
 
         [Inject]
-        private void Construct(ISwitcher switcher, PauseHandler pauseHandler)
+        private void Construct(PauseHandler pauseHandler)
         {
-            _switcher = switcher;
             _pauseHandler = pauseHandler;
             pauseHandler.Add(this);
         }
@@ -68,15 +67,12 @@ namespace Assets.Scripts.UI.GameUI
         }
 
         private void OnClickExitMenu() =>
-            RewardAdsRequested?.Invoke();
+            ExitMenuRequested?.Invoke();
 
-        private void OnClickRespawn()
-        {
+        private void OnClickRespawn() =>
             RespawnRequested?.Invoke();
-            _switcher.SwitchState<RespawnState>();
-        }
 
         private void OnClickReward() =>
-            ExitMenuRequested?.Invoke();
+            RewardAdsRequested?.Invoke();
     }
 }

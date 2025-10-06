@@ -4,24 +4,20 @@ using Assets.Scripts.Particles;
 using Assets.Scripts.Loss;
 using Reflex.Attributes;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Player
 {
-    [RequireComponent(typeof(CollisionHandler))]
+    [RequireComponent(typeof(CharacterHealth))]
     public class Character : MonoBehaviour
     {
         [SerializeField] private CharacterView _characterView;
         [SerializeField] private Transform _characterModel;
 
-        private CollisionHandler _collisionHandler;
-        private CharacterHealth _health;
-
+        private CharacterHealth _characterHealth;
         private IParticleSpawner _characterEffects;
 
         public Transform CharacterModel => _characterModel;
-        public CharacterHealth CharacterHealth => _health;
-        public event Action Died;
+        public CharacterHealth Health => _characterHealth;
 
         [Inject]
         public void Construct(IParticleSpawner particleSpawner)
@@ -32,23 +28,16 @@ namespace Assets.Scripts.Player
 
         private void Awake()
         {
-            _health = GetComponent<CharacterHealth>();
-            _collisionHandler = GetComponent<CollisionHandler>();
+            _characterHealth = GetComponent<CharacterHealth>();
             _characterModel = transform;
             _characterView.Initialize();
         }
 
-        private void OnEnable()
-        {
-            _collisionHandler.Died += ProccesCollision;
-            _health.Died += ProccesCollision;
-        }
+        private void OnEnable() =>
+            _characterHealth.Died += ProccesCollision;
 
-        private void OnDisable()
-        {
-            _collisionHandler.Died -= ProccesCollision;
-            _health.Died -= ProccesCollision;
-        }
+        private void OnDisable() =>
+            _characterHealth.Died -= ProccesCollision;
 
         public void ProccesCollision(ILoss loss)
         {
@@ -59,7 +48,6 @@ namespace Assets.Scripts.Player
                 _characterView.StopIdle();
                 _characterView.StopAttack();
                 _characterModel.gameObject.SetActive(false);
-                Died?.Invoke();
             }
         }
     }

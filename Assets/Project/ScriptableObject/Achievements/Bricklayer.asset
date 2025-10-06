@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a501b21d5f7a740b7e896d07b66602, type: 3}
   m_Name: Bricklayer
   m_EditorClassIdentifier: 
-  _achievementNames: 0
-  _achievementIcon: {fileID: 0}
+  _achievementNames: 2
+  _achievementIcon: {fileID: 21300000, guid: 3ec0beb38f357364fb10b53a49ce557c, type: 3}

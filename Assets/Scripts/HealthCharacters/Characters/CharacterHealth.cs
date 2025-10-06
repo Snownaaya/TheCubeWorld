@@ -10,12 +10,26 @@ namespace Assets.Scripts.HealthCharacters.Characters
     {
         [SerializeField] private CharacterConfig _characterConfig;
 
+        public bool IsDead => _isDead;
+
         public event Action<ILoss> Died;
 
-        public override void NotifyDeath() =>
+        public override void NotifyDeath()
+        {
+            _isDead = true;
             Died?.Invoke(new LossHealth());
+        }
 
         public void ResetHealth() =>
             Reset();
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.TryGetComponent(out LossCollision loss))
+            {
+                _isDead = true;
+                Died?.Invoke(loss);
+            }
+        }
     }
 }

@@ -10,19 +10,20 @@ using System.Linq;
 public abstract class BaseBridgeState : IStates
 {
     private BuildButton _buildButton;
-    private ISwitcher _stateSwitcher;
+
     private int _resourceCost = 1;
 
-    public BaseBridgeState(ISwitcher switcher, BuildButton buildButton)
+    public BaseBridgeState(BuildButton buildButton)
     {
         _buildButton = buildButton;
-        _stateSwitcher = switcher;
     }
 
     public BuildButton BuildButton => _buildButton;
-    public ISwitcher StateSwitcher => _stateSwitcher;
 
-    public virtual void Enter() { }
+    public virtual void Enter()
+    {
+
+    }
 
     public virtual void Exit() { }
 

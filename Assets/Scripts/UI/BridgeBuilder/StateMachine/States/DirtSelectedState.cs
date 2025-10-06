@@ -1,5 +1,4 @@
 using Assets.Scripts.UI.BridgeBuilder;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using DG.Tweening;
 
@@ -7,7 +6,7 @@ public class DirtSelectedState : BaseBridgeState
 {
     private ResourceTypes _dirtType = ResourceTypes.Dirt;
 
-    public DirtSelectedState(ISwitcher switcher, BuildButton buildButton) : base(switcher, buildButton) { }
+    public DirtSelectedState(BuildButton buildButton) : base(buildButton) { }
 
     public override void Enter()
     {

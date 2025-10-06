@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Particles;
+using Assets.Scripts.Service.AchievementServices;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Bridge.Factory
         [SerializeField] private Transform _point;
 
         private Bridge _currentBridge;
+        private BridgeTrackerService _trackerService;
         private BridgeType _selectedType = BridgeType.Easy;
         private IParticleSpawner _bridgeEffect;
 
@@ -17,16 +19,23 @@ namespace Assets.Scripts.Bridge.Factory
         public Bridge CurrentBridge => _currentBridge;
 
         [Inject]
-        private void Construct(IParticleSpawner particleSpawner) =>
+        private void Construct(IParticleSpawner particleSpawner, BridgeTrackerService bridgeTracker)
+        {
+            _trackerService = bridgeTracker;
             _bridgeEffect = particleSpawner;
+        }
 
         public void SpawnBridge()
         {
             if (_currentBridge != null)
+            {
+                _trackerService.UnregisterBridge(_currentBridge);
                 Destroy(_currentBridge.gameObject);
+            }
 
             _bridgeEffect.Initialize(transform);
             _currentBridge = _factory.Get(_selectedType, _point.position);
+            _trackerService.RegisterBridge(_currentBridge);
             _bridgeEffect.SpawnParticle(ParticleTypes.BridgeBuild, transform);
         }
 

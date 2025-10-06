@@ -6874,7 +6874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6bdf7aa532444f942794d90ab853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _achievementNames: 0
+  _achievementConfig: {fileID: 0}
   _achievementTransform: {fileID: 5758203841415068096}
   _achievementCanvasGroup: {fileID: 4502151399711804352}
 --- !u!4 &2598394024576132144
@@ -11422,7 +11422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d0da1f19f2de0448413692eefe91b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delay: 9
+  _delay: 10
 --- !u!1 &7840268559975942389
 GameObject:
   m_ObjectHideFlags: 0

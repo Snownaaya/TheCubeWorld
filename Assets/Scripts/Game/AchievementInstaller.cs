@@ -1,8 +1,11 @@
-﻿using Assets.Scripts.Achievements;
-using Assets.Scripts.Service.Json;
+﻿using Assets.Scripts.Achievements.AchievePartials;
+using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.Saves;
+using Assets.Scripts.Achievements;
+using Assets.Scripts.Service.Json;
 using Reflex.Core;
 using UnityEngine;
+using Assets.Scripts.Player.Core;
 
 namespace Assets.Scripts.Game
 {
@@ -12,6 +15,9 @@ namespace Assets.Scripts.Game
         {
             BindAchievementRepository(containerBuilder);
             BindAchievementService(containerBuilder);
+            BindAchievementValidator(containerBuilder);
+            BindAchievementBridgeObserver(containerBuilder);
+            BindAchievementDeathObserver(containerBuilder);
         }
 
         private void BindAchievementRepository(ContainerBuilder containerBuilder)
@@ -32,6 +38,34 @@ namespace Assets.Scripts.Game
                 AchievementDataRepository achievementDataRepository = container.Resolve<AchievementDataRepository>();
 
                 return new AchievementService(achievementDataRepository);
+            });
+        }
+
+        private void BindAchievementValidator(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<AchievementValidator>(container =>
+            {
+                AchievementService achievementService = container.Resolve<AchievementService>();
+                return new AchievementValidator(achievementService);
+            });
+        }
+
+        private void BindAchievementBridgeObserver(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<AchievementBridgeObserver>(container =>
+            {
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                return new AchievementBridgeObserver(achievementValidator.GetBridgeValidators());
+            });
+        }
+
+        private void BindAchievementDeathObserver(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<AchievementDeathObserver>(container =>
+            {
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                CharacterHolder characterHolder = container.Resolve<CharacterHolder>();
+                return new AchievementDeathObserver(characterHolder, achievementValidator.GetDeathValidators());
             });
         }
     }

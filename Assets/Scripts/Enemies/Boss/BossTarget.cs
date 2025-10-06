@@ -19,7 +19,6 @@ namespace Assets.Scripts.Enemies.Boss
         {
             _bossTargetService = bossTargetService;
             _bossTargetService.SetCurrentTarget(this);
-            Debug.Log($"BossTarget constructed with service: {_bossTargetService != null}");
         }
 
         //private void OnDestroy()

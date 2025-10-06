@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Camera;
-using Assets.Scripts.GameStateMachine;
-using Assets.Scripts.Ground;
+﻿using Assets.Scripts.GameStateMachine;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Camera;
+using Assets.Scripts.Ground;
 using Cinemachine;
 using Reflex.Core;
 using UnityEngine;
@@ -18,10 +18,8 @@ public class SceneInstaller : MonoBehaviour, IInstaller
         BindVirtualCamera(containerBuilder);
     }
 
-    private void BindSwitcher(ContainerBuilder containerBuilder)
-    {
+    private void BindSwitcher(ContainerBuilder containerBuilder) =>
         containerBuilder.AddSingleton(new GameState(), typeof(ISwitcher));
-    }
 
     private void BindFinalPlatform(ContainerBuilder containerBuilder) =>
         containerBuilder.AddSingleton(_finalPlatform, typeof(ILevelProgressMediator));

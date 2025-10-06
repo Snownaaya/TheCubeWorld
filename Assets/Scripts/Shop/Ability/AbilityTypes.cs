@@ -2,5 +2,8 @@
 {
     public enum AbilityTypes
     {
+        Cylinder,
+        Spikes,
+        Gear,
     }
 }

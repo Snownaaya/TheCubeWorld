@@ -1,5 +1,4 @@
 using Assets.Scripts.UI.BridgeBuilder;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using DG.Tweening;
 
@@ -7,7 +6,7 @@ public class StoneSelectedState : BaseBridgeState
 {
     private ResourceTypes _stoneType = ResourceTypes.Stone;
 
-    public StoneSelectedState(ISwitcher switcher, BuildButton buildButton) : base(switcher, buildButton) { }
+    public StoneSelectedState(BuildButton buildButton) : base(buildButton) { }
 
     public override void Enter()
     {

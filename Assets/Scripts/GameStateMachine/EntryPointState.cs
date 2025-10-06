@@ -1,15 +1,18 @@
-﻿using Assets.Scripts.Achievements;
-using Assets.Scripts.GameStateMachine.States;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Service.CharacterService;
+﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.Service.CharacterService;
+using Assets.Scripts.Achievements.Observers;
+using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Service.Pause;
+using Assets.Scripts.Achievements;
+using Assets.Scripts.Player.Core;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
 using Reflex.Attributes;
 using UnityEngine;
+using Assets.Scripts.GameStateMachine.States.Phases;
+using Assets.Scripts.GameStateMachine.States.Runtime;
 
 namespace Assets.Scripts.GameStateMachine
 {
@@ -22,10 +25,13 @@ namespace Assets.Scripts.GameStateMachine
         private PauseHandler _pauseHandler;
         private CharacterHolder _characterHolder;
         private AchievementService _achievementService;
+        private AchievementDeathObserver _achievementDeathObserver;
+
+        private IWallet _wallet;
         private ISwitcher _switcher;
-        private ICharacterTeleportService _characterTeleportService;
         private IInventory _inventory;
         private ILevelLoader _levelLoader;
+        private ICharacterTeleportService _characterTeleportService;
 
         public LossScreen LossScreen => _lossScreen;
         public EndLevel EndLevel => _endLevel;
@@ -41,8 +47,9 @@ namespace Assets.Scripts.GameStateMachine
             IInventory inventory,
             ILevelLoader levelLoader,
             CharacterHolder characterHolder,
-            AchievementService achievementService
-            )
+            AchievementService achievementService,
+            AchievementDeathObserver achievementDeathObserver,
+            IWallet wallet)
         {
             _switcher = switcher;
             _pauseHandler = pauseHandler;
@@ -51,6 +58,8 @@ namespace Assets.Scripts.GameStateMachine
             _levelLoader = levelLoader;
             _characterHolder = characterHolder;
             _achievementService = achievementService;
+            _achievementDeathObserver = achievementDeathObserver;
+            _wallet = wallet;
         }
 
         private void InitializeStates()
@@ -60,8 +69,8 @@ namespace Assets.Scripts.GameStateMachine
                 gameState.Initialize(
 
                     new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder),
-                    new EndLevelState(_switcher, this, _characterHolder, _levelLoader, _achievementService),
-                    new LossState(_switcher, this, _inventory, _pauseHandler, _achievementService),
+                    new WinLevelState(_switcher, this, _characterHolder, _levelLoader, _achievementService, _wallet),
+                    new LossState(_switcher, this, _inventory, _pauseHandler, _achievementDeathObserver, _lossScreen),
                     new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory, _characterHolder)
                 );
 

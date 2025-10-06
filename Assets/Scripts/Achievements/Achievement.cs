@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Datas;
+using UnityEngine;
 using DG.Tweening;
-using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Achievements
 {
@@ -19,7 +19,9 @@ namespace Assets.Scripts.Achievements
             _animation = DOTween.Sequence();
 
             _animation
-                .Append(_achievementTransform.transform.DOScale(1f, 0.5f).From(0).SetEase(Ease.Linear))
+                .Append(_achievementTransform.transform.DOScale(1f, 0.5f)
+                .From(0)
+                .SetEase(Ease.Linear))
                 .SetUpdate(true)
                 .Restart();
         }
@@ -31,7 +33,14 @@ namespace Assets.Scripts.Achievements
             _animation = DOTween.Sequence();
 
             _animation
-                .Append(_achievementCanvasGroup.DOFade(1f, 0f).From(1f))
+                .Append(/*_achievementCanvasGroup.DOFade(1f, 0f).From(1f)*/ _achievementTransform
+                .DORotate(new Vector3(90, 90, 90), 2))
+                .Join(_achievementTransform.DOScale(0f, 1f))
+                .OnComplete(() =>
+                {
+                    gameObject.SetActive(false);
+                })
+                .SetAutoKill()
                 .Restart();
         }
 
