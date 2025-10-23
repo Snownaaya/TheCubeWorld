@@ -9,13 +9,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsMovement
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: AttackState
+    m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsIdling
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -23,10 +23,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.044588804
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.9790991
-  m_HasExitTime: 1
+  m_ExitTime: 0.99581987
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -42,15 +42,15 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3930459370614346642}
-    m_Position: {x: 330, y: 100, z: 0}
+    m_Position: {x: 330, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 350, y: -60, z: 0}
-  m_EntryPosition: {x: 350, y: 40, z: 0}
-  m_ExitPosition: {x: 350, y: 160, z: 0}
+  m_EntryPosition: {x: 350, y: 50, z: 0}
+  m_ExitPosition: {x: 350, y: 200, z: 0}
   m_ParentStateMachinePosition: {x: 330, y: -20, z: 0}
   m_DefaultState: {fileID: 3930459370614346642}
 --- !u!1102 &-8652645449370052995
@@ -184,7 +184,10 @@ AnimatorTransition:
     m_ConditionEvent: IsAttack
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsMovement
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsIdling
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -8656655526985189797}
   m_DstState: {fileID: 0}
@@ -203,16 +206,22 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: IsAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsIdling
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9166667
-  m_HasExitTime: 1
+  m_TransitionDuration: 0.047818005
+  m_TransitionOffset: 0.01805364
+  m_ExitTime: 0.92985153
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -238,19 +247,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: IsMovement
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
   - m_Name: IsAttack
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: AttackState
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -277,11 +274,14 @@ AnimatorTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: IsMovement
+    m_ConditionEvent: IsAttack
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsAttack
+    m_ConditionEvent: IsIdling
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -7172109074966425706}
   m_DstState: {fileID: 0}
@@ -326,7 +326,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsMovement
+    m_ConditionEvent: IsWalking
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsAttack
@@ -343,7 +343,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.98652595
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -384,7 +384,10 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: IsMovement
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsIdling
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -400,11 +403,14 @@ AnimatorTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
+  - m_ConditionMode: 1
     m_ConditionEvent: IsAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsMovement
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsWalking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsIdling
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -8656655526985189797}
   m_DstState: {fileID: 0}
@@ -455,7 +461,7 @@ AnimatorStateMachine:
     m_Position: {x: -120, y: 200, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -8656655526985189797}
-    m_Position: {x: 160, y: 200, z: 0}
+    m_Position: {x: 170, y: 210, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions:
   - {fileID: -1218402819578667854}

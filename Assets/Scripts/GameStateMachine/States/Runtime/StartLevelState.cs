@@ -19,6 +19,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         public override void Enter()
         {
             base.Enter();
+            EntryPoint.EndLevel.LevelEnded += OnStartLevel;
             
             _characterTeleportService?.SpawnAtStart();
         }
@@ -26,6 +27,12 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         public override void Exit()
         {
             base.Exit();
+
+
+            EntryPoint.EndLevel.LevelEnded -= OnStartLevel;
         }
+
+        private void OnStartLevel() =>
+            Switcher.SwitchState<WinLevelState>();
     }
 }

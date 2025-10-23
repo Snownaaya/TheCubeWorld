@@ -11,6 +11,6 @@
         Builder,
         MudTycoon,
         Mud,
-        RichMan
+        RichPerson
     }
 }

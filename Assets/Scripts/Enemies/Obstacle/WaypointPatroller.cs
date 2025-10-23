@@ -12,16 +12,16 @@ namespace Assets.Scripts.Enemies.Obstacle
 
         private Vector3 _currentTarget;
 
-        private int _speed;
+        private float _speed;
         private bool _isWalking;
 
-        public WaypointPatroller(Transform transform, int speed, IEnumerable<Vector3> targets)
+        public WaypointPatroller(Transform transform, float speed, IEnumerable<Vector3> targets)
         {
             _transform = transform;
             _speed = speed;
             _targets = new Queue<Vector3>(targets);
 
-            //_currentTarget = _targets.Peek();
+            _currentTarget = _targets.Peek();
             SwitchTarget();
         }
 

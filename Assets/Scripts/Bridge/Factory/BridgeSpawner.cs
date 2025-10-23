@@ -29,13 +29,13 @@ namespace Assets.Scripts.Bridge.Factory
         {
             if (_currentBridge != null)
             {
-                _trackerService.UnregisterBridge(_currentBridge);
+                _trackerService.Unregister(_currentBridge);
                 Destroy(_currentBridge.gameObject);
             }
 
             _bridgeEffect.Initialize(transform);
             _currentBridge = _factory.Get(_selectedType, _point.position);
-            _trackerService.RegisterBridge(_currentBridge);
+            _trackerService.Register(_currentBridge);
             _bridgeEffect.SpawnParticle(ParticleTypes.BridgeBuild, transform);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Assets.Scripts.HealthCharacters.Characters
 {
@@ -6,7 +7,10 @@ namespace Assets.Scripts.HealthCharacters.Characters
     {
         public event Action Died;
 
-        public override void NotifyDeath() =>
+        public override void NotifyDeath()
+        {
             Died?.Invoke();
+            UnityEngine.Debug.Log("Boss died");
+        }
     }
 }

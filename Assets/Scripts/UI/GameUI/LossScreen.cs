@@ -1,11 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.GameStateMachine.States;
 using Reflex.Attributes;
 using Assets.Scripts.Service.Pause;
-using Assets.Scripts.GameStateMachine.States.Phases;
 
 namespace Assets.Scripts.UI.GameUI
 {
@@ -45,6 +42,9 @@ namespace Assets.Scripts.UI.GameUI
 
         public override void Open()
         {
+            if(CanvasGroup == null || RectTransform == null)
+                return;
+
             _isPause = true;
             CanvasGroup.alpha = 1;
             RectTransform.gameObject.SetActive(true);

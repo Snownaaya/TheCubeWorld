@@ -6,8 +6,13 @@ namespace Assets.Scripts.Service.Saves
     {
         public string Load(string dataKey)
         {
+            if (IsDataAlreadyExist(dataKey) == false)
+                return string.Empty;
+
             if (string.IsNullOrWhiteSpace(dataKey))
                 return string.Empty;
+
+            //PlayerPrefs.DeleteAll();
 
             return PlayerPrefs.GetString(dataKey, string.Empty);
         }
@@ -19,5 +24,8 @@ namespace Assets.Scripts.Service.Saves
 
             PlayerPrefs.SetString(dataKey, data);
         }
+
+        private bool IsDataAlreadyExist(string dataKey) =>
+            PlayerPrefs.HasKey(dataKey);
     }
 }

@@ -49,7 +49,6 @@ namespace Assets.Scripts.Player.Move
             _characterModel.LookAt(_characterModel.position + direction);
             _rigidbody.velocity = direction * _characterConfig.Speed * _characterConfig.SpeedRate;
 
-            _characterView.StartMovement();
             _characterView.StartWalk();
             _characterView.StopIdle();
         }
@@ -59,7 +58,6 @@ namespace Assets.Scripts.Player.Move
             if (_rigidbody != null)
                 _rigidbody.velocity = Vector3.zero;
 
-            _characterView.StartMovement();
             _characterView.StartIdle();
             _characterView.StopWalk();
         }

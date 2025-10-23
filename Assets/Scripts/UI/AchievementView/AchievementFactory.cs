@@ -16,18 +16,6 @@ namespace Assets.Scripts.UI.AchievementView
 
             foreach (Achievement achievement in achievements)
             {
-                if (achievement == null)
-                {
-                    Debug.LogWarning("Found null Achievement in list. Skipping.");
-                    continue;
-                }
-
-                if (achievement.AchievementConfig == null)
-                {
-                    Debug.LogError($"Achievement is missing AchievementConfig! Name: {achievement.name} (Prefab: {achievement.gameObject.name})");
-                    continue;
-                }
-
                 //if (_achievements.ContainsKey(achievement.AchievementConfig.AchievementNames))
                     _achievements.Add(achievement.AchievementConfig.AchievementNames, achievement);
             }

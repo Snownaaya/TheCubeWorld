@@ -6,15 +6,15 @@ namespace Assets.Scripts.Datas
     public class BossConfig : ScriptableObject
     {
         [Header("Health")]
-        [SerializeField] private float _health = 100f;
+        [SerializeField] private float _health;
 
         [Header("Attack")]
-        [SerializeField] private float _delay = 1;
-        [SerializeField] private float _attackRadius = 10f;
-        [SerializeField] private float _damage = 10f;
+        [SerializeField] private float _delay;
+        [SerializeField] private float _attackRadius;
+        [SerializeField] private float _damage;
 
         [Header("Animation")]
-        [SerializeField] private float _animatiobnDuration = 2f;
+        [SerializeField] private float _animatiobnDuration ;
 
         public float Health => _health;
         public float AttackRadius => _attackRadius;

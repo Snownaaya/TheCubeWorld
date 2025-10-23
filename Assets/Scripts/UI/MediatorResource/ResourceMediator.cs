@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Player.Inventory;
+﻿using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -18,8 +18,8 @@ namespace Assets.Scripts.UI
 
             foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
-                _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
                 UpdateCountText(resourceType, _playerInventory.ResourceStacks[resourceType].Value);
+                _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
             }
         }
 

@@ -22,6 +22,7 @@ namespace Assets.Scripts.Game
             BindInput(containerBuilder, playerInput);
             BindInventory(containerBuilder);
             BindFactory(containerBuilder, playerInput);
+            BindCharacterData(containerBuilder);
             BindWallet(containerBuilder);
             BindCharacterHolder(containerBuilder);
         }
@@ -32,24 +33,15 @@ namespace Assets.Scripts.Game
             {
                 IJsonService jsonService = container.Resolve<IJsonService>();
                 ISaveService saveService = container.Resolve<ISaveService>();
-                CharacterData characterData = new CharacterData();
+                CharacterData characterData = container.Resolve<CharacterData>();
 
                 WalletSaver walletSaver = new WalletSaver(jsonService, saveService);
                 return new CharacterWallet(characterData, walletSaver);
             });
         }
 
-        private void BindInventory(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.AddSingleton<IInventory>(container =>
-            {
-                IJsonService jsonService = container.Resolve<IJsonService>();
-                ISaveService saveService = container.Resolve<ISaveService>();
-
-                InventorySaver inventorySaver = new InventorySaver(jsonService, saveService);
-                return new PlayerInventory(inventorySaver);
-            });
-        }
+        private void BindInventory(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new PlayerInventory(), typeof(IInventory));
 
         private PlayerInput InitInput(ContainerBuilder containerBuilder)
         {
@@ -58,6 +50,9 @@ namespace Assets.Scripts.Game
 
             return playerInput;
         }
+
+        private void BindCharacterData(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new CharacterData());
 
         private void BindCharacterHolder(ContainerBuilder containerBuilder)
         {

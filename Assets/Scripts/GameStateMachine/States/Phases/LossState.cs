@@ -25,7 +25,6 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             AchievementDeathObserver achievementDeathObserver,
             LossScreen lossScreen) : base(switcher, entryPoint, inventory)
         {
-
             _pauseHandler = pauseHandler;
             _achievementDeathObserver = achievementDeathObserver;
             _lossScreen = lossScreen;
@@ -35,16 +34,18 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         {
             base.Enter();
 
+            _lossScreen.RewardAdsRequested += OnRespawnState;
             _lossScreen.RespawnRequested += OnRespawnState;
             _cancellationTokenSource = new CancellationTokenSource();
             DelayPause(_cancellationTokenSource.Token).Forget();
-            _achievementDeathObserver.PlayerDeath();
+           // _achievementDeathObserver.PlayerDeath();
         }
 
         public override void Exit()
         {
             base.Exit();
 
+            _lossScreen.RewardAdsRequested -= OnRespawnState;
             _lossScreen.RespawnRequested -= OnRespawnState;
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
@@ -53,7 +54,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private async UniTask DelayPause(CancellationToken cancellationToken)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken : cancellationToken);
 
             if (cancellationToken.IsCancellationRequested)
                 return;

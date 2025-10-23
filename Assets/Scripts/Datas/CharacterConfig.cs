@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Datas
 {
@@ -7,31 +6,18 @@ namespace Assets.Scripts.Datas
     public class CharacterConfig : ScriptableObject
     {
         [Header("Movement")]
-        [SerializeField] private float _speed = 3f;
-        [SerializeField] private float _speedRate = 1.5f;
+        [SerializeField] private float _speed;
+        [SerializeField] private float _speedRate;
 
         [Header("Combat")]
-        [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _detectionRadius;
-        [SerializeField] private float _attackTimer = 1f;
-
-        [Header("Health")]
-        [SerializeField, Range(0, 100)] private float _health;
+        [SerializeField] private float _damage;
+        [SerializeField] private float _detectionRaduis;
+        [SerializeField] private float _attackTimer;
 
         public float Speed => _speed;
         public float SpeedRate => _speedRate;
         public float Damage => _damage;
-        public float DetectionRadius => _detectionRadius;
-        public float Health
-        {
-            get => _health;
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException(nameof(value), "Health cannot be negative.");
-                _health = value;
-            }
-        }
+        public float DetectionRadius => _detectionRaduis;
         public float AttackTimer => _attackTimer;
     }
 }

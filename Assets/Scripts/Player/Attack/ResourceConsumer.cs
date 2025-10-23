@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.Player.Inventory;
 using Random = UnityEngine.Random;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
 using System;
-using Assets.Scripts.Enemies.Boss;
+using Assets.Scripts.Enemies.Boss.Target;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -47,7 +46,9 @@ namespace Assets.Scripts.Player.Attack
 
         private void SpawnResource(ResourceTypes resourceType)
         {
-            int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
+            // int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
+            int prefabIndex = Array.IndexOf(_resourceType, resourceType);
+
             Resource resource = _resourcePrefabs[prefabIndex];
             Resource resourcePrefab = _resourceService.Pull(resource);
 
@@ -59,9 +60,7 @@ namespace Assets.Scripts.Player.Attack
             IBossTarget currentBoss = _bossTargetService.GetCurrentBoss();
 
             if (currentBoss != null && currentBoss.IsValidTarget())
-                resourcePrefab.MovePosition(currentBoss.GetTargetTransform());
-            else
-                Debug.LogWarning("No valid boss target found for resource movement!");
+                resourcePrefab.MovePosition(currentBoss.GetTarget());
 
             resourcePrefab.Release();
         }

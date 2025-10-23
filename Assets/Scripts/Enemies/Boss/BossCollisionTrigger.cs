@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.HealthCharacters.Characters;
-using Assets.Scripts.Player;
 using Cysharp.Threading.Tasks;
-using System;
+using Assets.Scripts.Player;
 using System.Threading;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Enemies.Boss
 {
@@ -14,6 +14,7 @@ namespace Assets.Scripts.Enemies.Boss
 
         private BossHealth _bossHealth;
         private BossView _bossView;
+
         private CancellationTokenSource _cancellationTokenSource;
 
         private void Awake()
@@ -25,8 +26,8 @@ namespace Assets.Scripts.Enemies.Boss
 
         private void OnEnable()
         {
-            _bossHealth.Died += OnDeath;
             _cancellationTokenSource = new CancellationTokenSource();
+            _bossHealth.Died += OnDeath;
         }
 
         private void OnDisable()
@@ -38,9 +39,9 @@ namespace Assets.Scripts.Enemies.Boss
         {
             if (other.TryGetComponent(out Character character))
             {
+                StartAttackLoop(_cancellationTokenSource.Token).Forget();
                 _bossView.StopIdle();
                 _bossView.StartAttack();
-                StartAttackLoop();
             }
         }
 
@@ -53,30 +54,21 @@ namespace Assets.Scripts.Enemies.Boss
             }
         }
 
+        private async UniTask StartAttackLoop(CancellationToken cancellationToken)
+        {
+            while (cancellationToken.IsCancellationRequested == false)
+            {
+                _attacker.Attack();
+
+                await UniTask.Delay(TimeSpan.FromSeconds(_attacker.AttackDelay), cancellationToken: cancellationToken);
+            }
+        }
+
         private void OnDeath()
         {
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
-        }
-
-        private void StartAttackLoop()
-        {
-            if (_cancellationTokenSource == null || _cancellationTokenSource.IsCancellationRequested)
-                return;
-
-            AttackRoutine(_cancellationTokenSource.Token).Forget();
-        }
-
-        private async UniTask AttackRoutine(CancellationToken cancellationToken)
-        {
-            await UniTask.Delay(TimeSpan.FromSeconds(_attacker.AttackDelay), cancellationToken: cancellationToken);
-
-            while (cancellationToken.IsCancellationRequested == false)
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(_attacker.AttackDelay), cancellationToken: cancellationToken);
-                _attacker.Attack();
-            }
         }
     }
 }

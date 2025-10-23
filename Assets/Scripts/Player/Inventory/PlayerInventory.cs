@@ -9,14 +9,11 @@ namespace Assets.Scripts.Player.Inventory
     [Serializable]
     public class PlayerInventory : IInventory
     {
-        private InventorySaver _inventorySaver;
         private Dictionary<ResourceTypes, NotLimitedProperty<int>> _resources = new Dictionary<ResourceTypes, NotLimitedProperty<int>>();
 
-        public PlayerInventory(InventorySaver inventorySaver)
+        public PlayerInventory()
         {
-            _inventorySaver = inventorySaver;
             InitializeResources();
-            _resources = _inventorySaver.LoadInventory();
         }
 
         public IReadOnlyDictionary<ResourceTypes, NotLimitedProperty<int>> ResourceStacks => _resources;
@@ -33,7 +30,7 @@ namespace Assets.Scripts.Player.Inventory
 
             _resources[type].Value += 1000; //value++
             resource.PickUp();
-            _inventorySaver.SaveInventory(_resources);
+
             Debug.Log($"Added resource {type}, new count: {_resources[type].Value}");
         }
 
@@ -45,7 +42,6 @@ namespace Assets.Scripts.Player.Inventory
             if (_resources.TryGetValue(resourceType, out NotLimitedProperty<int> resource) && resource.Value > 0)
             {
                 resource.Value--;
-                _inventorySaver.SaveInventory(_resources);
             }
         }
 
@@ -57,8 +53,11 @@ namespace Assets.Scripts.Player.Inventory
             return false;
         }
 
-        public void Reset() =>
-            _resources.Clear();
+        public void Reset()
+        {
+            foreach (var resource in _resources)
+                resource.Value.Value = 0;
+        }
 
         private void InitializeResources()
         {

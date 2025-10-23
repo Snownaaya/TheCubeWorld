@@ -22,5 +22,8 @@ namespace Assets.Scripts.HealthCharacters
 
         private void OnActivedHealth() =>
             _rectTransform.gameObject.SetActive(true);
+
+        public void TurnOffHealth() =>
+            _rectTransform.gameObject.SetActive(false);
     }
 }

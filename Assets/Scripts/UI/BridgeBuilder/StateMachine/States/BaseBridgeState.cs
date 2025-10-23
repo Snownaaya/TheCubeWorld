@@ -20,11 +20,7 @@ public abstract class BaseBridgeState : IStates
 
     public BuildButton BuildButton => _buildButton;
 
-    public virtual void Enter()
-    {
-
-    }
-
+    public virtual void Enter() { }
     public virtual void Exit() { }
 
     public void DeliverResourceToBridge(ResourceTypes resourceType)
@@ -33,7 +29,7 @@ public abstract class BaseBridgeState : IStates
         Bridge bridge = currentSpawner.CurrentBridge;
         BuildingArea buildingArea = bridge.GetComponentInChildren<BuildingArea>();
 
-        if (buildingArea == null)
+        if (buildingArea == null && bridge == null && currentSpawner == null)
             return;
 
         ResourceConfig selectedConfig = BuildButton.ResourceConfig

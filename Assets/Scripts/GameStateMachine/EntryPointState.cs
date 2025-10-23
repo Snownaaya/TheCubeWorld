@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.GameStateMachine.States.Runtime;
+using Assets.Scripts.GameStateMachine.States.Phases;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.Achievements.Observers;
@@ -11,8 +13,8 @@ using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
 using Reflex.Attributes;
 using UnityEngine;
-using Assets.Scripts.GameStateMachine.States.Phases;
-using Assets.Scripts.GameStateMachine.States.Runtime;
+using Assets.Scripts.Game;
+using Assets.Scripts.PluginYG;
 
 namespace Assets.Scripts.GameStateMachine
 {
@@ -26,6 +28,7 @@ namespace Assets.Scripts.GameStateMachine
         private CharacterHolder _characterHolder;
         private AchievementService _achievementService;
         private AchievementDeathObserver _achievementDeathObserver;
+        private RewardedVideoAds _rewarded;
 
         private IWallet _wallet;
         private ISwitcher _switcher;
@@ -49,7 +52,8 @@ namespace Assets.Scripts.GameStateMachine
             CharacterHolder characterHolder,
             AchievementService achievementService,
             AchievementDeathObserver achievementDeathObserver,
-            IWallet wallet)
+            IWallet wallet,
+            RewardedVideoAds rewarded)
         {
             _switcher = switcher;
             _pauseHandler = pauseHandler;
@@ -60,6 +64,7 @@ namespace Assets.Scripts.GameStateMachine
             _achievementService = achievementService;
             _achievementDeathObserver = achievementDeathObserver;
             _wallet = wallet;
+            _rewarded = rewarded;
         }
 
         private void InitializeStates()
@@ -71,7 +76,7 @@ namespace Assets.Scripts.GameStateMachine
                     new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder),
                     new WinLevelState(_switcher, this, _characterHolder, _levelLoader, _achievementService, _wallet),
                     new LossState(_switcher, this, _inventory, _pauseHandler, _achievementDeathObserver, _lossScreen),
-                    new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory, _characterHolder)
+                    new RespawnState(_switcher, this, _levelLoader, _pauseHandler, _inventory, _characterHolder, _rewarded)
                 );
 
                 _switcher.SwitchState<StartLevelState>();

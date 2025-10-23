@@ -725,13 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterView: {fileID: 2797860589670833037}
-  _enemyCollision:
-    _enemyLayerMask:
-      serializedVersion: 2
-      m_Bits: 128
-    _characterConfig: {fileID: 11400000, guid: cbd7306c45a46d84a9937de668645b5f, type: 2}
-    _playerModel: {fileID: 6695677260302178282}
   _resourceConsumer: {fileID: 930870532171107559}
+  _enemyScaner: {fileID: 3871473900386930306}
   _characterConfig: {fileID: 11400000, guid: cbd7306c45a46d84a9937de668645b5f, type: 2}
 --- !u!1 &4606390141031417477
 GameObject:
@@ -743,6 +738,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3281940604382857150}
   - component: {fileID: 930870532171107559}
+  - component: {fileID: 3871473900386930306}
+  - component: {fileID: 7624630400414806073}
   m_Layer: 6
   m_Name: Checker
   m_TagString: Untagged
@@ -784,6 +781,34 @@ MonoBehaviour:
   - {fileID: 5607715065121819118, guid: 2b2667d7b6a50b646af8afbd80524558, type: 3}
   _resourceType: 000000000100000002000000
   _attackPoint: {fileID: 6695677260302178282}
+--- !u!114 &3871473900386930306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606390141031417477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b10c0a45e9d581439e90a9b157a5845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterConfig: {fileID: 11400000, guid: cbd7306c45a46d84a9937de668645b5f, type: 2}
+  _playerModel: {fileID: 3431021386688823805}
+--- !u!114 &7624630400414806073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4606390141031417477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9341319029390d142b37b037eebcffd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterAttacker: {fileID: 1134982087625787333}
+  _characterView: {fileID: 2797860589670833037}
 --- !u!1 &6176370169753362429
 GameObject:
   m_ObjectHideFlags: 0

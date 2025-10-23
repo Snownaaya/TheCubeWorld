@@ -27,7 +27,7 @@ namespace Assets.Scripts.Service.Saves
         {
             try
             {
-                return JsonConvert.SerializeObject(obj, Formatting.None, GetSettings());
+                return JsonConvert.SerializeObject(obj, Formatting.Indented, GetSettings());
             }
             catch (Exception ex)
             {

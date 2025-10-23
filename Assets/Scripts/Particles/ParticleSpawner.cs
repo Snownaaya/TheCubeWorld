@@ -12,8 +12,8 @@ namespace Assets.Scripts.Particles
 
         private Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
 
-        public void Initialize(Transform transform) =>
-            _transform = transform;
+        public void Initialize(Transform position) =>
+            _transform = position;
 
         public void ReturnParticle(PooledParticle pooledParticle)
         {
@@ -25,11 +25,11 @@ namespace Assets.Scripts.Particles
         {
             foreach (ParticlePrefabEntry entry in _particleEntries)
             {
-                if (!_partilclies.ContainsKey(entry.Type))
+                if (_partilclies.ContainsKey(entry.Type) == false)
                     _partilclies.Add(entry.Type, entry.Prefab);
             }
 
-            if (!_partilclies.TryGetValue(particleType, out PooledParticle prefab))
+            if (_partilclies.TryGetValue(particleType, out PooledParticle prefab) == false)
                 return null;
 
             PooledParticle pooledParticle = Pull(prefab);

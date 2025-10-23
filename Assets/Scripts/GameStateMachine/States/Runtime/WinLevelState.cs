@@ -20,7 +20,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         private CancellationTokenSource _cancellationTokenSource;
 
         private float _delay = 4;
-        private int _addCoins = 20; 
+        private int _addCoins = 20;
 
         public WinLevelState(ISwitcher switcher,
             EntryPointState entryPoint,
@@ -31,6 +31,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         {
             _levelLoader = levelLoader;
             _character = character;
+            _wallet = wallet;
             _achievementService = achievementService;
         }
 
@@ -39,7 +40,6 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             base.Enter();
 
             ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
-            EntryPoint.EndLevel.LevelEnded += () => Switcher.SwitchState<StartLevelState>();
             _cancellationTokenSource = new CancellationTokenSource();
             DelayNextLevel(_cancellationTokenSource.Token);
             _wallet.AddCoins(_addCoins);
@@ -57,13 +57,13 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 
         private async void DelayNextLevel(CancellationToken cancellationToken)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken : cancellationToken);
-
             if (cancellationToken.IsCancellationRequested)
                 return;
 
-            _levelLoader.Load(EntryPoint.LevelSelected.GetNextLevel());
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
+
             _character.Character.Health.ResetHealth();
+            await _levelLoader.Load(EntryPoint.LevelSelected.GetNextLevel());
         }
     }
 }

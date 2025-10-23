@@ -16,6 +16,9 @@ namespace Assets.Scripts.Achievements
 
         public void Show()
         {
+            if (_achievementCanvasGroup == null || this == null)
+                return;
+
             _animation = DOTween.Sequence();
 
             _animation
@@ -28,13 +31,15 @@ namespace Assets.Scripts.Achievements
 
         public void Hide()
         {
+            if (_achievementCanvasGroup == null || this == null)
+                return;
+
             KillCurrentAnimationIfActive();
 
             _animation = DOTween.Sequence();
 
             _animation
-                .Append(/*_achievementCanvasGroup.DOFade(1f, 0f).From(1f)*/ _achievementTransform
-                .DORotate(new Vector3(90, 90, 90), 2))
+                .Append(_achievementCanvasGroup.DOFade(1f, 0f).From(1f))
                 .Join(_achievementTransform.DOScale(0f, 1f))
                 .OnComplete(() =>
                 {

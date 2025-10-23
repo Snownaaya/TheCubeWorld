@@ -1,23 +1,18 @@
-﻿using Assets.Scripts.Achievements;
-using Assets.Scripts.Achievements.Observers;
-using UnityEngine;
+﻿using Assets.Scripts.Achievements.Observers;
 
 namespace Assets.Scripts.Service.AchievementServices
 {
-    public class BridgeTrackerService
+    public class BridgeTrackerService : IAchievementTracker<Bridge.Bridge>
     {
         private AchievementBridgeObserver _achievementBridgeObserver;
 
         public BridgeTrackerService(AchievementBridgeObserver achievementBridgeObserver) =>
             _achievementBridgeObserver = achievementBridgeObserver;
 
-        public void RegisterBridge(Bridge.Bridge bridge)
-        {
+        public void Register(Bridge.Bridge bridge) =>
             bridge.Completed += _achievementBridgeObserver.OnBridgeCompleted;
-            Debug.Log($"{bridge} completed");
-        }
 
-        public void UnregisterBridge(Bridge.Bridge bridge) =>
+        public void Unregister(Bridge.Bridge bridge) =>
             bridge.Completed -= _achievementBridgeObserver.OnBridgeCompleted;
     }
 }

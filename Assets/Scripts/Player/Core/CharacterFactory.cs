@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
 using Assets.Scripts.Particles;
@@ -15,15 +15,18 @@ namespace Assets.Scripts.Player.Core
         private PlayerInput _playerInput;
         private IInput _input;
         private IParticleSpawner _particleSpawner;
+        private DeathTrackerService _deathTrackerService;
 
         [Inject]
         public void Construct(IInput input,
             IParticleSpawner particleSpawner,
-            PlayerInput playerInput)
+            PlayerInput playerInput,
+            DeathTrackerService deathTrackerService)
         {
             _input = input;
             _particleSpawner = particleSpawner;
             _playerInput = playerInput;
+            _deathTrackerService = deathTrackerService;
         }
 
         public CharacterHolder CreateCharacter()
@@ -33,7 +36,7 @@ namespace Assets.Scripts.Player.Core
             CharacterAttacker attacker = character.GetComponent<CharacterAttacker>();
 
             movement.Construct(_input, _playerInput);
-            character.Construct(_particleSpawner);
+            character.Construct(_particleSpawner, _deathTrackerService);
 
             CharacterHolder holder = new CharacterHolder();
             holder.Initialize(character, movement, attacker);

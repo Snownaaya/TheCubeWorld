@@ -3,9 +3,9 @@ using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.Saves;
 using Assets.Scripts.Achievements;
 using Assets.Scripts.Service.Json;
+using Assets.Scripts.Player.Core;
 using Reflex.Core;
 using UnityEngine;
-using Assets.Scripts.Player.Core;
 
 namespace Assets.Scripts.Game
 {
@@ -64,8 +64,7 @@ namespace Assets.Scripts.Game
             containerBuilder.AddSingleton<AchievementDeathObserver>(container =>
             {
                 AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
-                CharacterHolder characterHolder = container.Resolve<CharacterHolder>();
-                return new AchievementDeathObserver(characterHolder, achievementValidator.GetDeathValidators());
+                return new AchievementDeathObserver(achievementValidator.GetDeathValidators());
             });
         }
     }

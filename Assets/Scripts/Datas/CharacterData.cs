@@ -9,9 +9,12 @@ namespace Assets.Scripts.Datas
 
         public CharacterData()
         {
-            
+            _money = new NotLessZeroProperty<int>(1);
         }
 
         public NotLessZeroProperty<int> Money => _money;
+
+        public void SetMoney(int value) => 
+            _money.Value = value;
     }
 }

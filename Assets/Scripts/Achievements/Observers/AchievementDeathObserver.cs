@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Assets.Scripts.Interfaces;
 
 namespace Assets.Scripts.Achievements.Observers
 {
     public class AchievementDeathObserver
     {
-        private CharacterHolder _characterHolder;
-
         private List<int> _deaths = new();
 
         private int _deathCount = 0;
@@ -16,24 +15,18 @@ namespace Assets.Scripts.Achievements.Observers
 
         private IEnumerable<Action<List<int>>> _deathCheck;
 
-        public AchievementDeathObserver(CharacterHolder characterHolder, IEnumerable<Action<List<int>>> deathCount)
-        {
-            _characterHolder = characterHolder;
+        public AchievementDeathObserver(IEnumerable<Action<List<int>>> deathCount) =>
             _deathCheck = deathCount;
-        }
 
-        public void PlayerDeath()
+        public void OnPlayerDeath(ILoss loss)
         {
-            if (_characterHolder.Character.Health.IsDead == true)
-            {
-                _deaths.Add(++_deathCount);
+            _deaths.Add(_deathCount++);
 
-                var deathList = _deaths
-                    .Take(_maxDeathCount).ToList();
+            var deathList = _deaths
+                .Take(_maxDeathCount).ToList();
 
-                foreach (var check in _deathCheck)
-                    check(deathList);
-            }
+            foreach (var check in _deathCheck)
+                check(deathList);
         }
     }
 }

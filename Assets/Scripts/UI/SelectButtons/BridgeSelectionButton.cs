@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI.SelectButtons
             _selectionButton.onClick.AddListener(TogglePanel);
 
         private void OnDisable() =>
-            _selectionButton.onClick.AddListener(TogglePanel);
+            _selectionButton.onClick.RemoveListener(TogglePanel);
 
         private void TogglePanel()
         {

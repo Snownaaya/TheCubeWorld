@@ -1,13 +1,12 @@
-﻿using Assets.Scripts.Datas;
-using Assets.Scripts.HealthCharacters.Characters;
-using Assets.Scripts.Interfaces;
-using System;
+﻿using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.Datas;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Enemies.Boss
 {
     [Serializable]
-    public class BossAttacker : IDamageable
+    public class BossAttacker
     {
         [SerializeField] private BossConfig _bossConfig;
         [SerializeField] private LayerMask _enemyLayer;

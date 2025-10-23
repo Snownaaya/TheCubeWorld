@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.UI;
+﻿using Assets.Scripts.UI.GameUI;
+using Assets.Scripts.UI;
 using UnityEngine;
 using YG;
 
@@ -7,29 +8,29 @@ namespace Assets.Scripts.PluginYG
     public class RewardedVideoAds : MonoBehaviour
     {
         [SerializeField] UIAutoHide _auitoHide;
+        [SerializeField] LossScreen _screen;
 
-        private int _advertisingId = 0;
+        [SerializeField] private string _advertisingId = "rewardedVideo";
 
         private void OnEnable()
         {
-            YG2.onRewardAdv += OnShowAdv;
+            _screen.RewardAdsRequested += OnShowAdv;
             YG2.onErrorAnyAdv += OnErrorVideoEvent;
         }
 
         private void OnDisable()
         {
-            YG2.onRewardAdv -= OnShowAdv;
+            _screen.RewardAdsRequested -= OnShowAdv;
             YG2.onErrorAnyAdv -= OnErrorVideoEvent;
         }
 
         private void OnErrorVideoEvent()
         {
-
+            //YG2.onErrorRewardedAdv
+            _auitoHide.gameObject.SetActive(true);
         }
 
-        private void OnShowAdv(string id)
-        {
-
-        }
+        private void OnShowAdv() =>
+            YG2.RewardedAdvShow(_advertisingId);
     }
 }

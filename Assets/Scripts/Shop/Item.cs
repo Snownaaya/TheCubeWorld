@@ -2,7 +2,5 @@
 
 namespace Assets.Scripts.Shop
 {
-    public class Item : MonoBehaviour
-    {
-    }
+    public class Item : MonoBehaviour { }
 }

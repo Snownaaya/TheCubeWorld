@@ -39,8 +39,8 @@ namespace Assets.Scripts.Achievements.AchievePartials
             {
                 CreateChecker
                 (
-                    bridgesCount: 1,
-                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Wood/* && bridge.BridgeType == BridgeType.Hard*/,
+                    bridgesCount: 3,
+                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Wood && bridge.BridgeType == BridgeType.Hard,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.Aesthete)
                 ),
                 CreateChecker
@@ -57,14 +57,14 @@ namespace Assets.Scripts.Achievements.AchievePartials
                 ),
                 CreateChecker
                 (
-                    bridgesCount: 1, //6
-                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,//Dirt
+                    bridgesCount: 6, 
+                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.MudTycoon)
                 ),
                 CreateChecker
                 (
-                    bridgesCount: 1, //10
-                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt && bridge.BridgeType == BridgeType.Hard,//убрать Hard
+                    bridgesCount: 10,
+                    isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.Mud)
                 )
             };

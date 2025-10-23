@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   _health: 20
-  _attackRadius: 10
-  _delay: 1
-  _damage: 10
+  _delay: 2
+  _attackRadius: 5
+  _damage: 1
   _animatiobnDuration: 2

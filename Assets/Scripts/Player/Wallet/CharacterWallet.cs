@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Datas;
+using Assets.Scripts.Service.Properties;
 using System;
 
 namespace Assets.Scripts.Player.Wallet
@@ -12,23 +13,23 @@ namespace Assets.Scripts.Player.Wallet
         {
             _characterData = characterData;
             _walletSaver = walletSaver;
-            _walletSaver.Load();
-        }
 
-        public event Action CoinsChanged;
+            NotLessZeroProperty<int> loadMoney = _walletSaver.Load();
+            _characterData.SetMoney(loadMoney.Value);
+        }
+        public CharacterData CharacterData => _characterData;
 
         public void AddCoins(int coins)
         {
             _characterData.Money.Value += coins;
-            _walletSaver.Save(_characterData.Money.Value);
-            CoinsChanged?.Invoke();
+            _walletSaver.Save(_characterData.Money);
+            UnityEngine.Debug.Log(coins);
         }
 
         public void RemoveCoins(int coins)
         {
             _characterData.Money.Value -= coins;
-            _walletSaver.Save(_characterData.Money.Value);
-            CoinsChanged?.Invoke();
+            _walletSaver.Save(_characterData.Money);
         }
 
         public bool IsEnought(int coins)
@@ -41,5 +42,8 @@ namespace Assets.Scripts.Player.Wallet
 
             return _characterData.Money.Value >= coins;
         }
+
+        public int GetCurrentCoin() =>
+            _characterData.Money.Value;
     }
 }

@@ -4,6 +4,8 @@ using Assets.Scripts.Particles;
 using Assets.Scripts.Loss;
 using Reflex.Attributes;
 using UnityEngine;
+using UnityEditor.Profiling;
+using Assets.Scripts.Service.AchievementServices;
 
 namespace Assets.Scripts.Player
 {
@@ -15,15 +17,18 @@ namespace Assets.Scripts.Player
 
         private CharacterHealth _characterHealth;
         private IParticleSpawner _characterEffects;
+        private DeathTrackerService _deathTracker;
 
         public Transform CharacterModel => _characterModel;
         public CharacterHealth Health => _characterHealth;
 
         [Inject]
-        public void Construct(IParticleSpawner particleSpawner)
+        public void Construct(IParticleSpawner particleSpawner,
+            DeathTrackerService deathTracker)
         {
             _characterEffects = particleSpawner;
             _characterEffects.Initialize(_characterModel);
+            _deathTracker = deathTracker;
         }
 
         private void Awake()
@@ -33,11 +38,17 @@ namespace Assets.Scripts.Player
             _characterView.Initialize();
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             _characterHealth.Died += ProccesCollision;
+            _deathTracker?.Register(Health);
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _characterHealth.Died -= ProccesCollision;
+            _deathTracker?.Unregister(Health);
+        }
 
         public void ProccesCollision(ILoss loss)
         {

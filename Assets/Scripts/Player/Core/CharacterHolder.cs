@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
-using Assets.Scripts.Player.Attack;
+﻿using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
 
 namespace Assets.Scripts.Player.Core

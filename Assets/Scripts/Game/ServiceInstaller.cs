@@ -1,8 +1,11 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.CharacterService;
-using Assets.Scripts.Service.Saves;
+using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.Pause;
+using Assets.Scripts.Service.Saves;
 using Assets.Scripts.Player.Core;
 using Reflex.Core;
 using UnityEngine;
@@ -16,6 +19,8 @@ namespace Assets.Scripts.Game
             BindSavesService(containerBuilder);
             BindPlayerSpawnService(containerBuilder);
             BindLevelLoader(containerBuilder);
+            BindBridgeTracker(containerBuilder);
+            BindDeathTracker(containerBuilder);
             BindPauseHandler(containerBuilder);
         }
 
@@ -30,10 +35,10 @@ namespace Assets.Scripts.Game
         }
 
         private void BindLevelLoader(ContainerBuilder containerBuilder) =>
-         containerBuilder.AddSingleton(new LevelLoader(), typeof(ILevelLoader));
+            containerBuilder.AddSingleton(new LevelLoader(), typeof(ILevelLoader));
 
         private void BindPauseHandler(ContainerBuilder containerBuilder) =>
-           containerBuilder.AddSingleton(new PauseHandler(), typeof(PauseHandler));
+            containerBuilder.AddSingleton(new PauseHandler(), typeof(PauseHandler));
 
         private void BindSavesService(ContainerBuilder containerBuilder)
         {
@@ -41,6 +46,24 @@ namespace Assets.Scripts.Game
 
             containerBuilder.AddSingleton(container => saveServiceFactory.CreateSaveService());
             containerBuilder.AddSingleton(container => saveServiceFactory.CreateJsonService());
+        }
+
+        private void BindBridgeTracker(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<BridgeTrackerService>(container =>
+            {
+                AchievementBridgeObserver achievementBridgeObserver = container.Resolve<AchievementBridgeObserver>();
+                return new BridgeTrackerService(achievementBridgeObserver);
+            });
+        }
+
+        private void BindDeathTracker(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<DeathTrackerService>(container =>
+            {
+                AchievementDeathObserver achievementDeathObserver = container.Resolve<AchievementDeathObserver>();
+                return new DeathTrackerService(achievementDeathObserver);
+            });
         }
     }
 }

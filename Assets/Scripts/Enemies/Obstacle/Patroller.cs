@@ -6,7 +6,7 @@ namespace Assets.Scripts.Enemies.Obstacle
 {
     public class Patroller : MonoBehaviour
     {
-        [SerializeField] private int _speed;
+        [SerializeField] private float _speed;
         [SerializeField] private List<Transform> _patrolPoints;
 
         private WaypointPatroller _wayPoint;

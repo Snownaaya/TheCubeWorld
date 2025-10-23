@@ -1,5 +1,4 @@
 using UnityEngine;
-using Assets.Scripts.Items;
 using Assets.Scripts.Datas;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]

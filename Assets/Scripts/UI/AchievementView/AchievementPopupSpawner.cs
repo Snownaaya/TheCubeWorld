@@ -1,11 +1,9 @@
 ﻿using Assets.Scripts.Achievements;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.UI.AchievementView
 {

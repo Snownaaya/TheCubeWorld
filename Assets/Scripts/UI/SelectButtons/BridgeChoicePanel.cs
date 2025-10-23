@@ -4,7 +4,7 @@ namespace Assets.Scripts.UI.SelectButtons
 {
     public class BridgeChoicePanel : MonoBehaviour
     {
-        private bool _isOpen = true;
+        private bool _isOpen;
 
         public bool IsOpen => _isOpen;
 

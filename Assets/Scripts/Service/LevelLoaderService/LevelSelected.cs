@@ -29,17 +29,10 @@ namespace Assets.Scripts.Service.LevelLoaderService
         public string GetNextLevel()
         {
             if (_levels.Count == 0)
-                return null;
+                return _currentLevel;
 
-            List<string> availableLevels = new List<string>();
-
-            availableLevels.Remove(_currentLevel);
-
-            if (availableLevels.Count == 0)
-                availableLevels = new List<string>(_levels);
-
-            int randomIndex = Random.Range(0, availableLevels.Count);
-            return availableLevels[randomIndex];
+            int randomIndex = Random.Range(0, _levels.Count);
+            return _levels[randomIndex];
         }
 
         public string GetCurrentLevel()

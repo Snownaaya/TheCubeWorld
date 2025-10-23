@@ -17,7 +17,7 @@ namespace Assets.Scripts.Player.Wallet
             _saveService = saveService;
         }
 
-        public void Save(int coins)
+        public void Save(NotLessZeroProperty<int> coins)
         {
            string json = _jsonService.Serialize(coins);
             _saveService.Save(Wallet_Key, json);
