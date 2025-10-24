@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Player.Inventory;
+﻿using Assets.Scripts.Enemies.Boss.Target;
+using Assets.Scripts.Player.Inventory;
 using Random = UnityEngine.Random;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
 using System;
-using Assets.Scripts.Enemies.Boss.Target;
 
 namespace Assets.Scripts.Player.Attack
 {
