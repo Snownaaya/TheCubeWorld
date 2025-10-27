@@ -295,10 +295,10 @@ RectTransform:
   - {fileID: 1765622255}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 496.10156, y: -720}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91035568
 MonoBehaviour:
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 1776453561}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 698a224a03ff6a84ea78a1457fd71491, type: 2}
 --- !u!1 &109701783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,7 +1459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &605235790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2198,10 +2198,10 @@ RectTransform:
   - {fileID: 207015895}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.10156, y: -440}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &904073905
 MonoBehaviour:
@@ -2254,7 +2254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 391141144}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 263c8c2879aaeea49b029f8c97562b9e, type: 2}
 --- !u!1 &912701328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,10 +2289,10 @@ RectTransform:
   - {fileID: 1441875549}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 496.10156, y: -1000}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &912701330
 MonoBehaviour:
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 1890244246}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 95ab3886e31481745b6c37ece69f312b, type: 2}
 --- !u!1 &920528676
 GameObject:
   m_ObjectHideFlags: 0
@@ -2432,14 +2432,14 @@ GameObject:
   - component: {fileID: 930618669}
   - component: {fileID: 930618671}
   - component: {fileID: 930618670}
-  - component: {fileID: 930618672}
+  - component: {fileID: 930618673}
   m_Layer: 5
   m_Name: AchievementPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &930618669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2499,7 +2499,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930618668}
   m_CullTransparentMesh: 1
---- !u!114 &930618672
+--- !u!114 &930618673
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2508,9 +2508,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 930618668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90326328d60fbae4794ef70a17eaa407, type: 3}
+  m_Script: {fileID: 11500000, guid: 7755953f47bb0a141aaea99dc8ecb5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _achieveView:
+  - {fileID: 6766634094798654572}
+  - {fileID: 8732435278025325113}
+  - {fileID: 904073907}
+  - {fileID: 995245172}
+  - {fileID: 1373879189}
+  - {fileID: 91035570}
+  - {fileID: 1862301588}
+  - {fileID: 912701332}
+  - {fileID: 944465921}
 --- !u!1 &944465917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,10 +2555,10 @@ RectTransform:
   - {fileID: 2101024942}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.10156, y: -1280}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &944465919
 MonoBehaviour:
@@ -2601,7 +2611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 1364816248}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 3716a5461b382894992c6fb0ec0ea3e7, type: 2}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2807,10 +2817,10 @@ RectTransform:
   - {fileID: 1998667319}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 496.10156, y: -440}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995245170
 MonoBehaviour:
@@ -2863,7 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 1005435405}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 5ee7878f56eafd1488370955376055d8, type: 2}
 --- !u!1 &1005435403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,7 +3120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094764534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3892,10 +3902,10 @@ RectTransform:
   - {fileID: 1012796372}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.10156, y: -720}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373879187
 MonoBehaviour:
@@ -3948,7 +3958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 1064243171}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: ce7959649ef1bea43b6afaaaa9be24ec, type: 2}
 --- !u!1 &1388399858
 GameObject:
   m_ObjectHideFlags: 0
@@ -5679,10 +5689,10 @@ RectTransform:
   - {fileID: 1622936674}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.10156, y: -1000}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862301586
 MonoBehaviour:
@@ -5735,7 +5745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 109784335}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 63366de9f2624ba40b1fd05dbb70bfd8, type: 2}
 --- !u!1 &1890244244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,10 +8049,10 @@ RectTransform:
   - {fileID: 4862271583774138168}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 496.10156, y: -160}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1535130284961717374
 GameObject:
@@ -8998,10 +9008,10 @@ RectTransform:
   - {fileID: 9084971219444858658}
   m_Father: {fileID: 610592483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 216.10156, y: -160}
+  m_SizeDelta: {x: 240, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &3010958011882181804
 RectTransform:
@@ -11873,7 +11883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 6824237279295421478}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: c4203717f67221f49947eb1f9ca7da7e, type: 2}
 --- !u!114 &6789680276228078385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13100,7 +13110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockImage: {fileID: 7195204817187019836}
-  _achieveNames: 0
+  _achieveNames: {fileID: 11400000, guid: 90edf5c881e211b429f6c71b0e30806e, type: 2}
 --- !u!33 &8769148756066709092
 MeshFilter:
   m_ObjectHideFlags: 0

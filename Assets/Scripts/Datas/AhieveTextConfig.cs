@@ -15,7 +15,7 @@ namespace Assets.Scripts.Datas
 
         private void OnValidate()
         {
-            var achieveView = _achievementInfoView.GroupBy(text => text.AchievementNames)
+            var achieveView = _achievementInfoView.GroupBy(text => text.AchievementConfig.AchievementNames)
                 .Where(array => array.Count() > 1);
 
             if(achieveView.Count() > 0)

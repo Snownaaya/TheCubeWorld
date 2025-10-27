@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
-using Assets.Scripts.Achievements;
+using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.UI.AchievementView
 {
     public class AchievementInfoView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _achieveInfo;
-        [SerializeField] private AchievementNames _achievementsName;
+        [SerializeField] private AchievementConfig _achievementsConfig;
 
-        public AchievementNames AchievementNames => _achievementsName;
+        public AchievementConfig AchievementConfig => _achievementsConfig;
 
         private void OnButtonClick()
         {

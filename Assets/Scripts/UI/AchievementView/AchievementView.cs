@@ -3,14 +3,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.UI.AchievementView
 {
     public class AchievementView : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image _lockImage;
-        [SerializeField] private AchievementNames _achieveNames;
+        [SerializeField] private AchievementConfig _achieveNames;
 
+        public AchievementConfig AchievementConfig => _achieveNames;
         public bool IsLock { get; private set; }
 
         public event Action Clicked;

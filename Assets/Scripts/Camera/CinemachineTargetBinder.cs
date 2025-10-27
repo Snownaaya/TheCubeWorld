@@ -15,5 +15,10 @@ namespace Assets.Scripts.Camera
             _virtualCamera.Follow = target;
             _virtualCamera.LookAt = target;
         }
+
+        public Transform GetPosition()
+        {
+            return _virtualCamera.transform;
+        }
     }
 }

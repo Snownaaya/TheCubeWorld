@@ -2208,8 +2208,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1339107785}
   - component: {fileID: 1339107787}
-  - component: {fileID: 1339107786}
   - component: {fileID: 1339107788}
+  - component: {fileID: 1339107786}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
