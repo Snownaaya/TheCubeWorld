@@ -38,7 +38,6 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             _lossScreen.RespawnRequested += OnRespawnState;
             _cancellationTokenSource = new CancellationTokenSource();
             DelayPause(_cancellationTokenSource.Token).Forget();
-           // _achievementDeathObserver.PlayerDeath();
         }
 
         public override void Exit()

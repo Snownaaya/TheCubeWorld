@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Camera
@@ -16,9 +17,22 @@ namespace Assets.Scripts.Camera
             _virtualCamera.LookAt = target;
         }
 
-        public Transform GetPosition()
+        public void ResetTransform()
         {
-            return _virtualCamera.transform;
+            _virtualCamera.Follow = null;
+            _virtualCamera.LookAt = null;
+        }
+
+        public void ChangeRotate()
+        {
+            Vector3 rotation = new Vector3(13f, 120f, 0);
+            _virtualCamera.transform.eulerAngles = rotation;
+            RotateTarget().Forget();
+        }
+        
+        private async UniTask RotateTarget()
+        {
+            await UniTask.Delay(3000);
         }
     }
 }

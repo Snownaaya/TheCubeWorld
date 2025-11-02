@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Achievements.Observers;
+﻿using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Particles;
 using Assets.Scripts.Input;

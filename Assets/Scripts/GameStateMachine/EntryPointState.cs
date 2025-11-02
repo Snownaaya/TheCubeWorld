@@ -11,10 +11,9 @@ using Assets.Scripts.Achievements;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
+using Assets.Scripts.PluginYG;
 using Reflex.Attributes;
 using UnityEngine;
-using Assets.Scripts.Game;
-using Assets.Scripts.PluginYG;
 
 namespace Assets.Scripts.GameStateMachine
 {

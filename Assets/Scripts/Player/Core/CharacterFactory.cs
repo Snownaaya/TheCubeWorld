@@ -5,12 +5,16 @@ using Assets.Scripts.Particles;
 using Assets.Scripts.Input;
 using Reflex.Attributes;
 using UnityEngine;
+using System.Collections.Generic;
+using Assets.Scripts.Shop.CharacterSkin;
 
 namespace Assets.Scripts.Player.Core
 {
     public class CharacterFactory : MonoBehaviour
     {
         [SerializeField] private Character _characterPrefab;
+
+        private Dictionary<CharacterSkins, Character> _characterSkins = new();
 
         private PlayerInput _playerInput;
         private IInput _input;
@@ -43,6 +47,12 @@ namespace Assets.Scripts.Player.Core
 
             DontDestroyOnLoad(character);
             return holder;
+        }
+
+        public void Get(CharacterSkins characterSkins)
+        {
+            if (_characterSkins.TryGetValue(characterSkins, out Character character))
+                _characterSkins.Add(characterSkins, character);
         }
     }
 }

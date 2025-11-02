@@ -1,18 +1,30 @@
 ﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player;
+using Assets.Scripts.Camera;
+using Reflex.Attributes;
 using UnityEngine;
 using System;
 
 namespace Assets.Scripts.Ground
 {
-    public class FinalPlatform : MonoBehaviour, ILevelProgressMediator
+    public class FinalPlatform : MonoBehaviour
     {
-        public event Action PlayerReachedFinalPlatform;
+        [SerializeField] private Transform _cameraPoint;
 
-        private void OnCollisionEnter(Collision collision)
+        private IVirtualCamera _targetBinder;
+
+        [Inject]
+        private void Construct(IVirtualCamera targetBinder) =>
+            _targetBinder = targetBinder;
+
+        private void OnTriggerEnter(Collider other)
         {
-            if(collision.gameObject.TryGetComponent(out Character character))
-                PlayerReachedFinalPlatform?.Invoke();
+            if (other.gameObject.TryGetComponent(out Character character))
+            {
+                _targetBinder.ResetTransform();
+                _targetBinder.SetTarget(_cameraPoint);
+                _targetBinder.ChangeRotate();
+            }
         }
     }
 }

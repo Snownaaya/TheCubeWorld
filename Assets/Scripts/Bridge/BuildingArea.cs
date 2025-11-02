@@ -1,6 +1,6 @@
 using Assets.Scripts.Datas;
-using System;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Bridge
 {

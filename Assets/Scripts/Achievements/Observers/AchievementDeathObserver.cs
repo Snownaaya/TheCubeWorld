@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Player.Core;
-using System.Collections.Generic;
-using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Interfaces;
+using System.Linq;
+using System;
 
 namespace Assets.Scripts.Achievements.Observers
 {

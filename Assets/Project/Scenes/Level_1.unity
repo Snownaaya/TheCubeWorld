@@ -1621,6 +1621,37 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -162.75006}
   m_SizeDelta: {x: 101.3, y: 328.5}
   m_Pivot: {x: 0.49999985, y: 0.5}
+--- !u!1 &1022906262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1022906263}
+  m_Layer: 0
+  m_Name: CameraPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1022906263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022906262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.30070576, w: 0.953717}
+  m_LocalPosition: {x: -0.1752, y: 0.02498, z: 0.02487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1650464268971374626}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35}
 --- !u!1 &1041635985
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,7 +5321,8 @@ Transform:
   m_LocalPosition: {x: 40.918205, y: -7.928461, z: 0}
   m_LocalScale: {x: 415.54886, y: 415.54886, z: 415.54886}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1022906263}
   m_Father: {fileID: 265687162515860705}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1650894127930776533
@@ -8636,6 +8668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db1a4e58dd87544f9fe15631ff3abde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraPoint: {fileID: 1022906263}
 --- !u!4 &5455691334585469790
 Transform:
   m_ObjectHideFlags: 0
@@ -11083,7 +11116,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1650894127930776533}
-  m_LocalEulerAnglesHint: {x: 12.348, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!33 &8894386440202554578
 MeshFilter:
   m_ObjectHideFlags: 0

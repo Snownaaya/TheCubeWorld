@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Particles;
-using Assets.Scripts.Service.AchievementServices;
+﻿using Assets.Scripts.Service.AchievementServices;
+using Assets.Scripts.Particles;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -10,10 +10,10 @@ namespace Assets.Scripts.Bridge.Factory
         [SerializeField] private BridgeFactory _factory;
         [SerializeField] private Transform _point;
 
-        private Bridge _currentBridge;
-        private BridgeTrackerService _trackerService;
         private BridgeType _selectedType = BridgeType.Easy;
         private IParticleSpawner _bridgeEffect;
+        private Bridge _currentBridge;
+        private BridgeTrackerService _trackerService;
 
         public Transform Point => _point;
         public Bridge CurrentBridge => _currentBridge;

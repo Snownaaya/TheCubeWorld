@@ -417,6 +417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rectTransform: {fileID: 3766518108481753062}
+  _characterAttacker: {fileID: 1134982087625787333}
 --- !u!1 &3674413797573382913
 GameObject:
   m_ObjectHideFlags: 0

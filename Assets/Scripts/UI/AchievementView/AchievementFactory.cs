@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.AchievementView
             foreach (Achievement achievement in achievements)
             {
                 //if (_achievements.ContainsKey(achievement.AchievementConfig.AchievementNames))
-                    _achievements.Add(achievement.AchievementConfig.AchievementNames, achievement);
+                _achievements.Add(achievement.AchievementConfig.AchievementNames, achievement);
             }
         }
 

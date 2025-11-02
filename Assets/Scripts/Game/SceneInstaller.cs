@@ -22,7 +22,7 @@ public class SceneInstaller : MonoBehaviour, IInstaller
         containerBuilder.AddSingleton(new GameState(), typeof(ISwitcher));
 
     private void BindFinalPlatform(ContainerBuilder containerBuilder) =>
-        containerBuilder.AddSingleton(_finalPlatform, typeof(ILevelProgressMediator));
+        containerBuilder.AddSingleton(_finalPlatform);
 
     private void BindVirtualCamera(ContainerBuilder containerBuilder) =>
         containerBuilder.AddSingleton(new CinemachineTargetBinder(_cinemachineVirtualCamera),

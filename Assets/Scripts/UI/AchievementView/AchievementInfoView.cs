@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Datas;
+using UnityEngine;
 using TMPro;
-using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.UI.AchievementView
 {

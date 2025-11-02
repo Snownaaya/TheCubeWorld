@@ -1,6 +1,8 @@
-﻿namespace Assets.Scripts.PluginYG
+﻿using UnityEngine;
+
+namespace Assets.Scripts.PluginYG
 {
-    public class FullScreenAds
+    public class FullScreenAds : MonoBehaviour
     {
     }
 }
