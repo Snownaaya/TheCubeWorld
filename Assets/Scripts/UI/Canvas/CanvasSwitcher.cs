@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
 using YG;
 
@@ -10,7 +9,7 @@ namespace Assets.Scripts.UI.Canvas
         [SerializeField] private CanvasPortrait _canvasPortrait;
         [SerializeField] private CanvasLandscape _canvasLandscape;
 
-        private void Start() => 
+        private void Start() =>
             InitializeAsync().Forget();
 
         private async UniTaskVoid InitializeAsync()
@@ -25,11 +24,18 @@ namespace Assets.Scripts.UI.Canvas
 
         private void ApplyCanvas()
         {
-            bool isDesktop = YG2.envir.isDesktop;
-            bool isMobile = YG2.envir.isTablet || YG2.envir.isMobile;
-
-            _canvasLandscape.gameObject.SetActive(isDesktop);
-            _canvasPortrait.gameObject.SetActive(isMobile);
+            if(YG2.envir.device == YG2.Device.Desktop)
+            {
+                _canvasLandscape.gameObject.SetActive(true);
+                _canvasPortrait.gameObject.SetActive(false);
+                return;
+            }
+            else if(YG2.envir.device == YG2.Device.Mobile)
+            {
+                _canvasLandscape.gameObject.SetActive(false);
+                _canvasPortrait.gameObject.SetActive(true);
+                return;
+            }
         }
     }
 }
