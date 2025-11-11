@@ -1,8 +1,9 @@
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Assets.Scripts.Ground;
 using Assets.Scripts.Items;
-using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class ResourceSpawner : PoolObject<Resource>, IResourceService
@@ -17,8 +18,8 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
     [SerializeField] private int _maxResources = 16;
     [SerializeField] private float _spawnInterval = 2f;
 
-    private Coroutine _coroutine;
     private Dictionary<ResourceTypes, Resource> _resources = new Dictionary<ResourceTypes, Resource>();
+    private readonly List<Resource> _activeResources = new();
 
     private void Awake()
     {
@@ -30,16 +31,15 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
         };
     }
 
-    public IEnumerator SpawnRoutine(Ground currentGround)
+    public async UniTask SpawnRoutine(Ground currentGround, CancellationToken cancellationToken)
     {
-        while (enabled)
+        while (cancellationToken.IsCancellationRequested == false)
         {
             if (GetActiveCount() == 0)
                 currentGround.ResetPoints();
 
             SpawnResource(currentGround);
-            yield return new WaitForSeconds(_spawnInterval);
-            yield return new WaitUntil(() => GetActiveCount() == 0);
+            await UniTask.WaitUntil(() => GetActiveCount() < _maxResources, cancellationToken : cancellationToken);
         }
     }
 
@@ -59,18 +59,24 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
 
             Resource resourceInstance = Pull(resourcePrefab);
             resourceInstance.transform.position = spawnPoint.position;
-            resourceInstance.gameObject.SetActive(true);
+
+            _activeResources.Add(resourceInstance);
+            resourceInstance.ReturnedToPool += ReturnResource;
         }
     }
 
-    public void ReturnResource(Resource resource) =>
-        Push(resource);
-
-    private void Reset()
+    public void ReturnResource(Resource resource)
     {
-        if(_coroutine != null)
-            StopCoroutine(_coroutine);
+        if (_activeResources.Contains(resource))
+            _activeResources.Remove(resource);
 
-        ClearPool();
+        Push(resource);
+        resource.ReturnedToPool -= ReturnResource;
+    }
+
+    public void ReturnAllPool()
+    {
+        for (int i = _activeResources.Count - 1; i >= 0; i--)
+            _activeResources[i].ReturnToPool();
     }
 }

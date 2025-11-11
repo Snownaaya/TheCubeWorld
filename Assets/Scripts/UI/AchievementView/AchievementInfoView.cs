@@ -1,19 +1,17 @@
-﻿using Assets.Scripts.Datas;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.UI.AchievementView
 {
-    public class AchievementInfoView : MonoBehaviour
+    public class AchievementInfoView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private TextMeshProUGUI _achieveInfo;
-        [SerializeField] private AchievementConfig _achievementsConfig;
+        [SerializeField] private TextMeshProUGUI _achieveText;
 
-        public AchievementConfig AchievementConfig => _achievementsConfig;
+        public void OnPointerEnter(PointerEventData eventData) =>
+            _achieveText.gameObject.SetActive(true);
 
-        private void OnButtonClick()
-        {
-
-        }
+        public void OnPointerExit(PointerEventData eventData) =>
+            _achieveText.gameObject.SetActive(false);
     }
 }

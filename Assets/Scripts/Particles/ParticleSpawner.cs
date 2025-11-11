@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Particles
 {
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Particles
             pooledParticle.Stop();
         }
 
-        public PooledParticle SpawnParticle(ParticleTypes particleType, Transform transform)
+        public PooledParticle SpawnParticle(ParticleTypes particleType, Vector3 position)
         {
             foreach (ParticlePrefabEntry entry in _particleEntries)
             {
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Particles
                 return null;
 
             PooledParticle pooledParticle = Pull(prefab);
-            pooledParticle.transform.position = transform.position;
+            pooledParticle.transform.position = position;
             pooledParticle.Play();
             return pooledParticle;
         }

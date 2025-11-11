@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Datas;
-using Assets.Scripts.Service.LevelLoaderService;
+﻿using Assets.Scripts.Service.LevelLoaderService;
 using Cysharp.Threading.Tasks;
-using System;
+using Assets.Scripts.Datas;
 using System.Threading;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Enemies.Boss
 {

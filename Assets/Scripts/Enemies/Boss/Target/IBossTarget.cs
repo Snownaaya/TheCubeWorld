@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Boss.Target
@@ -6,7 +6,7 @@ namespace Assets.Scripts.Enemies.Boss.Target
     public interface IBossTarget
     {
         BossHealth BossHealth { get; }
-        Transform GetTarget();
+        Vector3 GetTarget();
         bool IsValidTarget();
     }
 }

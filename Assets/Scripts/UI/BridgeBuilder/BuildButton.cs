@@ -16,7 +16,6 @@ namespace Assets.Scripts.UI.BridgeBuilder
         [field: SerializeField] public Button WoodButton { get; private set; }
         [field: SerializeField] public Button StoneButton { get; private set; }
 
-        private IResourceStorage _resourceStorage;
         private IInventory _inventory;
         private BuildBridgeState _state;
 
@@ -24,13 +23,11 @@ namespace Assets.Scripts.UI.BridgeBuilder
             _state = new BuildBridgeState(this);
 
         [Inject]
-        private void Construct(IResourceStorage resourceStorage, IInventory inventory)
+        private void Construct(IInventory inventory)
         {
-            _resourceStorage = resourceStorage;
             _inventory = inventory;
         }
 
-        public IResourceStorage ResourceStorage => _resourceStorage;
         public IInventory Inventory => _inventory;
         public BuildBridgeState State => _state;
 

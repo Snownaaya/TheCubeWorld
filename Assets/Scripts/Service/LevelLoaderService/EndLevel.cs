@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using System;
 using UnityEngine;
 

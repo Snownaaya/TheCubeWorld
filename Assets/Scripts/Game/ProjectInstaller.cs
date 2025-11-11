@@ -34,7 +34,6 @@ namespace Assets.Scripts.Game
 
             containerBuilder.AddSingleton(spawnerRoot.GetComponent<ResourceSpawner>(), typeof(IResourceService));
             containerBuilder.AddSingleton(spawnerRoot.GetComponent<ParticleSpawner>(), typeof(IParticleSpawner));
-            containerBuilder.AddSingleton(spawnerRoot.GetComponent<ResourceStorage>(), typeof(IResourceStorage));
         }
 
         private void BindJoystick(ContainerBuilder containerBuilder)

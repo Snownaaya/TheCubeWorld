@@ -15,7 +15,6 @@ namespace Assets.Scripts.Player.Attack
         [SerializeField] private ResourceTypes[] _resourceType;
         [SerializeField] private Transform _attackPoint;
 
-        private IResourceStorage _resourceStorage;
         private IInventory _inventory;
         private IBossTargetService _bossTargetService;
         private IResourceService _resourceService;
@@ -24,13 +23,11 @@ namespace Assets.Scripts.Player.Attack
         private void Construct(
             IInventory inventory,
             IBossTargetService bossTargetService,
-            IResourceService resourceService,
-            IResourceStorage resourceStorage)
+            IResourceService resourceService)
         {
             _inventory = inventory;
             _bossTargetService = bossTargetService;
             _resourceService = resourceService;
-            _resourceStorage = resourceStorage;
         }
 
         public bool TryConsumeResource()
@@ -39,30 +36,35 @@ namespace Assets.Scripts.Player.Attack
 
             SpawnResource(selectedConfig);
             _inventory.UseResource(selectedConfig);
-            _resourceStorage.RemoveResource(selectedConfig, 1);
 
             return true;
         }
 
         private void SpawnResource(ResourceTypes resourceType)
         {
-            // int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
             int prefabIndex = Array.IndexOf(_resourceType, resourceType);
 
             Resource resource = _resourcePrefabs[prefabIndex];
             Resource resourcePrefab = _resourceService.Pull(resource);
 
-            resourcePrefab.transform.position = _attackPoint.transform.position;
-            resourcePrefab.transform.rotation = _attackPoint.transform.rotation;
+            resourcePrefab.transform.position = GetPosition(resourcePrefab);
+            MoveToBossTarget(resourcePrefab);
+        }
 
-            resourcePrefab.PrepareForThrow();
+        private Vector3 GetPosition(Resource resource)
+        {
+            resource.transform.position = _attackPoint.transform.position;
+            resource.transform.rotation = _attackPoint.transform.rotation;
 
+            return resource.transform.position;
+        }
+
+        private void MoveToBossTarget(Resource resource)
+        {
             IBossTarget currentBoss = _bossTargetService.GetCurrentBoss();
 
             if (currentBoss != null && currentBoss.IsValidTarget())
-                resourcePrefab.MovePosition(currentBoss.GetTarget());
-
-            resourcePrefab.Release();
+                resource.MovePosition(currentBoss.GetTarget());
         }
     }
 }

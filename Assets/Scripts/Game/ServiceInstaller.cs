@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
-using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.UI.HealthCharacters.Characters;
 using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.CharacterService;

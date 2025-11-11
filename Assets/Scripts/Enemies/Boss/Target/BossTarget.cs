@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -29,8 +29,8 @@ namespace Assets.Scripts.Enemies.Boss.Target
             _bossTargetService.SetCurrentTarget(this);
         }
 
-        public Transform GetTarget() =>
-            _transform;
+        public Vector3 GetTarget() =>
+            _transform.position;
 
         public bool IsValidTarget() =>
             _isActive && gameObject.activeInHierarchy;

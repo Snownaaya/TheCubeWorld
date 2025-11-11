@@ -36,7 +36,7 @@ namespace Assets.Scripts.Bridge.Factory
             _bridgeEffect.Initialize(transform);
             _currentBridge = _factory.Get(_selectedType, _point.position);
             _trackerService.Register(_currentBridge);
-            _bridgeEffect.SpawnParticle(ParticleTypes.BridgeBuild, transform);
+            _bridgeEffect.SpawnParticle(ParticleTypes.BridgeBuild, transform.position);
         }
 
         public void SelectBridge(BridgeType bridgeType)

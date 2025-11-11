@@ -29,7 +29,6 @@ namespace Assets.Scripts.Player.Inventory
                 _resources[type] = new NotLimitedProperty<int>(0);
 
             _resources[type].Value += 1000; //value++
-            resource.PickUp();
 
             Debug.Log($"Added resource {type}, new count: {_resources[type].Value}");
         }

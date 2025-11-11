@@ -10,17 +10,7 @@ namespace Assets.Scripts.UI.Canvas
         [SerializeField] private CanvasLandscape _canvasLandscape;
 
         private void Start() =>
-            InitializeAsync().Forget();
-
-        private async UniTaskVoid InitializeAsync()
-        {
-            await UniTask.WaitUntil(() =>
-                YG2.envir != null &&
-                (YG2.envir.isDesktop || YG2.envir.isTablet || YG2.envir.isMobile)
-            );
-
             ApplyCanvas();
-        }
 
         private void ApplyCanvas()
         {
@@ -28,13 +18,11 @@ namespace Assets.Scripts.UI.Canvas
             {
                 _canvasLandscape.gameObject.SetActive(true);
                 _canvasPortrait.gameObject.SetActive(false);
-                return;
             }
             else if(YG2.envir.device == YG2.Device.Mobile)
             {
                 _canvasLandscape.gameObject.SetActive(false);
                 _canvasPortrait.gameObject.SetActive(true);
-                return;
             }
         }
     }

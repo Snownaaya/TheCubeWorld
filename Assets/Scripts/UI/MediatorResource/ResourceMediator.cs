@@ -29,9 +29,7 @@ namespace Assets.Scripts.UI
                 return;
        
             foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
-            {
                 _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
-            }
         }
 
         public void UpdateCountText(ResourceTypes type, int count)

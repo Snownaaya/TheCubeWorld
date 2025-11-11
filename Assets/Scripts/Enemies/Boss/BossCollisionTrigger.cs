@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using Cysharp.Threading.Tasks;
 using Assets.Scripts.Player;
 using System.Threading;

@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
+using System;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Enemies.Obstacle
 {
@@ -8,16 +12,19 @@ namespace Assets.Scripts.Enemies.Obstacle
         private const float MinDistanceToTarget = 0.05f;
 
         private Transform _transform;
-        private Queue<Vector3> _targets;
-
+        private Rigidbody _rigidbody;
         private Vector3 _currentTarget;
 
         private float _speed;
-        private bool _isWalking;
+        private float _delay = 0.02f;
+        private bool _isWalking = true;
 
-        public WaypointPatroller(Transform transform, float speed, IEnumerable<Vector3> targets)
+        private Queue<Vector3> _targets;
+
+        public WaypointPatroller(Transform transform, Rigidbody rigidbody, float speed, IEnumerable<Vector3> targets)
         {
             _transform = transform;
+            _rigidbody = rigidbody;
             _speed = speed;
             _targets = new Queue<Vector3>(targets);
 
@@ -25,24 +32,26 @@ namespace Assets.Scripts.Enemies.Obstacle
             SwitchTarget();
         }
 
-        public void StartMove() =>
-            _isWalking = true;
-
-        public void StopMove() =>
-            _isWalking = false;
-
-        public void Update()
+        public async UniTask StopMove()
         {
-            if (_isWalking == false)
-                return;
+            _isWalking = false;
+            _rigidbody.velocity = Vector3.zero;
+            _targets.Dequeue();
+            await UniTask.CompletedTask;
+        }
 
+        public UniTask Move(CancellationToken cancellationToken)
+        {
             Vector3 position = new Vector3(_transform.position.x, _transform.position.y, _transform.position.z);
             Vector3 direction = _currentTarget - position;
 
-            _transform.Translate(direction.normalized * _speed * Time.deltaTime);
+            _rigidbody.velocity = direction.normalized * _speed;
 
             if (direction.magnitude <= MinDistanceToTarget)
                 SwitchTarget();
+
+            _isWalking = true;
+            return UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
         }
 
         private void SwitchTarget()

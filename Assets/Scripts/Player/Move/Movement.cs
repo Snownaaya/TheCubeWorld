@@ -23,8 +23,6 @@ namespace Assets.Scripts.Player.Move
         {
             _characterModel = transform;
             _rigidbody = GetComponent<Rigidbody>();
-
-            //((IMoveble)this).transform.position = Vector3.back;
         }
 
         [Inject]

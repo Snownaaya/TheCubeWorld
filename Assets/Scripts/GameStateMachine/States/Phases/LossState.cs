@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Achievements.Observers;
+﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Interfaces;
@@ -6,14 +6,15 @@ using Assets.Scripts.UI.GameUI;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using System;
+using Assets.Scripts.Items;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
     public class LossState : PhasesState
     {
+        private ILevelLoader _levelLoader;
         private PauseHandler _pauseHandler;
         private LossScreen _lossScreen;
-        private AchievementDeathObserver _achievementDeathObserver;
         private CancellationTokenSource _cancellationTokenSource;
 
         private float _delay = 3f;
@@ -21,13 +22,14 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         public LossState(ISwitcher switcher,
             EntryPointState entryPoint,
             IInventory inventory,
+            IResourceService resourceService,
             PauseHandler pauseHandler,
-            AchievementDeathObserver achievementDeathObserver,
-            LossScreen lossScreen) : base(switcher, entryPoint, inventory)
+            LossScreen lossScreen,
+            ILevelLoader levelLoader) : base(switcher, entryPoint, inventory, resourceService)
         {
             _pauseHandler = pauseHandler;
-            _achievementDeathObserver = achievementDeathObserver;
             _lossScreen = lossScreen;
+            _levelLoader = levelLoader;
         }
 
         public override void Enter()
@@ -36,6 +38,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
             _lossScreen.RewardAdsRequested += OnRespawnState;
             _lossScreen.RespawnRequested += OnRespawnState;
+            _lossScreen.ExitMenuRequested += OnExitMenu;
             _cancellationTokenSource = new CancellationTokenSource();
             DelayPause(_cancellationTokenSource.Token).Forget();
         }
@@ -46,6 +49,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
             _lossScreen.RewardAdsRequested -= OnRespawnState;
             _lossScreen.RespawnRequested -= OnRespawnState;
+            _lossScreen.ExitMenuRequested -= OnExitMenu;
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
@@ -64,5 +68,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private void OnRespawnState() =>
             Switcher.SwitchState<RespawnState>();
+
+        private void OnExitMenu() =>
+            _levelLoader.Load(EntryPoint.LevelSelected.GetMainMenu());
     }
 }

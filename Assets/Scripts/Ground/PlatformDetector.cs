@@ -2,7 +2,7 @@
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using Reflex.Attributes;
-using Reflex.Core;
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Ground))]
@@ -10,36 +10,32 @@ public class PlatformDetector : MonoBehaviour
 {
     private IResourceService _spawner;
     private Ground _currentGround;
-    private Coroutine _coroutine;
-    private Container _container;
+    private CancellationTokenSource _cancellationTokenSource;
 
     [Inject]
     private void Construct(IResourceService resourceSpawner) =>
         _spawner = resourceSpawner;
 
-    private void Start()
-    {
+    private void Start() =>
         _currentGround = GetComponent<Ground>();
-
-        if (_spawner == null)
-            Debug.LogError("Spawner is null in " + gameObject.name);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Character character))
         {
-            _coroutine = StartCoroutine(_spawner.SpawnRoutine(_currentGround));
+           _cancellationTokenSource = new CancellationTokenSource();
+           _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out Character character) && _coroutine != null)
+        if (other.TryGetComponent(out Character character))
         {
-            StopCoroutine(_coroutine);
-            _spawner.ClearPool();
-            _coroutine = null;
+            _cancellationTokenSource.Cancel();
+            _cancellationTokenSource.Dispose();
+            _cancellationTokenSource = null;
+            _spawner.ReturnAllPool();
         }
     }
 }

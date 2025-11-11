@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Threading;
 
 namespace Assets.Scripts.Items
 {
     public interface IResourceService
     {
-        public IEnumerator SpawnRoutine(Assets.Scripts.Ground.Ground currentGround);
-        void ReturnResource(Resource resource);
-        Resource Pull(Resource prefab);
-        void Push(Resource resource);
-        public void ClearPool();
+        public Resource Pull(Resource prefab);
+        public void Push(Resource resource);
+        public UniTask SpawnRoutine(Assets.Scripts.Ground.Ground currentGround, CancellationToken cancellationToken);
+        public void ReturnResource(Resource resource);
+        public void ReturnAllPool();
     }
 }

@@ -7,6 +7,7 @@ namespace Assets.Scripts.Service.LevelLoaderService
 {
     public class LevelSelected : MonoBehaviour
     {
+        private const string MainMenu = nameof(MainMenu);
         private const string Level_1 = nameof(Level_1);
         private const string Level_2 = nameof(Level_2);
         private const string Level_3 = nameof(Level_3);
@@ -42,5 +43,8 @@ namespace Assets.Scripts.Service.LevelLoaderService
 
             return null;
         }
+
+        public string GetMainMenu() =>
+            MainMenu;
     }
 }

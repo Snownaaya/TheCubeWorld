@@ -5,45 +5,27 @@ public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private Transform _container;
 
-    private Queue<T> _queue = new Queue<T>();
-    private List<T> _activeObjects = new List<T>();
+    private Stack<T> _pool = new Stack<T>();
+    private List<T> _active = new List<T>();
 
-    public void Push(T @object)
-    {
-        @object.gameObject.SetActive(false);
-        _activeObjects.Remove(@object);
-        _queue.Enqueue(@object);
-    }
-
-    public T Pull(T @object)
+    public T Pull(T prefab)
     {
         T instance;
 
-        if (_queue.Count > 0)
-        {
-            instance = _queue.Dequeue();
-            instance.gameObject.SetActive(true);
-        }
-        else
-        {
-            instance = Instantiate(@object, _container);
-        }
+        if (_pool.TryPop(out instance) == false)
+            instance = Instantiate(prefab, _container);
 
-        _activeObjects.Add(instance); 
+        _active.Add(instance);
+        instance.gameObject.SetActive(true);
         return instance;
     }
 
-    public int GetActiveCount()
+    public void Push(T instance)
     {
-        return _activeObjects.Count;
+        instance.gameObject.SetActive(false);
+        _pool.Push(instance);
+        _active.Remove(instance);
     }
 
-    public void ClearPool()
-    {
-        foreach (var obj in _activeObjects)
-            Destroy(obj.gameObject);
-
-        _activeObjects.Clear();
-        _queue.Clear();
-    }
+    public int GetActiveCount() => _active.Count;
 }

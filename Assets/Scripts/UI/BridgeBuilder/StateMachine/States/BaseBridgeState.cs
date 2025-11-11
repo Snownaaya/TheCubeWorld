@@ -38,7 +38,7 @@ public abstract class BaseBridgeState : IStates
         if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new NotLimitedProperty<int>(_resourceCost)))
         {
             BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
-            BuildButton.ResourceStorage.RemoveResource(selectedConfig.ResourceType, 1);
+           // BuildButton.ResourceStorage.RemoveResource(selectedConfig.ResourceType, 1);
 
             if (selectedConfig != null)
                 buildingArea.DeliveResource(selectedConfig);

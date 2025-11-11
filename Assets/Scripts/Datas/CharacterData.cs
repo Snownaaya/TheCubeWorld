@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Player;
-using Assets.Scripts.Service.Properties;
-using Assets.Scripts.Shop.CharacterSkin;
+﻿using Assets.Scripts.Service.Properties;
+using Assets.Scripts.UI.Shop.CharacterSkin;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.Datas

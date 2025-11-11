@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.HealthCharacters.Characters;
+﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using Assets.Scripts.Achievements.Observers;
 
 namespace Assets.Scripts.Service.AchievementServices

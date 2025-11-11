@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Shop;
+﻿using Assets.Scripts.UI.Shop;
 using Assets.Scripts.UI.GameUI;
 using UnityEngine;
 

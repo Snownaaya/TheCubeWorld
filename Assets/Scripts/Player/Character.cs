@@ -1,10 +1,9 @@
-using Assets.Scripts.HealthCharacters.Characters;
+using Assets.Scripts.UI.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Particles;
 using Assets.Scripts.Loss;
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEditor.Profiling;
 using Assets.Scripts.Service.AchievementServices;
 
 namespace Assets.Scripts.Player
@@ -54,7 +53,7 @@ namespace Assets.Scripts.Player
         {
             if (loss is LossCollision || loss is LossHealth)
             {
-                _characterEffects.SpawnParticle(ParticleTypes.CharacterDeath, transform);
+                _characterEffects.SpawnParticle(ParticleTypes.CharacterDeath, transform.position);
                 _characterView.StopWalk();
                 _characterView.StopIdle();
                 _characterView.StopAttack();

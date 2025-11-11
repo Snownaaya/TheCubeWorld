@@ -1,8 +1,8 @@
 using Assets.Scripts.Interfaces;
-using DG.Tweening;
-using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.SelectButtons
 {

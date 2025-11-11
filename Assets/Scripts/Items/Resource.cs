@@ -1,48 +1,26 @@
-using UnityEngine;
 using Assets.Scripts.Datas;
+using System;
+using UnityEngine;
 
-[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class Resource : MonoBehaviour
 {
     [SerializeField] private ResourceConfig _config;
     [SerializeField] private float _speed;
 
-    private Rigidbody _rigidbody;
-    private Collider _collider;
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-        _collider = GetComponent<Collider>();
-    }
-
     public ResourceConfig Config => _config;
 
-    public void PickUp() =>
+    public event Action<Resource> ReturnedToPool;
+
+    public void MovePosition(Vector3 position)
+    {
+        transform.position = position * _speed;
+        transform.rotation = Quaternion.identity;
+    }
+
+    public void ReturnToPool()
+    {
         gameObject.SetActive(false);
 
-    public void Release() =>
-        gameObject.SetActive(true);
-
-    public void MovePosition(Transform position)
-    {
-        Vector3 direction = position.position + Vector3.up - transform.position;
-        _rigidbody.velocity = direction * _speed;
-    }
-
-    public void PrepareForCollection()
-    {
-        _rigidbody.velocity = Vector3.zero;
-        _rigidbody.angularVelocity = Vector3.zero;
-        _collider.isTrigger = true;
-    }
-
-    public void PrepareForThrow()
-    {
-        if (_collider != null)
-        {
-            _collider.enabled = false;
-            _collider.isTrigger = false;
-        }
+        ReturnedToPool?.Invoke(this);
     }
 }

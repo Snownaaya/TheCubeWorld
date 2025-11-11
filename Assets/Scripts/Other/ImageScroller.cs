@@ -16,9 +16,7 @@ namespace Assets.Scripts.Other
         private void Awake() =>
             _rawImage = GetComponent<RawImage>();
 
-        private void Update()
-        {
+        private void Update() =>
             _rawImage.uvRect = new Rect(_rawImage.uvRect.position + new Vector2(_xDirection * _scrollSpeed, _yDirection * _scrollSpeed) * Time.deltaTime, _rawImage.uvRect.size);
-        }
     }
 }
