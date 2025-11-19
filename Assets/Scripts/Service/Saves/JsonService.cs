@@ -18,8 +18,7 @@ namespace Assets.Scripts.Service.Saves
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogError($"Ошибка десериализации JSON: {ex.Message}");
-                return default;
+                throw new InvalidOperationException($"{typeof(T)}: {ex.Message}", ex);
             }
         }
 
@@ -31,8 +30,7 @@ namespace Assets.Scripts.Service.Saves
             }
             catch (Exception ex)
             {
-                UnityEngine.Debug.LogError($"Ошибка сериализации в JSON: {ex.Message}");
-                return string.Empty;
+                throw new InvalidOperationException($"{typeof(T)}: {ex.Message}", ex);
             }
         }
 

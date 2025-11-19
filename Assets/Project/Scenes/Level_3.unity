@@ -763,7 +763,7 @@ Transform:
   m_GameObject: {fileID: 417225144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.2, y: -1.42, z: -2.48}
+  m_LocalPosition: {x: 26.13, y: -1.36, z: -1.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -989,6 +989,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+      propertyPath: _patrolPoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+      propertyPath: _patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 564174101}
+    - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+      propertyPath: _patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 654481711}
+    - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+      propertyPath: _patrolPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 2116508515}
     - target: {fileID: 5331345402343133272, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
       propertyPath: _patrolPoints.Array.size
       value: 3
@@ -1540,7 +1556,7 @@ Transform:
   m_GameObject: {fileID: 723225319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.2, y: -1.45, z: 14.56}
+  m_LocalPosition: {x: 26.13, y: -1.506, z: 14.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4180,10 +4196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bfb0262e519a44d92ad728bf13a5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levels:
-  - Level_1
-  - Level_2
-  - Level_3
+  _levels: 010000000200000003000000
 --- !u!1 &1813655344
 GameObject:
   m_ObjectHideFlags: 0
@@ -7556,6 +7569,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1813655345}
     m_Modifications:
+    - target: {fileID: 2244314477783195146, guid: 283b3438340a2424b82c7653f37adda9, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4646622304707048127, guid: 283b3438340a2424b82c7653f37adda9, type: 3}
       propertyPath: _patrolPoints.Array.data[0]
       value: 

@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.UI.Shop;
 using Assets.Scripts.UI.GameUI;
 using UnityEngine;
+using Assets.Scripts.UI.Shop.SO;
 
 namespace Assets.Scripts.UI.MainMenu
 {
@@ -8,6 +9,8 @@ namespace Assets.Scripts.UI.MainMenu
     {
         [SerializeField] private RectTransform _rectShop;
         [SerializeField] private BackgroundPanel _backgroundPanel;
+        [SerializeField] private ShopPanel _shopPanel;
+        [SerializeField] private ShopContent _shopContent;
 
         protected override void Close()
         {
@@ -19,6 +22,7 @@ namespace Assets.Scripts.UI.MainMenu
         {
             _rectShop.gameObject.SetActive(true);
             _backgroundPanel.Show();
+            _shopPanel.ItemClickView(_shopContent.AbilityItems);
         }
     }
 }

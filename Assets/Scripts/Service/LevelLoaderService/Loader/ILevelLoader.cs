@@ -4,6 +4,6 @@ namespace Assets.Scripts.Service.LevelLoaderService.Loader
 {
     public interface ILevelLoader
     {
-        AsyncOperation Load(string name);
+        AsyncOperation Load(SceneID sceneID);
     }
 }

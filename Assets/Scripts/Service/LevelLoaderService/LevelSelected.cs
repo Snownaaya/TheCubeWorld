@@ -2,32 +2,27 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using Assets.Scripts.Service.LevelLoaderService.Loader;
 
 namespace Assets.Scripts.Service.LevelLoaderService
 {
     public class LevelSelected : MonoBehaviour
     {
-        private const string MainMenu = nameof(MainMenu);
-        private const string Level_1 = nameof(Level_1);
-        private const string Level_2 = nameof(Level_2);
-        private const string Level_3 = nameof(Level_3);
-
         [ReorderableList]
-        [SerializeField] private List<string> _levels;
+        [SerializeField] private List<SceneID> _levels;
 
-        private string _currentLevel;
+        private SceneID _currentLevel;
 
         private void Awake()
         {
-            _levels = new List<string>()
-            {
-                Level_1,
-                Level_2,
-                Level_3,
-            };
+            _levels = new List<SceneID> {
+                SceneID.Level_1, 
+                SceneID.Level_2,
+                SceneID.Level_3 };
+
         }
 
-        public string GetNextLevel()
+        public SceneID GetNextLevel()
         {
             if (_levels.Count == 0)
                 return _currentLevel;
@@ -36,15 +31,15 @@ namespace Assets.Scripts.Service.LevelLoaderService
             return _levels[randomIndex];
         }
 
-        public string GetCurrentLevel()
+        public SceneID GetCurrentLevel()
         {
-            foreach (string level in _levels)
+            foreach (SceneID level in _levels)
                 return level;
 
-            return null;
+            throw new System.Exception("No levels available to select the current level.");
         }
 
-        public string GetMainMenu() =>
-            MainMenu;
+        public SceneID GetMainMenu() =>
+            SceneID.MainMenu;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Datas;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Attack
@@ -11,7 +10,7 @@ namespace Assets.Scripts.Player.Attack
 
         public Collider DetectEnemies()
         {
-            Collider[] colliders = new Collider[50];
+            Collider[] colliders = new Collider[250];
 
             int hitCount = Physics.OverlapSphereNonAlloc(
                 _playerModel.position,

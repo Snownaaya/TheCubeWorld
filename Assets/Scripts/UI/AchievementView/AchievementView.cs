@@ -1,4 +1,4 @@
-﻿using UnityEngine.EventSystems;
+﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Datas;
 using UnityEngine.UI;
 using UnityEngine;
@@ -6,10 +6,10 @@ using System;
 
 namespace Assets.Scripts.UI.AchievementView
 {
-    public class AchievementView : MonoBehaviour, IPointerClickHandler
+    public class AchievementView : MonoBehaviour, ILockable
     {
-        [SerializeField] private Image _lockImage;
         [SerializeField] private AchievementConfig _achieveNames;
+        [SerializeField] private Image _lockImage;
 
         public AchievementConfig AchievementConfig => _achieveNames;
         public bool IsLock { get; private set; }
@@ -27,8 +27,5 @@ namespace Assets.Scripts.UI.AchievementView
             IsLock = false;
             _lockImage.gameObject.SetActive(IsLock);
         }
-
-        public void OnPointerClick(PointerEventData eventData) =>
-            Clicked?.Invoke();
     }
 }

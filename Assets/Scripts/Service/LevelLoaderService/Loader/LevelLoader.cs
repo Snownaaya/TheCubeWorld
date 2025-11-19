@@ -5,7 +5,7 @@ namespace Assets.Scripts.Service.LevelLoaderService.Loader
 {
     public class LevelLoader : ILevelLoader
     {
-        public AsyncOperation Load(string sceneName) =>
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        public AsyncOperation Load(SceneID sceneID) =>
+            SceneManager.LoadSceneAsync(sceneID.ToString(), LoadSceneMode.Single);
     }
 }

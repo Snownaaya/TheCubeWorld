@@ -29,8 +29,8 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         private void OnLoadMenu()
         {
-            _levelLoader.Load(MainMenu);
             _resourceService.ReturnAllPool();
+            _levelLoader.Load(SceneID.MainMenu);
             _settings.SetPause(false);
         }
     }

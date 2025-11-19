@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.UI.Shop.CharacterSkin;
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
 using System.Collections.Generic;

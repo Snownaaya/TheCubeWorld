@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 using System;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Enemies.Obstacle
 {
@@ -17,7 +16,7 @@ namespace Assets.Scripts.Enemies.Obstacle
 
         private float _speed;
         private float _delay = 0.02f;
-        private bool _isWalking = true;
+        private bool _isWalking;
 
         private Queue<Vector3> _targets;
 
@@ -31,6 +30,9 @@ namespace Assets.Scripts.Enemies.Obstacle
             _currentTarget = _targets.Peek();
             SwitchTarget();
         }
+
+        public void StartMove() =>
+            _isWalking = true;
 
         public async UniTask StopMove()
         {
@@ -50,7 +52,6 @@ namespace Assets.Scripts.Enemies.Obstacle
             if (direction.magnitude <= MinDistanceToTarget)
                 SwitchTarget();
 
-            _isWalking = true;
             return UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
         }
 

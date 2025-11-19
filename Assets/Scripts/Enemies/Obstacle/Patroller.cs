@@ -21,6 +21,8 @@ namespace Assets.Scripts.Enemies.Obstacle
                 _rigidbody,
                 _speed,
                 _patrolPoints.Select(point => point.position));
+
+            _wayPoint.StartMove();
         }
 
         private void OnEnable()
@@ -36,7 +38,6 @@ namespace Assets.Scripts.Enemies.Obstacle
                 _cancellationTokenSource.Cancel();
                 _cancellationTokenSource.Dispose();
                 _cancellationTokenSource = null;
-                _wayPoint.StopMove().Forget();
             }
         }
 

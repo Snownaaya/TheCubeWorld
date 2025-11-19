@@ -1,7 +1,10 @@
-﻿namespace Assets.Scripts.Visitor
+﻿using Assets.Scripts.UI.Shop.SO;
+
+namespace Assets.Scripts.Visitor
 {
     public interface IShopVisitor
     {
-       //void Visit(AbilityTypes);
+        public void Visit(AbilityItem abilityItem);
+        //public void Visit(CharacterSkinsItem characterSkinsItem);
     }
 }
