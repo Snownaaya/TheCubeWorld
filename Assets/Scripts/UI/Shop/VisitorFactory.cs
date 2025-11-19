@@ -2,6 +2,7 @@
 using Assets.Scripts.UI.Shop.SO;
 using Assets.Scripts.Visitor;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop
 {
@@ -15,11 +16,11 @@ namespace Assets.Scripts.UI.Shop
         {
             {
                 typeof(AbilityItem),
-                so => new ShopItemEntry(visitor => visitor.Visit((AbilityItem)so))
+                sciptableObject => new ShopItemEntry(visitor => visitor.Visit((AbilityItem)sciptableObject))
             },
             //{
             //    typeof(CharacterSkinsItem),
-            //    so => new ShopItemEntry(visitor => visitor.Visit((CharacterSkinsItem)so))
+            //    sciptableObject => new ShopItemEntry(visitor => visitor.Visit((CharacterSkinsItem)sciptableObject))
             //}
         };
         }

@@ -9,7 +9,7 @@ namespace Assets.Scripts.UI.Shop
         [SerializeField] private ShopPanel _shopPanel;
         [SerializeField] private BuyButton _buyButton;
         [SerializeField] private WalletView _walletView;
-        [SerializeField] private SelectionImage _selectedImage;
+        [SerializeField] private OwnedImage _ownedImage;
 
         private IWallet _wallet;
         private ShopVisitors _shopVisitors;
@@ -45,7 +45,11 @@ namespace Assets.Scripts.UI.Shop
             if (_wallet.IsEnought(_currentItemView.Price))
             {
                 _wallet.RemoveCoins(_currentItemView.Price);
+                _currentItemView.Entry.Accept(_shopVisitors.ContentUnlock);
+                _currentItemView.Entry.Accept(_shopVisitors.SkinSelector);
                 _currentItemView.Unlock();
+
+                ShowOnwedImage();
             }
         }
 
@@ -59,8 +63,11 @@ namespace Assets.Scripts.UI.Shop
             {
                 _currentItemView.Entry.Accept(_shopVisitors.SelectionChecker);
 
-                if (_shopVisitors.SelectionChecker.IsSelected)
-                    _selectedImage.ShowSelectIamge();
+                if (_shopVisitors.SelectionChecker.IsOwned)
+                {
+                    ShowOnwedImage();
+                    _buyButton.Hide();
+                }
             }
             else
             {
@@ -71,7 +78,10 @@ namespace Assets.Scripts.UI.Shop
         private void ShowBuyButton()
         {
             _buyButton.Show();
-            _selectedImage.HideSelectionImage();
+            _ownedImage.Hide();
         }
+
+        public void ShowOnwedImage() =>
+            _ownedImage.Show();
     }
 }

@@ -3,11 +3,11 @@ using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
-    public class SkinSelector : IShopVisitor
+    public class Purchase : IShopVisitor
     {
         private CharacterData _characterData;
 
-        public SkinSelector(CharacterData characterData) =>
+        public Purchase(CharacterData characterData) =>
             _characterData = characterData;
 
         public void Visit(AbilityItem abilityItem) =>

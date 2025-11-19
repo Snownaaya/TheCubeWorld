@@ -12,9 +12,9 @@ public class BuyButton : MonoBehaviour
 
     public event Action Clicked;
 
-    public void Show() => 
+    public void Show() =>
         _buyButton.gameObject.SetActive(true); 
-    public void Hide() => 
+    public void Hide() =>
         _buyButton.gameObject.SetActive(false);
 
     private void OnEnable() =>

@@ -8,10 +8,9 @@ using UnityEngine;
 public class ShopPanel : MonoBehaviour
 {
     [SerializeField] private Transform _itemsParent;
-    [SerializeField] private ShopContent _shopContent;
 
     [SerializeField] private ShopItemView _abilityPrefab;
-    [SerializeField] private ShopItemView _characterPrefab;
+    //[SerializeField] private ShopItemView _characterPrefab;
 
     private ShopItemFactory _shopItemFactory;
 
@@ -23,7 +22,7 @@ public class ShopPanel : MonoBehaviour
     public void Initialize(ShopVisitors shopVisitors)
     {
         _visitors = shopVisitors;
-        _shopItemFactory = new ShopItemFactory(_abilityPrefab, _characterPrefab);
+        _shopItemFactory = new ShopItemFactory(_abilityPrefab/*, _characterPrefab*/);
     }
 
     public void ItemClickView(IEnumerable<ShopItem> shopitems)
@@ -36,14 +35,14 @@ public class ShopPanel : MonoBehaviour
 
             spawnedItem.ItemClicked += OnItemViewClick;
 
-            //spawnedItem.UnHighlight();
+            spawnedItem.UnHighlight();
             spawnedItem.Entry.Accept(_visitors.UnlockChecker);
 
             if (_visitors.UnlockChecker.IsUnlock)
             {
                 spawnedItem.Entry.Accept(_visitors.SelectionChecker);
 
-                if (_visitors.SelectionChecker.IsSelected)
+                if (_visitors.SelectionChecker.IsOwned)
                 {
                     Highlight(spawnedItem);
                     ItemViewClicked?.Invoke(spawnedItem);

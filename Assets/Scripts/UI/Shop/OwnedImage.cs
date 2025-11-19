@@ -3,18 +3,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop
 {
-    public class SelectionImage : MonoBehaviour
+    public class OwnedImage : MonoBehaviour
     {
         [SerializeField] private Image _selectImage;
-        [SerializeField] private BuyButton _buyButton;
 
-        public void ShowSelectIamge()
-        {
+        public void Show() =>
             _selectImage.gameObject.SetActive(true);
-            _buyButton.Hide();
-        }
 
-        public void HideSelectionImage() =>
+        public void Hide() =>
             _selectImage.gameObject.SetActive(false);
     }
 }

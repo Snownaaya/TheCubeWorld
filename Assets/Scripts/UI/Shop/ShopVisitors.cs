@@ -8,14 +8,14 @@ namespace Assets.Scripts.UI.Shop
         public ShopVisitors(CharacterData characterData)
         {
             ContentUnlock = new ContentUnlock(characterData);
-            SkinSelector = new SkinSelector(characterData);
-            SelectionChecker = new SelectionChecker(characterData);
+            SkinSelector = new Purchase(characterData);
+            SelectionChecker = new PurchaseChecker(characterData);
             UnlockChecker = new UnlockChecker(characterData);
         }
 
         public ContentUnlock ContentUnlock { get; private set; }
-        public SkinSelector SkinSelector { get; private set; }
-        public SelectionChecker SelectionChecker { get; private set; }
+        public Purchase SkinSelector { get; private set; }
+        public PurchaseChecker SelectionChecker { get; private set; }
         public UnlockChecker UnlockChecker { get; private set; }
     }
 }

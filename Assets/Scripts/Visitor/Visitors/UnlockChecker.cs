@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Datas;
-using System.Linq;
+﻿using Assets.Scripts.Datas;
+using Assets.Scripts.UI.Shop;
+using Assets.Scripts.UI.Shop.SO;
 using System;
+using System.Linq;
+using UnityEngine;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
@@ -14,8 +16,11 @@ namespace Assets.Scripts.Visitor.Visitors
 
         public bool IsUnlock { get; private set; }
 
-        public void Visit(AbilityItem abilityItem) =>
+        public void Visit(AbilityItem abilityItem)
+        {
             IsUnlock = _characterData.OpenAbilities.Contains(abilityItem.AbilityTypes);
+            Debug.Log($"UnlockChecker: {abilityItem.AbilityTypes} -> {IsUnlock}");
+        }
 
         //public void Visit(CharacterSkinsItem characterSkinsItem) =>
         //    IsUnlock = _characterData.OpenCharacterSkins.Contains(characterSkinsItem.CharacterSkins);

@@ -21,7 +21,7 @@ namespace Assets.Scripts.Datas
             _money = new NotLessZeroProperty<int>(1);
 
             _openSkins = new List<CharacterSkins>() { CharacterSkins.Bunny };
-            _openAbilities = new List<ObstacleTypes>() { ObstacleTypes.Spikes };
+            _openAbilities = new List<ObstacleTypes>();
         }
 
         public NotLessZeroProperty<int> Money => _money;
@@ -50,13 +50,13 @@ namespace Assets.Scripts.Datas
             }
         }
 
-        public IReadOnlyList<CharacterSkins> OpenCharacterSkins => _openSkins;
-        public IReadOnlyList<ObstacleTypes> OpenAbilities => _openAbilities;
+        public IEnumerable<CharacterSkins> OpenCharacterSkins => _openSkins;
+        public IEnumerable<ObstacleTypes> OpenAbilities => _openAbilities;
 
         public void OpenCharacterSkin(CharacterSkins characterSkins)
         {
             if (_openSkins.Contains(characterSkins))
-                throw new ArgumentException(nameof(characterSkins));
+                return;
 
             _openSkins.Add(characterSkins);
         }
@@ -64,7 +64,7 @@ namespace Assets.Scripts.Datas
         public void OpenAbility(ObstacleTypes obstacleTypes)
         {
             if (_openAbilities.Contains(obstacleTypes))
-                throw new ArgumentException(nameof(obstacleTypes));
+                return;
 
             _openAbilities.Add(obstacleTypes);
         }
