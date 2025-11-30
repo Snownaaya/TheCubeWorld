@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.Shop.SO;
-using UnityEngine.EventSystems;
 using Assets.Scripts.Visitor;
-using UnityEngine.UI;
-using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop
 {

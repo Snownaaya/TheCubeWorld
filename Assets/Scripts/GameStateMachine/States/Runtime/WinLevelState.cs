@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Achievements;
-using Random = UnityEngine.Random;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
-using Cysharp.Threading.Tasks;
 using Assets.Scripts.Items;
+using Cysharp.Threading.Tasks;
+using Random = UnityEngine.Random;
 using System.Threading;
 using System;
 

@@ -6,6 +6,7 @@ using Assets.Scripts.Particles;
 using Assets.Scripts.Input;
 using Reflex.Attributes;
 using UnityEngine;
+using Assets.Scripts.Player.Skins;
 
 namespace Assets.Scripts.Player.Core
 {

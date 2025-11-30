@@ -37,7 +37,7 @@ namespace Assets.Scripts.Installers
             containerBuilder.AddSingleton(new LevelLoader(), typeof(ILevelLoader));
 
         private void BindPauseHandler(ContainerBuilder containerBuilder) =>
-            containerBuilder.AddSingleton(new PauseHandler(), typeof(PauseHandler));
+            containerBuilder.AddSingleton(new PauseHandler());
 
         private void BindSavesService(ContainerBuilder containerBuilder)
         {

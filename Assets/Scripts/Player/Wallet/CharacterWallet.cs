@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Service.Properties;
-using Assets.Scripts.Datas;
-using System;
+﻿using Assets.Scripts.Datas;
 using Assets.Scripts.Player.Core;
+using Assets.Scripts.Service.Properties;
+using System;
 
 namespace Assets.Scripts.Player.Wallet
 {
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Player.Wallet
             _walletSaver = walletSaver;
 
             NotLessZeroProperty<int> loadMoney = _walletSaver.Load();
-            // _characterData.Money.Value = loadMoney.Value;
+            _characterData.Money.Value = loadMoney.Value;
             _characterData.Money.Value = 10000;
         }
 

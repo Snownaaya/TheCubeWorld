@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Service.Properties;
-using Assets.Scripts.Enemies.Obstacle;
+using Assets.Scripts.Player.Skins;
 using System.Collections.Generic;
-using Assets.Scripts.Player.Core;
 using System;
+using Assets.Scripts.Enemies.Obstacles;
 
 namespace Assets.Scripts.Datas
 {
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Datas
         {
             _money = new NotLessZeroProperty<int>(1);
 
-            _openSkins = new List<CharacterSkins>() { CharacterSkins.Bunny };
+            _openSkins = new List<CharacterSkins>();
             _openAbilities = new List<ObstacleTypes>();
         }
 

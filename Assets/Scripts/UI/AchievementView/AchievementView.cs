@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Datas;
+using System;
 using UnityEngine.UI;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.UI.AchievementView
 {

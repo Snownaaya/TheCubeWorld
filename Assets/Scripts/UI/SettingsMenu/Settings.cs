@@ -1,9 +1,9 @@
-﻿using Screen = Assets.Scripts.UI.GameUI.Screen;
-using Assets.Scripts.Service.Pause;
+﻿using Assets.Scripts.Service.Pause;
+using Screen = Assets.Scripts.UI.GameUI.Screen;
+using System;
 using Reflex.Attributes;
 using UnityEngine.UI;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.UI.SettingsMenu
 {
@@ -12,23 +12,17 @@ namespace Assets.Scripts.UI.SettingsMenu
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitMainMenu;
 
-        private PauseHandler _pauseHandler;
-
         public event Action MainMenuRequested;
 
         [Inject]
-        private void Construct(PauseHandler pauseHandler)
-        {
-            _pauseHandler = pauseHandler;
-            _pauseHandler.Add(this);
-        }
+        private void Construct(PauseHandler pauseHandler) =>
+            pauseHandler.Add(this);
 
         private void OnEnable()
         {
             Button.onClick.AddListener(Open);
             _settingsButton.onClick.AddListener(Close);
             _exitMainMenu.onClick.AddListener(OnExitMenu);
-
         }
 
         private void OnDisable()

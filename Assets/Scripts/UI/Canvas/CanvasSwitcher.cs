@@ -1,5 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using YG;
 
 namespace Assets.Scripts.UI.Canvas

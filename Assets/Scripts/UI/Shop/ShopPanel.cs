@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.UI.Shop;
 using Assets.Scripts.UI.Shop.SO;
+using Assets.Scripts.Visitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +15,15 @@ public class ShopPanel : MonoBehaviour
 
     private ShopItemFactory _shopItemFactory;
 
-    private ShopVisitors _visitors;
+    private VisitorsHolder _visitors;
     private List<ShopItemView> _items = new List<ShopItemView>();
 
     public event Action<ShopItemView> ItemViewClicked;
 
-    public void Initialize(ShopVisitors shopVisitors)
+    public void Initialize(VisitorsHolder visitorsHolder, VisitorFactory visitorFactory)
     {
-        _visitors = shopVisitors;
-        _shopItemFactory = new ShopItemFactory(_abilityPrefab/*, _characterPrefab*/);
+        _visitors = visitorsHolder;
+        _shopItemFactory = new ShopItemFactory(_abilityPrefab, visitorFactory/*, _characterPrefab*/);
     }
 
     public void ItemClickView(IEnumerable<ShopItem> shopitems)

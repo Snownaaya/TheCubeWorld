@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using Cysharp.Threading.Tasks;
 using Assets.Scripts.Player;
+using System;
 using System.Threading;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Enemies.Boss
 {

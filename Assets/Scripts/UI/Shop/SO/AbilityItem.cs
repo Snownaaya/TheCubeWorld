@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enemies.Obstacle;
+﻿using Assets.Scripts.Enemies.Obstacles;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop.SO

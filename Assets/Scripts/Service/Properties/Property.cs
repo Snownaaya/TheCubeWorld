@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
-using System;
+﻿using System;
 
 namespace Assets.Scripts.Service.Properties
 {

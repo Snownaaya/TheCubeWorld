@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Core;
+﻿using Assets.Scripts.Player.Skins;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop.SO

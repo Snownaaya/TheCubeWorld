@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Datas;
 using Assets.Scripts.Other;
-using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine.UI;
 using UnityEngine;

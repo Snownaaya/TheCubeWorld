@@ -24,6 +24,7 @@ namespace Assets.Scripts.Installers
             BindFactory(containerBuilder, playerInput);
             BindCharacterData(containerBuilder);
             BindWallet(containerBuilder);
+            BindCharacterCkins(containerBuilder);
             BindCharacterHolder(containerBuilder);
         }
 
@@ -89,6 +90,11 @@ namespace Assets.Scripts.Installers
                 MobileInput mobileInput = new MobileInput(playerInput);
                 containerBuilder.AddSingleton(mobileInput, typeof(IInput));
             }
+        }
+
+        private void BindCharacterCkins(ContainerBuilder containerBuilder)
+        {
+
         }
     }
 }

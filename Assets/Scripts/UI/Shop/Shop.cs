@@ -1,19 +1,25 @@
 ﻿using Assets.Scripts.Player.Wallet;
+using Assets.Scripts.UI.Shop.SO;
+using Assets.Scripts.Visitor;
 using Reflex.Attributes;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop
 {
-    public class Shop : MonoBehaviour
+    public class Shop : MonoBehaviour, IDisposable
     {
         [SerializeField] private ShopPanel _shopPanel;
         [SerializeField] private BuyButton _buyButton;
         [SerializeField] private WalletView _walletView;
         [SerializeField] private OwnedImage _ownedImage;
+        [SerializeField] private ShopContent _shopContent;
 
         private IWallet _wallet;
-        private ShopVisitors _shopVisitors;
+        private VisitorsHolder _visitorsHolder;
         private ShopItemView _currentItemView;
+
+        public event Action<AbilityItem> AbilityItemClicked;
 
         [Inject]
         private void Construct(IWallet wallet)
@@ -22,34 +28,40 @@ namespace Assets.Scripts.UI.Shop
             _walletView.Initialize(_wallet);
         }
 
-        public void Initialize(ShopVisitors shopVisitors)
+        public void Initialize(VisitorsHolder visitorsHolder, VisitorFactory visitorFactory)
         {
-            _shopVisitors = shopVisitors;
-            _shopPanel.Initialize(_shopVisitors);
+            _visitorsHolder = visitorsHolder;
+            _shopPanel.Initialize(_visitorsHolder, visitorFactory);
+            _shopPanel.ItemClickView(_shopContent.AbilityItems);
             _shopPanel.ItemViewClicked += OnItemViewClick;
         }
 
         private void OnEnable()
         {
             _buyButton.Clicked += OnBuyClicked;
+            ShowBuyButton();
         }
 
-        private void OnDisable()
-        {
-            _shopPanel.ItemViewClicked -= OnItemViewClick;
+        private void OnDisable() =>
             _buyButton.Clicked -= OnBuyClicked;
-        }
-
+         
         private void OnBuyClicked()
         {
             if (_wallet.IsEnought(_currentItemView.Price))
             {
+                if (_currentItemView.Item is AbilityItem abilityItem)
+                    AbilityItemClicked?.Invoke(abilityItem);
+
                 _wallet.RemoveCoins(_currentItemView.Price);
-                _currentItemView.Entry.Accept(_shopVisitors.ContentUnlock);
-                _currentItemView.Entry.Accept(_shopVisitors.SkinSelector);
+                _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
+                _currentItemView.Entry.Accept(_visitorsHolder.SkinSelector);
                 _currentItemView.Unlock();
 
                 ShowOnwedImage();
+            }
+            else
+            {
+                _currentItemView.Lock();
             }
         }
 
@@ -57,13 +69,13 @@ namespace Assets.Scripts.UI.Shop
         {
             _currentItemView = view;
 
-            _currentItemView.Entry.Accept(_shopVisitors.UnlockChecker);
+            _currentItemView.Entry.Accept(_visitorsHolder.UnlockChecker);
 
-            if (_shopVisitors.UnlockChecker.IsUnlock)
+            if (_visitorsHolder.UnlockChecker.IsUnlock)
             {
-                _currentItemView.Entry.Accept(_shopVisitors.SelectionChecker);
+                _currentItemView.Entry.Accept(_visitorsHolder.SelectionChecker);
 
-                if (_shopVisitors.SelectionChecker.IsOwned)
+                if (_visitorsHolder.SelectionChecker.IsOwned)
                 {
                     ShowOnwedImage();
                     _buyButton.Hide();
@@ -83,5 +95,8 @@ namespace Assets.Scripts.UI.Shop
 
         public void ShowOnwedImage() =>
             _ownedImage.Show();
+
+        public void Dispose() =>
+            _shopPanel.ItemViewClicked -= OnItemViewClick;
     }
 }

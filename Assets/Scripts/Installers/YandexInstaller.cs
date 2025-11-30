@@ -13,9 +13,7 @@ namespace Assets.Scripts.Installers
             BindRewardAds(containerBuilder);
         }
 
-        private void BindRewardAds(ContainerBuilder containerBuilder)
-        {
+        private void BindRewardAds(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(containerBuilder => _rewarded);
-        }
     }
 }

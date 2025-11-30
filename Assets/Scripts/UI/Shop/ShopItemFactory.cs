@@ -8,18 +8,19 @@ namespace Assets.Scripts.UI.Shop
     public class ShopItemFactory
     {
         private ShopItemView _abilityPrefab;
+        private VisitorFactory _visitorFactory;
         //private ShopItemView _characterPrefab;
 
-        public ShopItemFactory(ShopItemView abilityPrefab) //CharacterSkinsItem characterPrefab
+        public ShopItemFactory(ShopItemView abilityPrefab, VisitorFactory visitorFactory) //CharacterSkinsItem characterPrefab
         {
+            _visitorFactory = visitorFactory;
             _abilityPrefab = abilityPrefab;
             //_characterPrefab = characterPrefab;
         }
 
         public ShopItemView Get(ShopItem item, Transform parent)
         {
-            VisitorFactory visitorFactory = new VisitorFactory();
-            ShopItemEntry entry = visitorFactory.Create(item);
+            ShopItemEntry entry = _visitorFactory.Create(item);
 
             ViewSelectorVisitor viewSelector = new ViewSelectorVisitor(
                 _abilityPrefab

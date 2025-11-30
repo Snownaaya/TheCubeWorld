@@ -19,19 +19,13 @@ namespace Assets.Scripts.Enemies.Boss
         public void StopIdle() =>
             _animator.SetBool(IsIdle, false);
 
-        public void StartAttack()
-        {
+        public void StartAttack() =>
             _animator.SetBool(IsAttack, true);
-        }
 
-        public void StopAttack()
-        {
+        public void StopAttack() =>
             _animator.SetBool(IsAttack, false);
-        }
 
-        public void StartDeath()
-        {
+        public void StartDeath() =>
             _animator.SetBool(IsDeath, true);
-        }
     }
 }

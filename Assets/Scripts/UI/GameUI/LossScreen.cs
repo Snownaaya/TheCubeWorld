@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Assets.Scripts.Service.Pause;
+using Reflex.Attributes;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Reflex.Attributes;
-using Assets.Scripts.Service.Pause;
 
 namespace Assets.Scripts.UI.GameUI
 {
@@ -12,19 +12,15 @@ namespace Assets.Scripts.UI.GameUI
         [SerializeField] private Button _exitMenu;
 
         private bool _isPause;
+        private float _time;
 
         public event Action RewardAdsRequested;
         public event Action RespawnRequested;
         public event Action ExitMenuRequested;
 
-        private PauseHandler _pauseHandler;
-
         [Inject]
-        private void Construct(PauseHandler pauseHandler)
-        {
-            _pauseHandler = pauseHandler;
+        private void Construct(PauseHandler pauseHandler) =>
             pauseHandler.Add(this);
-        }
 
         private void OnEnable()
         {
@@ -42,29 +38,26 @@ namespace Assets.Scripts.UI.GameUI
 
         public override void Open()
         {
-            if(CanvasGroup == null || RectTransform == null)
+            if (CanvasGroup == null || RectTransform == null)
                 return;
 
-            _isPause = true;
             CanvasGroup.alpha = 1;
             RectTransform.gameObject.SetActive(true);
             CanvasGroup.blocksRaycasts = true;
+            SetPause(true);
         }
 
         public override void Close()
         {
-            _isPause = false;
             CanvasGroup.alpha = 0;
             RectTransform.gameObject.SetActive(false);
             CanvasGroup.blocksRaycasts = false;
             SetPause(false);
+
         }
 
-        public void SetPause(bool isPaused)
-        {
-            _isPause = isPaused;
+        public void SetPause(bool isPaused) =>
             Time.timeScale = isPaused ? 0 : 1;
-        }
 
         private void OnClickExitMenu() =>
             ExitMenuRequested?.Invoke();

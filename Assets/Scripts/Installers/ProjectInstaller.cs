@@ -6,7 +6,7 @@ using Assets.Scripts.Items;
 using Assets.Scripts.Other;
 using Reflex.Core;
 using UnityEngine;
-using Assets.Scripts.UI.Shop;
+using Assets.Scripts.Visitor;
 using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Installers

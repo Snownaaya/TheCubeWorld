@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3490166515563472362, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
       propertyPath: m_Name
       value: spikes 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841960713290868259, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -59,12 +67,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2284029196056666113}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 465638624113877453}
     - targetCorrespondingSourceObject: {fileID: -3490166515563472362, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7446735892147037215}
     - targetCorrespondingSourceObject: {fileID: -3490166515563472362, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4070185929414218224}
+      addedObject: {fileID: 3410346430695280264}
   m_SourcePrefab: {fileID: 100100000, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
 --- !u!1 &885487731050794690 stripped
 GameObject:
@@ -83,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e0b131d9c782f4fb0a81c7771a95f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &4070185929414218224
-MeshCollider:
+--- !u!65 &3410346430695280264
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -101,10 +112,9 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8896568062329162453, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 4.1816792, y: 1.8709973, z: 0.6849239}
+  m_Center: {x: -1.1553409, y: 0, z: 0.34246194}
 --- !u!1 &5699582113357146501 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 49142a4afc70d7a4ca47ab8e3cdb05e2, type: 3}
@@ -131,3 +141,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &465638624113877453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5699582113357146501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77aa324e4bcdcd46801f1102edc7b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2284029196056666113}

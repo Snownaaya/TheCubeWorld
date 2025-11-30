@@ -15,5 +15,5 @@ MonoBehaviour:
   _speed: 7
   _speedRate: 1.5
   _damage: 10
-  _detectionRaduis: 1
+  _detectionRaduis: 20
   _attackTimer: 1

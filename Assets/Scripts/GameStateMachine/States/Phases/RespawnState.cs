@@ -4,7 +4,6 @@ using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.PluginYG;
 using Assets.Scripts.Items;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases

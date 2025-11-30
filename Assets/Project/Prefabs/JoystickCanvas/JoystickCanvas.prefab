@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 136.6079, y: 143.8728}
+  m_SizeDelta: {x: 230.14, y: 232.577}
   m_Pivot: {x: 0.5000002, y: 0.4999999}
 --- !u!222 &4166538346012245117
 CanvasRenderer:
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovementRange: 50
+  m_MovementRange: 100
   m_DynamicOriginRange: 100
   m_ControlPath: <Gamepad>/leftStick
   m_Behaviour: 0
@@ -145,10 +145,10 @@ RectTransform:
   - {fileID: 9001995227743208150}
   m_Father: {fileID: 136705974306837272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 191.401, y: 155.979}
-  m_SizeDelta: {x: 217.62305, y: 225.83301}
+  m_AnchorMin: {x: 0.091391094, y: 0.1395983}
+  m_AnchorMax: {x: 0.091391094, y: 0.1395983}
+  m_AnchoredPosition: {x: 0, y: 2}
+  m_SizeDelta: {x: 368.579, y: 355.365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3981681338190516438
 CanvasRenderer:
@@ -285,8 +285,8 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 2340, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1080, y: 2340}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

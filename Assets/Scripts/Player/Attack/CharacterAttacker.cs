@@ -56,6 +56,9 @@ namespace Assets.Scripts.Player.Attack
         {
             Collider enemyCollider = _enemyScaner.DetectEnemies();
 
+            if (enemyCollider == null)
+                return;
+
             if (enemyCollider.TryGetComponent(out BossHealth boss)
                 && _resourceConsumer.TryConsumeResource())
             {

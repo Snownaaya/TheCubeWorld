@@ -13,10 +13,8 @@ public abstract class BaseBridgeState : IStates
 
     private int _resourceCost = 1;
 
-    public BaseBridgeState(BuildButton buildButton)
-    {
+    public BaseBridgeState(BuildButton buildButton) =>
         _buildButton = buildButton;
-    }
 
     public BuildButton BuildButton => _buildButton;
 
@@ -26,22 +24,30 @@ public abstract class BaseBridgeState : IStates
     public void DeliverResourceToBridge(ResourceTypes resourceType)
     {
         BridgeSpawner currentSpawner = BuildButton.SpawnerSelector.GetCurrentSpawner();
+
+        if (currentSpawner == null)
+            return;
+
         Bridge bridge = currentSpawner.CurrentBridge;
+
+        if (bridge == null)
+            return;
+
         BuildingArea buildingArea = bridge.GetComponentInChildren<BuildingArea>();
 
-        if (buildingArea == null && bridge == null && currentSpawner == null)
+        if (buildingArea == null)
             return;
 
         ResourceConfig selectedConfig = BuildButton.ResourceConfig
             .FirstOrDefault(config => config.ResourceType == resourceType);
 
+        if (selectedConfig == null)
+            return;
+
         if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new NotLimitedProperty<int>(_resourceCost)))
         {
             BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
-           // BuildButton.ResourceStorage.RemoveResource(selectedConfig.ResourceType, 1);
-
-            if (selectedConfig != null)
-                buildingArea.DeliveResource(selectedConfig);
+            buildingArea.DeliveResource(selectedConfig);
         }
     }
 }

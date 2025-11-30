@@ -86,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2387401478811753482}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2439914240857378375}
     - targetCorrespondingSourceObject: {fileID: -3652816934448234667, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8067571753124899355}
@@ -169,11 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcebb5ed4e9789418faebe92b0ba4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
   _patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
   _rigidbody: {fileID: 2387401478811753482}
+  _obstacleTypes: 2
+  _speed: 3
 --- !u!54 &2387401478811753482
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -201,3 +205,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2439914240857378375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126883743819982940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4012de2344af2498fe38ed5a35aeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleConfig: {fileID: 11400000, guid: 83a64d8bcc44d84429ae8d7e1012da47, type: 2}

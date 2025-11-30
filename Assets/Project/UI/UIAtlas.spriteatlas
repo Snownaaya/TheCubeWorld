@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 8
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 73455b68e2f3a684ab1f3e2d5d8dfa17, type: 3}
+    - {fileID: 2800000, guid: 7a575d7da5b667244bc15c42e6844c1a, type: 3}
+    - {fileID: 2800000, guid: 0b8da0f64822c024caacb18dd7684d1f, type: 3}
+    - {fileID: 2800000, guid: c7b0c7d45c38e2d49a415a1986a66759, type: 3}
+    - {fileID: 2800000, guid: 81d6bf892f2edf640b416fa22e5c97de, type: 3}
+    - {fileID: 2800000, guid: 6c64094895ba37d43a055e9b7a0de587, type: 3}
+    - {fileID: 2800000, guid: f7c53a29d15829d4eab9e2c0892b6576, type: 3}
+    - {fileID: 2800000, guid: 5f4c863baaa552c4ea6257bdb745f94e, type: 3}
+    - {fileID: 2800000, guid: e9a7528b670b9984ead81ddc251a8a2d, type: 3}
+    - {fileID: 2800000, guid: 5b94c6730e97cdc4b8877bd3bd8860cf, type: 3}
+    - {fileID: 2800000, guid: d3e777af526cf44469d34c4f8b5bcb89, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 5b94c6730e97cdc4b8877bd3bd8860cf: 1178218892
+    - c7b0c7d45c38e2d49a415a1986a66759: 21300000
+    - 0b8da0f64822c024caacb18dd7684d1f: 21300000
+    - 6c64094895ba37d43a055e9b7a0de587: 21300000
+    - 73455b68e2f3a684ab1f3e2d5d8dfa17: -2089614963
+    - f7c53a29d15829d4eab9e2c0892b6576: 21300000
+    - 81d6bf892f2edf640b416fa22e5c97de: 1474630809
+    - 5f4c863baaa552c4ea6257bdb745f94e: 21300000
+    - e9a7528b670b9984ead81ddc251a8a2d: 21300000
+    - 7a575d7da5b667244bc15c42e6844c1a: 1830598239
+    - d3e777af526cf44469d34c4f8b5bcb89: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 1178218892, guid: 5b94c6730e97cdc4b8877bd3bd8860cf, type: 3}
+  - {fileID: 21300000, guid: c7b0c7d45c38e2d49a415a1986a66759, type: 3}
+  - {fileID: 21300000, guid: 0b8da0f64822c024caacb18dd7684d1f, type: 3}
+  - {fileID: 21300000, guid: 6c64094895ba37d43a055e9b7a0de587, type: 3}
+  - {fileID: -2089614963, guid: 73455b68e2f3a684ab1f3e2d5d8dfa17, type: 3}
+  - {fileID: 21300000, guid: f7c53a29d15829d4eab9e2c0892b6576, type: 3}
+  - {fileID: 1474630809, guid: 81d6bf892f2edf640b416fa22e5c97de, type: 3}
+  - {fileID: 21300000, guid: 5f4c863baaa552c4ea6257bdb745f94e, type: 3}
+  - {fileID: 21300000, guid: e9a7528b670b9984ead81ddc251a8a2d, type: 3}
+  - {fileID: 1830598239, guid: 7a575d7da5b667244bc15c42e6844c1a, type: 3}
+  - {fileID: 21300000, guid: d3e777af526cf44469d34c4f8b5bcb89, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - "\u0442\u0430\u0431\u043B\u0438\u0447\u043A\u0430_1"
+  - c92085e91d246b9
+  - building-icon-1
+  - settings-icon-1
+  - 8dcef20c5c009a8_0
+  - "\u043A\u0443\u0431\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u043C\u0438\u0440
+    \u043A\u043D\u043E\u043F\u043A\u0430"
+  - ebx8nWHLpnY_0
+  - "\u043A\u0443\u0431\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u043C\u0438\u0440
+    \u0444\u043E\u043D"
+  - "\u043F\u0430\u0442\u0435\u0440\u043D"
+  - 52a8fa4a5acdff2f61b0b65b00ebc4b6_0
+  - "\u0444\u043E\u043D \u0434\u043B\u044F \u043C\u0430\u0433\u0430\u0437\u0430"
+  m_RenderDataMap: {}
+  m_Tag: UIAtlas
+  m_IsVariant: 0

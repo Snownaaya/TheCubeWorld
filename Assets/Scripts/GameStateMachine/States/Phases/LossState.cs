@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Interfaces;
@@ -6,7 +7,6 @@ using Assets.Scripts.UI.GameUI;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using System;
-using Assets.Scripts.Items;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {

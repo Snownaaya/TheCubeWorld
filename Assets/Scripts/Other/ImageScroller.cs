@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Other
@@ -16,7 +17,14 @@ namespace Assets.Scripts.Other
         private void Awake() =>
             _rawImage = GetComponent<RawImage>();
 
-        private void Update() =>
-            _rawImage.uvRect = new Rect(_rawImage.uvRect.position + new Vector2(_xDirection * _scrollSpeed, _yDirection * _scrollSpeed) * Time.deltaTime, _rawImage.uvRect.size);
+        private void Update()
+        {
+            _rawImage.uvRect = new Rect(_rawImage.uvRect.position + new Vector2(_xDirection
+                   * _scrollSpeed,
+                   _yDirection *
+                   _scrollSpeed) *
+                   Time.unscaledDeltaTime,
+                   _rawImage.uvRect.size);
+        }
     }
 }

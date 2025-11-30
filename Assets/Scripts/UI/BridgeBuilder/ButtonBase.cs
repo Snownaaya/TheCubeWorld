@@ -1,8 +1,8 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.Interfaces;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Assets.Scripts.Interfaces;
 
 namespace Assets.Scripts.UI.BridgeBuilder
 {

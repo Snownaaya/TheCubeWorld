@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Achievements;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 namespace Assets.Scripts.UI.AchievementView
 {

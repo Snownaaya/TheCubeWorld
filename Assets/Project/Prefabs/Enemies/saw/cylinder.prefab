@@ -124,6 +124,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6688905467251501307}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 182924687003643756}
   m_SourcePrefab: {fileID: 100100000, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
 --- !u!1 &436919757114771259 stripped
 GameObject:
@@ -142,9 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcebb5ed4e9789418faebe92b0ba4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
   _patrolPoints: []
   _rigidbody: {fileID: 6688905467251501307}
+  _obstacleConfig: {fileID: 11400000, guid: 4feaef612db3c034199c1829e72a99c0, type: 2}
+  _speed: 3
 --- !u!114 &5455038089827827150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +211,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &182924687003643756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436919757114771259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4012de2344af2498fe38ed5a35aeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacleConfig: {fileID: 11400000, guid: 4feaef612db3c034199c1829e72a99c0, type: 2}
 --- !u!4 &962521931584462209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
