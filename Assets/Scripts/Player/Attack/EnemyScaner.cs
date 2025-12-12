@@ -1,27 +1,29 @@
-﻿using Assets.Scripts.Datas;
+﻿using Assets.Scripts.Datas.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Attack
 {
     public class EnemyScaner : MonoBehaviour
     {
-        [SerializeField] private CharacterConfig _characterConfig;
         [SerializeField] private Transform _playerModel;
+        [SerializeField] private LayerMask _bossMask;
+
+        private CharacterConfig _characterConfig;
+
+        public void Initialize(CharacterConfig characterConfig) =>
+            _characterConfig = characterConfig;
 
         public Collider DetectEnemies()
         {
-            Collider[] colliders = new Collider[250];
+            Collider[] colliders = Physics.OverlapSphere(_playerModel.position, _characterConfig.DetectionRadius, _bossMask);
+            float detectionRadiusSqr = _characterConfig.DetectionRadius * _characterConfig.DetectionRadius;
 
-            int hitCount = Physics.OverlapSphereNonAlloc(
-                _playerModel.position,
-                _characterConfig.DetectionRadius,
-                colliders);
-
-            for (int i = 0; i < hitCount; i++)
+            for (int i = 0; i < colliders.Length; i++)
             {
-                float distance = Vector3.Distance(_playerModel.position, colliders[i].transform.position);
+                Vector3 toCollider = colliders[i].transform.position - _playerModel.position;
+                float distanceSqr = toCollider.sqrMagnitude;
 
-                if (distance <= _characterConfig.DetectionRadius)
+                if (distanceSqr <= detectionRadiusSqr)
                     return colliders[i];
             }
 

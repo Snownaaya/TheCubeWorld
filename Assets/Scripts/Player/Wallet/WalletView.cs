@@ -1,11 +1,17 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using TMPro;
+using UniRx;
+using UnityEngine;
 
 namespace Assets.Scripts.Player.Wallet
 {
     public class WalletView : MonoBehaviour
     {
-        [SerializeField] TextMeshProUGUI balanceText;
+        [SerializeField] private TextMeshProUGUI balanceText;
+        [SerializeField] private RectTransform _rectTransform;
+
+        private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         private IWallet _wallet;
 
@@ -15,13 +21,21 @@ namespace Assets.Scripts.Player.Wallet
 
             UpdateValue(_wallet.GetCurrentCoin());
 
-            _wallet.CharacterData.Money.Changed += UpdateValue;
+            _wallet.PersistentCharacterData.Money
+                 .Subscribe(UpdateValue)
+                 .AddTo(_compositeDisposable);
         }
 
         private void OnDestroy() =>
-            _wallet.CharacterData.Money.Changed -= UpdateValue;
+            _compositeDisposable.Dispose();
 
         private void UpdateValue(int value) =>
             balanceText.text = value.ToString();
+
+        public void Show() =>
+            _rectTransform.gameObject.SetActive(true);
+
+        public void Hide() =>
+            _rectTransform.gameObject.SetActive(false);
     }
 }

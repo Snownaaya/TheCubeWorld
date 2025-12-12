@@ -1,19 +1,24 @@
 ﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Datas;
+using Assets.Scripts.Datas.Character;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
     public class Purchase : IShopVisitor
     {
-        private CharacterData _characterData;
+        private IPersistentCharacterData _persistentCharacterData;
+        private ITransientCharacterData _transientCharacterData;
 
-        public Purchase(CharacterData characterData) =>
-            _characterData = characterData;
+        public Purchase(IPersistentCharacterData persistentCharacterData,
+            ITransientCharacterData transientCharacterdata)
+        {
+            _persistentCharacterData = persistentCharacterData;
+            _transientCharacterData = transientCharacterdata;
+        }
 
         public void Visit(AbilityItem abilityItem) =>
-            _characterData.SelectedAbility = abilityItem.AbilityTypes;
+            _transientCharacterData.SelectedAbility = abilityItem.AbilityTypes;
 
-        //public void Visit(CharacterSkinsItem characterSkinsItem) =>
-        //    _characterData.SelectedCharacterSkin = characterSkinsItem.CharacterSkins;
+        public void Visit(CharacterSkinsItem characterSkinsItem) =>
+            _persistentCharacterData.SelectedCharacterSkin = characterSkinsItem.CharacterSkins;
     }
 }

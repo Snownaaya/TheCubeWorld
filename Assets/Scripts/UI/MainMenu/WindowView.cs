@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Service.Audio;
+using Reflex.Attributes;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.MainMenu
@@ -7,6 +9,12 @@ namespace Assets.Scripts.UI.MainMenu
     {
         [field: SerializeField] protected Button ButtonOpen { get; private set; }
         [field: SerializeField] protected Button ButtonClose { get; private set; }
+
+        private AudioService _audioService;
+
+        [Inject]
+        private void Construct(AudioService audioService) =>
+            _audioService = audioService;
 
         private void OnEnable()
         {
@@ -20,8 +28,10 @@ namespace Assets.Scripts.UI.MainMenu
             ButtonClose.onClick.RemoveListener(Close);
         }
 
-        protected abstract void Open();
+        protected virtual void Open() =>
+            _audioService.PlaySound(AudioTypes.Buttons);
 
-        protected abstract void Close();
+        protected virtual void Close() =>
+            _audioService.PlaySound(AudioTypes.Buttons);
     }
 }

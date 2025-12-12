@@ -1,19 +1,24 @@
 ﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Datas;
+using Assets.Scripts.Datas.Character;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
     public class ContentUnlock : IShopVisitor
     {
-        private CharacterData _characterData;
+        private IPersistentCharacterData _persistentCharacterData;
+        private ITransientCharacterData _transientCharacterdata;
 
-        public ContentUnlock(CharacterData characterData) =>
-            _characterData = characterData;
+        public ContentUnlock(IPersistentCharacterData persistentCharacterData,
+            ITransientCharacterData transientCharacterdata)
+        {
+            _persistentCharacterData = persistentCharacterData;
+            _transientCharacterdata = transientCharacterdata;
+        }
 
         public void Visit(AbilityItem abilityItem) =>
-           _characterData.OpenAbility(abilityItem.AbilityTypes);
+           _transientCharacterdata.OpenAbility(abilityItem.AbilityTypes);
 
-        //public void Visit(CharacterSkinsItem characterSkinsItem) =>
-        //    _characterData.OpenCharacterSkin(characterSkinsItem.CharacterSkins);
+        public void Visit(CharacterSkinsItem characterSkinsItem) =>
+            _persistentCharacterData.OpenCharacterSkin(characterSkinsItem.CharacterSkins);
     }
 }

@@ -1,22 +1,26 @@
 ﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Datas;
-using UnityEngine;
+using Assets.Scripts.Datas.Character;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
     public class PurchaseChecker : IShopVisitor
     {
-        private CharacterData _characterData;
+        private IPersistentCharacterData _persistentCharacterData;
+        private ITransientCharacterData _transientCharacterData;
 
-        public PurchaseChecker(CharacterData characterData) =>
-            _characterData = characterData;
+        public PurchaseChecker(IPersistentCharacterData persistentCharacterData,
+            ITransientCharacterData transientCharacterData)
+        {
+            _persistentCharacterData = persistentCharacterData;
+            _transientCharacterData = transientCharacterData;
+        }
 
         public bool IsOwned { get; private set; }
 
         public void Visit(AbilityItem abilityItem) =>
-            IsOwned = _characterData.SelectedAbility == abilityItem.AbilityTypes;
+            IsOwned = _transientCharacterData.SelectedAbility == abilityItem.AbilityTypes;
 
-        //public void Visit(CharacterSkinsItem characterSkinsItem) =>
-        //    IsSelected = _characterData.SelectedCharacterSkin == characterSkinsItem.CharacterSkins;
+        public void Visit(CharacterSkinsItem characterSkinsItem) =>
+            IsOwned = _persistentCharacterData.SelectedCharacterSkin == characterSkinsItem.CharacterSkins;
     }
 }

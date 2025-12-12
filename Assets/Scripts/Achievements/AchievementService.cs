@@ -30,15 +30,15 @@ namespace Assets.Scripts.Achievements
 
         public bool Achieve(AchievementNames achievementName)
         {
-            //if (_achievementsStatuses.ContainsKey(achievementName) && _achievementsStatuses[achievementName] == false)
-            //{
+            if (_achievementsStatuses.ContainsKey(achievementName) && _achievementsStatuses[achievementName] == false)
+            {
                 _achievementsStatuses[achievementName] = true;
                 RecordAchievements();
                 AchievementNameEarned?.Invoke(achievementName);
                 return true;
-            //}
+            }
 
-            //return false;
+            return false;
         }
     }
 }

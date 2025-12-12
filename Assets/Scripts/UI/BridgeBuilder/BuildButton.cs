@@ -22,10 +22,8 @@ namespace Assets.Scripts.UI.BridgeBuilder
             _state = new BuildBridgeState(this);
 
         [Inject]
-        private void Construct(IInventory inventory)
-        {
+        private void Construct(IInventory inventory) =>
             _inventory = inventory;
-        }
 
         public IInventory Inventory => _inventory;
         public BuildBridgeState State => _state;

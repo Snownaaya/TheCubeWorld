@@ -2,8 +2,7 @@
 {
     public enum CharacterSkins
     {
+        Bunny,
         BunnyWhite,
-        Cat,
-        Dog
     }
 }

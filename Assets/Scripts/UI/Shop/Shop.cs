@@ -3,6 +3,7 @@ using Assets.Scripts.UI.Shop.SO;
 using Assets.Scripts.Visitor;
 using Reflex.Attributes;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop
@@ -20,6 +21,7 @@ namespace Assets.Scripts.UI.Shop
         private ShopItemView _currentItemView;
 
         public event Action<AbilityItem> AbilityItemClicked;
+        public event Action<CharacterSkinsItem> CharacterSkinsItemClicked;
 
         [Inject]
         private void Construct(IWallet wallet)
@@ -32,7 +34,9 @@ namespace Assets.Scripts.UI.Shop
         {
             _visitorsHolder = visitorsHolder;
             _shopPanel.Initialize(_visitorsHolder, visitorFactory);
-            _shopPanel.ItemClickView(_shopContent.AbilityItems);
+
+            _shopPanel.ItemClickView(_shopContent.AbilityItems.Concat<ShopItem>(_shopContent.CharacterSkinItem));
+
             _shopPanel.ItemViewClicked += OnItemViewClick;
         }
 
@@ -44,7 +48,7 @@ namespace Assets.Scripts.UI.Shop
 
         private void OnDisable() =>
             _buyButton.Clicked -= OnBuyClicked;
-         
+
         private void OnBuyClicked()
         {
             if (_wallet.IsEnought(_currentItemView.Price))
@@ -52,10 +56,16 @@ namespace Assets.Scripts.UI.Shop
                 if (_currentItemView.Item is AbilityItem abilityItem)
                     AbilityItemClicked?.Invoke(abilityItem);
 
-                _wallet.RemoveCoins(_currentItemView.Price);
+                if (_currentItemView.Item is CharacterSkinsItem characterSkinsItem)
+                    CharacterSkinsItemClicked?.Invoke(characterSkinsItem);
+
                 _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
                 _currentItemView.Entry.Accept(_visitorsHolder.SkinSelector);
+
+                _shopPanel.ItemClickView(_shopContent.AbilityItems.Concat<ShopItem>(_shopContent.CharacterSkinItem));
+
                 _currentItemView.Unlock();
+                _wallet.RemoveCoins(_currentItemView.Price);
 
                 ShowOnwedImage();
             }

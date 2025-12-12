@@ -1,9 +1,9 @@
-using Assets.Scripts.Service.Properties;
 using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Datas;
 using Assets.Scripts.Items;
-using UnityEngine;
 using System;
+using UniRx;
+using UnityEngine;
 
 namespace Assets.Scripts.Bridge
 {
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Bridge
         [SerializeField] private Material _blueprintMaterial;
         [SerializeField] private Material _invisibleMaterial;
 
-        private NotLimitedProperty<int> _buildedPartsCount = new(0);
+        private ReactiveProperty<int> _buildedPartsCount = new(0);
 
         public event Action<ResourceTypes, BridgeType> Completed;
 

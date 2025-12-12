@@ -1,22 +1,22 @@
-using Assets.Scripts.Service.Properties;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.HealthCharacters
 {
     public abstract class Health : MonoBehaviour, IHealth
     {
-        private NotLimitedProperty<float> _maxHealth;
-        private NotLimitedProperty<float> _currentHealth;
+        private ReactiveProperty<float> _maxHealth;
+        private ReactiveProperty<float> _currentHealth;
 
         private protected bool _isDead = false;
 
-        public IReadOnlyProperty<float> CurrentHealth => _currentHealth;
-        public IReadOnlyProperty<float> MaxHealth => _maxHealth;
+        public ReactiveProperty<float> CurrentHealth => _currentHealth;
+        public ReactiveProperty<float> MaxHealth => _maxHealth;
 
         private void Awake()
         {
-            _maxHealth = new NotLimitedProperty<float>(100);
-            _currentHealth = new NotLimitedProperty<float>(100);
+            _maxHealth = new ReactiveProperty<float>(100);
+            _currentHealth = new ReactiveProperty<float>(100);
         }
 
         public virtual void TakeDamage(float damage)

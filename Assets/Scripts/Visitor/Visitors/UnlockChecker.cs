@@ -1,28 +1,32 @@
-﻿using Assets.Scripts.Datas;
-using Assets.Scripts.UI.Shop;
+﻿using Assets.Scripts.Datas.Character;
 using Assets.Scripts.UI.Shop.SO;
 using System;
 using System.Linq;
-using UnityEngine;
 
 namespace Assets.Scripts.Visitor.Visitors
 {
     public class UnlockChecker : IShopVisitor
     {
-        private CharacterData _characterData;
+        private IPersistentCharacterData _persistentCharacterData;
+        private ITransientCharacterData _transientCharacterData;
 
-        public UnlockChecker(CharacterData characterData) =>
-            _characterData = characterData;
+        public UnlockChecker(IPersistentCharacterData persistentCharacterData,
+            ITransientCharacterData transientCharacterData)
+        {
+            _persistentCharacterData = persistentCharacterData;
+            _transientCharacterData = transientCharacterData;
+        }
 
         public bool IsUnlock { get; private set; }
 
         public void Visit(AbilityItem abilityItem)
         {
-            IsUnlock = _characterData.OpenAbilities.Contains(abilityItem.AbilityTypes);
-            Debug.Log($"UnlockChecker: {abilityItem.AbilityTypes} -> {IsUnlock}");
+            IsUnlock = _transientCharacterData.OpenAbilities.Contains(abilityItem.AbilityTypes); 
         }
 
-        //public void Visit(CharacterSkinsItem characterSkinsItem) =>
-        //    IsUnlock = _characterData.OpenCharacterSkins.Contains(characterSkinsItem.CharacterSkins);
+        public void Visit(CharacterSkinsItem characterSkinsItem)
+        {
+            IsUnlock = _persistentCharacterData.OpenCharacterSkins.Contains(characterSkinsItem.CharacterSkins);
+        }
     }
 }

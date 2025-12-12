@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Service.Properties;
+﻿using UniRx;
 
 namespace Assets.Scripts.UI.HealthCharacters
 {
     public interface IHealth
     {
-        IReadOnlyProperty<float> MaxHealth { get; }
-        IReadOnlyProperty<float> CurrentHealth { get; }
+        ReactiveProperty<float> MaxHealth { get; }
+        ReactiveProperty<float> CurrentHealth { get; }
 
         void TakeDamage(float damage);
     }

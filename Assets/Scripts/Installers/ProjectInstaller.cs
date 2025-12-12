@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Service.LevelLoaderService;
+﻿using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Particles;
 using Assets.Scripts.Input;
 using Assets.Scripts.Items;
 using Assets.Scripts.Other;
+using Assets.Scripts.Particles;
+using Assets.Scripts.Player.Saves;
+using Assets.Scripts.Service.LevelLoaderService;
 using Reflex.Core;
 using UnityEngine;
-using Assets.Scripts.Visitor;
-using Assets.Scripts.Datas;
 
 namespace Assets.Scripts.Installers
 {
@@ -21,14 +21,15 @@ namespace Assets.Scripts.Installers
         {
             BindStartLevel(containerBuilder);
             BindJoystick(containerBuilder);
-            InitiSpawner(containerBuilder);
+            InitSpawner(containerBuilder);
+            BindPersistentData(containerBuilder);
             BindCurrentBoss(containerBuilder);
         }
 
         private void BindCurrentBoss(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new CurrentBossService(), typeof(IBossTargetService));
 
-        private void InitiSpawner(ContainerBuilder containerBuilder)
+        private void InitSpawner(ContainerBuilder containerBuilder)
         {
             SpawnerRoot spawnerRoot = Instantiate(_spawnerRoot);
             DontDestroyOnLoad(spawnerRoot);
@@ -51,6 +52,15 @@ namespace Assets.Scripts.Installers
             DontDestroyOnLoad(startLevel);
 
             containerBuilder.AddSingleton(startLevel, typeof(IStartLevel));
+        }
+
+        private void BindPersistentData(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<IPersistentCharacterData>(container =>
+            {
+                ICharacterSaveRepository characterSaveRepository = container.Resolve<ICharacterSaveRepository>();
+                return new PersistentCharacterData(characterSaveRepository);
+            });
         }
     }
 }

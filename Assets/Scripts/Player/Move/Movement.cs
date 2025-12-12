@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Datas;
+﻿using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Input;
 using Reflex.Attributes;
 using UnityEngine;
@@ -10,8 +10,8 @@ namespace Assets.Scripts.Player.Move
     public class Movement : MonoBehaviour, IMoveble, IDisposable
     {
         [SerializeField] private CharacterConfig _characterConfig;
-        [SerializeField] private CharacterView _characterView;
         [SerializeField] private Transform _characterModel;
+        [SerializeField] private CharacterView _currentCharacterView;
 
         private Rigidbody _rigidbody;
         private PlayerInput _playerInput;
@@ -26,14 +26,19 @@ namespace Assets.Scripts.Player.Move
         }
 
         [Inject]
-        public void Construct(IInput input, PlayerInput playerInput)
+        public void Construct(IInput input,
+            PlayerInput playerInput)
         {
             _input = input;
             _playerInput = playerInput;
+
             _playerInput.Enable();
             _input.Moved += OnMove;
             _input.Stopped += StopMove;
         }
+
+        public void Initialize(CharacterView characterView) =>
+            _currentCharacterView = characterView;
 
         public void Dispose()
         {
@@ -47,8 +52,8 @@ namespace Assets.Scripts.Player.Move
             _characterModel.LookAt(_characterModel.position + direction);
             _rigidbody.velocity = direction * _characterConfig.Speed * _characterConfig.SpeedRate;
 
-            _characterView.StartWalk();
-            _characterView.StopIdle();
+            _currentCharacterView.StartWalk();
+            _currentCharacterView.StopIdle();
         }
 
         public void StopMove()
@@ -56,8 +61,8 @@ namespace Assets.Scripts.Player.Move
             if (_rigidbody != null)
                 _rigidbody.velocity = Vector3.zero;
 
-            _characterView.StartIdle();
-            _characterView.StopWalk();
+            _currentCharacterView.StartIdle();
+            _currentCharacterView.StopWalk();
         }
     }
 }

@@ -11,7 +11,7 @@ public class ShopPanel : MonoBehaviour
     [SerializeField] private Transform _itemsParent;
 
     [SerializeField] private ShopItemView _abilityPrefab;
-    //[SerializeField] private ShopItemView _characterPrefab;
+    [SerializeField] private ShopItemView _characterPrefab;
 
     private ShopItemFactory _shopItemFactory;
 
@@ -23,7 +23,7 @@ public class ShopPanel : MonoBehaviour
     public void Initialize(VisitorsHolder visitorsHolder, VisitorFactory visitorFactory)
     {
         _visitors = visitorsHolder;
-        _shopItemFactory = new ShopItemFactory(_abilityPrefab, visitorFactory/*, _characterPrefab*/);
+        _shopItemFactory = new ShopItemFactory(_abilityPrefab, visitorFactory , _characterPrefab);
     }
 
     public void ItemClickView(IEnumerable<ShopItem> shopitems)

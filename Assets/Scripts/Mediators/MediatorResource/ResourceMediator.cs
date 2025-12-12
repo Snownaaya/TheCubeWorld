@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Items;
+﻿using Assets.Scripts.Items;
+using Assets.Scripts.Player.Inventory;
+using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.Domain.MediatorResource
@@ -10,6 +12,7 @@ namespace Assets.Scripts.Domain.MediatorResource
         [SerializeField] private ResourceCountView[] _view;
 
         private IInventory _playerInventory;
+        private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         [Inject]
         private void Construct(IInventory inventory)
@@ -19,7 +22,10 @@ namespace Assets.Scripts.Domain.MediatorResource
             foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
                 UpdateCountText(resourceType, _playerInventory.ResourceStacks[resourceType].Value);
-                _playerInventory.ResourceStacks[resourceType].Changed += (value) => UpdateCountText(resourceType, value);
+
+                _playerInventory.ResourceStacks[resourceType]
+                        .Subscribe(value => UpdateCountText(resourceType, value))
+                        .AddTo(_compositeDisposable);
             }
         }
 
@@ -27,9 +33,8 @@ namespace Assets.Scripts.Domain.MediatorResource
         {
             if (_playerInventory == null)
                 return;
-       
-            foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
-                _playerInventory.ResourceStacks[resourceType].Changed -= (value) => UpdateCountText(resourceType, value);
+
+            _compositeDisposable.Dispose();
         }
 
         public void UpdateCountText(ResourceTypes type, int count)

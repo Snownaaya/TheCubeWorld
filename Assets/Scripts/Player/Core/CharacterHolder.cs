@@ -8,16 +8,19 @@ namespace Assets.Scripts.Player.Core
         public Character Character { get; private set; }
         public Movement Movement { get; private set; }
         public CharacterAttacker Attacker { get; private set; }
+        public SkinChanger SkinChanger { get; private set; }
 
-        public bool Initilized => Character != null && Movement != null && Attacker != null;
+        public bool Initilized => Character != null && Movement != null && Attacker != null && SkinChanger != null;
 
         public void Initialize(Character characterAttacker,
             Movement movement,
-            CharacterAttacker attacker)
+            CharacterAttacker attacker,
+            SkinChanger skinChanger)
         {
             Character = characterAttacker;
             Movement = movement;
             Attacker = attacker;
+            SkinChanger = skinChanger;
 
             if (Initilized == false)
                 throw new System.Exception("CharacterHolder not initialized properly");

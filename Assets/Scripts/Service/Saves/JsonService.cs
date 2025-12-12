@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Service.Json;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+using System.IO;
 
 namespace Assets.Scripts.Service.Saves
 {
@@ -12,39 +11,17 @@ namespace Assets.Scripts.Service.Saves
             if (string.IsNullOrWhiteSpace(json))
                 return default;
 
-            try
-            {
-                return JsonConvert.DeserializeObject<T>(json, GetSettings());
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException($"{typeof(T)}: {ex.Message}", ex);
-            }
+            return JsonConvert.DeserializeObject<T>(File.ReadAllText(json));
         }
 
         public string Serialize<T>(T obj)
         {
-            try
+            return JsonConvert.SerializeObject(obj,
+                Formatting.Indented,
+                new JsonSerializerSettings
             {
-                return JsonConvert.SerializeObject(obj, Formatting.Indented, GetSettings());
-            }
-            catch (Exception ex)
-            {
-                throw new InvalidOperationException($"{typeof(T)}: {ex.Message}", ex);
-            }
-        }
-
-        private JsonSerializerSettings GetSettings()
-        {
-            return new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto,
-
-                Converters = new List<JsonConverter>
-                {
-                    new Newtonsoft.Json.Converters.StringEnumConverter()
-                }
-            };
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
     }
 }

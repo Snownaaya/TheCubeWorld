@@ -2,8 +2,10 @@
 using Assets.Scripts.Enemies.Obstacles.Animation;
 using Assets.Scripts.Enemies.Obstacles.Patrollers;
 using Assets.Scripts.Ground.Filler;
+using Assets.Scripts.Player.Core;
 using Assets.Scripts.UI.Shop;
 using Assets.Scripts.UI.Shop.SO;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.Mediators
@@ -15,11 +17,23 @@ namespace Assets.Scripts.Mediators
         [SerializeField] private PatrollerStopper _patrolerStopper;
         [SerializeField] private SpikesAnimation _spikesAnimation;
 
-        private void OnEnable() =>
-            _shop.AbilityItemClicked += OnDeactive;
+        private CharacterHolder _characterHolder;
 
-        private void OnDisable() =>
-            _shop.AbilityItemClicked -= OnDeactive;
+        [Inject]
+        private void Construct(CharacterHolder characterHolder) =>
+            _characterHolder = characterHolder;
+
+        private void OnEnable()
+        {
+            _shop.AbilityItemClicked += OnDeactive;
+            _shop.CharacterSkinsItemClicked += OnSkinChange;
+        }
+
+        private void OnDisable()
+        {
+            _shop.AbilityItemClicked -= OnDeactive; 
+            _shop.CharacterSkinsItemClicked -= OnSkinChange;
+        }
 
         private void OnDeactive(AbilityItem abilityItem)
         {
@@ -42,5 +56,8 @@ namespace Assets.Scripts.Mediators
                     break;
             }
         }
+
+        private void OnSkinChange(CharacterSkinsItem item) =>
+            _characterHolder.SkinChanger.Change(item.CharacterSkins);
     }
 }

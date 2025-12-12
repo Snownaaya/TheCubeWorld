@@ -1,26 +1,33 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+﻿using Assets.Scripts.Achievements.Observers;
+using Assets.Scripts.Datas;
+using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.Service.LevelLoaderService;
+using Assets.Scripts.Service.Audio;
 using Assets.Scripts.Service.CharacterService;
-using Assets.Scripts.Achievements.Observers;
+using Assets.Scripts.Service.Json;
+using Assets.Scripts.Service.LevelLoaderService;
+using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
-using Assets.Scripts.Player.Core;
 using Reflex.Core;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Installers
 {
     public class ServiceInstaller : MonoBehaviour, IInstaller
     {
+        [SerializeField] private AudioConfig _audioConfig;
+
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
-            BindSavesService(containerBuilder);
             BindPlayerSpawnService(containerBuilder);
             BindLevelLoader(containerBuilder);
             BindBridgeTracker(containerBuilder);
             BindDeathTracker(containerBuilder);
             BindPauseHandler(containerBuilder);
+            InitAudioService(containerBuilder);
+            BindSavesServices(containerBuilder);
         }
 
         private void BindPlayerSpawnService(ContainerBuilder containerBuilder)
@@ -39,14 +46,6 @@ namespace Assets.Scripts.Installers
         private void BindPauseHandler(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new PauseHandler());
 
-        private void BindSavesService(ContainerBuilder containerBuilder)
-        {
-            SaveServiceFactory saveServiceFactory = new SaveServiceFactory();
-
-            containerBuilder.AddSingleton(container => saveServiceFactory.CreateSaveService());
-            containerBuilder.AddSingleton(container => saveServiceFactory.CreateJsonService());
-        }
-
         private void BindBridgeTracker(ContainerBuilder containerBuilder)
         {
             containerBuilder.AddSingleton<BridgeTrackerService>(container =>
@@ -63,6 +62,24 @@ namespace Assets.Scripts.Installers
                 AchievementDeathObserver achievementDeathObserver = container.Resolve<AchievementDeathObserver>();
                 return new DeathTrackerService(achievementDeathObserver);
             });
+        }
+
+        private void InitAudioService(ContainerBuilder containerBuilder)
+        {
+            Dictionary<AudioTypes, AudioData> audioData = new Dictionary<AudioTypes, AudioData>();
+
+            foreach (var data in _audioConfig.AudioDatas)
+                audioData[data.AudioTypes] = data;
+
+            AudioService audioService = new AudioService(audioData);
+            audioService.PlayBackground(AudioTypes.Background);
+            containerBuilder.AddSingleton(audioService);
+        }
+
+        private void BindSavesServices(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton(new JsonService(), typeof(IJsonService));
+            containerBuilder.AddSingleton(new SaveService(), typeof(ISaveService));
         }
     }
 }

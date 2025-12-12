@@ -17,12 +17,17 @@ namespace Assets.Scripts.Domain
         {
             _achievementService = achievementService;
 
-            _achievementService.AchievementNameEarned += OnAchieveUnlocked;
-           InitializeView();
+            if (_achievementService != null)
+                _achievementService.AchievementNameEarned += OnAchieveUnlocked;
+
+            InitializeView();
         }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
+            if(_achievementService != null)
             _achievementService.AchievementNameEarned -= OnAchieveUnlocked;
+        }
 
         private void OnAchieveUnlocked(AchievementNames achievementNames)
         {

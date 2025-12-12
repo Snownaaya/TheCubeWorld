@@ -16,10 +16,10 @@ namespace Assets.Scripts.Visitor
                 typeof(AbilityItem),
                 sciptableObject => new ShopItemEntry(visitor => visitor.Visit((AbilityItem)sciptableObject))
             },
-            //{
-            //    typeof(CharacterSkinsItem),
-            //    sciptableObject => new ShopItemEntry(visitor => visitor.Visit((CharacterSkinsItem)sciptableObject))
-            //}
+            {
+                typeof(CharacterSkinsItem),
+                sciptableObject => new ShopItemEntry(visitor => visitor.Visit((CharacterSkinsItem)sciptableObject))
+            }
         };
         }
 

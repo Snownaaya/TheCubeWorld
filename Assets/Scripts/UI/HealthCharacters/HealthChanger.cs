@@ -1,6 +1,6 @@
-using Assets.Scripts.Service.Properties;
-using UnityEngine.UI;
+using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.HealthCharacters
 {
@@ -9,23 +9,27 @@ namespace Assets.Scripts.UI.HealthCharacters
         [SerializeField] private Slider _healthSlider;
         [SerializeField] private Health _health;
 
-        private IReadOnlyProperty<float> _maxHealth;
-        private IReadOnlyProperty<float> _currentHealth;
+        private CompositeDisposable _disposables = new CompositeDisposable();
+
+        private ReactiveProperty<float> _maxHealth;
+        private ReactiveProperty<float> _currentHealth;
 
         public Slider HealthSlider => _healthSlider;
 
-        public void Initialize(IReadOnlyProperty<float> currentHealth, IReadOnlyProperty<float> maxHealth)
+        public void Initialize(ReactiveProperty<float> currentHealth, ReactiveProperty<float> maxHealth)
         {
             _currentHealth = currentHealth;
             _maxHealth = maxHealth;
-            _currentHealth.Changed += OnChangeValue;
+
+            _currentHealth
+                .Subscribe(OnChangeValue)
+                .AddTo(_disposables);
+
+            ChangeValue(_currentHealth.Value, _maxHealth.Value);
         }
 
-        private void OnDestroy()
-        {
-            if (_currentHealth != null)
-                _currentHealth.Changed -= OnChangeValue;
-        }
+        private void OnDestroy() =>
+            _disposables.Dispose();
 
         private void OnChangeValue(float newValue) =>
             ChangeValue(newValue, _maxHealth.Value);

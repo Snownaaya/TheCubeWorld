@@ -1,6 +1,5 @@
 ﻿using Random = UnityEngine.Random;
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 using Assets.Scripts.Service.LevelLoaderService.Loader;
 
@@ -8,18 +7,18 @@ namespace Assets.Scripts.Service.LevelLoaderService
 {
     public class LevelSelected : MonoBehaviour
     {
-        [ReorderableList]
         [SerializeField] private List<SceneID> _levels;
 
         private SceneID _currentLevel;
 
         private void Awake()
         {
-            _levels = new List<SceneID> {
+            _levels = new List<SceneID> 
+            {
                 SceneID.Level_1, 
                 SceneID.Level_2,
-                SceneID.Level_3 };
-
+                SceneID.Level_3 
+            };
         }
 
         public SceneID GetNextLevel()

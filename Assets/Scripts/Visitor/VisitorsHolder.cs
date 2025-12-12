@@ -1,16 +1,16 @@
-﻿using Assets.Scripts.Datas;
+﻿using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Visitor.Visitors;
 
 namespace Assets.Scripts.Visitor
 {
     public class VisitorsHolder
     {
-        public VisitorsHolder(CharacterData characterData)
+        public VisitorsHolder(IPersistentCharacterData persistentCharacterData, ITransientCharacterData transientCharacterData)
         {
-            ContentUnlock = new ContentUnlock(characterData);
-            SkinSelector = new Purchase(characterData);
-            SelectionChecker = new PurchaseChecker(characterData);
-            UnlockChecker = new UnlockChecker(characterData);
+            ContentUnlock = new ContentUnlock(persistentCharacterData, transientCharacterData);
+            SkinSelector = new Purchase(persistentCharacterData, transientCharacterData);
+            SelectionChecker = new PurchaseChecker(persistentCharacterData, transientCharacterData);
+            UnlockChecker = new UnlockChecker(persistentCharacterData, transientCharacterData);
         }
 
         public ContentUnlock ContentUnlock { get; private set; }

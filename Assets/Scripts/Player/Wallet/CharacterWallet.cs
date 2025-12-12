@@ -1,38 +1,30 @@
-﻿using Assets.Scripts.Datas;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.Properties;
+﻿using Assets.Scripts.Datas.Character;
 using System;
+using UniRx;
 
 namespace Assets.Scripts.Player.Wallet
 {
     public class CharacterWallet : IWallet
     {
-        private CharacterData _characterData;
-        private PlayerSaver _walletSaver;
+        private IPersistentCharacterData _persistentCharacterData;
 
-        public CharacterWallet(CharacterData characterData, PlayerSaver walletSaver)
+        public CharacterWallet(IPersistentCharacterData characterData)
         {
-            _characterData = characterData;
-            _walletSaver = walletSaver;
-
-            NotLessZeroProperty<int> loadMoney = _walletSaver.Load();
-            _characterData.Money.Value = loadMoney.Value;
-            _characterData.Money.Value = 10000;
+            _persistentCharacterData = characterData;
+            _persistentCharacterData.Money.Value = 10000;
         }
 
-        public CharacterData CharacterData => _characterData;
+        public IPersistentCharacterData PersistentCharacterData => _persistentCharacterData;
 
         public void AddCoins(int coins)
         {
-            _characterData.Money.Value += coins;
-            _walletSaver.Save(_characterData.Money);
+            _persistentCharacterData.Money.Value += coins;
             UnityEngine.Debug.Log(coins);
         }
 
         public void RemoveCoins(int coins)
         {
-            _characterData.Money.Value -= coins;
-            _walletSaver.Save(_characterData.Money);
+            _persistentCharacterData.Money.Value -= coins;
         }
 
         public bool IsEnought(int coins)
@@ -40,13 +32,13 @@ namespace Assets.Scripts.Player.Wallet
             if (coins < 0)
                 throw new ArgumentOutOfRangeException(nameof(coins));
 
-            if (_characterData.Money.Value <= 0)
+            if (_persistentCharacterData.Money.Value <= 0)
                 return false;
 
-            return _characterData.Money.Value >= coins;
+            return _persistentCharacterData.Money.Value >= coins;
         }
 
         public int GetCurrentCoin() =>
-            _characterData.Money.Value;
+            _persistentCharacterData.Money.Value;
     }
 }

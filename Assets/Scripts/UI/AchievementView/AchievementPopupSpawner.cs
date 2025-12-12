@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Achievements;
+using Assets.Scripts.Service.Audio;
 using Reflex.Attributes;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
@@ -14,12 +15,17 @@ namespace Assets.Scripts.UI.AchievementView
 
         private AchievementService _achievementService;
         private AchievementFactory _achievementFactory;
+        private AudioService _audioService;
 
         private float _delay = 3f;
 
         [Inject]
-        private void Construct(AchievementService achievementService) =>
+        private void Construct(AchievementService achievementService,
+            AudioService audioService)
+        {
+            _audioService = audioService;
             _achievementService = achievementService;
+        }
 
         private void Awake() =>
             _achievementFactory = new AchievementFactory(_achievements);
@@ -34,6 +40,8 @@ namespace Assets.Scripts.UI.AchievementView
         {
             Achievement achievement = _achievementFactory.Get(achievementNames, _popupParent);
             achievement.Show();
+
+            _audioService.PlaySound(AudioTypes.PopupAchieve);
 
             DelayHide(achievement).Forget();
         }

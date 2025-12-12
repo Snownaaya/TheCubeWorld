@@ -1,21 +1,21 @@
 using Assets.Scripts.UI.HealthCharacters.Characters;
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.Particles;
 using Assets.Scripts.Loss;
 using Reflex.Attributes;
 using UnityEngine;
-using Assets.Scripts.Service.AchievementServices;
 
 namespace Assets.Scripts.Player
 {
     [RequireComponent(typeof(CharacterHealth))]
     public class Character : MonoBehaviour
     {
-        [SerializeField] private CharacterView _characterView;
         [SerializeField] private Transform _characterModel;
+        [SerializeField] private CharacterView _characterView;
 
-        private CharacterHealth _characterHealth;
         private IParticleSpawner _characterEffects;
+        private CharacterHealth _characterHealth;
         private DeathTrackerService _deathTracker;
 
         public Transform CharacterModel => _characterModel;
@@ -34,7 +34,6 @@ namespace Assets.Scripts.Player
         {
             _characterHealth = GetComponent<CharacterHealth>();
             _characterModel = transform;
-            _characterView.Initialize();
         }
 
         private void OnEnable()

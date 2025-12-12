@@ -27,5 +27,6 @@ public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
         _active.Remove(instance);
     }
 
-    public int GetActiveCount() => _active.Count;
+    public int GetActiveCount() => 
+        _active.Count;
 }

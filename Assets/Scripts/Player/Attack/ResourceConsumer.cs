@@ -42,9 +42,12 @@ namespace Assets.Scripts.Player.Attack
 
         private void SpawnResource(ResourceTypes resourceType)
         {
-            int prefabIndex = Array.IndexOf(_resourceType, resourceType);
+            if (_resourceService.ActiveResources.Count >= 16)
+                return;
 
+            int prefabIndex = Array.IndexOf(_resourceType, resourceType);
             Resource resource = _resourcePrefabs[prefabIndex];
+
             Resource resourcePrefab = _resourceService.Pull(resource);
 
             resourcePrefab.transform.position = GetPosition(resourcePrefab);

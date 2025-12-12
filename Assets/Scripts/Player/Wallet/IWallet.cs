@@ -1,11 +1,10 @@
-﻿using Assets.Scripts.Datas;
-using System;
+﻿using Assets.Scripts.Datas.Character;
 
 namespace Assets.Scripts.Player.Wallet
 {
     public interface IWallet
     {
-        public CharacterData CharacterData { get; }
+        public IPersistentCharacterData PersistentCharacterData { get; }
         public void AddCoins(int coins);
         public void RemoveCoins(int coins);
         public bool IsEnought(int coins);

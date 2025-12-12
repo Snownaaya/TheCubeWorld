@@ -1,22 +1,22 @@
-﻿using Assets.Scripts.Service.Properties;
-using System.Collections.Generic;
-using Assets.Scripts.Items;
-using UnityEngine;
+﻿using Assets.Scripts.Items;
 using System;
+using System.Collections.Generic;
+using UniRx;
+using UnityEngine;
 
 namespace Assets.Scripts.Player.Inventory
 {
     [Serializable]
     public class PlayerInventory : IInventory
     {
-        private Dictionary<ResourceTypes, NotLimitedProperty<int>> _resources = new Dictionary<ResourceTypes, NotLimitedProperty<int>>();
+        private Dictionary<ResourceTypes, ReactiveProperty<int>> _resources = new Dictionary<ResourceTypes, ReactiveProperty<int>>();
 
         public PlayerInventory()
         {
             InitializeResources();
         }
 
-        public IReadOnlyDictionary<ResourceTypes, NotLimitedProperty<int>> ResourceStacks => _resources;
+        public Dictionary<ResourceTypes, ReactiveProperty<int>> ResourceStacks => _resources;
 
         public void AddResource(Resource resource)
         {
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Player.Inventory
             ResourceTypes type = resource.Config.ResourceType;
 
             if (_resources.ContainsKey(resource.Config.ResourceType) == false)
-                _resources[type] = new NotLimitedProperty<int>(0);
+                _resources[type] = new ReactiveProperty<int>(0);
 
             _resources[type].Value += 1000; //value++
 
@@ -38,15 +38,15 @@ namespace Assets.Scripts.Player.Inventory
             if (_resources.ContainsKey(resourceType) == false)
                 return;
 
-            if (_resources.TryGetValue(resourceType, out NotLimitedProperty<int> resource) && resource.Value > 0)
+            if (_resources.TryGetValue(resourceType, out ReactiveProperty<int> resource) && resource.Value > 0)
             {
                 resource.Value--;
             }
         }
 
-        public bool HasResource(ResourceTypes resourceType, NotLimitedProperty<int> amount)
+        public bool HasResource(ResourceTypes resourceType, ReactiveProperty<int> amount)
         {
-            if (_resources.TryGetValue(resourceType, out NotLimitedProperty<int> resource))
+            if (_resources.TryGetValue(resourceType, out ReactiveProperty<int> resource))
                 return resource.Value > amount.Value;
 
             return false;
@@ -60,11 +60,11 @@ namespace Assets.Scripts.Player.Inventory
 
         private void InitializeResources()
         {
-            _resources = new Dictionary<ResourceTypes, NotLimitedProperty<int>>
+            _resources = new Dictionary<ResourceTypes, ReactiveProperty<int>>
             {
-                [ResourceTypes.Dirt] = new NotLimitedProperty<int>(0),
-                [ResourceTypes.Wood] = new NotLimitedProperty<int>(0),
-                [ResourceTypes.Stone] = new NotLimitedProperty<int>(0)
+                [ResourceTypes.Dirt] = new ReactiveProperty<int>(0),
+                [ResourceTypes.Wood] = new ReactiveProperty<int>(0),
+                [ResourceTypes.Stone] = new ReactiveProperty<int>(0)
             };
         }
     }

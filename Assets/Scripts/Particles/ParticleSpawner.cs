@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
@@ -9,17 +10,12 @@ namespace Assets.Scripts.Particles
         [SerializeField] private List<ParticlePrefabEntry> _particleEntries = new();
 
         private Transform _transform;
+        private float _delay = 2f;
 
         private Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
 
         public void Initialize(Transform position) =>
             _transform = position;
-
-        public void ReturnParticle(PooledParticle pooledParticle)
-        {
-            Push(pooledParticle);
-            pooledParticle.Stop();
-        }
 
         public PooledParticle SpawnParticle(ParticleTypes particleType, Vector3 position)
         {
@@ -28,14 +24,27 @@ namespace Assets.Scripts.Particles
                 if (_partilclies.ContainsKey(entry.Type) == false)
                     _partilclies.Add(entry.Type, entry.Prefab);
             }
-
+             
             if (_partilclies.TryGetValue(particleType, out PooledParticle prefab) == false)
                 return null;
 
             PooledParticle pooledParticle = Pull(prefab);
             pooledParticle.transform.position = position;
             pooledParticle.Play();
+
+            ReturnPool(pooledParticle).Forget();
             return pooledParticle;
+        }
+
+        private async UniTask ReturnPool(PooledParticle particle)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay));
+
+            if (particle == null || particle.gameObject == null)
+                return;
+
+            Push(particle);
+            particle.Stop();
         }
 
         [Serializable]

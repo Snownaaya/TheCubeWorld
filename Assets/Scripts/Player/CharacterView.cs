@@ -1,19 +1,27 @@
 using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Particles;
+using Assets.Scripts.Player.Skins;
 using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.Player
 {
-    public class CharacterView : MonoBehaviour
+    [RequireComponent(typeof(Animator))]
+    public class CharacterView : MonoBehaviour, ICharacterView
     {
         private const string IsIdling = nameof(IsIdling);
         private const string IsWalking = nameof(IsWalking);
         private const string IsAttack = nameof(IsAttack);
 
+        [SerializeField] private SkinChanger _changer;
+
         private Animator _animator;
+
         private IBossTargetService _bossTargetService;
         private IParticleSpawner _particleSpawner;
+
+        private void Awake() =>
+            _animator = GetComponent<Animator>();
 
         [Inject]
         private void Construct(IBossTargetService bossTargetService,
@@ -22,9 +30,6 @@ namespace Assets.Scripts.Player
             _bossTargetService = bossTargetService;
             _particleSpawner = particleSpawner;
         }
-
-        public void Initialize() =>
-            _animator = GetComponent<Animator>();
 
         public void StartIdle() =>
             _animator?.SetBool(IsIdling, true);

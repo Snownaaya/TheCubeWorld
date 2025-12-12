@@ -12,10 +12,11 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 {
     public class LossState : PhasesState
     {
-        private ILevelLoader _levelLoader;
         private PauseHandler _pauseHandler;
         private LossScreen _lossScreen;
         private CancellationTokenSource _cancellationTokenSource;
+        private ILevelLoader _levelLoader;
+        private IResourceService _resourceService;
 
         private float _delay = 3f;
 
@@ -25,11 +26,15 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             IResourceService resourceService,
             PauseHandler pauseHandler,
             LossScreen lossScreen,
-            ILevelLoader levelLoader) : base(switcher, entryPoint, inventory, resourceService)
+            ILevelLoader levelLoader) : base(switcher,
+                entryPoint, 
+                inventory,
+                resourceService)
         {
             _pauseHandler = pauseHandler;
             _lossScreen = lossScreen;
             _levelLoader = levelLoader;
+            _resourceService = resourceService;
         }
 
         public override void Enter()
@@ -69,7 +74,11 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private void OnRespawnState() =>
             Switcher.SwitchState<RespawnState>();
 
-        private void OnExitMenu() =>
+        private void OnExitMenu()
+        {
+            _resourceService.ReturnAllPool();
+            _resourceService.ActiveResources.Clear();
             _levelLoader.Load(EntryPoint.LevelSelected.GetMainMenu());
+        }
     }
 }

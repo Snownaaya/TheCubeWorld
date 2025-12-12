@@ -23,8 +23,9 @@ public class PlatformDetector : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
-           _cancellationTokenSource = new CancellationTokenSource();
-           _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token);
+            _currentGround.ResetPoints();
+            _cancellationTokenSource = new CancellationTokenSource();
+            _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token);
         }
     }
 
@@ -32,10 +33,11 @@ public class PlatformDetector : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
+            _spawner.ReturnAllPool();
+            _spawner.ActiveResources.Clear();
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource.Dispose();
             _cancellationTokenSource = null;
-            _spawner.ReturnAllPool();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Achievements;
-using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.GameStateMachine.States.Runtime;
 using Assets.Scripts.GameStateMachine.States.Phases;
@@ -11,7 +10,6 @@ using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
-using Assets.Scripts.PluginYG;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
@@ -27,8 +25,6 @@ namespace Assets.Scripts.GameStateMachine
         private PauseHandler _pauseHandler;
         private CharacterHolder _characterHolder;
         private AchievementService _achievementService;
-        private AchievementDeathObserver _achievementDeathObserver;
-        private RewardedVideoAds _rewarded;
 
         private IWallet _wallet;
         private ISwitcher _switcher;
@@ -52,9 +48,7 @@ namespace Assets.Scripts.GameStateMachine
             ILevelLoader levelLoader,
             CharacterHolder characterHolder,
             AchievementService achievementService,
-            AchievementDeathObserver achievementDeathObserver,
             IWallet wallet,
-            RewardedVideoAds rewarded,
             IResourceService resourceService)
         {
             _switcher = switcher;
@@ -64,9 +58,7 @@ namespace Assets.Scripts.GameStateMachine
             _levelLoader = levelLoader;
             _characterHolder = characterHolder;
             _achievementService = achievementService;
-            _achievementDeathObserver = achievementDeathObserver;
             _wallet = wallet;
-            _rewarded = rewarded;
             _resourceService = resourceService;
         }
 
@@ -79,7 +71,8 @@ namespace Assets.Scripts.GameStateMachine
                     new StartLevelState(_switcher,
                     this,
                     _characterTeleportService,
-                    _characterHolder),
+                    _characterHolder,
+                    _resourceService),
                     new WinLevelState(_switcher,
                     this,
                     _characterHolder,

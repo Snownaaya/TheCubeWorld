@@ -6,6 +6,5 @@ namespace Assets.Scripts.Particles
     {
         void Initialize(Transform transform);
         PooledParticle SpawnParticle(ParticleTypes particleType, Vector3 transform);
-        void ReturnParticle(PooledParticle pooledParticle);
     }
 }

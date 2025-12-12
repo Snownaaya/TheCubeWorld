@@ -10,12 +10,16 @@ namespace Assets.Scripts.UI.MainMenu
 
         protected override void Close()
         {
+            base.Close();
+
             _rectAchievement.gameObject.SetActive(false);
             _backgroundPanel.Hide();
         }
 
         protected override void Open()
         {
+            base.Open();
+
             _rectAchievement.gameObject.SetActive(true);
             _backgroundPanel.Show();
         }

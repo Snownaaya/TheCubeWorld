@@ -12,7 +12,7 @@ namespace Assets.Scripts.Service.Saves
             if (string.IsNullOrWhiteSpace(dataKey))
                 return string.Empty;
 
-            //PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteAll();
 
             return PlayerPrefs.GetString(dataKey, string.Empty);
         }

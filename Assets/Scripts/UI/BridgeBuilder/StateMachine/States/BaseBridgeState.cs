@@ -1,4 +1,4 @@
-using Assets.Scripts.Service.Properties;
+using UniRx;
 using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Interfaces;
@@ -44,7 +44,7 @@ public abstract class BaseBridgeState : IStates
         if (selectedConfig == null)
             return;
 
-        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new NotLimitedProperty<int>(_resourceCost)))
+        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new ReactiveProperty<int>(_resourceCost)))
         {
             BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
             buildingArea.DeliveResource(selectedConfig);

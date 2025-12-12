@@ -1,7 +1,9 @@
-﻿using Assets.Scripts.GameStateMachine;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Camera;
+﻿using Assets.Scripts.Camera;
+using Assets.Scripts.Datas.Character;
+using Assets.Scripts.GameStateMachine;
 using Assets.Scripts.Ground;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Player.Saves;
 using Cinemachine;
 using Reflex.Core;
 using UnityEngine;
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Installers
             BindSwitcher(containerBuilder);
             BindFinalPlatform(containerBuilder);
             BindVirtualCamera(containerBuilder);
+            BindTransientData(containerBuilder);
         }
 
         private void BindSwitcher(ContainerBuilder containerBuilder) =>
@@ -30,5 +33,8 @@ namespace Assets.Scripts.Installers
         private void BindVirtualCamera(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new CinemachineTargetBinder(_cinemachineVirtualCamera),
                 typeof(IVirtualCamera));
+
+        private void BindTransientData(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new TransientCharacterData(), typeof(ITransientCharacterData));
     }
 }

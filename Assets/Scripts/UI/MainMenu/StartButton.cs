@@ -1,14 +1,26 @@
-﻿using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+using System.Linq;
+using System;
+using Assets.Scripts.Service.Audio;
+using Reflex.Attributes;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.MainMenu
 {
-    internal class StartButton : MonoBehaviour
+    public class StartButton : MonoBehaviour
     {
-        [SerializeField] private string[] _levels;
+        private const string LevelPrefix = "Level_";
+
+        [SerializeField] private SceneID _levels;
         [SerializeField] private Button _startButton;
+
+        private AudioService _audioService;
+
+        [Inject]
+        private void Construct(AudioService audioService) =>
+            _audioService = audioService;
 
         private void OnEnable() =>
             _startButton.onClick.AddListener(OnStartButtonClicked);
@@ -18,8 +30,16 @@ namespace Assets.Scripts.UI.MainMenu
 
         private void OnStartButtonClicked()
         {
-            string level = _levels[/*Random.Range(0, _levels.Length)*/0];
-            SceneManager.LoadScene(level);
+            SceneID level = Enum.GetValues(typeof(SceneID))
+                .Cast<SceneID>()
+                .Where(lvl => lvl.ToString()
+                .StartsWith(LevelPrefix))
+                .FirstOrDefault();
+            ////.OrderBy(_ => Random.value)
+
+            _audioService.PlaySound(AudioTypes.Buttons);
+            SceneManager.LoadScene(level.ToString());
         }
     }
 }
+//_levels[/*Random.Range(0, _levels.Length)*/1];

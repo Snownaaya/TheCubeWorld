@@ -46,8 +46,5 @@ namespace Assets.Scripts.Ground
             _points.Clear();
             _points.AddRange(_originalPoints);
         }
-
-        //private void Reset() =>
-        //    RefreshChildArray();
     }
 }

@@ -1,9 +1,10 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.UI.GameUI;
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuyButton : MonoBehaviour
+public class BuyButton : UIElement
 {
     [SerializeField] private Button _buyButton;
 
@@ -18,9 +19,10 @@ public class BuyButton : MonoBehaviour
     private void OnDisable() =>
         _buyButton.onClick.RemoveListener(OnClick);
 
-    public void Show() =>
-    _buyButton.gameObject.SetActive(true);
-    public void Hide() =>
+    public override void Show() =>
+        _buyButton.gameObject.SetActive(true);
+
+    public override void Hide() =>
         _buyButton.gameObject.SetActive(false);
 
     private void OnClick()

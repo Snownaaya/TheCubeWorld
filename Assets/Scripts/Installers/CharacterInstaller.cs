@@ -3,12 +3,13 @@ using Assets.Scripts.Service.Saves;
 using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Player.Core;
-using Assets.Scripts.Datas;
+using Assets.Scripts.Player.Saves;
 using Assets.Scripts.Input;
 using Reflex.Injectors;
 using Reflex.Core;
 using UnityEngine;
 using YG;
+using Assets.Scripts.Datas.Character;
 
 namespace Assets.Scripts.Installers
 {
@@ -22,22 +23,17 @@ namespace Assets.Scripts.Installers
             BindInput(containerBuilder, playerInput);
             BindInventory(containerBuilder);
             BindFactory(containerBuilder, playerInput);
-            BindCharacterData(containerBuilder);
             BindWallet(containerBuilder);
-            BindCharacterCkins(containerBuilder);
             BindCharacterHolder(containerBuilder);
+            BindCharacterSave(containerBuilder);
         }
 
         private void BindWallet(ContainerBuilder containerBuilder)
         {
             containerBuilder.AddSingleton<IWallet>(container =>
             {
-                IJsonService jsonService = container.Resolve<IJsonService>();
-                ISaveService saveService = container.Resolve<ISaveService>();
-                CharacterData characterData = container.Resolve<CharacterData>();
-
-                PlayerSaver walletSaver = new PlayerSaver(jsonService, saveService);
-                return new CharacterWallet(characterData, walletSaver);
+                IPersistentCharacterData characterData = container.Resolve<IPersistentCharacterData>();
+                return new CharacterWallet(characterData);
             });
         }
 
@@ -51,9 +47,6 @@ namespace Assets.Scripts.Installers
 
             return playerInput;
         }
-
-        private void BindCharacterData(ContainerBuilder containerBuilder) =>
-            containerBuilder.AddSingleton(new CharacterData());
 
         private void BindCharacterHolder(ContainerBuilder containerBuilder)
         {
@@ -92,9 +85,15 @@ namespace Assets.Scripts.Installers
             }
         }
 
-        private void BindCharacterCkins(ContainerBuilder containerBuilder)
+        private void BindCharacterSave(ContainerBuilder containerBuilder)
         {
+            containerBuilder.AddSingleton<ICharacterSaveRepository>(container =>
+            {
+                IJsonService jsonService = container.Resolve<IJsonService>();
+                ISaveService saveService = container.Resolve<ISaveService>();
 
+                return new CharacterSaveRepository(jsonService, saveService);
+            });
         }
     }
 }

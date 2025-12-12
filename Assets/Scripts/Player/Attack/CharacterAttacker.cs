@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using Assets.Scripts.Datas;
+using Assets.Scripts.Datas.Character;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
@@ -10,7 +10,6 @@ namespace Assets.Scripts.Player.Attack
     public class CharacterAttacker : MonoBehaviour
     {
         [Header("Dependencies")]
-        [SerializeField] private CharacterView _characterView;
         [SerializeField] private ResourceConsumer _resourceConsumer;
         [SerializeField] private EnemyScaner _enemyScaner;
 
@@ -21,6 +20,9 @@ namespace Assets.Scripts.Player.Attack
 
         public event Action AttackStarted;
         public event Action AttackEnded;
+
+        private void Awake() =>
+            _enemyScaner.Initialize(_characterConfig);
 
         private void OnEnable()
         {

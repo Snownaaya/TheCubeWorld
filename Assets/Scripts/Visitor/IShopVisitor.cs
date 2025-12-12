@@ -5,6 +5,6 @@ namespace Assets.Scripts.Visitor
     public interface IShopVisitor
     {
         public void Visit(AbilityItem abilityItem);
-        //public void Visit(CharacterSkinsItem characterSkinsItem);
+        public void Visit(CharacterSkinsItem characterSkinsItem);
     }
 }
