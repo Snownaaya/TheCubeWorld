@@ -3702,7 +3702,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617450314}
-  - component: {fileID: 1617450315}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -3727,19 +3726,6 @@ Transform:
   - {fileID: 406985412267898044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1617450315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617450313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b85e7e799f25db040a984b5edd3a8fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shop: {fileID: 2056882048795963571}
 --- !u!1 &1622936673
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,7 +4649,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792218194}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b810dbec1614b354fb94a91d210bcada, type: 3}
   m_Name: 
@@ -4671,7 +4657,7 @@ MonoBehaviour:
   <ButtonOpen>k__BackingField: {fileID: 1792218196}
   <ButtonClose>k__BackingField: {fileID: 7252348322570341319}
   _backgroundPanel: {fileID: 7785988308749741654}
-  _shopPanel: {fileID: 4649495979154912910}
+  _shopPanel: {fileID: 0}
   _buttons: {fileID: 640956598156121917}
   _walletView: {fileID: 8823406185156953709}
 --- !u!1 &1793247359
@@ -7381,23 +7367,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5391240885518005501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2056882048795963571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2276597442631968401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5089b80e600217458c68b8c71a2bc67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shopPanel: {fileID: 4649495979154912910}
-  _buyButton: {fileID: 3285231057127430940}
-  _walletView: {fileID: 8823406185156953709}
-  _ownedImage: {fileID: 7722329638127689255}
-  _shopContent: {fileID: 11400000, guid: 53d6a7637e92006458f2d64410fdb112, type: 2}
 --- !u!114 &2063695774627236311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7755,8 +7724,6 @@ GameObject:
   - component: {fileID: 901760715456218405}
   - component: {fileID: 8503120162477580385}
   - component: {fileID: 815638823897277424}
-  - component: {fileID: 4649495979154912910}
-  - component: {fileID: 2056882048795963571}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -9688,21 +9655,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4649495979154912910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2276597442631968401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2895ebb4606cd76419b7625c3a802970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _itemsParent: {fileID: 7279657752480580599}
-  _abilityPrefab: {fileID: 7512537149688036627, guid: 94041fee28d4ac8488c7074eacb99330, type: 3}
-  _characterPrefab: {fileID: 7055227049638763676, guid: 3272f76f646044b4a9fccde17ef1516e, type: 3}
 --- !u!1 &4693696016642684533
 GameObject:
   m_ObjectHideFlags: 0

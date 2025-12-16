@@ -9,8 +9,14 @@ namespace Assets.Scripts.Achievements.AchievePartials
         {
             return deaths =>
             {
-                if (deaths.Count >= deathCount)
-                    writeAchieve();
+                foreach (int death in deaths)
+                {
+                    if (deathCount-- == 0)
+                    {
+                        writeAchieve();
+                        return;
+                    }
+                }
             };
         }
 

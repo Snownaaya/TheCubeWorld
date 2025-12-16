@@ -15,13 +15,13 @@ namespace Assets.Scripts.UI.AchievementView
 
         private AchievementService _achievementService;
         private AchievementFactory _achievementFactory;
-        private AudioService _audioService;
+        private ForegroundAudioService _audioService;
 
         private float _delay = 3f;
 
         [Inject]
         private void Construct(AchievementService achievementService,
-            AudioService audioService)
+            ForegroundAudioService audioService)
         {
             _audioService = audioService;
             _achievementService = achievementService;

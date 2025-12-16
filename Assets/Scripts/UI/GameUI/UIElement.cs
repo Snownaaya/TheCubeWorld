@@ -6,10 +6,10 @@ namespace Assets.Scripts.UI.GameUI
 {
     public abstract class UIElement : MonoBehaviour
     {
-        private AudioService _audioService;
+        private ForegroundAudioService _audioService;
 
         [Inject]
-        private void Construct(AudioService audioService) =>
+        private void Construct(ForegroundAudioService audioService) =>
             _audioService = audioService;
 
         public virtual void Show() =>

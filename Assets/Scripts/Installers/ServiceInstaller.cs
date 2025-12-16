@@ -26,7 +26,8 @@ namespace Assets.Scripts.Installers
             BindBridgeTracker(containerBuilder);
             BindDeathTracker(containerBuilder);
             BindPauseHandler(containerBuilder);
-            InitAudioService(containerBuilder);
+            InitForegroundAudioService(containerBuilder);
+            InitBackgroundAudio(containerBuilder);
             BindSavesServices(containerBuilder);
         }
 
@@ -64,16 +65,23 @@ namespace Assets.Scripts.Installers
             });
         }
 
-        private void InitAudioService(ContainerBuilder containerBuilder)
+        private void InitForegroundAudioService(ContainerBuilder containerBuilder)
         {
             Dictionary<AudioTypes, AudioData> audioData = new Dictionary<AudioTypes, AudioData>();
 
             foreach (var data in _audioConfig.AudioDatas)
                 audioData[data.AudioTypes] = data;
 
-            AudioService audioService = new AudioService(audioData);
-            audioService.PlayBackground(AudioTypes.Background);
+            ForegroundAudioService audioService = new ForegroundAudioService(audioData);
             containerBuilder.AddSingleton(audioService);
+        }
+
+        private void InitBackgroundAudio(ContainerBuilder containerBuilder)
+        {
+            BackgroundAudioService backgroundAudioService = new BackgroundAudioService(_audioConfig.AudioDatas);
+
+            backgroundAudioService.PlayBackground(AudioTypes.Background);
+            containerBuilder.AddSingleton(backgroundAudioService);
         }
 
         private void BindSavesServices(ContainerBuilder containerBuilder)

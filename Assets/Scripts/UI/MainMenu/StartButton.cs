@@ -16,10 +16,10 @@ namespace Assets.Scripts.UI.MainMenu
         [SerializeField] private SceneID _levels;
         [SerializeField] private Button _startButton;
 
-        private AudioService _audioService;
+        private ForegroundAudioService _audioService;
 
         [Inject]
-        private void Construct(AudioService audioService) =>
+        private void Construct(ForegroundAudioService audioService) =>
             _audioService = audioService;
 
         private void OnEnable() =>

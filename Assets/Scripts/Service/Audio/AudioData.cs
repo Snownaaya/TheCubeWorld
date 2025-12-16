@@ -9,6 +9,6 @@ namespace Assets.Scripts.Service.Audio
     {
         [field: SerializeField] public List<AudioClip> AudioClip;
         [field: SerializeField] public AudioTypes AudioTypes;
-        [field: SerializeField, Range(0, 1)] public float Volume;
+        [field: SerializeField, Range(0f, 1f)] public float Volume;
     }
 }

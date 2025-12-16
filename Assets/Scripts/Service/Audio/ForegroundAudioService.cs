@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -6,28 +7,24 @@ using UnityEngine.Pool;
 
 namespace Assets.Scripts.Service.Audio
 {
-    public class AudioService : IDisposable
+    public class ForegroundAudioService
     {
         private CompositeDisposable _compositeDisposable = new();
-        private AudioSource _backgroundSource;
+        private AudioSource _foregroundSource;
 
         private Dictionary<AudioTypes, AudioData> _audioData;
         private ObjectPool<AudioSource> _audioSourcePool;
 
-        public AudioService(Dictionary<AudioTypes, AudioData> audioData)
+        public ForegroundAudioService(Dictionary<AudioTypes, AudioData> audioData)
         {
             _audioData = audioData;
 
             GameObject gameObject = new GameObject("GameObject");
-            AudioSource audioSource = new GameObject("AudioSourse").AddComponent<AudioSource>();
-            _audioSourcePool = new ObjectPool<AudioSource>(() => UnityEngine.Object.Instantiate(audioSource, gameObject.transform));
-
-            _backgroundSource = new GameObject("BackgroundAudioSourse").AddComponent<AudioSource>();
-            _backgroundSource.loop = true;
+            _foregroundSource = new GameObject("AudioSourse").AddComponent<AudioSource>();
+            _audioSourcePool = new ObjectPool<AudioSource>(() => UnityEngine.Object.Instantiate(_foregroundSource, gameObject.transform));
 
             UnityEngine.Object.DontDestroyOnLoad(gameObject);
-            UnityEngine.Object.DontDestroyOnLoad(audioSource);
-            UnityEngine.Object.DontDestroyOnLoad(_backgroundSource.gameObject);
+            UnityEngine.Object.DontDestroyOnLoad(_foregroundSource);
         }
 
         public void PlaySound(AudioTypes audioTypes)
@@ -36,9 +33,10 @@ namespace Assets.Scripts.Service.Audio
             AudioClip audioClip = audioData.AudioClip[UnityEngine.Random.Range(0, audioData.AudioClip.Count)];
 
             AudioSource audioSource = _audioSourcePool.Get();
+            audioSource.volume = _foregroundSource.volume;
             audioSource.clip = audioClip;
             audioSource.volume = audioData.Volume;
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(audioClip, audioData.Volume);
 
             Observable.Timer(TimeSpan.FromSeconds(audioClip.length + 1f))
                 .Subscribe(_ =>
@@ -48,18 +46,11 @@ namespace Assets.Scripts.Service.Audio
                 })
                 .AddTo(_compositeDisposable);
         }
-        
-        public void PlayBackground(AudioTypes audioType)
+
+        public void ForegroundSetVolume(float value, AudioTypes audioTypes)
         {
-            var data = _audioData[audioType];
-            var clip = data.AudioClip[UnityEngine.Random.Range(0, data.AudioClip.Count)];
-
-            _backgroundSource.clip = clip;
-            _backgroundSource.volume = data.Volume;
-            _backgroundSource.Play();
+            AudioData audioData = _audioData[audioTypes];
+            _foregroundSource.volume = audioData.Volume * value;
         }
-
-        public void Dispose() =>
-            _compositeDisposable.Dispose();
     }
 }

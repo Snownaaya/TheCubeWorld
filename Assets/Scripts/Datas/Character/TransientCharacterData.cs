@@ -10,10 +10,8 @@ namespace Assets.Scripts.Datas.Character
 
         private List<ObstacleTypes> _openAbilities;
 
-        public TransientCharacterData()
-        {
+        public TransientCharacterData() =>
             _openAbilities = new List<ObstacleTypes>();
-        }
 
         public IEnumerable<ObstacleTypes> OpenAbilities => _openAbilities;
 

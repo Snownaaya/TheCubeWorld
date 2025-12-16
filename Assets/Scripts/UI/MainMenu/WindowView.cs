@@ -10,10 +10,10 @@ namespace Assets.Scripts.UI.MainMenu
         [field: SerializeField] protected Button ButtonOpen { get; private set; }
         [field: SerializeField] protected Button ButtonClose { get; private set; }
 
-        private AudioService _audioService;
+        private ForegroundAudioService _audioService;
 
         [Inject]
-        private void Construct(AudioService audioService) =>
+        private void Construct(ForegroundAudioService audioService) =>
             _audioService = audioService;
 
         private void OnEnable()

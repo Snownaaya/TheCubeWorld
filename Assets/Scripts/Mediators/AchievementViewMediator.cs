@@ -13,10 +13,11 @@ namespace Assets.Scripts.Domain
         private AchievementService _achievementService;
 
         [Inject]
-        private void Construct(AchievementService achievementService)
-        {
+        private void Construct(AchievementService achievementService) =>
             _achievementService = achievementService;
 
+        private void OnEnable()
+        {
             if (_achievementService != null)
                 _achievementService.AchievementNameEarned += OnAchieveUnlocked;
 

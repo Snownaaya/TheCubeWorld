@@ -43,6 +43,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             _cancellationTokenSource = new CancellationTokenSource();
             DelayNextLevel(_cancellationTokenSource.Token);
             _wallet.AddCoins(_addCoins);
+
+            
             _achievementService.Achieve(AchievementNames.Beginning);
         }
 
