@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: -10.95, y: 5.4, z: 0}
+  m_FollowOffset: {x: -8, y: 5.4, z: 0}
   m_XDamping: 0
   m_YDamping: 1
   m_ZDamping: 1
@@ -1266,6 +1266,10 @@ PrefabInstance:
     - target: {fileID: 962521931584462209, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+      propertyPath: _speed
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3257574581685870481, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
       propertyPath: _patrolPoints.Array.size
@@ -2126,9 +2130,9 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 60
     OrthographicSize: 10
-    NearClipPlane: 1.2355769
+    NearClipPlane: 2
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -2158,7 +2162,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 181238627}
-  m_Father: {fileID: 1617450314}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 10.762, y: 90, z: 0}
 --- !u!114 &949576168
 MonoBehaviour:
@@ -2351,9 +2355,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 1.2355769
+  near clip plane: 2
   far clip plane: 5000
-  field of view: 40
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -2384,7 +2388,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1617450314}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 12.348, y: 90, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -3687,8 +3691,6 @@ Transform:
   - {fileID: 1806729201}
   - {fileID: 1813655345}
   - {fileID: 1289528378336566133}
-  - {fileID: 963194228}
-  - {fileID: 949576167}
   - {fileID: 738332883}
   - {fileID: 1565291245}
   m_Father: {fileID: 0}
@@ -8975,6 +8977,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 83a64d8bcc44d84429ae8d7e1012da47, type: 2}
     - target: {fileID: 4646622304707048127, guid: 283b3438340a2424b82c7653f37adda9, type: 3}
+      propertyPath: _speed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646622304707048127, guid: 283b3438340a2424b82c7653f37adda9, type: 3}
       propertyPath: _patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 417225145}
@@ -13886,3 +13892,5 @@ SceneRoots:
   - {fileID: 1145670521}
   - {fileID: 705507995}
   - {fileID: 2074334836}
+  - {fileID: 949576167}
+  - {fileID: 963194228}

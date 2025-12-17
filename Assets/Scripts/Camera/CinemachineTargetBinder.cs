@@ -1,5 +1,7 @@
 ﻿using Cinemachine;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Camera
@@ -25,14 +27,8 @@ namespace Assets.Scripts.Camera
 
         public void ChangeRotate()
         {
-            Vector3 rotation = new Vector3(13f, 120f, 0);
+            Vector3 rotation = new Vector3(13f, 130f, 0);
             _virtualCamera.transform.eulerAngles = rotation;
-            RotateTarget().Forget();
-        }
-        
-        private async UniTask RotateTarget()
-        {
-            await UniTask.Delay(3000);
         }
     }
 }

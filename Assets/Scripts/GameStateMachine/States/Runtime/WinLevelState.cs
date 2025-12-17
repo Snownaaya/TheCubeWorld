@@ -41,7 +41,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 
             ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
             _cancellationTokenSource = new CancellationTokenSource();
-            DelayNextLevel(_cancellationTokenSource.Token);
+            DelayNextLevel(_cancellationTokenSource.Token).Forget();
             _wallet.AddCoins(_addCoins);
 
             
@@ -57,7 +57,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             _cancellationTokenSource = null;
         }
 
-        private async void DelayNextLevel(CancellationToken cancellationToken)
+        private async UniTask DelayNextLevel(CancellationToken cancellationToken)
         {
             if (cancellationToken.IsCancellationRequested)
                 return;
