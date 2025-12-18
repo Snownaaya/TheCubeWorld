@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Service.Audio;
 using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.AudioUI
 {

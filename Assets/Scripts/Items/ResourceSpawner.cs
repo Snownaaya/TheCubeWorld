@@ -31,9 +31,9 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
         while (cancellationToken.IsCancellationRequested == false)
         {
             currentGround.ResetPoints();
-
             SpawnResource(currentGround);
-            await UniTask.WaitUntil(() => _activeResources.Count < _maxResources, cancellationToken: cancellationToken);
+
+            await UniTask.WaitUntil(() => _activeResources.Count == 0, cancellationToken: cancellationToken);
         }
     }
 

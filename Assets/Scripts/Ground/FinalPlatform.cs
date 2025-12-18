@@ -1,9 +1,12 @@
-﻿using Assets.Scripts.Interfaces;
+﻿using Assets.Scripts.Camera;
+using Assets.Scripts.Items;
 using Assets.Scripts.Player;
-using Assets.Scripts.Camera;
+using Assets.Scripts.Player.Attack;
+using Assets.Scripts.Player.Core;
+using Assets.Scripts.Service.GameMessage;
 using Reflex.Attributes;
+using UniRx;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Ground
 {
@@ -11,20 +14,52 @@ namespace Assets.Scripts.Ground
     {
         [SerializeField] private Transform _cameraPoint;
 
+        private CompositeDisposable _disposables = new CompositeDisposable();
         private IVirtualCamera _targetBinder;
+        private GameMessageBus _messageBus;
+        private CharacterHolder _characterHolder;
 
         [Inject]
-        private void Construct(IVirtualCamera targetBinder) =>
+        private void Construct(IVirtualCamera targetBinder,
+            GameMessageBus gameMessageBus,
+            CharacterHolder character)
+        {
             _targetBinder = targetBinder;
+            _messageBus = gameMessageBus;
+            _characterHolder = character;
+        }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.TryGetComponent(out Character character))
+                PlayerReachedFinalPlatform();
+        }
+
+        private void OnDisable() =>
+            _disposables.Dispose();
+
+        private void PlayerReachedFinalPlatform()
+        {
+            if (_characterHolder == null)
+                return;
+
+            _targetBinder.ResetTransform();
+            _targetBinder.SetTarget(_cameraPoint);
+            _targetBinder.ChangeRotate();
+
+            if (HasAllResources() == false)
+                _messageBus.MessageBroker.Publish(new NotEnoughResourcesEvent(ResourceTypeSelector.GetRandomTypes()));
+        }
+
+        private bool HasAllResources()
+        {
+            foreach (ResourceTypes type in System.Enum.GetValues(typeof(ResourceTypes)))
             {
-                _targetBinder.ResetTransform();
-                _targetBinder.SetTarget(_cameraPoint);
-                _targetBinder.ChangeRotate();
+                if (_characterHolder.Attacker.ResourceConsumer.HasEnoughResources(type, 8) == false)
+                    return false;
             }
+
+            return true;
         }
     }
 }

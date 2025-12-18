@@ -1,6 +1,4 @@
-﻿using System;
-using UniRx;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Particles
 {
@@ -9,10 +7,6 @@ namespace Assets.Scripts.Particles
     {
         [SerializeField] private ParticleTypes _particleType;
         [SerializeField] private ParticleSystem _particleSystem;
-
-        private CompositeDisposable _compositeDisposable;
-
-        public event Action<PooledParticle> OnFinished;
 
         public void Play() =>
             _particleSystem.Play();

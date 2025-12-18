@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Service.Json;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace Assets.Scripts.Service.Saves
 {
@@ -11,7 +10,7 @@ namespace Assets.Scripts.Service.Saves
             if (string.IsNullOrWhiteSpace(json))
                 return default;
 
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(json));
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public string Serialize<T>(T obj)
@@ -19,9 +18,9 @@ namespace Assets.Scripts.Service.Saves
             return JsonConvert.SerializeObject(obj,
                 Formatting.Indented,
                 new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
         }
     }
 }

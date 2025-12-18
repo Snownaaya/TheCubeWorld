@@ -4,6 +4,7 @@ using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.Service.Audio;
 using Assets.Scripts.Service.CharacterService;
+using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.LevelLoaderService.Loader;
@@ -11,6 +12,7 @@ using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
 using Reflex.Core;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace Assets.Scripts.Installers
@@ -28,7 +30,18 @@ namespace Assets.Scripts.Installers
             BindPauseHandler(containerBuilder);
             InitForegroundAudioService(containerBuilder);
             InitBackgroundAudio(containerBuilder);
+            BindMessageBroked(containerBuilder);
             BindSavesServices(containerBuilder);
+        }
+
+        private void BindMessageBroked(ContainerBuilder containerBuilder)
+        {
+            IMessageBroker messageBroker = new MessageBroker();
+
+            containerBuilder.AddSingleton<GameMessageBus>(container =>
+            {
+                return new GameMessageBus(messageBroker);
+            });
         }
 
         private void BindPlayerSpawnService(ContainerBuilder containerBuilder)

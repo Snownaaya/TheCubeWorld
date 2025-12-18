@@ -33,9 +33,8 @@ namespace Assets.Scripts.Service.Audio
             AudioClip audioClip = audioData.AudioClip[UnityEngine.Random.Range(0, audioData.AudioClip.Count)];
 
             AudioSource audioSource = _audioSourcePool.Get();
-            audioSource.volume = _foregroundSource.volume;
             audioSource.clip = audioClip;
-            audioSource.volume = audioData.Volume;
+            audioSource.volume = audioData.Volume = _foregroundSource.volume;
             audioSource.PlayOneShot(audioClip, audioData.Volume);
 
             Observable.Timer(TimeSpan.FromSeconds(audioClip.length + 1f))

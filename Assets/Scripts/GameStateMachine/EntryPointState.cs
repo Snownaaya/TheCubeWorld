@@ -13,6 +13,7 @@ using Assets.Scripts.UI.GameUI;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
+using Assets.Scripts.Service.GameMessage;
 
 namespace Assets.Scripts.GameStateMachine
 {
@@ -32,6 +33,7 @@ namespace Assets.Scripts.GameStateMachine
         private ILevelLoader _levelLoader;
         private ICharacterTeleportService _characterTeleportService;
         private IResourceService _resourceService;
+        private GameMessageBus _gameMessageBus;
 
         public LossScreen LossScreen => _lossScreen;
         public EndLevel EndLevel => _endLevel;
@@ -49,7 +51,8 @@ namespace Assets.Scripts.GameStateMachine
             CharacterHolder characterHolder,
             AchievementService achievementService,
             IWallet wallet,
-            IResourceService resourceService)
+            IResourceService resourceService,
+            GameMessageBus gameMessageBus)
         {
             _switcher = switcher;
             _pauseHandler = pauseHandler;
@@ -60,6 +63,7 @@ namespace Assets.Scripts.GameStateMachine
             _achievementService = achievementService;
             _wallet = wallet;
             _resourceService = resourceService;
+            _gameMessageBus = gameMessageBus;
         }
 
         private void InitializeStates()
@@ -72,13 +76,15 @@ namespace Assets.Scripts.GameStateMachine
                     this,
                     _characterTeleportService,
                     _characterHolder,
-                    _resourceService),
+                    _resourceService,
+                    _gameMessageBus),
                     new WinLevelState(_switcher,
                     this,
                     _characterHolder,
                     _levelLoader,
                     _achievementService,
-                    _wallet),
+                    _wallet,
+                    _gameMessageBus),
                     new LossState(_switcher,
                     this,
                     _inventory,

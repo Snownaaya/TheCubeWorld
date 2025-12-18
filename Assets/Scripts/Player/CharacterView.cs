@@ -1,6 +1,5 @@
 using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Particles;
-using Assets.Scripts.Player.Skins;
 using Reflex.Attributes;
 using UnityEngine;
 

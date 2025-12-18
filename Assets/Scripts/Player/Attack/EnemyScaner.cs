@@ -1,4 +1,4 @@
-﻿    using Assets.Scripts.Datas.Character;
+﻿using Assets.Scripts.Datas.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Attack
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Player.Attack
         public Collider DetectEnemies()
         {
             Collider[] colliders = Physics.OverlapSphere(_playerModel.position, _characterConfig.DetectionRadius, _bossMask);
+
             float detectionRadiusSqr = _characterConfig.DetectionRadius * _characterConfig.DetectionRadius;
 
             for (int i = 0; i < colliders.Length; i++)

@@ -3,11 +3,10 @@ using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Achievements;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
-using Assets.Scripts.Items;
 using Cysharp.Threading.Tasks;
-using Random = UnityEngine.Random;
 using System.Threading;
 using System;
+using Assets.Scripts.Service.GameMessage;
 
 namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
@@ -27,7 +26,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             CharacterHolder character,
             ILevelLoader levelLoader,
             AchievementService achievementService,
-            IWallet wallet) : base(switcher, entryPoint, character)
+            IWallet wallet,
+            GameMessageBus gameMessageBus) : base(switcher, entryPoint, character, gameMessageBus)
         {
             _levelLoader = levelLoader;
             _character = character;
@@ -39,12 +39,10 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         {
             base.Enter();
 
-            ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
             _cancellationTokenSource = new CancellationTokenSource();
             DelayNextLevel(_cancellationTokenSource.Token).Forget();
             _wallet.AddCoins(_addCoins);
 
-            
             _achievementService.Achieve(AchievementNames.Beginning);
         }
 

@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Player.Inventory;
-using Random = UnityEngine.Random;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
@@ -32,13 +31,13 @@ namespace Assets.Scripts.Player.Attack
 
         public bool TryConsumeResource()
         {
-            ResourceTypes selectedConfig = (ResourceTypes)Random.Range(0, Enum.GetValues(typeof(ResourceTypes)).Length);
-
-            SpawnResource(selectedConfig);
-            _inventory.UseResource(selectedConfig);
-
+            SpawnResource(ResourceTypeSelector.GetRandomTypes());
+            _inventory.UseResource(ResourceTypeSelector.GetRandomTypes());
             return true;
         }
+
+        public bool HasEnoughResources(ResourceTypes type, int amount) =>
+            _inventory.HasResource(type, new(amount));
 
         private void SpawnResource(ResourceTypes resourceType)
         {

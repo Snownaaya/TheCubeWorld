@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Visitor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.Shop.SO
 {

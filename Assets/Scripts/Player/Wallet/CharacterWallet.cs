@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Datas.Character;
 using System;
-using UniRx;
 
 namespace Assets.Scripts.Player.Wallet
 {
@@ -11,7 +10,7 @@ namespace Assets.Scripts.Player.Wallet
         public CharacterWallet(IPersistentCharacterData characterData)
         {
             _persistentCharacterData = characterData;
-            _persistentCharacterData.Money.Value = 10000;
+           // _persistentCharacterData.Money.Value = 10000;
         }
 
         public IPersistentCharacterData PersistentCharacterData => _persistentCharacterData;
@@ -19,7 +18,6 @@ namespace Assets.Scripts.Player.Wallet
         public void AddCoins(int coins)
         {
             _persistentCharacterData.Money.Value += coins;
-            UnityEngine.Debug.Log(coins);
         }
 
         public void RemoveCoins(int coins)

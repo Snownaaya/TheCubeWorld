@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.Audio;
 using Assets.Scripts.Service.CharacterService;
+using Assets.Scripts.Service.GameMessage;
 
 namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
@@ -15,9 +15,11 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             EntryPointState entryPoint,
             ICharacterTeleportService characterTeleportService,
             CharacterHolder characterHolder,
-            IResourceService resourceService) : base(switcher,
+            IResourceService resourceService,
+            GameMessageBus gameMessageBus) : base(switcher,
                 entryPoint,
-                characterHolder)
+                characterHolder,
+                gameMessageBus)
         {
             _characterTeleportService = characterTeleportService;
             _resourceService = resourceService;
@@ -26,6 +28,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         public override void Enter()
         {
             base.Enter();
+
             EntryPoint.EndLevel.LevelEnded += OnStartLevel;
             _characterTeleportService?.SpawnAtStart();
             _resourceService.ReturnAllPool();
@@ -35,7 +38,6 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         public override void Exit()
         {
             base.Exit();
-
 
             EntryPoint.EndLevel.LevelEnded -= OnStartLevel;
         }

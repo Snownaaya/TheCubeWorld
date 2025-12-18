@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9103643664108539850}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: armR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 43729647896133359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3592055848545063351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: armL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6332238464490911701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: armL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6466756948432227345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 493520863518000618}
   - component: {fileID: 2282108042224702495}
   - component: {fileID: 8615828905441869516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2582942184177558118}
   - component: {fileID: 8952017034569842669}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: backpack.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8149489387720107727}
   - component: {fileID: 8944276351967556764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 8847063951513654821}
   - component: {fileID: 5294999761093021304}
   - component: {fileID: 6688864320926717811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,7 +688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2426726079422910939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: legR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -794,7 +794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3214918592818790945}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 271155845670396404}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: legL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -857,7 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7628749978700939383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1762183559671547001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: armR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 3200558896183477518}
   - component: {fileID: 4633347134643552088}
   - component: {fileID: 5246011394632246202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Character\u0415\u043F\u0442\u0430"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,8 +1028,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.7857026, z: 0.8749223}
-  m_Center: {x: 0, y: 0.3999955, z: 0.050824404}
+  m_Size: {x: 1, y: 2.1498253, z: 0.8749223}
+  m_Center: {x: 0, y: 1.0820569, z: 0.050824404}
 --- !u!114 &6705883682753610481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1154,7 +1154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565887499242515144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: legL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4646738487037046275}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: legR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5666433924634550246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: backpack_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1369,7 +1369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7326618204664046257}
   - component: {fileID: 5846000195168067240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3989946174815730184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 9166458052084257500}
   - component: {fileID: 8656333221940830471}
   - component: {fileID: 7484034027204403489}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bunny.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1552,7 +1552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3230172738731049994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

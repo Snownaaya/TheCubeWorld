@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.UI.HealthCharacters.Characters;
 using Assets.Scripts.Datas.Character;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -18,6 +18,10 @@ namespace Assets.Scripts.Player.Attack
         private bool _isAttacking = false;
         private CancellationTokenSource _cancellationToken;
 
+        public ResourceConsumer ResourceConsumer => _resourceConsumer;
+
+        public bool IsAttacking => _isAttacking;
+
         public event Action AttackStarted;
         public event Action AttackEnded;
 
@@ -27,7 +31,6 @@ namespace Assets.Scripts.Player.Attack
         private void OnEnable()
         {
             _cancellationToken = new CancellationTokenSource();
-
             AttackLoop(_cancellationToken.Token).Forget();
         }
 
@@ -56,6 +59,9 @@ namespace Assets.Scripts.Player.Attack
 
         public void AttackStart()
         {
+            if (_isAttacking == false)
+                AttackEnd();
+
             Collider enemyCollider = _enemyScaner.DetectEnemies();
 
             if (enemyCollider == null)

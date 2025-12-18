@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UniRx;
-using UnityEngine;
 
 namespace Assets.Scripts.Player.Inventory
 {
@@ -11,10 +10,8 @@ namespace Assets.Scripts.Player.Inventory
     {
         private Dictionary<ResourceTypes, ReactiveProperty<int>> _resources = new Dictionary<ResourceTypes, ReactiveProperty<int>>();
 
-        public PlayerInventory()
-        {
+        public PlayerInventory() =>
             InitializeResources();
-        }
 
         public Dictionary<ResourceTypes, ReactiveProperty<int>> ResourceStacks => _resources;
 
@@ -28,9 +25,7 @@ namespace Assets.Scripts.Player.Inventory
             if (_resources.ContainsKey(resource.Config.ResourceType) == false)
                 _resources[type] = new ReactiveProperty<int>(0);
 
-            _resources[type].Value += 1000; //value++
-
-            Debug.Log($"Added resource {type}, new count: {_resources[type].Value}");
+            _resources[type].Value++;
         }
 
         public void UseResource(ResourceTypes resourceType)
@@ -39,9 +34,7 @@ namespace Assets.Scripts.Player.Inventory
                 return;
 
             if (_resources.TryGetValue(resourceType, out ReactiveProperty<int> resource) && resource.Value > 0)
-            {
                 resource.Value--;
-            }
         }
 
         public bool HasResource(ResourceTypes resourceType, ReactiveProperty<int> amount)

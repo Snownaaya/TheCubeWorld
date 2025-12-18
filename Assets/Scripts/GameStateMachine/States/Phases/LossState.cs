@@ -1,12 +1,13 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+﻿using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
-using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
 using Cysharp.Threading.Tasks;
-using System.Threading;
 using System;
+using System.Threading;
+using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
@@ -14,7 +15,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     {
         private PauseHandler _pauseHandler;
         private LossScreen _lossScreen;
-        private CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenSource _cancellationTokenSource; 
         private ILevelLoader _levelLoader;
         private IResourceService _resourceService;
 
@@ -41,10 +42,12 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         {
             base.Enter();
 
+            _cancellationTokenSource = new CancellationTokenSource();
+
             _lossScreen.RewardAdsRequested += OnRespawnState;
             _lossScreen.RespawnRequested += OnRespawnState;
             _lossScreen.ExitMenuRequested += OnExitMenu;
-            _cancellationTokenSource = new CancellationTokenSource();
+
             DelayPause(_cancellationTokenSource.Token).Forget();
         }
 
@@ -55,6 +58,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             _lossScreen.RewardAdsRequested -= OnRespawnState;
             _lossScreen.RespawnRequested -= OnRespawnState;
             _lossScreen.ExitMenuRequested -= OnExitMenu;
+
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
@@ -68,7 +72,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
                 return;
 
             _pauseHandler.SetPause(true);
-            EntryPoint.LossScreen.Open();
+            _lossScreen.Open();
         }
 
         private void OnRespawnState() =>

@@ -49,6 +49,7 @@ namespace Assets.Scripts.Enemies.Boss
             Animator animator = _bossView.GetComponent<Animator>();
             float deathAniamtion = animator.GetCurrentAnimatorStateInfo(0).length;
             float delay = Mathf.Max(deathAniamtion, _bossConfig.AnimationDuration);
+
             await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken : cancellationToken);
             gameObject.SetActive(false);
         }

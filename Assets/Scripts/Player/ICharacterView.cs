@@ -1,8 +1,4 @@
-﻿using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Particles;
-using UnityEngine;
-
-namespace Assets.Scripts.Player
+﻿namespace Assets.Scripts.Player
 {
     public interface ICharacterView
     {

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Loss;
 using UnityEngine;
 using System;
