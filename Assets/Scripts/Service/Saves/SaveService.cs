@@ -20,6 +20,7 @@ namespace Assets.Scripts.Service.Saves
                 return;
 
             PlayerPrefs.SetString(dataKey, data);
+            PlayerPrefs.Save();
         }
     }
 }

@@ -9,7 +9,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private IInventory _inventory;
         private IResourceService _resourceService;
 
-        protected PhasesState(ISwitcher switcher,
+        protected PhasesState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             IInventory inventory,
             IResourceService resourceService) : base(switcher, entryPoint)
@@ -23,7 +24,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             base.Enter();
 
             _inventory.Reset();
-            _resourceService.ReturnAllPool();
+            _resourceService.Clear();
         }
 
         public override void Exit()

@@ -9,8 +9,8 @@ namespace Assets.Scripts.Items
         public List<Resource> ActiveResources { get; }
         public Resource Pull(Resource prefab);
         public void Push(Resource resource);
-        public UniTask SpawnRoutine(Assets.Scripts.Ground.Ground currentGround, CancellationToken cancellationToken);
+        public UniTask SpawnRoutine(Ground.Ground currentGround, CancellationToken cancellationToken);
         public void ReturnResource(Resource resource);
-        public void ReturnAllPool();
+        public void Clear();
     }
 }

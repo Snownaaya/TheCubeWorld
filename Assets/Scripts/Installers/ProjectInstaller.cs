@@ -41,6 +41,7 @@ namespace Assets.Scripts.Installers
         private void BindJoystick(ContainerBuilder containerBuilder)
         {
             JoystickInput joystickInput = Instantiate(_joystickInput);
+            joystickInput.SetInteractable(false);
             DontDestroyOnLoad(joystickInput);
 
             containerBuilder.AddSingleton(joystickInput, typeof(IJoystickInput));

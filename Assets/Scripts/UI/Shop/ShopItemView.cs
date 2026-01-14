@@ -45,10 +45,13 @@ namespace Assets.Scripts.UI.Shop
             _lockImage.gameObject.SetActive(IsLock);
         }
 
-        public void UnHighlight() =>
-            _backgroundImage.DOColor(Color.white, 0.3f);
+        public void UnHighlight()
+        {
+            _backgroundImage
+                .DOColor(Color.white, 0.3f);
+        }
 
         public void Highlight() =>
-            _backgroundImage.DOColor(new Color(0.7f, 0.7f, 0.7f), 0.3f);
+            _backgroundImage.DOColor(Color.gray, 0.3f).DOTimeScale(15, 2);
     }
 }

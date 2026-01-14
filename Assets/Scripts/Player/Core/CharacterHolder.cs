@@ -12,7 +12,8 @@ namespace Assets.Scripts.Player.Core
 
         public bool Initilized => Character != null && Movement != null && Attacker != null && SkinChanger != null;
 
-        public void Initialize(Character characterAttacker,
+        public void Initialize(
+            Character characterAttacker,
             Movement movement,
             CharacterAttacker attacker,
             SkinChanger skinChanger)

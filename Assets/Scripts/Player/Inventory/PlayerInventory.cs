@@ -51,6 +51,16 @@ namespace Assets.Scripts.Player.Inventory
                 resource.Value.Value = 0;
         }
 
+        public int GetTotalResourcesAmount()
+        {
+            int total = 0;
+
+            foreach (var pair in _resources)
+                total += pair.Value.Value;
+
+            return total;
+        }
+
         private void InitializeResources()
         {
             _resources = new Dictionary<ResourceTypes, ReactiveProperty<int>>

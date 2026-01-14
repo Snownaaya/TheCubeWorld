@@ -11,7 +11,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         private ICharacterTeleportService _characterTeleportService;
         private IResourceService _resourceService;
 
-        public StartLevelState(ISwitcher switcher,
+        public StartLevelState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             ICharacterTeleportService characterTeleportService,
             CharacterHolder characterHolder,
@@ -31,8 +32,6 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 
             EntryPoint.EndLevel.LevelEnded += OnStartLevel;
             _characterTeleportService?.SpawnAtStart();
-            _resourceService.ReturnAllPool();
-            _resourceService.ActiveResources.Clear();
         }
 
         public override void Exit()

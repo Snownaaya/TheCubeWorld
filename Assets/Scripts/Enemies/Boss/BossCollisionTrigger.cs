@@ -12,7 +12,6 @@ namespace Assets.Scripts.Enemies.Boss
     public class BossCollisionTrigger : MonoBehaviour
     {
         [SerializeField] private BossAttacker _attacker;
-        [SerializeField] private BossConfig _bossConfig;
 
         private BossHealth _bossHealth;
         private BossView _bossView;
@@ -29,12 +28,14 @@ namespace Assets.Scripts.Enemies.Boss
         private void OnEnable()
         {
             _cancellationTokenSource = new CancellationTokenSource();
-            _bossHealth.Died += OnDeath;
             StartAttackLoop(_cancellationTokenSource.Token).Forget();
+            _bossHealth.Died += OnDeath;
         }
 
         private void OnDisable()
         {
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
             _bossHealth.Died -= OnDeath;
         }
 
@@ -51,9 +52,6 @@ namespace Assets.Scripts.Enemies.Boss
         {
             if (other.TryGetComponent(out Character character))
             {
-                _cancellationTokenSource?.Cancel();
-                _cancellationTokenSource?.Dispose();
-
                 _bossView.StartIdle();
                 _bossView.StopAttack();
             }
@@ -73,13 +71,6 @@ namespace Assets.Scripts.Enemies.Boss
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (_attacker == null) return;
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_attacker.AttackTarget.position, _bossConfig.AttackRadius);
         }
     }
 }

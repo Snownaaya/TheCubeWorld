@@ -1,7 +1,4 @@
 ﻿using Cinemachine;
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Camera

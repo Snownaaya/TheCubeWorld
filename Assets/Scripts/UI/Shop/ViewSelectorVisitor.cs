@@ -8,7 +8,8 @@ namespace Assets.Scripts.UI.Shop
         private ShopItemView _abilityItemPrefab;
         private ShopItemView _characterSkinsItemPrefab;
 
-        public ViewSelectorVisitor(ShopItemView abilityItemPrefab, ShopItemView characterSkinsItemPrefab)
+        public ViewSelectorVisitor(ShopItemView abilityItemPrefab,
+            ShopItemView characterSkinsItemPrefab)
         {
             _abilityItemPrefab = abilityItemPrefab;
             _characterSkinsItemPrefab = characterSkinsItemPrefab;

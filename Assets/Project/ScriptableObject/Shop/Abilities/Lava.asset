@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c11284b364646428ec24d691a80ac1, type: 3}
   m_Name: Lava
   m_EditorClassIdentifier: 
-  <Price>k__BackingField: 214
+  <Price>k__BackingField: 107
   <Image>k__BackingField: {fileID: 21300000, guid: 0eca38be8e1c5c34cbf0a2d835128e60, type: 3}
   <AbilityTypes>k__BackingField: 3

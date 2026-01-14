@@ -11,9 +11,13 @@ namespace Assets.Scripts.Installers
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             BindRewardAds(containerBuilder);
+            BindAdsService(containerBuilder);
         }
 
         private void BindRewardAds(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(containerBuilder => _rewarded);
+
+        private void BindAdsService(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new YandexAdsService(), typeof(IAdsService));
     }
 }

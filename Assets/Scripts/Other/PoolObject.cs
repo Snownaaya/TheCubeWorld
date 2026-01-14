@@ -17,6 +17,7 @@ public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
 
         _active.Add(instance);
         instance.gameObject.SetActive(true);
+
         return instance;
     }
 
@@ -26,7 +27,4 @@ public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
         _pool.Push(instance);
         _active.Remove(instance);
     }
-
-    public int GetActiveCount() => 
-        _active.Count;
 }

@@ -15,7 +15,9 @@ namespace Assets.Scripts.UI.SettingsMenu
         private IResourceService _resourceService;
 
         [Inject]
-        private void Construct(ILevelLoader levelLoader, IResourceService resourceService)
+        private void Construct(
+            ILevelLoader levelLoader,
+            IResourceService resourceService)
         {
             _levelLoader = levelLoader;
             _resourceService = resourceService;
@@ -29,7 +31,7 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         private void OnLoadMenu()
         {
-            _resourceService.ReturnAllPool();
+            _resourceService.Clear();
             _levelLoader.Load(SceneID.MainMenu);
             _settings.SetPause(false);
         }

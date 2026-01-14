@@ -20,7 +20,10 @@ namespace Assets.Scripts.Enemies.Obstacles.Patrollers
 
         private Queue<Vector3> _targets;
 
-        public WaypointPatroller(Transform transform, Rigidbody rigidbody, float speed, IEnumerable<Vector3> targets)
+        public WaypointPatroller(Transform transform,
+            Rigidbody rigidbody,
+            float speed,
+            IEnumerable<Vector3> targets)
         {
             _transform = transform;
             _rigidbody = rigidbody;
@@ -28,6 +31,7 @@ namespace Assets.Scripts.Enemies.Obstacles.Patrollers
             _targets = new Queue<Vector3>(targets);
 
             _currentTarget = _targets.Peek();
+
             SwitchTarget();
         }
 

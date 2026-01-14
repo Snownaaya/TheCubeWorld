@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Achievements.Observers;
+﻿using Assets.Scripts.Achievements.AchievePartials;
+using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Datas;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.AchievementServices;
@@ -64,7 +65,8 @@ namespace Assets.Scripts.Installers
         {
             containerBuilder.AddSingleton<BridgeTrackerService>(container =>
             {
-                AchievementBridgeObserver achievementBridgeObserver = container.Resolve<AchievementBridgeObserver>();
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                AchievementBridgeObserver achievementBridgeObserver = new AchievementBridgeObserver(achievementValidator.GetBridgeValidators());
                 return new BridgeTrackerService(achievementBridgeObserver);
             });
         }
@@ -73,10 +75,21 @@ namespace Assets.Scripts.Installers
         {
             containerBuilder.AddSingleton<DeathTrackerService>(container =>
             {
-                AchievementDeathObserver achievementDeathObserver = container.Resolve<AchievementDeathObserver>();
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                AchievementDeathObserver achievementDeathObserver = new AchievementDeathObserver(achievementValidator.GetDeathValidators());
                 return new DeathTrackerService(achievementDeathObserver);
             });
         }
+
+        //private void BindBuyTracker(ContainerBuilder containerBuilder)
+        //{
+        //    containerBuilder.AddSingleton<BuyTarckerService>(container =>
+        //    {
+        //        AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+        //        AchievemntBuyObserver achievementBuyObserver = new AchievemntBuyObserver(achievementValidator.GetBuyValidators());
+        //        return new BuyTarckerService(achievementBuyObserver);
+        //    });
+        //}
 
         private void InitForegroundAudioService(ContainerBuilder containerBuilder)
         {

@@ -1,69 +1,44 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.Achievements;
-using Assets.Scripts.Player.Core;
+﻿using Assets.Scripts.Achievements;
 using Assets.Scripts.Interfaces;
-using Cysharp.Threading.Tasks;
-using System.Threading;
-using System;
+using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.GameMessage;
+using Assets.Scripts.UseCase;
 
 namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
     public class WinLevelState : RuntimeState
     {
-        private ILevelLoader _levelLoader;
-        private IWallet _wallet;
         private CharacterHolder _character;
         private AchievementService _achievementService;
-        private CancellationTokenSource _cancellationTokenSource;
+        private WinLevelUseCase _winLevelUseCase;
 
-        private float _delay = 4;
-        private int _addCoins = 20;
-
-        public WinLevelState(ISwitcher switcher,
+        public WinLevelState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             CharacterHolder character,
-            ILevelLoader levelLoader,
             AchievementService achievementService,
-            IWallet wallet,
             GameMessageBus gameMessageBus) : base(switcher, entryPoint, character, gameMessageBus)
         {
-            _levelLoader = levelLoader;
             _character = character;
-            _wallet = wallet;
             _achievementService = achievementService;
+            _winLevelUseCase = new WinLevelUseCase(_achievementService);
         }
 
         public override void Enter()
         {
             base.Enter();
 
-            _cancellationTokenSource = new CancellationTokenSource();
-            DelayNextLevel(_cancellationTokenSource.Token).Forget();
-            _wallet.AddCoins(_addCoins);
+            _winLevelUseCase.Execute();
+            _character.Character.Health.ResetHealth();
 
-            _achievementService.Achieve(AchievementNames.Beginning);
+            EntryPoint.WinLevelWindowMediator.ProcessDefaultCoimResult();
+            EntryPoint.WinLevelWindowMediator.ProcessRewardWheelResult();
+            EntryPoint.WinLevelWindowMediator.Show();
         }
 
         public override void Exit()
         {
             base.Exit();
-
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
-            _cancellationTokenSource = null;
-        }
-
-        private async UniTask DelayNextLevel(CancellationToken cancellationToken)
-        {
-            if (cancellationToken.IsCancellationRequested)
-                return;
-
-            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
-
-            _character.Character.Health.ResetHealth();
-            await _levelLoader.Load(EntryPoint.LevelSelected.GetNextLevel());
         }
     }
 }

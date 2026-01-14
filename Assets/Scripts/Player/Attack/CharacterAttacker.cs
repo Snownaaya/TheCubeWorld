@@ -20,8 +20,6 @@ namespace Assets.Scripts.Player.Attack
 
         public ResourceConsumer ResourceConsumer => _resourceConsumer;
 
-        public bool IsAttacking => _isAttacking;
-
         public event Action AttackStarted;
         public event Action AttackEnded;
 

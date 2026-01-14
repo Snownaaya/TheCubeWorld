@@ -18,6 +18,7 @@ namespace Assets.Scripts.Service.CharacterService
         {
             _player.Movement.CharacterModel.position = _startLevel.Transform.position;
             _player.Movement.CharacterModel.rotation = _startLevel.Transform.rotation;
+            _player.Character.gameObject.SetActive(true);
         }
     }
 }

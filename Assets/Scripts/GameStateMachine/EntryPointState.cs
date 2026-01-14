@@ -6,7 +6,6 @@ using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.GameUI;
@@ -14,6 +13,7 @@ using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
 using Assets.Scripts.Service.GameMessage;
+using Assets.Scripts.Mediators.LevelCompletedMediator;
 
 namespace Assets.Scripts.GameStateMachine
 {
@@ -22,12 +22,12 @@ namespace Assets.Scripts.GameStateMachine
         [SerializeField] private LossScreen _lossScreen;
         [SerializeField] private EndLevel _endLevel;
         [SerializeField] private LevelSelected _levelSelected;
+        [SerializeField] private WinLevelWindowMediator _winLevelWindowMediator;
 
         private PauseHandler _pauseHandler;
         private CharacterHolder _characterHolder;
         private AchievementService _achievementService;
 
-        private IWallet _wallet;
         private ISwitcher _switcher;
         private IInventory _inventory;
         private ILevelLoader _levelLoader;
@@ -38,19 +38,20 @@ namespace Assets.Scripts.GameStateMachine
         public LossScreen LossScreen => _lossScreen;
         public EndLevel EndLevel => _endLevel;
         public LevelSelected LevelSelected => _levelSelected;
+        public WinLevelWindowMediator WinLevelWindowMediator => _winLevelWindowMediator;
 
         private void Awake() =>
             InitializeStates();
 
         [Inject]
-        private void Construct(ISwitcher switcher,
+        private void Construct(
+            ISwitcher switcher,
             PauseHandler pauseHandler,
             ICharacterTeleportService characterTeleportService,
             IInventory inventory,
             ILevelLoader levelLoader,
             CharacterHolder characterHolder,
             AchievementService achievementService,
-            IWallet wallet,
             IResourceService resourceService,
             GameMessageBus gameMessageBus)
         {
@@ -61,7 +62,6 @@ namespace Assets.Scripts.GameStateMachine
             _levelLoader = levelLoader;
             _characterHolder = characterHolder;
             _achievementService = achievementService;
-            _wallet = wallet;
             _resourceService = resourceService;
             _gameMessageBus = gameMessageBus;
         }
@@ -78,12 +78,11 @@ namespace Assets.Scripts.GameStateMachine
                     _characterHolder,
                     _resourceService,
                     _gameMessageBus),
-                    new WinLevelState(_switcher,
+                    new WinLevelState(
+                    _switcher,
                     this,
                     _characterHolder,
-                    _levelLoader,
                     _achievementService,
-                    _wallet,
                     _gameMessageBus),
                     new LossState(_switcher,
                     this,

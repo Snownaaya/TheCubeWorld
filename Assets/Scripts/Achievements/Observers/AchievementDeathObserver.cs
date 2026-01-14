@@ -9,7 +9,7 @@ namespace Assets.Scripts.Achievements.Observers
     {
         private List<int> _deaths = new();
 
-        private int _deathCount = 0;
+        private int _deathCount = 1;
         private int _maxDeathCount = 10;
 
         private IEnumerable<Action<List<int>>> _deathCheck;

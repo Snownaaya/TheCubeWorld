@@ -1,3 +1,0 @@
-Build path: D:/Games/BuildCubeTheWorld
-Build number: 2
-PluginYG version: 2.0042

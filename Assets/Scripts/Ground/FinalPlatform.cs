@@ -19,8 +19,11 @@ namespace Assets.Scripts.Ground
         private GameMessageBus _messageBus;
         private CharacterHolder _characterHolder;
 
+        private int _resourceAmount = 10;
+
         [Inject]
-        private void Construct(IVirtualCamera targetBinder,
+        private void Construct(
+            IVirtualCamera targetBinder,
             GameMessageBus gameMessageBus,
             CharacterHolder character)
         {
@@ -55,7 +58,7 @@ namespace Assets.Scripts.Ground
         {
             foreach (ResourceTypes type in System.Enum.GetValues(typeof(ResourceTypes)))
             {
-                if (_characterHolder.Attacker.ResourceConsumer.HasEnoughResources(type, 8) == false)
+                if (_characterHolder.Attacker.ResourceConsumer.HasEnoughTotalResources(_resourceAmount) == false)
                     return false;
             }
 

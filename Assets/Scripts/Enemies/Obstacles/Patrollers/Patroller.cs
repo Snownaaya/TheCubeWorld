@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemies.Obstacles.Patrollers
 {
+    [RequireComponent(typeof(Collider))]
     public class Patroller : MonoBehaviour
     {
         [SerializeField] private List<Transform> _patrolPoints;
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Enemies.Obstacles.Patrollers
 
         private WaypointPatroller _wayPoint;
         private CancellationTokenSource _cancellationTokenSource;
+        private Collider _collider;
 
         public ObstacleTypes ObstacleTypes => _obstacleTypes;
 
@@ -25,6 +27,8 @@ namespace Assets.Scripts.Enemies.Obstacles.Patrollers
                 _rigidbody,
                 _speed,
                 _patrolPoints.Select(point => point.position));
+
+            _collider = GetComponent<Collider>();
         }
 
         private void OnEnable()
@@ -51,6 +55,7 @@ namespace Assets.Scripts.Enemies.Obstacles.Patrollers
                 _cancellationTokenSource.Cancel();
                 _cancellationTokenSource.Dispose();
                 _cancellationTokenSource = null;
+                _collider.enabled = false;
             }
         }
 

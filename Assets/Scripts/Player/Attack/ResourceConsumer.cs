@@ -3,7 +3,8 @@ using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
 using UnityEngine;
-using System;
+using Random = UnityEngine.Random;
+using UniRx;
 
 namespace Assets.Scripts.Player.Attack
 {
@@ -36,15 +37,18 @@ namespace Assets.Scripts.Player.Attack
             return true;
         }
 
-        public bool HasEnoughResources(ResourceTypes type, int amount) =>
-            _inventory.HasResource(type, new(amount));
+        public bool HasEnoughTotalResources(int requiredAmount)
+        {
+            int total = _inventory.GetTotalResourcesAmount();
+            return total >= requiredAmount;
+        }
 
         private void SpawnResource(ResourceTypes resourceType)
         {
             if (_resourceService.ActiveResources.Count >= 16)
                 return;
 
-            int prefabIndex = Array.IndexOf(_resourceType, resourceType);
+            int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
             Resource resource = _resourcePrefabs[prefabIndex];
 
             Resource resourcePrefab = _resourceService.Pull(resource);

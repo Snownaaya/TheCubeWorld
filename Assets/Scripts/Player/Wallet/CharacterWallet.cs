@@ -7,23 +7,16 @@ namespace Assets.Scripts.Player.Wallet
     {
         private IPersistentCharacterData _persistentCharacterData;
 
-        public CharacterWallet(IPersistentCharacterData characterData)
-        {
+        public CharacterWallet(IPersistentCharacterData characterData) =>
             _persistentCharacterData = characterData;
-           // _persistentCharacterData.Money.Value = 10000;
-        }
 
         public IPersistentCharacterData PersistentCharacterData => _persistentCharacterData;
 
-        public void AddCoins(int coins)
-        {
+        public void AddCoins(int coins) =>
             _persistentCharacterData.Money.Value += coins;
-        }
 
-        public void RemoveCoins(int coins)
-        {
+        public void RemoveCoins(int coins) =>
             _persistentCharacterData.Money.Value -= coins;
-        }
 
         public bool IsEnought(int coins)
         {

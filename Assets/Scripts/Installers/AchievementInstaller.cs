@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Achievements;
 using Assets.Scripts.Achievements.AchievePartials;
-using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.Saves;
 using Reflex.Core;
@@ -15,8 +14,6 @@ namespace Assets.Scripts.Installers
             BindAchievementRepository(containerBuilder);
             BindAchievementService(containerBuilder);
             BindAchievementValidator(containerBuilder);
-            BindAchievementBridgeObserver(containerBuilder);
-            BindAchievementDeathObserver(containerBuilder);
         }
 
         private void BindAchievementRepository(ContainerBuilder containerBuilder)
@@ -46,24 +43,6 @@ namespace Assets.Scripts.Installers
             {
                 AchievementService achievementService = container.Resolve<AchievementService>();
                 return new AchievementValidator(achievementService);
-            });
-        }
-
-        private void BindAchievementBridgeObserver(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.AddSingleton<AchievementBridgeObserver>(container =>
-            {
-                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
-                return new AchievementBridgeObserver(achievementValidator.GetBridgeValidators());
-            });
-        }
-
-        private void BindAchievementDeathObserver(ContainerBuilder containerBuilder)
-        {
-            containerBuilder.AddSingleton<AchievementDeathObserver>(container =>
-            {
-                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
-                return new AchievementDeathObserver(achievementValidator.GetDeathValidators());
             });
         }
     }

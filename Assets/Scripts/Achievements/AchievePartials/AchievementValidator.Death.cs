@@ -11,7 +11,7 @@ namespace Assets.Scripts.Achievements.AchievePartials
             {
                 foreach (int death in deaths)
                 {
-                    if (deathCount-- == 0)
+                    if (--deathCount == 1)
                     {
                         writeAchieve();
                         return;

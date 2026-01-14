@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Input
 {
@@ -6,6 +7,14 @@ namespace Assets.Scripts.Input
     {
         [SerializeField] private Joystick _joystick;
 
+        private Image _backgroundImage;
+
+        private void Awake() =>
+            _backgroundImage = _joystick.GetComponent<Image>();
+
         public Joystick Joystick => _joystick;
+
+        public void SetInteractable(bool interactable) =>
+             _backgroundImage.raycastTarget = interactable;
     }
 }

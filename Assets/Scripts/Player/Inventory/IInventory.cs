@@ -10,6 +10,7 @@ namespace Assets.Scripts.Player.Inventory
         public void AddResource(Resource resource);
         public void UseResource(ResourceTypes resourceType);
         public bool HasResource(ResourceTypes resourceType, ReactiveProperty<int> amount);
+        public int GetTotalResourcesAmount();
         public void Reset();
     }
 }

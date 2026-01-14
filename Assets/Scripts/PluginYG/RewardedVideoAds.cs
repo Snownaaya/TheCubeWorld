@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.UI.GameUI;
-using Assets.Scripts.UI;
+using Reflex.Attributes;
 using UnityEngine;
 using YG;
 

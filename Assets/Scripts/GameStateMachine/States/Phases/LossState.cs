@@ -7,7 +7,6 @@ using Assets.Scripts.UI.GameUI;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
-using UnityEngine;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
@@ -19,9 +18,10 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private ILevelLoader _levelLoader;
         private IResourceService _resourceService;
 
-        private float _delay = 3f;
+        private float _delay = 2f;
 
-        public LossState(ISwitcher switcher,
+        public LossState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             IInventory inventory,
             IResourceService resourceService,
@@ -80,8 +80,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private void OnExitMenu()
         {
-            _resourceService.ReturnAllPool();
-            _resourceService.ActiveResources.Clear();
+            _resourceService.Clear();
             _levelLoader.Load(EntryPoint.LevelSelected.GetMainMenu());
         }
     }

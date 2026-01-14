@@ -1,11 +1,12 @@
 ﻿using Assets.Scripts.Service.Audio;
+using DG.Tweening;
 using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.UI.GameUI
 {
     public abstract class UIElement : MonoBehaviour
-    {
+    {  
         private ForegroundAudioService _audioService;
 
         [Inject]

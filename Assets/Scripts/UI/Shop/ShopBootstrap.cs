@@ -3,11 +3,11 @@ using Assets.Scripts.Visitor;
 using Reflex.Attributes;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Shop
+namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
     public class ShopBootstrap : MonoBehaviour
     {
-        [SerializeField] private Shop _shop;
+        [SerializeField] private BaseShop _shop;
 
         private VisitorsHolder _visitorsHolder;
         private VisitorFactory _visitorFactory;

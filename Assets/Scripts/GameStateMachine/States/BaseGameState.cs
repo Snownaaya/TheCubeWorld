@@ -8,7 +8,9 @@ namespace Assets.Scripts.GameStateMachine.States
         private EntryPointState _entryPoint;
         private ISwitcher _switcher;
 
-        public BaseGameState(ISwitcher switcher, EntryPointState entryPoint)
+        public BaseGameState(
+            ISwitcher switcher,
+            EntryPointState entryPoint)
         {
             _switcher = switcher;
             _entryPoint = entryPoint;

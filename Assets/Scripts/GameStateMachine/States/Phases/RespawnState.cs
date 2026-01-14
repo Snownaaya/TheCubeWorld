@@ -14,7 +14,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private CharacterHolder _characterHolder;
         private ILevelLoader _levelLoader;
 
-        public RespawnState(ISwitcher switcher,
+        public RespawnState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             ILevelLoader levelLoader,
             PauseHandler pauseHandler,

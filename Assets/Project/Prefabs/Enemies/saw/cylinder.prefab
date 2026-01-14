@@ -1,58 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7434633491003169969
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3722005864698468625}
-  - component: {fileID: 4486284261537193662}
-  m_Layer: 0
-  m_Name: Patroller
-  m_TagString: Untagged
-  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3722005864698468625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7434633491003169969}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.069, y: 1.86, z: 0.17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 962521931584462209}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4486284261537193662
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7434633491003169969}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9179490b68127d4aac98bea77ba6875, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &779450276756077162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.000001783188
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -94.04526
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -2.0355526e-14
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       propertyPath: m_Name
@@ -107,10 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3722005864698468625}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       insertIndex: -1
@@ -127,6 +71,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 182924687003643756}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8904838979350651951}
   m_SourcePrefab: {fileID: 100100000, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
 --- !u!1 &436919757114771259 stripped
 GameObject:
@@ -147,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _patrolPoints: []
   _rigidbody: {fileID: 6688905467251501307}
-  _obstacleConfig: {fileID: 11400000, guid: 4feaef612db3c034199c1829e72a99c0, type: 2}
-  _speed: 3
+  _obstacleTypes: 0
+  _speed: 1.3
 --- !u!114 &5455038089827827150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +170,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4012de2344af2498fe38ed5a35aeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _obstacleConfig: {fileID: 11400000, guid: 4feaef612db3c034199c1829e72a99c0, type: 2}
---- !u!4 &962521931584462209 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f1462463a4d2e584ca3a9a93233aea9b, type: 3}
-  m_PrefabInstance: {fileID: 779450276756077162}
+--- !u!95 &8904838979350651951
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436919757114771259}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9179490b68127d4aac98bea77ba6875, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

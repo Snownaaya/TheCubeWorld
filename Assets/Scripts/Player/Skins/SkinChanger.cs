@@ -2,26 +2,26 @@
 using Assets.Scripts.Datas.Character;
 using System;
 using UnityEngine;
+using Reflex.Attributes;
 
 public class SkinChanger : MonoBehaviour
 {
-    [SerializeField] private SkinConfig _defaultSkin;
-
     private SkinView[] _skinViews;
+    private IPersistentCharacterData _persistentCharacterData;
 
-    public event Action<CharacterSkins> SkinChanged;
-
-    private void Awake()
+    private void Start()
     {
         _skinViews = GetComponentsInChildren<SkinView>(includeInactive: true);
-        ActivateSkin(_defaultSkin.CharacterSkins);
+        CharacterSkins savedSkin = _persistentCharacterData.SelectedCharacterSkin;
+        ActivateSkin(savedSkin);
     }
 
-    public void Change(CharacterSkins skin)
-    {
+    [Inject]
+    private void Construct(IPersistentCharacterData persistentCharacterData) =>
+        _persistentCharacterData = persistentCharacterData;
+
+    public void Change(CharacterSkins skin) =>
         ActivateSkin(skin);
-        SkinChanged?.Invoke(skin);
-    }
 
     private void ActivateSkin(CharacterSkins targetSkin)
     {

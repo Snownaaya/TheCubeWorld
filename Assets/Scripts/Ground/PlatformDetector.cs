@@ -33,8 +33,8 @@ public class PlatformDetector : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
-            _spawner.ReturnAllPool();
-            _spawner.ActiveResources.Clear();
+            _spawner.Clear();
+            _currentGround.ResetPoints();
             _cancellationTokenSource.Cancel();
             _cancellationTokenSource.Dispose();
             _cancellationTokenSource = null;

@@ -13,7 +13,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
         private GameMessageBus _messageBus;
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        protected RuntimeState(ISwitcher switcher,
+        protected RuntimeState(
+            ISwitcher switcher,
             EntryPointState entryPoint,
             CharacterHolder characterHolder,
             GameMessageBus gameMessageBus) : base(switcher, entryPoint)
@@ -39,7 +40,7 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             base.Exit();
 
             _characterHolder.Character.Health.Died -= OnPLayerDeath;
-            //_compositeDisposable.Dispose();
+           // _compositeDisposable.Dispose();
         }
 
         private void OnPLayerDeath(ILoss loss) =>

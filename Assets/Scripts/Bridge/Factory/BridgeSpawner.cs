@@ -2,6 +2,7 @@
 using Assets.Scripts.Particles;
 using Reflex.Attributes;
 using UnityEngine;
+using System;
 
 namespace Assets.Scripts.Bridge.Factory
 {
@@ -18,8 +19,12 @@ namespace Assets.Scripts.Bridge.Factory
         public Transform Point => _point;
         public Bridge CurrentBridge => _currentBridge;
 
+        public event Action<Bridge> OnSpawned;
+
         [Inject]
-        private void Construct(IParticleSpawner particleSpawner, BridgeTrackerService bridgeTracker)
+        private void Construct(
+            IParticleSpawner particleSpawner,
+            BridgeTrackerService bridgeTracker)
         {
             _trackerService = bridgeTracker;
             _bridgeEffect = particleSpawner;
@@ -33,6 +38,7 @@ namespace Assets.Scripts.Bridge.Factory
                 Destroy(_currentBridge.gameObject);
             }
 
+            OnSpawned?.Invoke(_currentBridge);
             _bridgeEffect.Initialize(transform);
             _currentBridge = _factory.Get(_selectedType, _point.position);
             _trackerService.Register(_currentBridge);

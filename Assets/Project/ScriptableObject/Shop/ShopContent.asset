@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64bd46f5294530a49a1515da4a1a54f0, type: 3}
+  m_Script: {fileID: 11500000, guid: d4b5e62346b8d5d429f8b135539db142, type: 3}
   m_Name: ShopContent
   m_EditorClassIdentifier: 
   _abilityItems:
+  - {fileID: 11400000, guid: 9b4cd457e01bb5c469e7ab352304b788, type: 2}
   - {fileID: 11400000, guid: cbd3477626cb3204b9ff15154b7b78ce, type: 2}
   - {fileID: 11400000, guid: 83a64d8bcc44d84429ae8d7e1012da47, type: 2}
   - {fileID: 11400000, guid: dd6c7912d2d278c49aea1a3fd8d47b1d, type: 2}
-  - {fileID: 11400000, guid: 9b4cd457e01bb5c469e7ab352304b788, type: 2}
   _characterSkinsItems:
   - {fileID: 11400000, guid: b97ab7272001de9448e341e41174fb5a, type: 2}
+  - {fileID: 11400000, guid: 16083b511f9348342a38dff12871d2d6, type: 2}
