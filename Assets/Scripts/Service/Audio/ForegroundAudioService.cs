@@ -20,7 +20,7 @@ namespace Assets.Scripts.Service.Audio
             _audioData = audioData;
 
             GameObject gameObject = new GameObject("GameObject");
-            _foregroundSource = new GameObject("AudioSourse").AddComponent<AudioSource>();
+            _foregroundSource = new GameObject("AudioSource").AddComponent<AudioSource>();
             _audioSourcePool = new ObjectPool<AudioSource>(() => UnityEngine.Object.Instantiate(_foregroundSource, gameObject.transform));
 
             UnityEngine.Object.DontDestroyOnLoad(gameObject);

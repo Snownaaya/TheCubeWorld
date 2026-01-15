@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Service.AchievementServices
 {
-    public class BridgeTrackerService : IAchievementTracker<Bridge.Bridge>
+    public class BridgeTrackerService : IBridgeBuildTracker
     {
         private AchievementBridgeObserver _achievementBridgeObserver;
 

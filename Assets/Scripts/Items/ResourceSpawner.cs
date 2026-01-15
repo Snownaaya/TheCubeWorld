@@ -13,7 +13,7 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
     [SerializeField] private int _maxResources = 16;
 
     private Ground _currentGround;
-    private float _delay = 1.5f;
+    private float _delay = 3f;
 
     private Dictionary<ResourceTypes, Resource> _resources = new Dictionary<ResourceTypes, Resource>();
     private readonly List<Resource> _activeResources = new();

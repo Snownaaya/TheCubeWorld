@@ -15,13 +15,13 @@ namespace Assets.Scripts.Player.Core
         private IInput _input;
         private IParticleSpawner _particleSpawner;
         private PlayerInput _playerInput;
-        private DeathTrackerService _deathTrackerService;
+        private ICharacterDeathTracker _deathTrackerService;
 
         [Inject]
         public void Construct(IInput input,
             IParticleSpawner particleSpawner,
             PlayerInput playerInput,
-            DeathTrackerService deathTrackerService)
+            ICharacterDeathTracker deathTrackerService)
         {
             _input = input;
             _particleSpawner = particleSpawner;

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Enemies.Obstacles;
 using Assets.Scripts.Player.Skins;
+using Assets.Scripts.UI.Shop.SO;
 using System;
 using System.Collections.Generic;
 
@@ -7,40 +8,38 @@ namespace Assets.Scripts.Achievements.Observers
 {
     public class AchievemntBuyObserver
     {
-        private HashSet<ObstacleTypes> _buySkinsCounts = new();
-        private HashSet<CharacterSkins> _buyAbilityCounts = new();
+        private HashSet<CharacterSkins> _buySkinsCounts = new();
+        private HashSet<ObstacleTypes> _buyAbilityCounts = new();
 
         private int _maxSkinsBuyCount = 4;
         private int _maxAbilityBuyCount = 4;
 
-        private IEnumerable<Action<HashSet<ObstacleTypes>>> _skinBuyCheckers;
-        private IEnumerable<Action<HashSet<CharacterSkins>>> _abilityBuyCheckers;
+        private Action<HashSet<ObstacleTypes>> _abilityBuyCheckers;
+        private Action<HashSet<CharacterSkins>> _skinBuyCheckers;
 
-        public AchievemntBuyObserver()
+        public AchievemntBuyObserver(Action<HashSet<ObstacleTypes>> abilities)
         {
-            
+            _abilityBuyCheckers = abilities;
         }
 
-        public void OnSkinBuy(ObstacleTypes skinType)
+        public void OnSkinBuy(CharacterSkins skinType)
         {
             _buySkinsCounts.Add(skinType);
 
             if (_buySkinsCounts.Count >= _maxSkinsBuyCount)
                 _buySkinsCounts.Remove(skinType);
 
-            foreach (Action<HashSet<ObstacleTypes>> skinCheck in _skinBuyCheckers)
-                skinCheck(_buySkinsCounts);
+            _skinBuyCheckers(_buySkinsCounts);
         }
 
-        public void OnAbilityBuy(CharacterSkins abilityType)
+        public void OnAbilityBuy(AbilityItem abilityType)
         {
-            _buyAbilityCounts.Add(abilityType);
+            _buyAbilityCounts.Add(abilityType.AbilityTypes);
 
-            if (_buyAbilityCounts.Count >= _maxAbilityBuyCount)
-                _buyAbilityCounts.Remove(abilityType);
+            //if (_buyAbilityCounts.Count >= _maxAbilityBuyCount)
+            //    _buyAbilityCounts.Remove(abilityType.AbilityTypes);
 
-            foreach (Action<HashSet<CharacterSkins>> abilityCheck in _abilityBuyCheckers)
-                abilityCheck(_buyAbilityCounts);
+            _abilityBuyCheckers(_buyAbilityCounts);
         }
     }
 }

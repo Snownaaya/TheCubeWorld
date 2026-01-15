@@ -810,6 +810,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 962521931584462209, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
   m_PrefabInstance: {fileID: 1769652344683513391}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &456483910 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3876875161792238607, guid: d6fd65c9bd03e2c44b10aff2a24e1fdf, type: 3}
+  m_PrefabInstance: {fileID: 4754905265041347842}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3095ff75d4025e747af66fb12d7293d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &490001675 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8042588890940960233, guid: d6fd65c9bd03e2c44b10aff2a24e1fdf, type: 3}
@@ -833,7 +844,6 @@ GameObject:
   - component: {fileID: 579992195}
   - component: {fileID: 579992194}
   - component: {fileID: 579992193}
-  - component: {fileID: 579992196}
   m_Layer: 5
   m_Name: AddButton
   m_TagString: Untagged
@@ -943,21 +953,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579992191}
   m_CullTransparentMesh: 1
---- !u!114 &579992196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579992191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _auitoHide: {fileID: 4802973772854515833}
-  _screen: {fileID: 1711374748}
-  _advertisingId: rewardedVideo
 --- !u!1 &611544957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,7 +2563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bd8fe1b2bf434dbb01089c69e8f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewarded: {fileID: 579992196}
 --- !u!114 &1354933866 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7704462397982418795, guid: d6fd65c9bd03e2c44b10aff2a24e1fdf, type: 3}
@@ -2834,6 +2828,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461543683}
   m_CullTransparentMesh: 1
+--- !u!1 &1468196281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1468196283}
+  - component: {fileID: 1468196282}
+  m_Layer: 0
+  m_Name: YGPlugin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1468196282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468196281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _auitoHide: {fileID: 4802973772854515833}
+  _screen: {fileID: 1711374748}
+  _adsCoinButton: {fileID: 456483910}
+  _advertisingId: rewardedVideo
+--- !u!4 &1468196283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468196281}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 295.76285, y: 221.13385, z: 7.110718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490976361
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,7 +3374,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711374744}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -15840,3 +15882,4 @@ SceneRoots:
   - {fileID: 2017667860}
   - {fileID: 1080703100268216756}
   - {fileID: 8894225761536487445}
+  - {fileID: 1468196283}

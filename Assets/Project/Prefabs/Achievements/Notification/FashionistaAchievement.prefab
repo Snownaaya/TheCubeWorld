@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6bdf7aa532444f942794d90ab853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _achievementConfig: {fileID: 11400000, guid: c4203717f67221f49947eb1f9ca7da7e, type: 2}
+  _achievementConfig: {fileID: 11400000, guid: 3716a5461b382894992c6fb0ec0ea3e7, type: 2}
   _achievementTransform: {fileID: 6843287821875469021}
   _achievementCanvasGroup: {fileID: 4721209939896783794}
 --- !u!225 &4721209939896783794

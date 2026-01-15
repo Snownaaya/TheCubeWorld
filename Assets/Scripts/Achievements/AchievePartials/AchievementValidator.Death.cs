@@ -5,21 +5,6 @@ namespace Assets.Scripts.Achievements.AchievePartials
 {
     public partial class AchievementValidator
     {
-        private Action<List<int>> DeathChecker(int deathCount, Action writeAchieve)
-        {
-            return deaths =>
-            {
-                foreach (int death in deaths)
-                {
-                    if (--deathCount == 1)
-                    {
-                        writeAchieve();
-                        return;
-                    }
-                }
-            };
-        }
-
         public List<Action<List<int>>> GetDeathValidators()
         {
             return new List<Action<List<int>>>
@@ -36,5 +21,21 @@ namespace Assets.Scripts.Achievements.AchievePartials
                 )
             };
         }
+
+        private Action<List<int>> DeathChecker(int deathCount, Action writeAchieve)
+        {
+            return deaths =>
+            {
+                foreach (int death  in deaths)
+                {
+                    if (--deathCount == 1)
+                    {
+                        writeAchieve();
+                        return;
+                    }
+                }
+            };
+        }
+
     }
 }

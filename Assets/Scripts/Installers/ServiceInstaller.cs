@@ -11,6 +11,8 @@ using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
+using Assets.Scripts.UI.HealthCharacters.Characters;
+using Assets.Scripts.UI.Shop.AbilitiesShop;
 using Reflex.Core;
 using System.Collections.Generic;
 using UniRx;
@@ -33,6 +35,7 @@ namespace Assets.Scripts.Installers
             InitBackgroundAudio(containerBuilder);
             BindMessageBroked(containerBuilder);
             BindSavesServices(containerBuilder);
+            BindAbilitiesBuy(containerBuilder);
         }
 
         private void BindMessageBroked(ContainerBuilder containerBuilder)
@@ -63,7 +66,7 @@ namespace Assets.Scripts.Installers
 
         private void BindBridgeTracker(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton<BridgeTrackerService>(container =>
+            containerBuilder.AddSingleton<IBridgeBuildTracker>(container =>
             {
                 AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
                 AchievementBridgeObserver achievementBridgeObserver = new AchievementBridgeObserver(achievementValidator.GetBridgeValidators());
@@ -73,7 +76,7 @@ namespace Assets.Scripts.Installers
 
         private void BindDeathTracker(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton<DeathTrackerService>(container =>
+            containerBuilder.AddSingleton<ICharacterDeathTracker>(container =>
             {
                 AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
                 AchievementDeathObserver achievementDeathObserver = new AchievementDeathObserver(achievementValidator.GetDeathValidators());
@@ -81,15 +84,15 @@ namespace Assets.Scripts.Installers
             });
         }
 
-        //private void BindBuyTracker(ContainerBuilder containerBuilder)
-        //{
-        //    containerBuilder.AddSingleton<BuyTarckerService>(container =>
-        //    {
-        //        AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
-        //        AchievemntBuyObserver achievementBuyObserver = new AchievemntBuyObserver(achievementValidator.GetBuyValidators());
-        //        return new BuyTarckerService(achievementBuyObserver);
-        //    });
-        //}
+        private void BindAbilitiesBuy(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddTransient<IAbilitiesBuyTracker>(container =>
+            {
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                AchievemntBuyObserver achievemntBuyObserver = new AchievemntBuyObserver(achievementValidator.GetAbilityBuyValidators());
+                return new AbilitiesBuyTarckerService(achievemntBuyObserver);
+            });
+        }
 
         private void InitForegroundAudioService(ContainerBuilder containerBuilder)
         {

@@ -16,14 +16,14 @@ namespace Assets.Scripts.Player
 
         private IParticleSpawner _characterEffects;
         private CharacterHealth _characterHealth;
-        private DeathTrackerService _deathTracker;
+        private ICharacterDeathTracker _deathTracker;
 
         public Transform CharacterModel => _characterModel;
         public CharacterHealth Health => _characterHealth;
 
         [Inject]
         public void Construct(IParticleSpawner particleSpawner,
-            DeathTrackerService deathTracker)
+            ICharacterDeathTracker deathTracker)
         {
             _characterEffects = particleSpawner;
             _characterEffects.Initialize(_characterModel);

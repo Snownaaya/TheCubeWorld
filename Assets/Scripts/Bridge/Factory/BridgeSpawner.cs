@@ -11,10 +11,10 @@ namespace Assets.Scripts.Bridge.Factory
         [SerializeField] private BridgeFactory _factory;
         [SerializeField] private Transform _point;
 
+        private Bridge _currentBridge;
         private BridgeType _selectedType = BridgeType.Easy;
         private IParticleSpawner _bridgeEffect;
-        private Bridge _currentBridge;
-        private BridgeTrackerService _trackerService;
+        private IBridgeBuildTracker _trackerService;
 
         public Transform Point => _point;
         public Bridge CurrentBridge => _currentBridge;
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Bridge.Factory
         [Inject]
         private void Construct(
             IParticleSpawner particleSpawner,
-            BridgeTrackerService bridgeTracker)
+            IBridgeBuildTracker bridgeTracker)
         {
             _trackerService = bridgeTracker;
             _bridgeEffect = particleSpawner;

@@ -2,8 +2,10 @@
 using Assets.Scripts.Enemies.Obstacles.Animation;
 using Assets.Scripts.Enemies.Obstacles.Patrollers;
 using Assets.Scripts.Ground.Filler;
+using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.UI.Shop.AbilitiesShop;
 using Assets.Scripts.UI.Shop.SO;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Assets.Scripts.Mediators
@@ -15,11 +17,23 @@ namespace Assets.Scripts.Mediators
         [SerializeField] private PatrollerStopper _patrolerStopper;
         [SerializeField] private SpikesAnimation _spikesAnimation;
 
-        private void OnEnable() =>
-            _shop.AbilityItemClicked += OnDeactive;
+        private IAbilitiesBuyTracker _achievementTracker;
 
-        private void OnDisable() =>
+        [Inject]
+        private void Construct(IAbilitiesBuyTracker achievementTracker) =>
+            _achievementTracker = achievementTracker;
+
+        private void OnEnable()
+        {
+            _shop.AbilityItemClicked += OnDeactive;
+            _achievementTracker.Register(_shop);
+        }
+
+        private void OnDisable()
+        {
             _shop.AbilityItemClicked -= OnDeactive; 
+            _achievementTracker.Unregister(_shop);
+        }
 
         private void OnDeactive(AbilityItem abilityItem)
         {

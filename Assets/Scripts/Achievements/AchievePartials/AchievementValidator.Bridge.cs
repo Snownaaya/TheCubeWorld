@@ -13,26 +13,6 @@ namespace Assets.Scripts.Achievements.AchievePartials
         public AchievementValidator(AchievementService achievementService) =>
             _achievementService = achievementService;
 
-        private Action<Queue<BridgeData>> CreateChecker(int bridgesCount, Func<BridgeData, bool> isCorrectBridge, Action writeAchive)
-        {
-            return bridges =>
-            {
-                int count = bridgesCount;
-
-                foreach (BridgeData bridge in bridges)
-                {
-                    if (isCorrectBridge(bridge) != true)
-                        return;
-
-                    if (--count == 0)
-                    {
-                        writeAchive();
-                        return;
-                    }
-                }
-            };
-        }
-
         public List<Action<Queue<BridgeData>>> GetBridgeValidators()
         {
             return new List<Action<Queue<BridgeData>>>
@@ -57,7 +37,7 @@ namespace Assets.Scripts.Achievements.AchievePartials
                 ),
                 CreateChecker
                 (
-                    bridgesCount: 6, 
+                    bridgesCount: 6,
                     isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.MudTycoon)
                 ),
@@ -67,6 +47,26 @@ namespace Assets.Scripts.Achievements.AchievePartials
                     isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.Mud)
                 )
+            };
+        }
+
+        private Action<Queue<BridgeData>> CreateChecker(int bridgesCount, Func<BridgeData, bool> isCorrectBridge, Action writeAchive)
+        {
+            return bridges =>
+            {
+                int count = bridgesCount;
+
+                foreach (BridgeData bridge in bridges)
+                {
+                    if (isCorrectBridge(bridge) != true)
+                        return;
+
+                    if (--count == 0)
+                    {
+                        writeAchive();
+                        return;
+                    }
+                }
             };
         }
     }

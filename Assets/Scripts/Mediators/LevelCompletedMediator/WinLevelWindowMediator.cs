@@ -109,7 +109,6 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
         private void OnSlotChanged(int currentIndex)
         {
             _rewardStripModel.CurrentIndex = currentIndex;
-            //_arrow.SetCurrentIndex(currentIndex);
             _adsCoinButton.UpdateCoinsText(_rewardStripModel.FinalCoins);
         }
 

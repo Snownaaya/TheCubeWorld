@@ -17,7 +17,7 @@ namespace Assets.Scripts.Service.Audio
             foreach (AudioData data in audioData)
                 _audioData.Add(data.AudioTypes, data);
 
-            _backgroundSource = new GameObject("BackgroundAudioSourse").AddComponent<AudioSource>();
+            _backgroundSource = new GameObject("BackgroundAudioSource").AddComponent<AudioSource>();
             _backgroundSource.loop = true;
 
             Object.DontDestroyOnLoad(_backgroundSource.gameObject);

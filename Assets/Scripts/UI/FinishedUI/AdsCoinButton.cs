@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Mediators.LevelCompletedMediator;
-using Assets.Scripts.PluginYG;
+﻿using Assets.Scripts.PluginYG;
 using Assets.Scripts.Service.GameMessage;
 using Reflex.Attributes;
 using System;
@@ -18,16 +17,11 @@ namespace Assets.Scripts.UI.FinishedUI
         private Button _button;
 
         private GameMessageBus _messageBus;
-        private IAdsService _adsService;
 
         public event Action OnClicked;
 
         private void Awake() => 
             _button = GetComponent<Button>();
-
-        [Inject]
-        private void Construct(IAdsService adsService) =>
-            _adsService = adsService;
 
         public void Initialize(GameMessageBus messageBus) =>
             _messageBus = messageBus;
@@ -42,7 +36,7 @@ namespace Assets.Scripts.UI.FinishedUI
         {
             _messageBus.MessageBroker.Publish(_currentCoin);
             OnClicked?.Invoke();
-            //_adsService.ShowRewarded();
+
             _button.interactable = false;
         }
 

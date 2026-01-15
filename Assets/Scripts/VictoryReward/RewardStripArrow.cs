@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.UI.FinishedUI;
 using UnityEngine;
-using DG.Tweening;
-using System.Linq;
 
 namespace Assets.Scripts.VictoryReward
 {

@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff6bdf7aa532444f942794d90ab853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _achievementConfig: {fileID: 11400000, guid: c4203717f67221f49947eb1f9ca7da7e, type: 2}
+  _achievementConfig: {fileID: 11400000, guid: 95ab3886e31481745b6c37ece69f312b, type: 2}
   _achievementTransform: {fileID: 8766691024195703103}
   _achievementCanvasGroup: {fileID: 8626445846005067434}
 --- !u!225 &8626445846005067434
