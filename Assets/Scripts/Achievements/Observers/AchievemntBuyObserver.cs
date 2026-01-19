@@ -36,9 +36,6 @@ namespace Assets.Scripts.Achievements.Observers
         {
             _buyAbilityCounts.Add(abilityType.AbilityTypes);
 
-            //if (_buyAbilityCounts.Count >= _maxAbilityBuyCount)
-            //    _buyAbilityCounts.Remove(abilityType.AbilityTypes);
-
             _abilityBuyCheckers(_buyAbilityCounts);
         }
     }

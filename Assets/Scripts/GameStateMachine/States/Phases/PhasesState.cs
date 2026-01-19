@@ -19,12 +19,12 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             _resourceService = resourceService;
         }
 
+        public IInventory Inventory => _inventory;
+        public IResourceService ResourceService => _resourceService;
+
         public override void Enter()
         {
             base.Enter();
-
-            _inventory.Reset();
-            _resourceService.Clear();
         }
 
         public override void Exit()

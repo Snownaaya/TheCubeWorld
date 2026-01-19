@@ -16,7 +16,6 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private LossScreen _lossScreen;
         private CancellationTokenSource _cancellationTokenSource; 
         private ILevelLoader _levelLoader;
-        private IResourceService _resourceService;
 
         private float _delay = 2f;
 
@@ -35,7 +34,6 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             _pauseHandler = pauseHandler;
             _lossScreen = lossScreen;
             _levelLoader = levelLoader;
-            _resourceService = resourceService;
         }
 
         public override void Enter()
@@ -44,7 +42,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
             _cancellationTokenSource = new CancellationTokenSource();
 
-            _lossScreen.RewardAdsRequested += OnRespawnState;
+            _lossScreen.RewardAdsRequested += OnRespawnAdsState;
             _lossScreen.RespawnRequested += OnRespawnState;
             _lossScreen.ExitMenuRequested += OnExitMenu;
 
@@ -55,7 +53,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         {
             base.Exit();
 
-            _lossScreen.RewardAdsRequested -= OnRespawnState;
+            _lossScreen.RewardAdsRequested -= OnRespawnAdsState;
             _lossScreen.RespawnRequested -= OnRespawnState;
             _lossScreen.ExitMenuRequested -= OnExitMenu;
 
@@ -75,12 +73,22 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             _lossScreen.Open();
         }
 
-        private void OnRespawnState() =>
+        private void OnRespawnAdsState()
+        {
             Switcher.SwitchState<RespawnState>();
+            ResourceService.Clear();
+        }
+
+        private void OnRespawnState()
+        {
+            Switcher.SwitchState<RespawnState>();
+            Inventory.Reset();
+            ResourceService.Clear();
+        }
 
         private void OnExitMenu()
         {
-            _resourceService.Clear();
+            ResourceService.Clear();
             _levelLoader.Load(EntryPoint.LevelSelected.GetMainMenu());
         }
     }

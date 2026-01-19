@@ -1054,7 +1054,6 @@ GameObject:
   - component: {fileID: 579992195}
   - component: {fileID: 579992194}
   - component: {fileID: 579992193}
-  - component: {fileID: 579992196}
   m_Layer: 5
   m_Name: AddButton
   m_TagString: Untagged
@@ -1164,21 +1163,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579992191}
   m_CullTransparentMesh: 1
---- !u!114 &579992196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579992191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _auitoHide: {fileID: 2052321084537036133}
-  _screen: {fileID: 1711374748}
-  _advertisingId: rewardedVideo
 --- !u!1001 &590048019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2393,6 +2377,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ef7d34df1c88074188552b5981da7a8, type: 3}
+--- !u!1 &937613337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 937613339}
+  - component: {fileID: 937613338}
+  m_Layer: 0
+  m_Name: YGPlugin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &937613338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937613337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _auitoHide: {fileID: 2052321084537036133}
+  _screen: {fileID: 1711374748}
+  _adsCoinButton: {fileID: 1083993258}
+  _advertisingId: rewardedVideo
+--- !u!4 &937613339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937613337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -38.677223, y: 1.8784721, z: 0.12116957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949576165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,6 +2939,17 @@ RectTransform:
   m_AnchoredPosition: {x: -86, y: -311}
   m_SizeDelta: {x: 394.651, y: 106.20996}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1083993258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3876875161792238607, guid: d6fd65c9bd03e2c44b10aff2a24e1fdf, type: 3}
+  m_PrefabInstance: {fileID: 590048019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3095ff75d4025e747af66fb12d7293d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1105482884
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,7 +4218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bd8fe1b2bf434dbb01089c69e8f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewarded: {fileID: 579992196}
 --- !u!1 &1565291244
 GameObject:
   m_ObjectHideFlags: 0
@@ -13766,7 +13808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697cbd5c454bf0b48818ed94da248d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
+  _spawnPoints:
   - {fileID: 3221785939544476115}
   - {fileID: 9195545945276095449}
   - {fileID: 4306134083539636713}
@@ -15369,7 +15411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697cbd5c454bf0b48818ed94da248d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
+  _spawnPoints:
   - {fileID: 2528369569102739176}
   - {fileID: 1298683668558206477}
   - {fileID: 6770393647750928658}
@@ -16251,7 +16293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697cbd5c454bf0b48818ed94da248d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
+  _spawnPoints:
   - {fileID: 470712776857811755}
   - {fileID: 463063045615983006}
   - {fileID: 8436396001184589083}
@@ -17833,3 +17875,4 @@ SceneRoots:
   - {fileID: 1145670521}
   - {fileID: 949576167}
   - {fileID: 963194228}
+  - {fileID: 937613339}

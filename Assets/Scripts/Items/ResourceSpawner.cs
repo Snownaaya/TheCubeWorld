@@ -11,9 +11,9 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
 {
     [SerializeField] private Resource[] _resource;
     [SerializeField] private int _maxResources = 16;
+    [SerializeField] private float _delay = 3f;
 
     private Ground _currentGround;
-    private float _delay = 3f;
 
     private Dictionary<ResourceTypes, Resource> _resources = new Dictionary<ResourceTypes, Resource>();
     private readonly List<Resource> _activeResources = new();
@@ -43,8 +43,8 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
 
     private void SpawnResource(Ground currentGround)
     {
-        if (_resources.Count == 0 || 
-            currentGround == null || 
+        if (_resources.Count == 0 ||
+            currentGround == null ||
             currentGround.AvailableCount == 0)
             return;
 

@@ -1342,7 +1342,6 @@ GameObject:
   - component: {fileID: 579992195}
   - component: {fileID: 579992194}
   - component: {fileID: 579992193}
-  - component: {fileID: 579992196}
   m_Layer: 5
   m_Name: AddButton
   m_TagString: Untagged
@@ -1452,21 +1451,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579992191}
   m_CullTransparentMesh: 1
---- !u!114 &579992196
+--- !u!114 &582950004 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3876875161792238607, guid: d6fd65c9bd03e2c44b10aff2a24e1fdf, type: 3}
+  m_PrefabInstance: {fileID: 84281230}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579992191}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3095ff75d4025e747af66fb12d7293d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _auitoHide: {fileID: 3308334863338666505}
-  _screen: {fileID: 1711374748}
-  _advertisingId: rewardedVideo
 --- !u!1001 &600204179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3710,7 +3705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21bd8fe1b2bf434dbb01089c69e8f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rewarded: {fileID: 579992196}
 --- !u!1 &1408999698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,6 +4169,54 @@ MonoBehaviour:
   <DirtButton>k__BackingField: {fileID: 1408999704}
   <WoodButton>k__BackingField: {fileID: 281783120}
   <StoneButton>k__BackingField: {fileID: 712319599}
+--- !u!1 &1549811199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1549811201}
+  - component: {fileID: 1549811200}
+  m_Layer: 0
+  m_Name: YGPlugin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1549811200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549811199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfe16e41f97f7b41a6db27160b54c4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _auitoHide: {fileID: 3308334863338666505}
+  _screen: {fileID: 1711374748}
+  _adsCoinButton: {fileID: 582950004}
+  _advertisingId: rewardedVideo
+--- !u!4 &1549811201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549811199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 288.5, y: 162.6362, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1565291244
 GameObject:
   m_ObjectHideFlags: 0
@@ -15703,3 +15745,4 @@ SceneRoots:
   - {fileID: 2074334836}
   - {fileID: 949576167}
   - {fileID: 963194228}
+  - {fileID: 1549811201}
