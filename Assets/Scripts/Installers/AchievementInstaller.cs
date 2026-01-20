@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Achievements;
 using Assets.Scripts.Achievements.AchievePartials;
+using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.Saves;
 using Reflex.Core;
@@ -14,6 +15,7 @@ namespace Assets.Scripts.Installers
             BindAchievementRepository(containerBuilder);
             BindAchievementService(containerBuilder);
             BindAchievementValidator(containerBuilder);
+            BindAchievementBuyObserver(containerBuilder);
         }
 
         private void BindAchievementRepository(ContainerBuilder containerBuilder)
@@ -43,6 +45,17 @@ namespace Assets.Scripts.Installers
             {
                 AchievementService achievementService = container.Resolve<AchievementService>();
                 return new AchievementValidator(achievementService);
+            });
+        }
+
+        private void BindAchievementBuyObserver(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<AchievemntBuyObserver>(container =>
+            {
+                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
+                return new AchievemntBuyObserver(
+                    achievementValidator.GetAbilityBuyValidators(), 
+                    achievementValidator.GetSkinBuyValidators());
             });
         }
     }

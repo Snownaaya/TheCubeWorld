@@ -11,8 +11,6 @@ using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
-using Assets.Scripts.UI.HealthCharacters.Characters;
-using Assets.Scripts.UI.Shop.AbilitiesShop;
 using Reflex.Core;
 using System.Collections.Generic;
 using UniRx;
@@ -36,6 +34,7 @@ namespace Assets.Scripts.Installers
             BindMessageBroked(containerBuilder);
             BindSavesServices(containerBuilder);
             BindAbilitiesBuy(containerBuilder);
+            BindSkinsBuy(containerBuilder);
         }
 
         private void BindMessageBroked(ContainerBuilder containerBuilder)
@@ -88,9 +87,17 @@ namespace Assets.Scripts.Installers
         {
             containerBuilder.AddTransient<IAbilitiesBuyTracker>(container =>
             {
-                AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
-                AchievemntBuyObserver achievemntBuyObserver = new AchievemntBuyObserver(achievementValidator.GetAbilityBuyValidators());
+                AchievemntBuyObserver achievemntBuyObserver = container.Resolve<AchievemntBuyObserver>();
                 return new AbilitiesBuyTarckerService(achievemntBuyObserver);
+            });
+        }
+
+        private void BindSkinsBuy(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<ISkinsBuyTracker>(container =>
+            {
+                AchievemntBuyObserver achievemntBuyObserver = container.Resolve<AchievemntBuyObserver>();
+                return new SkinBuyTracker(achievemntBuyObserver);
             });
         }
 

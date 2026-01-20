@@ -11,23 +11,20 @@ namespace Assets.Scripts.Achievements.Observers
         private HashSet<CharacterSkins> _buySkinsCounts = new();
         private HashSet<ObstacleTypes> _buyAbilityCounts = new();
 
-        private int _maxSkinsBuyCount = 4;
-        private int _maxAbilityBuyCount = 4;
-
         private Action<HashSet<ObstacleTypes>> _abilityBuyCheckers;
         private Action<HashSet<CharacterSkins>> _skinBuyCheckers;
 
-        public AchievemntBuyObserver(Action<HashSet<ObstacleTypes>> abilities)
+        public AchievemntBuyObserver(
+            Action<HashSet<ObstacleTypes>> abilities,
+            Action<HashSet<CharacterSkins>> skinBuyCheckers)
         {
             _abilityBuyCheckers = abilities;
+            _skinBuyCheckers = skinBuyCheckers;
         }
 
-        public void OnSkinBuy(CharacterSkins skinType)
+        public void OnSkinBuy(CharacterSkinsItem shopItem)
         {
-            _buySkinsCounts.Add(skinType);
-
-            if (_buySkinsCounts.Count >= _maxSkinsBuyCount)
-                _buySkinsCounts.Remove(skinType);
+            _buySkinsCounts.Add(shopItem.CharacterSkins);
 
             _skinBuyCheckers(_buySkinsCounts);
         }

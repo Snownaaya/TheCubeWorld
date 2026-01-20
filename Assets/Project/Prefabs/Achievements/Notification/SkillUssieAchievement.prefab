@@ -821,5 +821,5 @@ MonoBehaviour:
   additionalText: {fileID: 0}
   textHeight: 20
   processTranslateLabel: 0/3 completed
-  componentTextField: 0
+  componentTextField: 1
   countLang: 0

@@ -2,12 +2,11 @@
 using Assets.Scripts.Input;
 using Reflex.Attributes;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.Player.Move
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class Movement : MonoBehaviour, IMoveble, IDisposable
+    public class Movement : MonoBehaviour, IMoveble
     {
         [SerializeField] private CharacterConfig _characterConfig;
         [SerializeField] private Transform _characterModel;
@@ -37,10 +36,7 @@ namespace Assets.Scripts.Player.Move
             _input.Stopped += StopMove;
         }
 
-        public void Initialize(CharacterView characterView) =>
-            _currentCharacterView = characterView;
-
-        public void Dispose()
+        public void OnDestroy()
         {
             _playerInput.Disable();
             _input.Moved -= OnMove;

@@ -10,7 +10,6 @@ namespace Assets.Scripts.Player.Wallet
         public CharacterWallet(IPersistentCharacterData characterData)
         {
             _persistentCharacterData = characterData;
-            _persistentCharacterData.Money.Value += 10000;
         }
 
         public IPersistentCharacterData PersistentCharacterData => _persistentCharacterData;

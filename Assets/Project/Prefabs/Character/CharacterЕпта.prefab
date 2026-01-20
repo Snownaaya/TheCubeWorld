@@ -931,6 +931,7 @@ GameObject:
   - component: {fileID: 3200558896183477518}
   - component: {fileID: 4633347134643552088}
   - component: {fileID: 5246011394632246202}
+  - component: {fileID: 7696253479223935290}
   m_Layer: 6
   m_Name: "Character\u0415\u043F\u0442\u0430"
   m_TagString: Untagged
@@ -1144,6 +1145,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changer: {fileID: 3561309478489602007}
+--- !u!75 &7696253479223935290
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6586139054198802437}
+  m_Enabled: 1
+  m_Force: {x: 0, y: -10, z: 0}
+  m_RelativeForce: {x: 0, y: -10, z: 0}
+  m_Torque: {x: 0, y: -10, z: 0}
+  m_RelativeTorque: {x: 0, y: -10, z: 0}
 --- !u!1 &6990327341180596402
 GameObject:
   m_ObjectHideFlags: 0
