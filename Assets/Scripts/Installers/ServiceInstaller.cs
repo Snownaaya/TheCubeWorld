@@ -85,7 +85,7 @@ namespace Assets.Scripts.Installers
 
         private void BindAbilitiesBuy(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton<IAbilitiesBuyTracker>(container =>
+            containerBuilder.AddTransient<IAbilitiesBuyTracker>(container =>
             {
                 AchievemntBuyObserver achievemntBuyObserver = container.Resolve<AchievemntBuyObserver>();
                 return new AbilitiesBuyTarckerService(achievemntBuyObserver);

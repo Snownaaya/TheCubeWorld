@@ -8,7 +8,7 @@ namespace Assets.Scripts.Enemies.Obstacles.Animation
         private const string IsStopped = nameof(IsStopped);
         private const string IsActive = nameof(IsActive);
 
-        private Animator _animator;
+        public Animator _animator;
         private Collider _collider;
 
         private void Awake()

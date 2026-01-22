@@ -1,3 +1,0 @@
-﻿Build path: D:/TheCubeWorldBuild
-Build number: 6
-PluginYG version: 2.007

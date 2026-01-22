@@ -2,11 +2,9 @@
 using Assets.Scripts.Visitor;
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
-    [Preserve]
     public class ShopBootstrap : MonoBehaviour
     {
         [SerializeField] private BaseShop _shop;
@@ -24,10 +22,10 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             _persistentCharacterData = persistentCharacterData;
             _transientCharacterData = transientCharacterData;
 
-            //Initialize();
+            Initialize();
         }
 
-        public void Awake()
+        public void Initialize()
         {
             _visitorFactory = new VisitorFactory();
             _visitorsHolder = new VisitorsHolder(_persistentCharacterData, _transientCharacterData);
