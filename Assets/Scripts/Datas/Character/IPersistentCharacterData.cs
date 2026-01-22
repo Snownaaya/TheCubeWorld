@@ -1,9 +1,11 @@
 ﻿using Assets.Scripts.Player.Skins;
 using System.Collections.Generic;
 using UniRx;
+using UnityEngine.Scripting;
 
 namespace Assets.Scripts.Datas.Character
 {
+    [Preserve]
     public interface IPersistentCharacterData
     {
         public ReactiveProperty<int> Money { get; }
