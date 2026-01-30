@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Datas;
 using System;
 using UnityEngine.UI;
@@ -13,8 +13,6 @@ namespace Assets.Scripts.UI.AchievementView
 
         public AchievementConfig AchievementConfig => _achieveNames;
         public bool IsLock { get; private set; }
-
-        public event Action Clicked;
 
         public void Lock()
         {

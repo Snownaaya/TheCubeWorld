@@ -1,4 +1,5 @@
-using UniRx;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,39 +9,56 @@ namespace Assets.Scripts.UI.HealthCharacters
     {
         [SerializeField] private Slider _healthSlider;
         [SerializeField] private Health _health;
+        [SerializeField] private float _animationSpeed;
 
-        private CompositeDisposable _disposables = new CompositeDisposable();
+        private CancellationTokenSource _cancellationTokenSource;
 
-        private ReactiveProperty<float> _maxHealth;
-        private ReactiveProperty<float> _currentHealth;
-
-        public Slider HealthSlider => _healthSlider;
-
-        public void Initialize(ReactiveProperty<float> currentHealth, ReactiveProperty<float> maxHealth)
+        public void OnEnable()
         {
-            _currentHealth = currentHealth;
-            _maxHealth = maxHealth;
+            _healthSlider.maxValue = _health.MaxHealth;
+            _healthSlider.value = _health.CurrentHealth;
 
-            _currentHealth
-                .Subscribe(OnChangeValue)
-                .AddTo(_disposables);
-
-            ChangeValue(_currentHealth.Value, _maxHealth.Value);
+            _health.HealthChanged += OnHealthChanged;
         }
 
-        private void OnDestroy() =>
-            _disposables.Dispose();
-
-        private void OnChangeValue(float newValue) =>
-            ChangeValue(newValue, _maxHealth.Value);
-
-        private void ChangeValue(float currentHealth, float maxHealth)
+        private void OnDisable()
         {
-            if (_healthSlider != null)
+            _health.HealthChanged -= OnHealthChanged;
+
+            CancelAnimation();
+        }
+
+        private void OnHealthChanged(float current, float max)
+        {
+            CancelAnimation();
+
+            _cancellationTokenSource = new CancellationTokenSource();
+            UpdateHealth(_cancellationTokenSource.Token, current).Forget();
+        }
+
+        private async UniTask UpdateHealth(CancellationToken cancellationToken, float targetValue)
+        {
+            while (cancellationToken.IsCancellationRequested == false &&
+                   Mathf.Approximately(_healthSlider.value, targetValue) == false)
             {
-                _healthSlider.value = currentHealth;
-                _healthSlider.maxValue = maxHealth;
+                _healthSlider.value = Mathf.MoveTowards(
+                    _healthSlider.value,
+                    targetValue,
+                    _animationSpeed * Time.deltaTime
+                );
+
+                await UniTask.Yield();
             }
+
+            if (cancellationToken.IsCancellationRequested == false)
+                _healthSlider.value = _health.CurrentHealth;
+        }
+
+        private void CancelAnimation()
+        {
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource?.Dispose();
+            _cancellationTokenSource = null;
         }
     }
 }

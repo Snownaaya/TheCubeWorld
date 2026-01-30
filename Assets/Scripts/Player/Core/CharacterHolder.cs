@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.Player.Attack;
+using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
+using UnityEngine;
 
 namespace Assets.Scripts.Player.Core
 {
-    public class CharacterHolder
+    public class CharacterHolder : ICharacterHolder
     {
         public Character Character { get; private set; }
         public Movement Movement { get; private set; }

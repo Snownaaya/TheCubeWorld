@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bunny
   m_EditorClassIdentifier: 
   <Price>k__BackingField: 470
-  <Image>k__BackingField: {fileID: 21300000, guid: 22645ec2fa1ac9e4e8c09edebc856434, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: c71b9286c86b8644b975ee9ee0488098, type: 3}
   <CharacterSkins>k__BackingField: 0

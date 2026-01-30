@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Assets.Scripts.Service.Saves
 {
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Service.Saves
 
             string data = PlayerPrefs.GetString(dataKey, string.Empty);
 
-            PlayerPrefs.DeleteAll();
+            //PlayerPrefs.DeleteAll();
 
             return string.IsNullOrWhiteSpace(data) ? string.Empty : data;
         }

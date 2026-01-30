@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Wallet;
+using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.UI.Shop.AbilitiesShop;
 using Assets.Scripts.UI.Shop.Buttons;
 using Assets.Scripts.UI.Shop.SO;
@@ -24,7 +24,9 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
 
         public event Action<CharacterSkinsItem> CharacterSkinsItemClicked;
 
-        public override void Initialize(VisitorsHolder visitorsHolder, VisitorFactory visitorFactory)
+        public override void Initialize(
+            VisitorsHolder visitorsHolder,
+            VisitorFactory visitorFactory)
         {
             _visitorsHolder = visitorsHolder;
             _panel.Initialize(_visitorsHolder, visitorFactory);

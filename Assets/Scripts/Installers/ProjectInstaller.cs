@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Datas.Character;
+using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Input;
 using Assets.Scripts.Items;
 using Assets.Scripts.Other;
 using Assets.Scripts.Particles;
 using Assets.Scripts.Player.Saves;
+using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.Service.LevelLoaderService;
 using Reflex.Core;
 using UnityEngine;
@@ -13,14 +14,12 @@ namespace Assets.Scripts.Installers
 {
     public class ProjectInstaller : MonoBehaviour, IInstaller
     {
-        [SerializeField] private JoystickInput _joystickInput;
         [SerializeField] private StartLevel _startLevelPrefab;
         [SerializeField] private SpawnerRoot _spawnerRoot;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             BindStartLevel(containerBuilder);
-            BindJoystick(containerBuilder);
             InitSpawner(containerBuilder);
             BindPersistentData(containerBuilder);
             BindCurrentBoss(containerBuilder);
@@ -38,15 +37,6 @@ namespace Assets.Scripts.Installers
             containerBuilder.AddSingleton(spawnerRoot.GetComponent<ParticleSpawner>(), typeof(IParticleSpawner));
         }
 
-        private void BindJoystick(ContainerBuilder containerBuilder)
-        {
-            JoystickInput joystickInput = Instantiate(_joystickInput);
-            joystickInput.SetInteractable(false);
-            DontDestroyOnLoad(joystickInput);
-
-            containerBuilder.AddSingleton(joystickInput, typeof(IJoystickInput));
-        }
-
         private void BindStartLevel(ContainerBuilder containerBuilder)
         {
             StartLevel startLevel = Instantiate(_startLevelPrefab);
@@ -59,8 +49,8 @@ namespace Assets.Scripts.Installers
         {
             containerBuilder.AddSingleton<IPersistentCharacterData>(container =>
             {
-                ICharacterSaveRepository characterSaveRepository = container.Resolve<ICharacterSaveRepository>();
-                return new PersistentCharacterData(characterSaveRepository);
+                GameMessageBus gameMessageBus = container.Resolve<GameMessageBus>();
+                return new PersistentCharacterData(gameMessageBus);
             });
         }
     }

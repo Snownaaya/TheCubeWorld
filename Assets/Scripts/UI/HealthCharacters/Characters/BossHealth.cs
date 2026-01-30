@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Assets.Scripts.UI.HealthCharacters.Characters
 {
@@ -6,7 +6,7 @@ namespace Assets.Scripts.UI.HealthCharacters.Characters
     {
         public event Action Died;
 
-        public override void NotifyDeath() =>
+        protected override void NotifyDeath() =>
             Died?.Invoke();
     }
 }

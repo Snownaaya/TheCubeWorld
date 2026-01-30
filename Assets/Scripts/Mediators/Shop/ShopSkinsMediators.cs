@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Core;
+using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.UI.Shop.SkinsShop;
 using Assets.Scripts.UI.Shop.SO;
@@ -11,12 +11,12 @@ namespace Assets.Scripts.Mediators.Shop
     {
         [SerializeField] private SkinsShop _shop;
 
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
         private ISkinsBuyTracker _buyTracker;
 
         [Inject]
         private void Construct(
-            CharacterHolder characterHolder,
+            ICharacterHolder characterHolder,
             ISkinsBuyTracker buyTracker)
         {
             _buyTracker = buyTracker;
@@ -31,8 +31,11 @@ namespace Assets.Scripts.Mediators.Shop
 
         private void OnDisable()
         {
-            _shop.CharacterSkinsItemClicked -= OnSkinChange;
-            _buyTracker?.Unregister(_shop);
+            if (_shop != null)
+                _shop.CharacterSkinsItemClicked -= OnSkinChange;
+
+            if (_buyTracker != null && _shop != null)
+                _buyTracker.Unregister(_shop);
         }
 
         private void OnSkinChange(CharacterSkinsItem item) =>

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Service.Json;
+using Assets.Scripts.Service.Json;
 using Newtonsoft.Json;
 
 namespace Assets.Scripts.Service.Saves

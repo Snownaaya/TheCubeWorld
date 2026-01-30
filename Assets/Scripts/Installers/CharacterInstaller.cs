@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Saves;
 using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Service.Json;
@@ -10,6 +10,7 @@ using Reflex.Core;
 using UnityEngine;
 using YG;
 using Assets.Scripts.Datas.Character;
+using Assets.Scripts.Service.GameMessage;
 
 namespace Assets.Scripts.Installers
 {
@@ -26,6 +27,7 @@ namespace Assets.Scripts.Installers
             BindWallet(containerBuilder);
             BindCharacterHolder(containerBuilder);
             BindCharacterSave(containerBuilder);
+            BindCharacterLinker(containerBuilder);
         }
 
         private void BindWallet(ContainerBuilder containerBuilder)
@@ -50,10 +52,10 @@ namespace Assets.Scripts.Installers
 
         private void BindCharacterHolder(ContainerBuilder containerBuilder)
         {
-            containerBuilder.AddSingleton<CharacterHolder>(container =>
+            containerBuilder.AddSingleton<ICharacterHolder>(container =>
             {
                 CharacterFactory factory = container.Resolve<CharacterFactory>();
-                CharacterHolder holder = factory.CreateCharacter();
+                ICharacterHolder holder = factory.CreateCharacter();
 
                 GameObjectInjector.InjectRecursive(holder.Character.gameObject, container);
                 return holder;
@@ -93,6 +95,18 @@ namespace Assets.Scripts.Installers
                 ISaveService saveService = container.Resolve<ISaveService>();
 
                 return new CharacterSaveRepository(jsonService, saveService);
+            });
+        }
+
+        private void BindCharacterLinker(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<CharacterPersistentLinker>(container =>
+            {
+                ICharacterSaveRepository characterSaveRepository = container.Resolve<ICharacterSaveRepository>();
+                IPersistentCharacterData persistentCharacterData = container.Resolve<IPersistentCharacterData>();
+                GameMessageBus gameMessageBus = container.Resolve<GameMessageBus>();
+
+                return new CharacterPersistentLinker(characterSaveRepository, persistentCharacterData, gameMessageBus);
             });
         }
     }

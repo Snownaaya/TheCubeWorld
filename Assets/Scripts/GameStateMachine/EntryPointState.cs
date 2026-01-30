@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Achievements;
+using Assets.Scripts.Achievements;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.GameStateMachine.States.Runtime;
 using Assets.Scripts.GameStateMachine.States.Phases;
@@ -25,9 +25,9 @@ namespace Assets.Scripts.GameStateMachine
         [SerializeField] private WinLevelWindowMediator _winLevelWindowMediator;
 
         private PauseHandler _pauseHandler;
-        private CharacterHolder _characterHolder;
         private AchievementService _achievementService;
 
+        private ICharacterHolder _characterHolder;
         private ISwitcher _switcher;
         private IInventory _inventory;
         private ILevelLoader _levelLoader;
@@ -50,7 +50,7 @@ namespace Assets.Scripts.GameStateMachine
             ICharacterTeleportService characterTeleportService,
             IInventory inventory,
             ILevelLoader levelLoader,
-            CharacterHolder characterHolder,
+            ICharacterHolder characterHolder,
             AchievementService achievementService,
             IResourceService resourceService,
             GameMessageBus gameMessageBus)
@@ -76,7 +76,6 @@ namespace Assets.Scripts.GameStateMachine
                     this,
                     _characterTeleportService,
                     _characterHolder,
-                    _resourceService,
                     _gameMessageBus),
                     new WinLevelState(
                     _switcher,

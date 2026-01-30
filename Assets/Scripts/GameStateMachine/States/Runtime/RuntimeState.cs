@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.GameStateMachine.States.Phases;
+using Assets.Scripts.GameStateMachine.States.Phases;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Core;
@@ -9,14 +9,14 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
     public abstract class RuntimeState : BaseGameState
     {
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
         private GameMessageBus _messageBus;
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         protected RuntimeState(
             ISwitcher switcher,
             EntryPointState entryPoint,
-            CharacterHolder characterHolder,
+            ICharacterHolder characterHolder,
             GameMessageBus gameMessageBus) : base(switcher, entryPoint)
         {
             _characterHolder = characterHolder;

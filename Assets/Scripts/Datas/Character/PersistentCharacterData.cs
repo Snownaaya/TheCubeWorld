@@ -1,79 +1,70 @@
-﻿using Assets.Scripts.Player.Saves;
+using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Player.Skins;
-using System;
+using Assets.Scripts.Service.GameMessage;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
+using Unity.VisualScripting;
 
-namespace Assets.Scripts.Datas.Character
+public class PersistentCharacterData : IInitializable, IPersistentCharacterData
 {
-    public class PersistentCharacterData : IPersistentCharacterData
+    private readonly GameMessageBus _gameMessageBus;
+    private readonly CompositeDisposable _compositeDisposable = new();
+
+    private readonly ReactiveProperty<int> _money = new(0);
+    private List<CharacterSkins> _openSkins = new();
+    private CharacterSkins _characterSkins;
+
+    public PersistentCharacterData(GameMessageBus gameMessageBus)
     {
-        private const string SelectedSkinKey = nameof(SelectedSkinKey);
-        private const string OpenSkinsKey = nameof(OpenSkinsKey);
-        private const string MoneyKey = nameof(MoneyKey);
+        _gameMessageBus = gameMessageBus;
 
-        private readonly ICharacterSaveRepository _save;
+        _characterSkins = CharacterSkins.Bunny;
 
-        private ReactiveProperty<int> _money;
+        if (_openSkins.Contains(CharacterSkins.Bunny) == false)
+            _openSkins.Add(CharacterSkins.Bunny);
+    }
 
-        private CharacterSkins _characterSkins;
-        private List<CharacterSkins> _openSkins;
+    public ReactiveProperty<int> Money => _money;
 
-        public PersistentCharacterData(ICharacterSaveRepository save)
+    public CharacterSkins SelectedCharacterSkin
+    {
+        get => _characterSkins;
+        set
         {
-            _save = save;
-
-            _money = new ReactiveProperty<int>(_save.Load(MoneyKey, 0));
-
-            _money.Subscribe(value =>
-            {
-                _save.Save(MoneyKey, value);
-            });
-
-            _characterSkins = _save.Load(
-                SelectedSkinKey,
-                CharacterSkins.Bunny
-            );
-
-            _openSkins = _save.Load(
-                OpenSkinsKey,
-                new List<CharacterSkins>() { CharacterSkins.Bunny }
-            );
-        }
-
-        public ReactiveProperty<int> Money
-        {
-            get => _money;
-
-            protected set
-            {
-                _money = value;
-            }
-        }
-
-        public CharacterSkins SelectedCharacterSkin
-        {
-            get => _characterSkins;
-
-            set
-            {
-                if (_openSkins.Contains(value) == false)
-                    throw new ArgumentException(nameof(value));
-
-                _characterSkins = value;
-                _save.Save(SelectedSkinKey, _characterSkins);
-            }
-        }
-
-        public IEnumerable<CharacterSkins> OpenCharacterSkins => _openSkins;
-
-        public void OpenCharacterSkin(CharacterSkins characterSkins)
-        {
-            if (_openSkins.Contains(characterSkins))
+            if (_characterSkins == value)
                 return;
 
-            _openSkins.Add(characterSkins);
-            _save.Save(OpenSkinsKey, _openSkins);
+            _characterSkins = value;
+
+            NotifyChanged();
         }
+    }
+
+    public IReadOnlyList<CharacterSkins> OpenCharacterSkins => _openSkins;
+
+    public void OpenCharacterSkin(CharacterSkins skin)
+    {
+        if (_openSkins.Contains(skin)) return;
+        _openSkins.Add(skin);
+
+        NotifyChanged();
+    }
+
+    public void SetOpenSkins(IEnumerable<CharacterSkins> skins)
+    {
+        _openSkins = skins.ToList();
+    }
+
+    private void NotifyChanged() => _gameMessageBus.MessageBroker.Publish<IPersistentCharacterData>(this);
+
+    public void Dispose() => _compositeDisposable.Dispose();
+
+    public void Initialize()
+    {
+        _money
+            .Skip(1)
+            .Subscribe(_ => NotifyChanged())
+            .AddTo(_compositeDisposable);
     }
 }

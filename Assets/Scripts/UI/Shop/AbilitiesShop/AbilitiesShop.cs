@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Wallet;
+using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.UI.Shop.Buttons;
 using Assets.Scripts.UI.Shop.SO;
 using Assets.Scripts.Visitor;

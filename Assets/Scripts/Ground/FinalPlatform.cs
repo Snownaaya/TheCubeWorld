@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Camera;
+using Assets.Scripts.Camera;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using Assets.Scripts.Player.Attack;
@@ -17,7 +17,7 @@ namespace Assets.Scripts.Ground
         private CompositeDisposable _disposables = new CompositeDisposable();
         private IVirtualCamera _targetBinder;
         private GameMessageBus _messageBus;
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
 
         private int _resourceAmount = 10;
 
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Ground
         private void Construct(
             IVirtualCamera targetBinder,
             GameMessageBus gameMessageBus,
-            CharacterHolder character)
+            ICharacterHolder character)
         {
             _targetBinder = targetBinder;
             _messageBus = gameMessageBus;

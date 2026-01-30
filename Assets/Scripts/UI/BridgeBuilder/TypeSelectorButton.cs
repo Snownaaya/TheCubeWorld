@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Other;
 using Reflex.Attributes;
@@ -13,10 +13,10 @@ namespace Assets.Scripts.UI.BridgeBuilder
 
         [SerializeField] private float _distance;
 
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
 
         [Inject]
-        private void Construct(CharacterHolder characterHolder) =>
+        private void Construct(ICharacterHolder characterHolder) =>
             _characterHolder = characterHolder;
 
         protected override void OnClickButton()

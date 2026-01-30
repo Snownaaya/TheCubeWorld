@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Bridge.Factory;
 using Assets.Scripts.Player.Core;
 using Reflex.Attributes;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Other
 
         private BridgeSpawner _currentSpawner;
 
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
 
         private void OnValidate()
         {
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Other
         }
 
         [Inject]
-        private void Construct(CharacterHolder characterHolder) =>
+        private void Construct(ICharacterHolder characterHolder) =>
             _characterHolder = characterHolder;
 
         public BridgeSpawner SetCurrentSpawner(BridgeSpawner bridgeSpawner)

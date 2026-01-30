@@ -20,3 +20,5 @@ MonoBehaviour:
   _characterSkinsItems:
   - {fileID: 11400000, guid: b97ab7272001de9448e341e41174fb5a, type: 2}
   - {fileID: 11400000, guid: 16083b511f9348342a38dff12871d2d6, type: 2}
+  - {fileID: 11400000, guid: d5bc9369d38722f41aa45da1b87925d9, type: 2}
+  - {fileID: 11400000, guid: c73f5d88e07eefe48b996ba903e09a48, type: 2}

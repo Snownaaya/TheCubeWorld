@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Input
 {
-    public class MobileInput : IInput, IDisposable
+    public class MobileInput : IInput
     {
         private PlayerInput _playerInput;
         public event Action<Vector3> Moved;
@@ -14,10 +14,14 @@ namespace Assets.Scripts.Input
         {
             _playerInput = playerInput;
             _playerInput.Character.Move.performed += context => OnMove(context);
+            _playerInput.Character.Move.performed -= context => OnStop(context);
         }
 
-        public void Dispose() =>
+        public void Dispose()
+        {
+            _playerInput.Character.Move.canceled -= context => OnMove(context);
             _playerInput.Character.Move.canceled -= context => OnStop(context);
+        }
 
         private void OnMove(InputAction.CallbackContext context)
         {

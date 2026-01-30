@@ -1,4 +1,3 @@
-﻿using Assets.Scripts.Datas;
 using Assets.Scripts.Player;
 using Assets.Scripts.UI.HealthCharacters.Characters;
 using Cysharp.Threading.Tasks;

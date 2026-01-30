@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Items;
+using Assets.Scripts.Items;
 using System;
 using System.Collections.Generic;
 using UniRx;
@@ -13,7 +13,8 @@ namespace Assets.Scripts.Player.Inventory
         public PlayerInventory() =>
             InitializeResources();
 
-        public Dictionary<ResourceTypes, ReactiveProperty<int>> ResourceStacks => _resources;
+        public Dictionary<ResourceTypes, ReactiveProperty<int>> ResourceStacks =>
+            _resources;
 
         public void AddResource(Resource resource)
         {

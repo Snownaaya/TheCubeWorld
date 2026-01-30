@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Datas.Character;
+using Assets.Scripts.Datas.Character;
 using System;
 
 namespace Assets.Scripts.Player.Wallet

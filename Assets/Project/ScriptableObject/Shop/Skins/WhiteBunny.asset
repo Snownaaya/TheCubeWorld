@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: WhiteBunny
   m_EditorClassIdentifier: 
   <Price>k__BackingField: 363
-  <Image>k__BackingField: {fileID: 21300000, guid: 0e71905ce7d8adf4eaf6018f38a744fe, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 5671a62e68b45b946a923260355f60ff, type: 3}
   <CharacterSkins>k__BackingField: 1

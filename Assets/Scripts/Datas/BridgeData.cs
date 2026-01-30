@@ -5,7 +5,7 @@ using System;
 namespace Assets.Scripts.Datas
 {
     [Serializable]
-    public struct BridgeData
+    public readonly struct BridgeData
     {
         public BridgeData(BridgeType bridgeType, ResourceTypes resourceTypes)
         {

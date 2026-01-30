@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.CharacterService;
@@ -9,21 +9,18 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
     public class StartLevelState : RuntimeState
     {
         private ICharacterTeleportService _characterTeleportService;
-        private IResourceService _resourceService;
 
         public StartLevelState(
             ISwitcher switcher,
             EntryPointState entryPoint,
             ICharacterTeleportService characterTeleportService,
-            CharacterHolder characterHolder,
-            IResourceService resourceService,
+            ICharacterHolder characterHolder,
             GameMessageBus gameMessageBus) : base(switcher,
                 entryPoint,
                 characterHolder,
                 gameMessageBus)
         {
             _characterTeleportService = characterTeleportService;
-            _resourceService = resourceService;
         }
 
         public override void Enter()

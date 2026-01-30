@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.GameStateMachine.States.Runtime;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.Pause;
@@ -11,7 +11,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     public class RespawnState : PhasesState
     {
         private PauseHandler _pauseHandler;
-        private CharacterHolder _characterHolder;
+        private ICharacterHolder _characterHolder;
         private ILevelLoader _levelLoader;
 
         public RespawnState(
@@ -21,7 +21,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             PauseHandler pauseHandler,
             IInventory inventory,
             IResourceService resourceService,
-            CharacterHolder characterHolder) : base(switcher, entryPoint, inventory, resourceService)
+            ICharacterHolder characterHolder) : base(switcher, entryPoint, inventory, resourceService)
         {
             _levelLoader = levelLoader;
             _pauseHandler = pauseHandler;

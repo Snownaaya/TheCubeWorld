@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Datas;
+using Assets.Scripts.Datas;
 using UnityEngine;
 using DG.Tweening;
 
@@ -39,7 +39,8 @@ namespace Assets.Scripts.Achievements
             _animation = DOTween.Sequence();
 
             _animation
-                .Append(_achievementCanvasGroup.DOFade(1f, 0f).From(1f))
+                .Append(_achievementCanvasGroup.DOFade(1f, 0f)
+                .From(1f))
                 .Join(_achievementTransform.DOScale(0f, 1f))
                 .OnComplete(() =>
                 {

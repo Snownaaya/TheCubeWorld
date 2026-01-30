@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Input;
+using Assets.Scripts.Input;
 using Assets.Scripts.Particles;
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
@@ -29,7 +29,7 @@ namespace Assets.Scripts.Player.Core
             _deathTrackerService = deathTrackerService;
         }
 
-        public CharacterHolder CreateCharacter()
+        public ICharacterHolder CreateCharacter()
         {
             Character character = Instantiate(_characterPrefab);
 
@@ -40,7 +40,7 @@ namespace Assets.Scripts.Player.Core
             movement.Construct(_input, _playerInput);
             character.Construct(_particleSpawner, _deathTrackerService);
 
-            CharacterHolder holder = new CharacterHolder();
+            ICharacterHolder holder = new CharacterHolder();
             holder.Initialize(character,
                 movement,
                 attacker,

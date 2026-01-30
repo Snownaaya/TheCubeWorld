@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Enemies.Boss.Target;
+using Assets.Scripts.Enemies.Boss.Target;
 using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Items;
 using Reflex.Attributes;
@@ -32,10 +32,15 @@ namespace Assets.Scripts.Player.Attack
 
         public bool TryConsumeResource()
         {
-            SpawnResource(ResourceTypeSelector.GetRandomTypes());
-            _inventory.UseResource(ResourceTypeSelector.GetRandomTypes());
+            if (HasEnoughTotalResources(1) == false)
+                return false;
+
+            var type = ResourceTypeSelector.GetRandomTypes();
+            SpawnResource(type);
+            _inventory.UseResource(type);
             return true;
         }
+
 
         public bool HasEnoughTotalResources(int requiredAmount)
         {

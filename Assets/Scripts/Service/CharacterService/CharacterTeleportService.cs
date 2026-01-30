@@ -1,14 +1,16 @@
-﻿using Assets.Scripts.Service.LevelLoaderService;
+using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Player.Core;
 
 namespace Assets.Scripts.Service.CharacterService
 {
     public class CharacterTeleportService : ICharacterTeleportService
     {
-        private CharacterHolder _player;
+        private ICharacterHolder _player;
         private IStartLevel _startLevel;
 
-        public CharacterTeleportService(CharacterHolder player, IStartLevel startLevel)
+        public CharacterTeleportService(
+            ICharacterHolder player,
+            IStartLevel startLevel)
         {
             _player = player;
             _startLevel = startLevel;

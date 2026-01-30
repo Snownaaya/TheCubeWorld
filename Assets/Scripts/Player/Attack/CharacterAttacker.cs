@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using Assets.Scripts.Datas.Character;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
+using Assets.Scripts.Datas.Character;
+using Assets.Scripts.UI.HealthCharacters.Characters;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Attack

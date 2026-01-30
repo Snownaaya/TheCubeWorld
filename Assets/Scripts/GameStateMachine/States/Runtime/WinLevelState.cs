@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Achievements;
+using Assets.Scripts.Achievements;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Service.GameMessage;
@@ -8,14 +8,14 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
     public class WinLevelState : RuntimeState
     {
-        private CharacterHolder _character;
+        private ICharacterHolder _character;
         private AchievementService _achievementService;
         private WinLevelUseCase _winLevelUseCase;
 
         public WinLevelState(
             ISwitcher switcher,
             EntryPointState entryPoint,
-            CharacterHolder character,
+            ICharacterHolder character,
             AchievementService achievementService,
             GameMessageBus gameMessageBus) : base(switcher, entryPoint, character, gameMessageBus)
         {

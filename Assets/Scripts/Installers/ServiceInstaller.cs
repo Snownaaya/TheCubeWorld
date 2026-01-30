@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Achievements.AchievePartials;
+using Assets.Scripts.Achievements.AchievePartials;
 using Assets.Scripts.Achievements.Observers;
 using Assets.Scripts.Datas;
 using Assets.Scripts.Player.Core;
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Installers
         {
             containerBuilder.AddSingleton<ICharacterTeleportService>(container =>
             {
-                CharacterHolder player = container.Resolve<CharacterHolder>();
+                ICharacterHolder player = container.Resolve<ICharacterHolder>();
                 IStartLevel startLevel = container.Resolve<IStartLevel>();
                 return new CharacterTeleportService(player, startLevel);
             });

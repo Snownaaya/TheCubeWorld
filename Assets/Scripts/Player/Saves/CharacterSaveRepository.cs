@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Service.Json;
+using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.Saves;
 
 namespace Assets.Scripts.Player.Saves
@@ -8,7 +8,9 @@ namespace Assets.Scripts.Player.Saves
         private readonly IJsonService _json;
         private readonly ISaveService _save;
 
-        public CharacterSaveRepository(IJsonService json, ISaveService save)
+        public CharacterSaveRepository(
+            IJsonService json,
+            ISaveService save)
         {
             _json = json;
             _save = save;

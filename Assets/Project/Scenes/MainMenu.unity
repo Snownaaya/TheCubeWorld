@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 112336120}
   - component: {fileID: 112336119}
   - component: {fileID: 112336121}
+  - component: {fileID: 112336122}
   m_Layer: 0
   m_Name: Boostrap
   m_TagString: Untagged
@@ -317,6 +318,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shop: {fileID: 8503120162477580386}
+--- !u!114 &112336122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112336118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdff01a9b60e7c34aa634c3eb69000ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &123645692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bf976fe587df94c9c20882797b2c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joystickInput: {fileID: 0}
   _finalPlatform: {fileID: 6381604832123583466}
   _cinemachineVirtualCamera: {fileID: 736658651}
 --- !u!1 &468003874

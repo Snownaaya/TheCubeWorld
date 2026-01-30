@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Input
@@ -8,5 +8,6 @@ namespace Assets.Scripts.Input
         public Vector2 Move { get; }
         event Action<Vector3> Moved;
         event Action Stopped;
+        public void Dispose();
     }
 }

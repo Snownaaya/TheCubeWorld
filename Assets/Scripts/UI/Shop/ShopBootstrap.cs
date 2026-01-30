@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Datas.Character;
+using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Visitor;
 using Reflex.Attributes;
 using UnityEngine;
@@ -15,14 +15,16 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         private IPersistentCharacterData _persistentCharacterData;
         private ITransientCharacterData _transientCharacterData;
 
+        private void Start() =>
+            Initialize();
+
         [Inject]
-        public void Construct(IPersistentCharacterData persistentCharacterData,
+        public void Construct(
+            IPersistentCharacterData persistentCharacterData,
             ITransientCharacterData transientCharacterData)
         {
             _persistentCharacterData = persistentCharacterData;
             _transientCharacterData = transientCharacterData;
-
-            Initialize();
         }
 
         public void Initialize()

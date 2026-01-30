@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Player.Skins;
+using Assets.Scripts.Player.Skins;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +10,7 @@ namespace Assets.Scripts.Achievements.AchievePartials
         {
             return BuySkinChecker
              (
-                1,
+                3,
                 writeAchieve: () => _achievementService.Achieve(AchievementNames.Fashionista)
              );
         }
