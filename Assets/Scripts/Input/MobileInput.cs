@@ -13,19 +13,21 @@ namespace Assets.Scripts.Input
         public MobileInput(PlayerInput playerInput)
         {
             _playerInput = playerInput;
+
             _playerInput.Character.Move.performed += context => OnMove(context);
-            _playerInput.Character.Move.performed -= context => OnStop(context);
+            _playerInput.Character.Move.canceled += context => OnStop(context);
         }
 
         public void Dispose()
         {
-            _playerInput.Character.Move.canceled -= context => OnMove(context);
+            _playerInput.Character.Move.performed -= context => OnMove(context);
             _playerInput.Character.Move.canceled -= context => OnStop(context);
         }
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            Vector3 direction = new Vector3(Move.x, 0, Move.y);
+            Vector2 value = context.ReadValue<Vector2>();
+            Vector3 direction = new Vector3(value.y, 0, -value.x);
             Moved?.Invoke(direction);
         }
 

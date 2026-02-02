@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Ground;
+using Assets.Scripts.Ground;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using Reflex.Attributes;
@@ -24,6 +24,7 @@ public class PlatformDetector : MonoBehaviour
         if (other.TryGetComponent(out Character character))
         {
             _currentGround.ResetPoints();
+            _cancellationTokenSource?.Cancel();
             _cancellationTokenSource = new CancellationTokenSource();
             _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token);
         }
@@ -36,8 +37,12 @@ public class PlatformDetector : MonoBehaviour
             _spawner.Clear();
             _currentGround.ResetPoints();
             _cancellationTokenSource.Cancel();
-            _cancellationTokenSource.Dispose();
             _cancellationTokenSource = null;
         }
+    }
+
+    private void OnDestroy()
+    {
+        _cancellationTokenSource?.Cancel();
     }
 }
