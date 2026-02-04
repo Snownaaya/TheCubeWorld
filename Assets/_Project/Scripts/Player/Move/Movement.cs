@@ -1,7 +1,7 @@
+using System;
 using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Input;
 using Reflex.Attributes;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Player.Move
@@ -18,7 +18,9 @@ namespace Assets.Scripts.Player.Move
         private Rigidbody _rigidbody;
         private PlayerInput _playerInput;
         private IInput _input;
+
         private Vector3 _currentDirection;
+        private Vector3 _targetDirection;
 
         public Transform CharacterModel => _characterModel;
 
@@ -44,7 +46,13 @@ namespace Assets.Scripts.Player.Move
         private void FixedUpdate()
         {
             if (_isMoving)
-                _rigidbody.velocity = _currentDirection * _characterConfig.Speed * _characterConfig.SpeedRate;
+            {
+                Vector3 targetVelocity = _targetDirection * _characterConfig.Speed;
+
+                _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _currentDirection, _characterConfig.SpeedRate);
+
+                PositionChanged?.Invoke();
+            }
         }
 
         public void OnDestroy()
@@ -57,10 +65,11 @@ namespace Assets.Scripts.Player.Move
 
         public void OnMove(Vector3 direction)
         {
-            _currentDirection = direction;
+            _targetDirection = direction;
             _isMoving = true;
-            _characterModel.LookAt(_characterModel.position + direction);
-            PositionChanged?.Invoke();
+
+            if (direction != Vector3.zero)
+                _characterModel.LookAt(_characterModel.position + direction);
 
             _currentCharacterView.StartWalk();
             _currentCharacterView.StopIdle();
