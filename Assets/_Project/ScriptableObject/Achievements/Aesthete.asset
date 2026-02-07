@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Aesthete
   m_EditorClassIdentifier: 
   _achievementNames: 1
-  _achievementIcon: {fileID: 21300000, guid: 9d0754563403d8e41857b7c0d1ea3206, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: 04bc226baf075114dbe9409d3f0fee84
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

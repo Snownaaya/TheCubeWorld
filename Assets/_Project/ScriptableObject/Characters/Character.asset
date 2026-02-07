@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   _speed: 10
-  _speedRate: 1
+  _speedRate: 0.0001
   _damage: 13
   _detectionRaduis: 10
   _attackTimer: 1

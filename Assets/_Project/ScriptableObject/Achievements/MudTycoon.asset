@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: MudTycoon
   m_EditorClassIdentifier: 
   _achievementNames: 7
-  _achievementIcon: {fileID: 21300000, guid: 22645ec2fa1ac9e4e8c09edebc856434, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: 7ad0efcebb8604846af2ca252d1f0a37
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

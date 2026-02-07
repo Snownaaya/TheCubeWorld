@@ -1,6 +1,5 @@
 using Assets.Scripts.Player.Attack;
 using Assets.Scripts.Player.Move;
-using UnityEngine;
 
 namespace Assets.Scripts.Player.Core
 {

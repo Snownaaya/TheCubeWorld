@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Fashionista
   m_EditorClassIdentifier: 
   _achievementNames: 5
-  _achievementIcon: {fileID: 21300000, guid: 0e71905ce7d8adf4eaf6018f38a744fe, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: c103d60ed37fc0346ba68231fb6b6121
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

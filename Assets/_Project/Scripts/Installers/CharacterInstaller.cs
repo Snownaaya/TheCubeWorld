@@ -55,6 +55,7 @@ namespace Assets.Scripts.Installers
             containerBuilder.AddSingleton<ICharacterHolder>(container =>
             {
                 CharacterFactory factory = container.Resolve<CharacterFactory>();
+
                 ICharacterHolder holder = factory.CreateCharacter();
 
                 GameObjectInjector.InjectRecursive(holder.Character.gameObject, container);
@@ -104,6 +105,7 @@ namespace Assets.Scripts.Installers
             {
                 ICharacterSaveRepository characterSaveRepository = container.Resolve<ICharacterSaveRepository>();
                 IPersistentCharacterData persistentCharacterData = container.Resolve<IPersistentCharacterData>();
+
                 GameMessageBus gameMessageBus = container.Resolve<GameMessageBus>();
 
                 return new CharacterPersistentLinker(characterSaveRepository, persistentCharacterData, gameMessageBus);

@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Bricklayer
   m_EditorClassIdentifier: 
   _achievementNames: 2
-  _achievementIcon: {fileID: 21300000, guid: 3ec0beb38f357364fb10b53a49ce557c, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: 7aef18c303cb2b648afe9d126f89c63f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

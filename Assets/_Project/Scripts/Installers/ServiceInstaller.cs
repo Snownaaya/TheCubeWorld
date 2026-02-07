@@ -8,13 +8,14 @@ using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
+using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using static Assets.Scripts.Datas.AudioConfig;
 
 namespace Assets.Scripts.Installers
 {
@@ -25,7 +26,6 @@ namespace Assets.Scripts.Installers
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             BindPlayerSpawnService(containerBuilder);
-            BindLevelLoader(containerBuilder);
             BindBridgeTracker(containerBuilder);
             BindDeathTracker(containerBuilder);
             BindPauseHandler(containerBuilder);
@@ -56,9 +56,6 @@ namespace Assets.Scripts.Installers
                 return new CharacterTeleportService(player, startLevel);
             });
         }
-
-        private void BindLevelLoader(ContainerBuilder containerBuilder) =>
-            containerBuilder.AddSingleton(new LevelLoader(), typeof(ILevelLoader));
 
         private void BindPauseHandler(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new PauseHandler());
@@ -100,6 +97,7 @@ namespace Assets.Scripts.Installers
                 return new SkinBuyTracker(achievemntBuyObserver);
             });
         }
+
 
         private void InitForegroundAudioService(ContainerBuilder containerBuilder)
         {

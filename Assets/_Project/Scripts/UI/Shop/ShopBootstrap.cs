@@ -26,15 +26,15 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             _persistentCharacterData = persistentCharacterData;
             _transientCharacterData = transientCharacterData;
         }
-
         public void Initialize()
+
         {
             _visitorFactory = new VisitorFactory();
             _visitorsHolder = new VisitorsHolder(_persistentCharacterData, _transientCharacterData);
             _shop.Initialize(_visitorsHolder, _visitorFactory);
         }
 
-        private void OnDisable() =>
+        private void OnDestroy() =>
             _shop.Dispose();
     }
 }

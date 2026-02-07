@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: Builder
   m_EditorClassIdentifier: 
   _achievementNames: 6
-  _achievementIcon: {fileID: 21300000, guid: 577c13d8aff879b4a9a5b9431e227c7a, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: d519fdb5f145962419b7fb28f278adad
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

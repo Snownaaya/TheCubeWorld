@@ -1,12 +1,12 @@
+using Assets.Project.Scripts.Datas;
 using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Input;
 using Assets.Scripts.Items;
 using Assets.Scripts.Other;
 using Assets.Scripts.Particles;
-using Assets.Scripts.Player.Saves;
 using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.Service.LevelLoaderService;
+using Assets.Scripts.UseCase;
 using Reflex.Core;
 using UnityEngine;
 
@@ -16,6 +16,7 @@ namespace Assets.Scripts.Installers
     {
         [SerializeField] private StartLevel _startLevelPrefab;
         [SerializeField] private SpawnerRoot _spawnerRoot;
+        [SerializeField] private SceneConfig _sceneConfig;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Installers
             InitSpawner(containerBuilder);
             BindPersistentData(containerBuilder);
             BindCurrentBoss(containerBuilder);
+            BindSceneTransition(containerBuilder);
         }
 
         private void BindCurrentBoss(ContainerBuilder containerBuilder) =>
@@ -51,6 +53,14 @@ namespace Assets.Scripts.Installers
             {
                 GameMessageBus gameMessageBus = container.Resolve<GameMessageBus>();
                 return new PersistentCharacterData(gameMessageBus);
+            });
+        }
+
+        private void BindSceneTransition(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton<SceneTransitions>(container =>
+            {
+                return new SceneTransitions(_sceneConfig);
             });
         }
     }

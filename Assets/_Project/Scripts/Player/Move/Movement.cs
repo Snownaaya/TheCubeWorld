@@ -14,16 +14,14 @@ namespace Assets.Scripts.Player.Move
         [SerializeField] private CharacterView _currentCharacterView;
 
         private bool _isMoving;
-
+        private bool _isInputLocked;
         private Rigidbody _rigidbody;
         private PlayerInput _playerInput;
         private IInput _input;
-
         private Vector3 _currentDirection;
         private Vector3 _targetDirection;
 
         public Transform CharacterModel => _characterModel;
-
         public event Action PositionChanged;
 
         private void Awake()
@@ -33,8 +31,7 @@ namespace Assets.Scripts.Player.Move
         }
 
         [Inject]
-        public void Construct(IInput input,
-            PlayerInput playerInput)
+        public void Construct(IInput input, PlayerInput playerInput)
         {
             _input = input;
             _playerInput = playerInput;
@@ -47,10 +44,11 @@ namespace Assets.Scripts.Player.Move
         {
             if (_isMoving)
             {
-                Vector3 targetVelocity = _targetDirection * _characterConfig.Speed;
+                float currentSpeed = _characterConfig.Speed;
+                Vector3 targetVelocity = _targetDirection * currentSpeed;
+                targetVelocity.y = _rigidbody.velocity.y;
 
                 _rigidbody.velocity = Vector3.SmoothDamp(_rigidbody.velocity, targetVelocity, ref _currentDirection, _characterConfig.SpeedRate);
-
                 PositionChanged?.Invoke();
             }
         }
@@ -65,12 +63,11 @@ namespace Assets.Scripts.Player.Move
 
         public void OnMove(Vector3 direction)
         {
-            _targetDirection = direction;
+            if (_isInputLocked) return;
+            _targetDirection = direction.normalized;
             _isMoving = true;
-
             if (direction != Vector3.zero)
                 _characterModel.LookAt(_characterModel.position + direction);
-
             _currentCharacterView.StartWalk();
             _currentCharacterView.StopIdle();
         }
@@ -79,7 +76,6 @@ namespace Assets.Scripts.Player.Move
         {
             if (_rigidbody != null)
                 _rigidbody.velocity = Vector3.zero;
-
             _isMoving = false;
             _currentCharacterView.StartIdle();
             _currentCharacterView.StopWalk();

@@ -1,26 +1,28 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
-using System.Linq;
-using System;
 using Assets.Scripts.Service.Audio;
+using Assets.Scripts.Service.LevelLoaderService.Loader;
+using Assets.Scripts.UseCase;
+using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.MainMenu
 {
     public class StartButton : MonoBehaviour
     {
-        private const string LevelPrefix = "Level_";
-
-        [SerializeField] private SceneID _levels;
         [SerializeField] private Button _startButton;
 
         private ForegroundAudioService _audioService;
+        private SceneTransitions _sceneTransitions;
 
         [Inject]
-        private void Construct(ForegroundAudioService audioService) =>
+        private void Construct(
+            ForegroundAudioService audioService,
+            SceneTransitions sceneTransitions)
+        {
             _audioService = audioService;
+            _sceneTransitions = sceneTransitions;
+        }
 
         private void OnEnable() =>
             _startButton.onClick.AddListener(OnStartButtonClicked);
@@ -30,16 +32,8 @@ namespace Assets.Scripts.UI.MainMenu
 
         private void OnStartButtonClicked()
         {
-            SceneID level = Enum.GetValues(typeof(SceneID))
-                .Cast<SceneID>()
-                .Where(lvl => lvl.ToString()
-                .StartsWith(LevelPrefix))
-                .FirstOrDefault();
-            ////.OrderBy(_ => Random.value)
-
             _audioService.PlaySound(AudioTypes.Buttons);
-            SceneManager.LoadScene(level.ToString());
+            _sceneTransitions.StartLevel(SceneID.Level_1).Forget();
         }
     }
 }
-//_levels[/*Random.Range(0, _levels.Length)*/1];

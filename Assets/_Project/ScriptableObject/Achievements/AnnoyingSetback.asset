@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: AnnoyingSetback
   m_EditorClassIdentifier: 
   _achievementNames: 3
-  _achievementIcon: {fileID: 21300000, guid: f2e72d867ff39c74492f7eddfb68b6d3, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: 7ba2332b5a814434ebe5b6ec9e15f3a1
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

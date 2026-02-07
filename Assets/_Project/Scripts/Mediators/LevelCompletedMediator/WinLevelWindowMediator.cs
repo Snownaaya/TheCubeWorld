@@ -1,7 +1,5 @@
-﻿using Assets.Scripts.Player.Wallet;
+using Assets.Scripts.Player.Wallet;
 using Assets.Scripts.Service.GameMessage;
-using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.UI.FinishedUI;
 using Assets.Scripts.UseCase;
 using Assets.Scripts.VictoryReward;
@@ -17,7 +15,6 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
     {
         [SerializeField] private AddDefaultCoin _addDefaultCoin;
         [SerializeField] private AdsCoinButton _adsCoinButton;
-        [SerializeField] private LevelSelected _levelSelected;
         [SerializeField] private Canvas _canvas;
         [SerializeField] private RewardStripArrow _arrow;
         [SerializeField] private RewardSlotView[] _slots;
@@ -29,12 +26,10 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
         private RewardStripModel _rewardStripModel;
         private RewardStripFactory _rewardStripFactory;
         private GameMessageBus _messageBus;
-        private ILevelLoader _levelLoader;
         private IWallet _wallet;
 
         private void Awake()
         {
-            _sceneTransitions = new SceneTransitions(_levelLoader, _levelSelected);
             _rewardStripFactory = new RewardStripFactory();
             _cancellationTokenSource = new CancellationTokenSource();
             _spinUseCase = new SpinUseCase(_slots);
@@ -45,13 +40,14 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
 
         [Inject]
         private void Construct(
-            ILevelLoader levelLoader,
             IWallet wallet,
-            GameMessageBus messageBus)
+            GameMessageBus messageBus,
+            SceneTransitions sceneTransitions)
         {
-            _levelLoader = levelLoader;
             _wallet = wallet;
             _messageBus = messageBus;
+            _sceneTransitions = sceneTransitions;
+
             _adsCoinButton.Initialize(_messageBus);
         }
 
@@ -97,13 +93,13 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
         private void OnDefaultCoinReceived(int coins)
         {
             _wallet.AddCoins(coins);
-            _sceneTransitions.LoadNextLevel().Forget();
+            _sceneTransitions.GetNextLevel().Forget();
         }
 
         public void OnRewardReceived(RewardStripModel model)
         {
             _wallet.AddCoins(model.FinalCoins);
-            _sceneTransitions.LoadNextLevel().Forget();
+            _sceneTransitions.GetNextLevel().Forget();
         }
 
         private void OnSlotChanged(int currentIndex)

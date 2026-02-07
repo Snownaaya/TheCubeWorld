@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Service.LevelLoaderService.Loader
+namespace Assets.Scripts.Service.LevelLoaderService.Loader
 {
     public enum SceneID
     {

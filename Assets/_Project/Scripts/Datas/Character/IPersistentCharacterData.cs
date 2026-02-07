@@ -13,6 +13,5 @@ namespace Assets.Scripts.Datas.Character
         public IReadOnlyList<CharacterSkins> OpenCharacterSkins { get; }
         public void OpenCharacterSkin(CharacterSkins characterSkins);
         public void SetOpenSkins(IEnumerable<CharacterSkins> skins);
-        public void Dispose();
     }
 }

@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ca9bf1a55df254f8d6c311d5c41618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystickInput: {fileID: 6253291910155271551, guid: 9265a27c633c0604b9b040eb685b6728, type: 3}
   _startLevelPrefab: {fileID: 1650017795538079130, guid: 70a99a2977e4bc14b9a6244de3367ca9, type: 3}
   _spawnerRoot: {fileID: 7308503517507738306, guid: f31c55022d88938439c7830c3804a701, type: 3}
+  _sceneConfig: {fileID: 11400000, guid: 4a3e30aa314894a4fa1aabd52377b0d4, type: 2}
 --- !u!114 &-7224996880172867609
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.UseCase;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
@@ -8,19 +9,25 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     {
         private IInventory _inventory;
         private IResourceService _resourceService;
+        private SceneTransitions _transitions;
 
         protected PhasesState(
             ISwitcher switcher,
             EntryPointState entryPoint,
             IInventory inventory,
-            IResourceService resourceService) : base(switcher, entryPoint)
+            IResourceService resourceService,
+            SceneTransitions sceneTransitions) : base(switcher, entryPoint)
         {
             _inventory = inventory;
             _resourceService = resourceService;
+            _transitions = sceneTransitions;
         }
 
         public IInventory Inventory => _inventory;
+
         public IResourceService ResourceService => _resourceService;
+
+        public SceneTransitions SceneTransitions => _transitions;
 
         public override void Enter()
         {

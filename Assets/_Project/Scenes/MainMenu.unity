@@ -256,7 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564ce227cdabc174f84e75919fba3008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levels: 0
   _startButton: {fileID: 74227556}
 --- !u!1 &112336118
 GameObject:
@@ -302,7 +301,8 @@ Transform:
   m_LocalPosition: {x: 128.4254, y: 132.11876, z: -24.181107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1145670521}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &112336121
@@ -3473,11 +3473,11 @@ Transform:
   m_GameObject: {fileID: 1145670518}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -128.4254, y: -132.11876, z: 24.181107}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 112336120}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1145670522
 MonoBehaviour:
@@ -7978,17 +7978,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd83744ff8b9fa4db33ae34a8891eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _achievements:
-  - {fileID: 498000635857378125, guid: 74695612199a56841bc9fd02e2ec45d8, type: 3}
-  - {fileID: 7197064918633114540, guid: 7aef18c303cb2b648afe9d126f89c63f, type: 3}
-  - {fileID: 4121475398788082436, guid: 04bc226baf075114dbe9409d3f0fee84, type: 3}
-  - {fileID: 5611152648607969049, guid: 73fd1ddb61c94bc4fbc1b1023fbbcd28, type: 3}
-  - {fileID: 7292964191005397644, guid: 7ad0efcebb8604846af2ca252d1f0a37, type: 3}
-  - {fileID: 5862543500982891013, guid: d519fdb5f145962419b7fb28f278adad, type: 3}
-  - {fileID: 7367522823325338195, guid: 7ba2332b5a814434ebe5b6ec9e15f3a1, type: 3}
-  - {fileID: 8698799861466882142, guid: ae928e2a67c073f449146cfcbbd74bc6, type: 3}
-  - {fileID: 2498850111553148597, guid: c103d60ed37fc0346ba68231fb6b6121, type: 3}
   _popupParent: {fileID: 7283171708365280520}
+  _achievemntConfigs:
+  - {fileID: 11400000, guid: c4203717f67221f49947eb1f9ca7da7e, type: 2}
+  - {fileID: 11400000, guid: 5ee7878f56eafd1488370955376055d8, type: 2}
+  - {fileID: 11400000, guid: 90edf5c881e211b429f6c71b0e30806e, type: 2}
+  - {fileID: 11400000, guid: 263c8c2879aaeea49b029f8c97562b9e, type: 2}
+  - {fileID: 11400000, guid: ce7959649ef1bea43b6afaaaa9be24ec, type: 2}
+  - {fileID: 11400000, guid: 3716a5461b382894992c6fb0ec0ea3e7, type: 2}
+  - {fileID: 11400000, guid: 63366de9f2624ba40b1fd05dbb70bfd8, type: 2}
+  - {fileID: 11400000, guid: 95ab3886e31481745b6c37ece69f312b, type: 2}
+  - {fileID: 11400000, guid: 698a224a03ff6a84ea78a1457fd71491, type: 2}
 --- !u!4 &2041377704162019280
 Transform:
   m_ObjectHideFlags: 0
@@ -14345,7 +14345,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 193784797}
   - {fileID: 1617450314}
-  - {fileID: 1145670521}
   - {fileID: 705507995}
   - {fileID: 425221862}
   - {fileID: 963194228}

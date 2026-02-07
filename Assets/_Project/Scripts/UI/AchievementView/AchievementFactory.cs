@@ -1,27 +1,26 @@
-﻿using Assets.Scripts.Achievements;
-using System.Collections.Generic;
-using System;
+using Assets._Project.Scripts.AddressablesModule;
+using Assets.Scripts.Achievements;
+using Assets.Scripts.Datas;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Assets.Scripts.UI.AchievementView
 {
     public class AchievementFactory
     {
-        private Dictionary<AchievementNames, Achievement> _achievements = new();
-
-        public AchievementFactory(List<Achievement> achievements)
+        public async UniTask<Achievement> GetAsync(AchievementConfig achievementConfig, Transform parent)
         {
-            if (achievements == null)
-                throw new ArgumentNullException(nameof(achievements));
+            if (achievementConfig.AchievementPrefab == null)
+                return null;
 
-            foreach (Achievement achievement in achievements)
-                _achievements.Add(achievement.AchievementConfig.AchievementNames, achievement);
-        }
+            GameObject instance = await AddressableUtility.InstantiatePrefab(achievementConfig.AchievementPrefab, parent);
 
-        public Achievement Get(AchievementNames achievementNames, Transform parent)
-        {
-            if (_achievements.TryGetValue(achievementNames, out Achievement achievement))
-                return UnityEngine.Object.Instantiate(achievement, parent);
+            if (instance.TryGetComponent(out Achievement achievement))
+                return achievement;
+
+            if (instance != null)
+                Addressables.ReleaseInstance(instance);
 
             return null;
         }

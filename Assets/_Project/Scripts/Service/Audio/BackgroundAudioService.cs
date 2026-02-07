@@ -1,6 +1,7 @@
-﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
+using static Assets.Scripts.Datas.AudioConfig;
 
 namespace Assets.Scripts.Service.Audio
 {

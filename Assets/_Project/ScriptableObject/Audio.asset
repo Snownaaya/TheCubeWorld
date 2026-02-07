@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9a68fdcc1b8bf4e95f710544cc3293, type: 3}
   m_Name: Audio
   m_EditorClassIdentifier: 
-  AudioDatas:
+  <AudioDatas>k__BackingField:
+  - AudioClip:
+    - {fileID: 8300000, guid: c23eaaaa971c6814bba572fb5e9011c3, type: 3}
+    - {fileID: 8300000, guid: 61c9ba1f94082494aa925635c68bd6d4, type: 3}
+    AudioTypes: 0
+    Volume: 1
   - AudioClip:
     - {fileID: 8300000, guid: 3463431e83fb3d140a5e97b0336314f1, type: 3}
     AudioTypes: 1
-    Volume: 0.7
+    Volume: 1
   - AudioClip:
     - {fileID: 8300000, guid: 7d6354f7eef011b42b73d3852c8407e9, type: 3}
     AudioTypes: 4
-    Volume: 0.7
-  - AudioClip:
-    - {fileID: 8300000, guid: 61c9ba1f94082494aa925635c68bd6d4, type: 3}
-    - {fileID: 8300000, guid: c23eaaaa971c6814bba572fb5e9011c3, type: 3}
-    AudioTypes: 0
     Volume: 1

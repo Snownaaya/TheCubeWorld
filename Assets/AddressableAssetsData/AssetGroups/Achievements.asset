@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Achievements
+  m_EditorClassIdentifier: 
+  m_GroupName: Achievements
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 0834da69122f72c49a9ada69f6234b4a
+  m_SerializeEntries:
+  - m_GUID: 04bc226baf075114dbe9409d3f0fee84
+    m_Address: AestheteAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73fd1ddb61c94bc4fbc1b1023fbbcd28
+    m_Address: SkillUssieAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74695612199a56841bc9fd02e2ec45d8
+    m_Address: FirstLevelComplete.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ad0efcebb8604846af2ca252d1f0a37
+    m_Address: MudTycoonAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7aef18c303cb2b648afe9d126f89c63f
+    m_Address: BricklayerAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ba2332b5a814434ebe5b6ec9e15f3a1
+    m_Address: AnnoyingSetbackAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae928e2a67c073f449146cfcbbd74bc6
+    m_Address: RichPersonAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c103d60ed37fc0346ba68231fb6b6121
+    m_Address: FashionistaAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d519fdb5f145962419b7fb28f278adad
+    m_Address: BuilderAchievement.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 5f64c010dc0b4b34dadc40d9ff5e9af5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b458a682e8b537241943c366e120b60d, type: 2}
+    - {fileID: 11400000, guid: 3f40013d87aa71a47a1e6968691932ee, type: 2}

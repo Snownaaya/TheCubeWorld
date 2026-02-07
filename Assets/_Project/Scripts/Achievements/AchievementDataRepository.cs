@@ -15,6 +15,8 @@ namespace Assets.Scripts.Achievements
         {
             _saveService = saveService;
             _jsonService = jsonService;
+
+           // ResetAchievements();
         }
 
         public Dictionary<AchievementNames, bool> GetAchievements()
@@ -31,6 +33,13 @@ namespace Assets.Scripts.Achievements
         {
             string json = _jsonService.Serialize(achievements);
             _saveService.Save(Achievements, json);
+        }
+
+        public void ResetAchievements()
+        {
+            _saveService.Delete(Achievements);
+
+            SetAchievements(new Dictionary<AchievementNames, bool>());
         }
     }
 }

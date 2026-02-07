@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.UI.GameUI;
+using Assets.Scripts.UseCase;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
@@ -14,8 +14,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     {
         private PauseHandler _pauseHandler;
         private LossScreen _lossScreen;
-        private CancellationTokenSource _cancellationTokenSource; 
-        private ILevelLoader _levelLoader;
+        private CancellationTokenSource _cancellationTokenSource;
 
         private float _delay = 2f;
 
@@ -26,14 +25,11 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             IResourceService resourceService,
             PauseHandler pauseHandler,
             LossScreen lossScreen,
-            ILevelLoader levelLoader) : base(switcher,
-                entryPoint, 
-                inventory,
-                resourceService)
+            SceneTransitions sceneTransitions)
+            : base(switcher, entryPoint, inventory, resourceService, sceneTransitions)
         {
             _pauseHandler = pauseHandler;
             _lossScreen = lossScreen;
-            _levelLoader = levelLoader;
         }
 
         public override void Enter()
@@ -64,7 +60,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private async UniTask DelayPause(CancellationToken cancellationToken)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken : cancellationToken);
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
 
             if (cancellationToken.IsCancellationRequested)
                 return;
@@ -89,7 +85,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
         private void OnExitMenu()
         {
             ResourceService.Clear();
-            _levelLoader.Load(EntryPoint.LevelSelected.GetMainMenu());
+           SceneTransitions.GetMainMenu().Forget();
         }
     }
 }

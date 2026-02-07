@@ -11,8 +11,6 @@ namespace Assets.Scripts.Service.Saves
 
             string data = PlayerPrefs.GetString(dataKey, string.Empty);
 
-            //PlayerPrefs.DeleteAll();
-
             return string.IsNullOrWhiteSpace(data) ? string.Empty : data;
         }
 
@@ -23,6 +21,15 @@ namespace Assets.Scripts.Service.Saves
 
             PlayerPrefs.SetString(dataKey, data);
             PlayerPrefs.Save();
+        }
+
+        public void Delete(string dataKey)
+        {
+            if (PlayerPrefs.HasKey(dataKey))
+            {
+                PlayerPrefs.DeleteKey(dataKey);
+                PlayerPrefs.Save();
+            }
         }
     }
 }

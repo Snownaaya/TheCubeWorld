@@ -1,6 +1,7 @@
 using Assets.Scripts.Ground;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
+using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
 using System.Threading;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class PlatformDetector : MonoBehaviour
             _currentGround.ResetPoints();
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource = new CancellationTokenSource();
-            _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token);
+            _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token).Forget();
         }
     }
 

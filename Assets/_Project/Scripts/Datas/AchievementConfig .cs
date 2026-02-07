@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.Achievements;
+using Assets.Scripts.Achievements;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Assets.Scripts.Datas
 {
@@ -7,9 +8,10 @@ namespace Assets.Scripts.Datas
     public class AchievementConfig : ScriptableObject
     {
         [SerializeField] private AchievementNames _achievementNames;
-        [SerializeField] private Sprite _achievementIcon;
+        [SerializeField] private AssetReferenceGameObject _achievementPrefab;
 
         public AchievementNames AchievementNames => _achievementNames;
-        public Sprite AchievementIcon => _achievementIcon;
+
+        public AssetReferenceGameObject AchievementPrefab => _achievementPrefab;
     }
 }

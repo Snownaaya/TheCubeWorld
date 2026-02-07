@@ -5,6 +5,7 @@ using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Player.Core;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
+using Assets.Scripts.UseCase;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
@@ -12,18 +13,17 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     {
         private PauseHandler _pauseHandler;
         private ICharacterHolder _characterHolder;
-        private ILevelLoader _levelLoader;
 
         public RespawnState(
             ISwitcher switcher,
             EntryPointState entryPoint,
-            ILevelLoader levelLoader,
             PauseHandler pauseHandler,
             IInventory inventory,
             IResourceService resourceService,
-            ICharacterHolder characterHolder) : base(switcher, entryPoint, inventory, resourceService)
+            ICharacterHolder characterHolder,
+            SceneTransitions sceneTransitions)
+            : base(switcher, entryPoint, inventory, resourceService, sceneTransitions)
         {
-            _levelLoader = levelLoader;
             _pauseHandler = pauseHandler;
             _characterHolder = characterHolder;
         }
@@ -33,7 +33,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             base.Enter();
 
             EntryPoint.LossScreen.Close();
-            _levelLoader.Load(EntryPoint.LevelSelected.GetCurrentLevel());
+            SceneTransitions.GetCurrentLevel();
             _pauseHandler.Remove(EntryPoint.LossScreen);
             _characterHolder.Character.CharacterModel.gameObject.SetActive(true);
             _characterHolder.Character.Health.ResetHealth();

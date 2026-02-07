@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Items;
+using Assets.Scripts.UseCase;
+using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
 using UnityEngine;
 
@@ -11,16 +12,16 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         [SerializeField] private Settings _settings;
 
-        private ILevelLoader _levelLoader;
         private IResourceService _resourceService;
+        private SceneTransitions _sceneTransitions;
 
         [Inject]
         private void Construct(
-            ILevelLoader levelLoader,
-            IResourceService resourceService)
+            IResourceService resourceService,
+            SceneTransitions sceneTransitions)
         {
-            _levelLoader = levelLoader;
             _resourceService = resourceService;
+            _sceneTransitions = sceneTransitions;
         }
 
         private void OnEnable() =>
@@ -32,7 +33,7 @@ namespace Assets.Scripts.UI.SettingsMenu
         private void OnLoadMenu()
         {
             _resourceService.Clear();
-            _levelLoader.Load(SceneID.MainMenu);
+            _sceneTransitions.GetMainMenu().Forget();
             _settings.SetPause(false);
         }
     }

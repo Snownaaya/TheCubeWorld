@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: RichPerson
   m_EditorClassIdentifier: 
   _achievementNames: 9
-  _achievementIcon: {fileID: 21300000, guid: 9941298a8627f8342950dafe97168861, type: 3}
+  _achievementPrefab:
+    m_AssetGUID: ae928e2a67c073f449146cfcbbd74bc6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
