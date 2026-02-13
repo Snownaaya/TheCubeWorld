@@ -60,7 +60,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private async UniTask DelayPause(CancellationToken cancellationToken)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
+            await UniTask.Delay(TimeSpan.FromSeconds(_delay),
+                cancellationToken: cancellationToken);
 
             if (cancellationToken.IsCancellationRequested)
                 return;

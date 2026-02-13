@@ -10,7 +10,6 @@ using Assets.Scripts.Service.Json;
 using Assets.Scripts.Service.LevelLoaderService;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.Service.Saves;
-using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using System.Collections.Generic;
 using UniRx;
@@ -39,7 +38,7 @@ namespace Assets.Scripts.Installers
 
         private void BindMessageBroked(ContainerBuilder containerBuilder)
         {
-            IMessageBroker messageBroker = new MessageBroker();
+            MessageBroker messageBroker = new MessageBroker();
 
             containerBuilder.AddSingleton<GameMessageBus>(container =>
             {
@@ -66,6 +65,7 @@ namespace Assets.Scripts.Installers
             {
                 AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
                 AchievementBridgeObserver achievementBridgeObserver = new AchievementBridgeObserver(achievementValidator.GetBridgeValidators());
+
                 return new BridgeTrackerService(achievementBridgeObserver);
             });
         }
@@ -76,6 +76,7 @@ namespace Assets.Scripts.Installers
             {
                 AchievementValidator achievementValidator = container.Resolve<AchievementValidator>();
                 AchievementDeathObserver achievementDeathObserver = new AchievementDeathObserver(achievementValidator.GetDeathValidators());
+
                 return new DeathTrackerService(achievementDeathObserver);
             });
         }
@@ -97,7 +98,6 @@ namespace Assets.Scripts.Installers
                 return new SkinBuyTracker(achievemntBuyObserver);
             });
         }
-
 
         private void InitForegroundAudioService(ContainerBuilder containerBuilder)
         {

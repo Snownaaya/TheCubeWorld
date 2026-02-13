@@ -101,3 +101,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterFactory: {fileID: 6340804963682740230, guid: b08ca235f97f5e64585fb6cefe0f4b08, type: 3}
+  _joystickInput: {fileID: 6253291910155271551, guid: 9265a27c633c0604b9b040eb685b6728, type: 3}

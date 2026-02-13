@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Service.Audio;
-using DG.Tweening;
+using Assets.Scripts.Service.Audio;
 using Reflex.Attributes;
 using UnityEngine;
 

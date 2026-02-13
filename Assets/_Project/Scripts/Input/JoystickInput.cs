@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Input
@@ -16,5 +16,8 @@ namespace Assets.Scripts.Input
 
         public void SetInteractable(bool interactable) =>
              _backgroundImage.raycastTarget = interactable;
+
+        public void Hide() =>
+            _joystick.gameObject.SetActive(false);
     }
 }

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Enemies.Obstacles;
+using Assets.Project.Scripts.Ground.Filler;
+using Assets.Scripts.Enemies.Obstacles;
 using Assets.Scripts.Enemies.Obstacles.Animation;
 using Assets.Scripts.Enemies.Obstacles.Patrollers;
-using Assets.Scripts.Ground.Filler;
 using Assets.Scripts.Service.AchievementServices;
 using Assets.Scripts.UI.Shop.AbilitiesShop;
 using Assets.Scripts.UI.Shop.SO;
@@ -13,15 +13,20 @@ namespace Assets.Scripts.Mediators
     public class ShopAbilitiesMediator : MonoBehaviour
     {
         [SerializeField] private AbilitiesShop _shop;
-        [SerializeField] private LevelStopper _levelStopper;
         [SerializeField] private PatrollerStopper _patrolerStopper;
         [SerializeField] private SpikesAnimation _spikesAnimation;
 
         private IAbilitiesBuyTracker _achievementTracker;
+        private LevelHazard _levelHazard;
 
         [Inject]
-        private void Construct(IAbilitiesBuyTracker achievementTracker) =>
+        private void Construct(
+            IAbilitiesBuyTracker achievementTracker,
+            LevelHazard levelHazard)
+        {
             _achievementTracker = achievementTracker;
+            _levelHazard = levelHazard; 
+        }
 
         private void OnEnable()
         {
@@ -48,7 +53,7 @@ namespace Assets.Scripts.Mediators
                     break;
 
                 case ObstacleTypes.Lava:
-                    _levelStopper.LevelStopped();
+                    _levelHazard.Stop();
                     break;
 
                 case ObstacleTypes.Spikes:

@@ -1,27 +1,29 @@
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Service.Saves;
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Player.Saves;
+using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Input;
-using Reflex.Injectors;
+using Assets.Scripts.Player.Core;
+using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Player.Saves;
+using Assets.Scripts.Player.Wallet;
+using Assets.Scripts.Service.GameMessage;
+using Assets.Scripts.Service.Json;
+using Assets.Scripts.Service.Saves;
 using Reflex.Core;
+using Reflex.Injectors;
 using UnityEngine;
 using YG;
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Service.GameMessage;
 
 namespace Assets.Scripts.Installers
 {
     public class CharacterInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private CharacterFactory _characterFactory;
+        [SerializeField] private JoystickInput _joystickInput;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             PlayerInput playerInput = InitInput(containerBuilder);
             BindInput(containerBuilder, playerInput);
+            BindJoystick(containerBuilder);
             BindInventory(containerBuilder);
             BindFactory(containerBuilder, playerInput);
             BindWallet(containerBuilder);
@@ -83,8 +85,19 @@ namespace Assets.Scripts.Installers
             }
             else if (YG2.envir.isMobile)
             {
-                MobileInput mobileInput = new MobileInput(playerInput);
-                containerBuilder.AddSingleton(mobileInput, typeof(IInput));
+                containerBuilder.AddSingleton<IInput>(container =>
+                {
+                    JoystickInput joystickInput = container.Resolve<JoystickInput>();
+
+                    joystickInput = Instantiate(_joystickInput);
+                    joystickInput.SetInteractable(false);
+
+                    MobileInput mobileInput = new MobileInput(playerInput);
+                    //containerBuilder.AddSingleton(mobileInput, typeof(IInput));
+
+                    return mobileInput;
+                });
+
             }
         }
 
@@ -110,6 +123,11 @@ namespace Assets.Scripts.Installers
 
                 return new CharacterPersistentLinker(characterSaveRepository, persistentCharacterData, gameMessageBus);
             });
+        }
+
+        private void BindJoystick(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.AddSingleton(_joystickInput, typeof(IJoystickInput));
         }
     }
 }

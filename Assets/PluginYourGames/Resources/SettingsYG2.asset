@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SettingsYG2
   m_EditorClassIdentifier: 
   Authorization:
-    scopes: 1
     playerPhotoSize: 1
     authorized: 1
     playerName: Player current
@@ -51,7 +50,8 @@ MonoBehaviour:
       de: 0
       hi: 0
     fonts:
-      defaultFont: []
+      defaultFont:
+      - {fileID: 12800000, guid: ec89fba4f20dd19489250ae058b3c5ad, type: 3}
       ru: []
       en: []
       tr: []
@@ -80,10 +80,17 @@ MonoBehaviour:
       de: []
       hi: []
     fontsTMP:
-      defaultFont: []
-      ru: []
-      en: []
-      tr: []
+      defaultFont:
+      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
+      ru:
+      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
+      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+      en:
+      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
+      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+      tr:
+      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
+      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
       az: []
       be: []
       he: []
@@ -294,7 +301,6 @@ MonoBehaviour:
   Localization:
     setLanguageMod: 1
   RewardedAdv:
-    rewardedAfterClosing: 1
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
   Basic:
@@ -308,7 +314,8 @@ MonoBehaviour:
     syncInitSDK: 0
     loadSceneIfSDKLate: 0
     loadSceneIndex: 0
-    simulationLoadScene: 0
+    initDelaySimulation: 0
+    buildNumber: 0
   Simulation:
     device: 0
     language: ru
@@ -334,7 +341,10 @@ MonoBehaviour:
       color2: {r: 1, g: 0.831, b: 0.149, a: 0.7}
     fixedAspectRatio: 0
     aspectRatio: 16/9
+    disableForMobile: 1
     fillBackground: 0
+    imageBackground: 0
+    imageName: background.jpg
     gradientBackgroundByAspectRatio:
       radial: 0
       angleInclination: 140
@@ -346,14 +356,16 @@ MonoBehaviour:
   platformInfo:
     ownHost: 0
   platformToggles:
+    setLanguageMod: 0
     skipInterAdvAfterReward: 0
+    autoPauseGame: 0
     selectWebGLTemplate: 1
     runInBackground: 1
     enableExceptions: 1
     compressionFormat: 1
     decompressionFallback: 1
     autoGraphicsAPI: 1
-    minimalCodeCompression: 1
+    managedStrippingLevel: 1
     dataCaching: 0
     colorSpace: 0
     archivingBuild: 0

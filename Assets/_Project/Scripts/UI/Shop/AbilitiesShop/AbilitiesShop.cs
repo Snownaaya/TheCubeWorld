@@ -54,23 +54,15 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             if (_wallet.IsEnought(_currentItemView.Price))
             {
                 if (_currentItemView.Item is AbilityItem abilityItem)
-                {
                     AbilityItemClicked?.Invoke(abilityItem);
-                }
 
                 _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
                 _currentItemView.Entry.Accept(_visitorsHolder.Purchase);
 
                 _shopPanel.ItemClickView(_shopContent.AbilityItems);
-
-                _currentItemView.Unlock();
                 _wallet.RemoveCoins(_currentItemView.Price);
 
                 ShowOnwedImage();
-            }
-            else
-            {
-                _currentItemView.Lock();
             }
         }
 

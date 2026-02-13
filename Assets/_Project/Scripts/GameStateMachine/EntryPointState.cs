@@ -1,3 +1,4 @@
+using Assets.Project.Scripts.Ground.Filler;
 using Assets.Scripts.Achievements;
 using Assets.Scripts.GameStateMachine.States.Phases;
 using Assets.Scripts.GameStateMachine.States.Runtime;
@@ -9,7 +10,6 @@ using Assets.Scripts.Player.Inventory;
 using Assets.Scripts.Service.CharacterService;
 using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
 using Assets.Scripts.Service.Pause;
 using Assets.Scripts.UI.GameUI;
 using Assets.Scripts.UseCase;
@@ -34,6 +34,7 @@ namespace Assets.Scripts.GameStateMachine
         private IResourceService _resourceService;
         private GameMessageBus _gameMessageBus;
         private SceneTransitions _sceneTransitions;
+        private LevelHazard _levelHazard;
 
         public LossScreen LossScreen => _lossScreen;
         public EndLevel EndLevel => _endLevel;
@@ -52,7 +53,8 @@ namespace Assets.Scripts.GameStateMachine
             AchievementService achievementService,
             IResourceService resourceService,
             GameMessageBus gameMessageBus,
-            SceneTransitions sceneTransitions)
+            SceneTransitions sceneTransitions,
+            LevelHazard level)
         {
             _switcher = switcher;
             _pauseHandler = pauseHandler;
@@ -63,6 +65,7 @@ namespace Assets.Scripts.GameStateMachine
             _resourceService = resourceService;
             _gameMessageBus = gameMessageBus;
             _sceneTransitions = sceneTransitions;
+            _levelHazard = level;
         }
 
         private void InitializeStates()                 
@@ -71,10 +74,10 @@ namespace Assets.Scripts.GameStateMachine
             {
                 gameState.Initialize(
 
-                    new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder, _gameMessageBus),
+                    new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder, _gameMessageBus, _levelHazard),
                     new WinLevelState(_switcher, this, _characterHolder, _achievementService, _gameMessageBus),
                     new LossState(_switcher, this, _inventory, _resourceService, _pauseHandler, _lossScreen, _sceneTransitions),
-                    new RespawnState(_switcher, this, _pauseHandler, _inventory, _resourceService, _characterHolder, _sceneTransitions)
+                    new RespawnState(_switcher, this, _pauseHandler, _inventory, _resourceService, _characterHolder, _sceneTransitions, _levelHazard)
                 );
 
                 _switcher.SwitchState<StartLevelState>();

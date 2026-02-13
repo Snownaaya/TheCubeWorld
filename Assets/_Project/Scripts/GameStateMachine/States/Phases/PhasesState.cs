@@ -1,7 +1,9 @@
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player.Inventory;
+using Assets.Scripts.Service.GameMessage;
 using Assets.Scripts.UseCase;
+using TMPro;
 
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
@@ -16,7 +18,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             EntryPointState entryPoint,
             IInventory inventory,
             IResourceService resourceService,
-            SceneTransitions sceneTransitions) : base(switcher, entryPoint)
+            SceneTransitions sceneTransitions)
+            : base(switcher, entryPoint)
         {
             _inventory = inventory;
             _resourceService = resourceService;

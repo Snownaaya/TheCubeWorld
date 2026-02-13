@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.UI.Shop.SO;
+using Assets.Scripts.UI.Shop.SO;
 using Assets.Scripts.Visitor;
 using System;
 using System.Collections.Generic;
@@ -49,10 +49,12 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
                         ItemViewClicked?.Invoke(spawnedItem);
                     }
 
+                    spawnedItem.HidePrice();
                     spawnedItem.Unlock();
                 }
                 else
                 {
+                    spawnedItem.ShowPrice();
                     spawnedItem.Lock();
                 }
 

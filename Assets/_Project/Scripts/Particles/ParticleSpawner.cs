@@ -1,4 +1,4 @@
-﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ namespace Assets.Scripts.Particles
         private Transform _transform;
         private float _delay = 2f;
 
-        private Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
+        private readonly Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
 
         public void Initialize(Transform position) =>
             _transform = position;

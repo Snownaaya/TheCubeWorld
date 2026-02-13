@@ -149,8 +149,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280632225
-  m_fontColor: {r: 0.6320754, g: 0.26257813, b: 0.14609292, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -302,6 +302,7 @@ MonoBehaviour:
   _lockImage: {fileID: 2423258862002986174}
   _backgroundImage: {fileID: 2512208682538430183}
   _contentImage: {fileID: 2512208682538430183}
+  _price: {fileID: 1977347479383162212}
 --- !u!1 &6385984530802387229
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +312,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233290610994710758}
+  - component: {fileID: 1977347479383162212}
+  - component: {fileID: 1514073829032859219}
+  - component: {fileID: 7757585925895052157}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -339,6 +343,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00004005432, y: -4.899994}
   m_SizeDelta: {x: 200, y: 49.12}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1977347479383162212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385984530802387229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8261d2533c2f2634f906b3cd3ed51bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 233290610994710758}
+--- !u!222 &1514073829032859219
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385984530802387229}
+  m_CullTransparentMesh: 1
+--- !u!114 &7757585925895052157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385984530802387229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f7c53a29d15829d4eab9e2c0892b6576, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7415911523259542481
 GameObject:
   m_ObjectHideFlags: 0

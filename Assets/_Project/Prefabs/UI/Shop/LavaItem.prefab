@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8400972655562329664}
+  - component: {fileID: 3032237811917962974}
+  - component: {fileID: 1962476436978058289}
+  - component: {fileID: 737752849616754681}
   m_Layer: 5
   m_Name: Price
   m_TagString: Untagged
@@ -37,6 +40,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00004005432, y: -24}
   m_SizeDelta: {x: 200, y: 49.12}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3032237811917962974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725366498635484707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8261d2533c2f2634f906b3cd3ed51bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 8400972655562329664}
+--- !u!222 &1962476436978058289
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725366498635484707}
+  m_CullTransparentMesh: 1
+--- !u!114 &737752849616754681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 725366498635484707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f7c53a29d15829d4eab9e2c0892b6576, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3308947706553033539
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,6 +184,7 @@ MonoBehaviour:
   _lockImage: {fileID: 2801867948818875464}
   _backgroundImage: {fileID: 7814619048204227620}
   _contentImage: {fileID: 7814619048204227620}
+  _price: {fileID: 3032237811917962974}
 --- !u!1 &3757350687209261115
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,8 +409,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280632231
-  m_fontColor: {r: 0.654902, g: 0.2627451, b: 0.14509805, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

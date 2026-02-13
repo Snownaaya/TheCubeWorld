@@ -17,7 +17,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             ISwitcher switcher,
             EntryPointState entryPoint,
             ICharacterHolder characterHolder,
-            GameMessageBus gameMessageBus) : base(switcher, entryPoint)
+            GameMessageBus gameMessageBus)
+            : base(switcher, entryPoint)
         {
             _characterHolder = characterHolder;
             _messageBus = gameMessageBus;

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.UI.Shop.SO;
 using Assets.Scripts.Visitor;
 using DG.Tweening;
@@ -6,6 +6,8 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using TMPro;
+using Assets._Project.Scripts.UI.Shop;
 
 namespace Assets.Scripts.UI.Shop
 {
@@ -14,6 +16,7 @@ namespace Assets.Scripts.UI.Shop
         [SerializeField] private Image _lockImage;
         [SerializeField] private Image _backgroundImage;
         [SerializeField] private Image _contentImage;
+        [SerializeField] private TogglePrice _price;
 
         public ShopItem Item { get; private set; }
         public ShopItemEntry Entry { get; private set; }
@@ -43,6 +46,18 @@ namespace Assets.Scripts.UI.Shop
         {
             IsLock = false;
             _lockImage.gameObject.SetActive(IsLock);
+        }
+
+        public void HidePrice()
+        {
+            IsLock = false;
+            _price.gameObject.SetActive(IsLock);
+        }
+
+        public void ShowPrice()
+        {
+            IsLock = true;
+            _price.gameObject.SetActive(IsLock);
         }
 
         public void UnHighlight()

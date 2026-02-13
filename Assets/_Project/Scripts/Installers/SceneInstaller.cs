@@ -1,8 +1,9 @@
+using Assets.Project.Scripts.Ground.Filler;
 using Assets.Scripts.Camera;
 using Assets.Scripts.Datas.Character;
 using Assets.Scripts.GameStateMachine;
 using Assets.Scripts.Ground;
-using Assets.Scripts.Input;
+using Assets.Scripts.Ground.Filler;
 using Assets.Scripts.Interfaces;
 using Cinemachine;
 using Reflex.Core;
@@ -12,17 +13,17 @@ namespace Assets.Scripts.Installers
 {
     public class SceneInstaller : MonoBehaviour, IInstaller
     {
-        [SerializeField] private JoystickInput _joystickInput;
         [SerializeField] private FinalPlatform _finalPlatform;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
+        [SerializeField] private LevelFiller _levelFiller;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             BindSwitcher(containerBuilder);
             BindFinalPlatform(containerBuilder);
             BindVirtualCamera(containerBuilder);
-            BindJoystick(containerBuilder);
             BindTransientData(containerBuilder);
+            BindLevelFiller(containerBuilder);
         }
 
         private void BindSwitcher(ContainerBuilder containerBuilder) =>
@@ -38,15 +39,7 @@ namespace Assets.Scripts.Installers
         private void BindTransientData(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new TransientCharacterData(), typeof(ITransientCharacterData));
 
-        private void BindJoystick(ContainerBuilder containerBuilder)
-        {
-            if (_joystickInput == null)
-                return;
-
-            JoystickInput joystickInput = Instantiate(_joystickInput);
-            joystickInput.SetInteractable(false);
-
-            containerBuilder.AddSingleton(joystickInput, typeof(IJoystickInput));
-        }
+        private void BindLevelFiller(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new LevelHazard(_levelFiller));
     }
 }

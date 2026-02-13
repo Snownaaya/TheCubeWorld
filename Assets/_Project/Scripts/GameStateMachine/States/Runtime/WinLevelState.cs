@@ -17,7 +17,8 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
             EntryPointState entryPoint,
             ICharacterHolder character,
             AchievementService achievementService,
-            GameMessageBus gameMessageBus) : base(switcher, entryPoint, character, gameMessageBus)
+            GameMessageBus gameMessageBus)
+            : base(switcher, entryPoint, character, gameMessageBus)
         {
             _character = character;
             _achievementService = achievementService;

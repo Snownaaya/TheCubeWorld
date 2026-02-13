@@ -61,8 +61,6 @@ namespace Assets.Scripts.UI.AchievementView
             achievement.Hide();
 
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-
-           // Addressables.ReleaseInstance(achievement.gameObject);
         }
     }
 }

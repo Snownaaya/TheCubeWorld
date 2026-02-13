@@ -70,10 +70,7 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
             if (_wallet.IsEnought(_currentItemView.Price))
             {
                 if (_currentItemView.Item is CharacterSkinsItem characterSkinsItem)
-                {
                     CharacterSkinsItemClicked?.Invoke(characterSkinsItem);
- 
-                }
 
                 _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
                 _currentItemView.Entry.Accept(_visitorsHolder.Purchase);
@@ -83,10 +80,6 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
                 _panel.Populate(_shopContent.CharacterSkinItem);
                 _selectionButton.Hide();
                 _ownedImage.Hide();
-            }
-            else
-            {
-                _currentItemView.Lock();
             }
         }
 
