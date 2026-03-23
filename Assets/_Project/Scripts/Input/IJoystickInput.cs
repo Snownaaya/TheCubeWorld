@@ -6,6 +6,8 @@ namespace Assets.Scripts.Input
 
         public void SetInteractable(bool interactable);
 
+        public void Show();
+
         public void Hide();
     }
 } 

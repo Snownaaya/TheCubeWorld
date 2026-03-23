@@ -1,18 +1,18 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Datas.Character;
 using Assets.Scripts.Player.Skins;
 using Assets.Scripts.Service.GameMessage;
-using System.Collections.Generic;
-using System.Linq;
 using UniRx;
 using Unity.VisualScripting;
 
 public class PersistentCharacterData : IInitializable, IPersistentCharacterData
 {
     private readonly GameMessageBus _gameMessageBus;
-    private readonly CompositeDisposable _compositeDisposable = new();
+    private readonly CompositeDisposable _compositeDisposable = new ();
 
-    private readonly ReactiveProperty<int> _money = new(0);
-    private List<CharacterSkins> _openSkins = new();
+    private readonly ReactiveProperty<int> _money = new (0);
+    private List<CharacterSkins> _openSkins = new ();
     private CharacterSkins _characterSkins;
 
     public PersistentCharacterData(GameMessageBus gameMessageBus)
@@ -45,7 +45,9 @@ public class PersistentCharacterData : IInitializable, IPersistentCharacterData
 
     public void OpenCharacterSkin(CharacterSkins skin)
     {
-        if (_openSkins.Contains(skin)) return;
+        if (_openSkins.Contains(skin))
+            return;
+
         _openSkins.Add(skin);
 
         NotifyChanged();
@@ -56,9 +58,11 @@ public class PersistentCharacterData : IInitializable, IPersistentCharacterData
         _openSkins = skins.ToList();
     }
 
-    private void NotifyChanged() => _gameMessageBus.MessageBroker.Publish<IPersistentCharacterData>(this);
+    private void NotifyChanged() =>
+        _gameMessageBus.MessageBroker.Publish<IPersistentCharacterData>(this);
 
-    public void Dispose() => _compositeDisposable.Dispose();
+    public void Dispose() =>
+        _compositeDisposable.Dispose();
 
     public void Initialize()
     {

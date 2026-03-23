@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Player.Skins;
 using Assets.Scripts.Datas.Character;
-using System;
-using UnityEngine;
+using Assets.Scripts.Player.Skins;
 using Reflex.Attributes;
+using UnityEngine;
 
 public class SkinChanger : MonoBehaviour
 {

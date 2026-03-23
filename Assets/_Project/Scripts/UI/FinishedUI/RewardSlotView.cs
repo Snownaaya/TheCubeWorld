@@ -1,8 +1,8 @@
-﻿using TMPro;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.FinishedUI
 {
+    using TMPro;
+    using UnityEngine;
+
     public class RewardSlotView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _multiplierText;

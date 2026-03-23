@@ -1,10 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
-using TMPro;
-using UniRx;
-using UnityEngine;
-
 namespace Assets.Scripts.Player.Wallet
 {
+    using Cysharp.Threading.Tasks;
+    using TMPro;
+    using UniRx;
+    using UnityEngine;
+
     public class WalletView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI balanceText;

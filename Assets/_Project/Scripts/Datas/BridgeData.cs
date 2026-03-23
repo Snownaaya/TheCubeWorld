@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Items;
-using System;
-
 namespace Assets.Scripts.Datas
 {
+    using System;
+    using Assets.Scripts.Bridge.Factory;
+    using Assets.Scripts.Items;
+
     [Serializable]
     public readonly struct BridgeData
     {
@@ -14,6 +14,7 @@ namespace Assets.Scripts.Datas
         }
 
         public BridgeType BridgeType { get; }
+
         public ResourceTypes ResourceTypes {get;}
     }
 }

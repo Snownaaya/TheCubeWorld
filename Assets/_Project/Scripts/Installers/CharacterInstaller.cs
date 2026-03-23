@@ -1,19 +1,19 @@
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Input;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Player.Saves;
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.Service.GameMessage;
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Service.Saves;
-using Reflex.Core;
-using Reflex.Injectors;
-using UnityEngine;
-using YG;
-
 namespace Assets.Scripts.Installers
 {
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Input;
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Player.Inventory;
+    using Assets.Scripts.Player.Saves;
+    using Assets.Scripts.Player.Wallet;
+    using Assets.Scripts.Service.GameMessage;
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.Saves;
+    using Reflex.Core;
+    using Reflex.Injectors;
+    using UnityEngine;
+    using YG;
+
     public class CharacterInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private CharacterFactory _characterFactory;
@@ -22,8 +22,8 @@ namespace Assets.Scripts.Installers
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             PlayerInput playerInput = InitInput(containerBuilder);
-            BindInput(containerBuilder, playerInput);
-            BindJoystick(containerBuilder);
+            BindMobileJoystick(containerBuilder, playerInput);
+            BindDesktopInput(containerBuilder, playerInput);
             BindInventory(containerBuilder);
             BindFactory(containerBuilder, playerInput);
             BindWallet(containerBuilder);
@@ -61,6 +61,7 @@ namespace Assets.Scripts.Installers
                 ICharacterHolder holder = factory.CreateCharacter();
 
                 GameObjectInjector.InjectRecursive(holder.Character.gameObject, container);
+
                 return holder;
             });
         }
@@ -76,28 +77,14 @@ namespace Assets.Scripts.Installers
             });
         }
 
-        private void BindInput(ContainerBuilder containerBuilder, PlayerInput playerInput)
+        private void BindDesktopInput(ContainerBuilder containerBuilder, PlayerInput playerInput)
         {
             if (YG2.envir.isDesktop)
             {
-                DesktopInput desktopInput = new DesktopInput(playerInput);
-                containerBuilder.AddSingleton(desktopInput, typeof(IInput));
-            }
-            else if (YG2.envir.isMobile)
-            {
                 containerBuilder.AddSingleton<IInput>(container =>
                 {
-                    JoystickInput joystickInput = container.Resolve<JoystickInput>();
-
-                    joystickInput = Instantiate(_joystickInput);
-                    joystickInput.SetInteractable(false);
-
-                    MobileInput mobileInput = new MobileInput(playerInput);
-                    //containerBuilder.AddSingleton(mobileInput, typeof(IInput));
-
-                    return mobileInput;
+                    return new DesktopInput(playerInput);
                 });
-
             }
         }
 
@@ -125,9 +112,30 @@ namespace Assets.Scripts.Installers
             });
         }
 
-        private void BindJoystick(ContainerBuilder containerBuilder)
+        private void BindMobileJoystick(ContainerBuilder containerBuilder, PlayerInput playerInput)
         {
-            containerBuilder.AddSingleton(_joystickInput, typeof(IJoystickInput));
+            containerBuilder.AddSingleton<IJoystickInput>(container =>
+            {
+                if (YG2.envir.isMobile)
+                {
+                    JoystickInput joystickInstance = Instantiate(_joystickInput);
+                    GameObjectInjector.InjectRecursive(joystickInstance.gameObject, container);
+                    DontDestroyOnLoad(joystickInstance);
+                    return joystickInstance;
+                }
+                else
+                {
+                    return new NullJoystickInput();
+                }
+            });
+            if (YG2.envir.isMobile)
+            {
+                containerBuilder.AddSingleton<IInput>(container =>
+                {
+                    IJoystickInput joystickInput = container.Resolve<IJoystickInput>();
+                    return new MobileInput(playerInput, joystickInput);
+                });
+            }
         }
     }
 }

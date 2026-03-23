@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
 namespace Assets.Scripts.Datas
 {
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "Boss", menuName = "Boss/ScriptableObject")]
     public class BossConfig : ScriptableObject
     {
@@ -14,12 +14,16 @@ namespace Assets.Scripts.Datas
         [SerializeField] private float _damage;
 
         [Header("Animation")]
-        [SerializeField] private float _animatiobnDuration ;
+        [SerializeField] private float _animatiobnDuration;
 
         public float Health => _health;
+
         public float AttackRadius => _attackRadius;
+
         public float Delay => _delay;
+
         public float Damage => _damage;
+
         public float AnimationDuration => _animatiobnDuration;
     }
 }

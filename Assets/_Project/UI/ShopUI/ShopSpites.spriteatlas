@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: WebGL
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: 12
       m_TextureCompression: 1
@@ -50,32 +50,61 @@ SpriteAtlas:
     - {fileID: 2800000, guid: c423fb68d4d12774ba0be87e36ed4d2d, type: 3}
     - {fileID: 2800000, guid: 23c3a62db321af14b8c42ed96db7cccb, type: 3}
     - {fileID: 2800000, guid: 29835bad5632b0b48b175502bdf916bd, type: 3}
-    - {fileID: 2800000, guid: c05b9eaf4b0ac81478667a09bc30caee, type: 3}
+    - {fileID: 2800000, guid: 0eca38be8e1c5c34cbf0a2d835128e60, type: 3}
+    - {fileID: 2800000, guid: 511343575baa059449efdbf90ba261d1, type: 3}
+    - {fileID: 2800000, guid: 521d6cfe47a80e649bec413fff3aba98, type: 3}
+    - {fileID: 2800000, guid: 2a3094f9d8471124f92ca2acf2129517, type: 3}
+    - {fileID: 2800000, guid: 5671a62e68b45b946a923260355f60ff, type: 3}
+    - {fileID: 2800000, guid: 7a1b7cf627d50814bb4055dff7379ea2, type: 3}
+    - {fileID: 2800000, guid: c71b9286c86b8644b975ee9ee0488098, type: 3}
+    - {fileID: 2800000, guid: 66a03ad532098e64ba85416c5b474f6b, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
     - b1817db16be22b24796d3f318afda3ff: 21300000
+    - 66a03ad532098e64ba85416c5b474f6b: 21300000
+    - c71b9286c86b8644b975ee9ee0488098: 21300000
+    - 7a1b7cf627d50814bb4055dff7379ea2: 21300000
+    - 511343575baa059449efdbf90ba261d1: 21300000
     - 817c5d875a647e34ea547864164132ac: -1426039871
     - c423fb68d4d12774ba0be87e36ed4d2d: -1148802501
+    - 2a3094f9d8471124f92ca2acf2129517: 21300000
     - 23c3a62db321af14b8c42ed96db7cccb: 21300000
     - 29835bad5632b0b48b175502bdf916bd: 21300000
-    - c05b9eaf4b0ac81478667a09bc30caee: 21300000
+    - 5671a62e68b45b946a923260355f60ff: 21300000
+    - 0eca38be8e1c5c34cbf0a2d835128e60: 21300000
+    - 521d6cfe47a80e649bec413fff3aba98: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: b1817db16be22b24796d3f318afda3ff, type: 3}
+  - {fileID: 21300000, guid: 66a03ad532098e64ba85416c5b474f6b, type: 3}
+  - {fileID: 21300000, guid: c71b9286c86b8644b975ee9ee0488098, type: 3}
+  - {fileID: 21300000, guid: 7a1b7cf627d50814bb4055dff7379ea2, type: 3}
+  - {fileID: 21300000, guid: 511343575baa059449efdbf90ba261d1, type: 3}
   - {fileID: -1426039871, guid: 817c5d875a647e34ea547864164132ac, type: 3}
   - {fileID: -1148802501, guid: c423fb68d4d12774ba0be87e36ed4d2d, type: 3}
+  - {fileID: 21300000, guid: 2a3094f9d8471124f92ca2acf2129517, type: 3}
   - {fileID: 21300000, guid: 23c3a62db321af14b8c42ed96db7cccb, type: 3}
   - {fileID: 21300000, guid: 29835bad5632b0b48b175502bdf916bd, type: 3}
-  - {fileID: 21300000, guid: c05b9eaf4b0ac81478667a09bc30caee, type: 3}
+  - {fileID: 21300000, guid: 5671a62e68b45b946a923260355f60ff, type: 3}
+  - {fileID: 21300000, guid: 0eca38be8e1c5c34cbf0a2d835128e60, type: 3}
+  - {fileID: 21300000, guid: 521d6cfe47a80e649bec413fff3aba98, type: 3}
   m_PackedSpriteNamesToIndex:
   - 275d79a135dad47
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0441\u043E\u0431\u0430\u043A\u0438"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0440\u043E\u0437\u043E\u0432\u043E\u0433\u043E
+    \u043A\u0440\u043E\u043B\u0430"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u043A\u0435\u0448\u043A\u0438"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0430\u0431\u0438\u043B\u043E\u043A-1"
   - 84yrgt80WYHG94JU_0
   - e7e84fa266d38f9_0
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0430\u0431\u0438\u043B\u043E\u043A-3"
   - WallletRect
   - "\u0437\u0430\u043C\u043E\u043A \u0435\u0431\u0430\u0442\u044C"
-  - "\u043A\u0440\u0435\u0441\u0442\u0438\u043A(\u0436\u0435\u043B\u0442\u044B\u0439)"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0431\u0435\u043B\u043E\u0433\u043E \u043A\u0440\u043E\u043B\u0430"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0430\u0431\u0438\u043B\u043E\u043A"
+  - "\u0438\u043A\u043E\u043D\u043A\u0430 \u0430\u0431\u0438\u043B\u043E\u043A-2"
   m_RenderDataMap: {}
   m_Tag: ShopSpites
   m_IsVariant: 0

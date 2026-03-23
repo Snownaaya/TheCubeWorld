@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Achievements;
-using Assets.Scripts.Achievements.AchievePartials;
-using Assets.Scripts.Achievements.Observers;
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Service.Saves;
-using Reflex.Core;
-using UnityEngine;
-
 namespace Assets.Scripts.Installers
 {
+    using Assets.Scripts.Achievements;
+    using Assets.Scripts.Achievements.AchievePartials;
+    using Assets.Scripts.Achievements.Observers;
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.Saves;
+    using Reflex.Core;
+    using UnityEngine;
+
     public class AchievementInstaller : MonoBehaviour, IInstaller
     {
         public void InstallBindings(ContainerBuilder containerBuilder)

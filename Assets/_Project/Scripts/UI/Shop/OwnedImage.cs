@@ -1,9 +1,9 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
-using Assets.Scripts.UI.GameUI;
-
 namespace Assets.Scripts.UI.Shop
 {
+    using Assets.Scripts.UI.GameUI;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class OwnedImage : UIElement
     {
         [SerializeField] private Image _selectImage;

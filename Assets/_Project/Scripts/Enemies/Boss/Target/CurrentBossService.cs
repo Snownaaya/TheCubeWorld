@@ -1,7 +1,7 @@
-﻿using Reflex.Attributes;
-
 namespace Assets.Scripts.Enemies.Boss.Target
 {
+    using Reflex.Attributes;
+
     public class CurrentBossService : IBossTargetService
     {
         private IBossTarget _currentBoss;

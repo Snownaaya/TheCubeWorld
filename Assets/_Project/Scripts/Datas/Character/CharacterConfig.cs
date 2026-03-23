@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace Assets.Scripts.Datas.Character
 {
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "Character", menuName = "Character/ScriptableObject")]
     public class CharacterConfig : ScriptableObject
     {
@@ -15,9 +15,13 @@ namespace Assets.Scripts.Datas.Character
         [SerializeField] private float _attackTimer;
 
         public float Speed => _speed;
+
         public float SpeedRate => _speedRate;
+
         public float Damage => _damage;
+
         public float DetectionRadius => _detectionRaduis;
+
         public float AttackTimer => _attackTimer;
     }
 }

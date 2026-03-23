@@ -1,10 +1,10 @@
-using Cysharp.Threading.Tasks;
-using System.Threading;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.UI.HealthCharacters
 {
+    using System.Threading;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class HealthChanger : MonoBehaviour
     {
         [SerializeField] private Slider _healthSlider;
@@ -13,13 +13,14 @@ namespace Assets.Scripts.UI.HealthCharacters
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        public void OnEnable()
+        private void Awake()
         {
             _healthSlider.maxValue = _health.MaxHealth;
             _healthSlider.value = _health.CurrentHealth;
-
-            _health.HealthChanged += OnHealthChanged;
         }
+
+        public void OnEnable() =>
+            _health.HealthChanged += OnHealthChanged;
 
         private void OnDisable()
         {

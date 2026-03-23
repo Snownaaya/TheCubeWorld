@@ -1,8 +1,8 @@
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Service.Saves;
-
 namespace Assets.Scripts.Player.Saves
 {
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.Saves;
+
     public class CharacterSaveRepository : ICharacterSaveRepository
     {
         private readonly IJsonService _json;
@@ -30,5 +30,8 @@ namespace Assets.Scripts.Player.Saves
 
             return _json.Deserialize<T>(json);
         }
+
+        public void Delete(string key) =>
+            _save.Delete(key);
     }
 }

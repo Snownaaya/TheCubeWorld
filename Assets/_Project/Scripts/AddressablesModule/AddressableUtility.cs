@@ -1,11 +1,11 @@
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEngine.SceneManagement;
-
-namespace Assets._Project.Scripts.AddressablesModule
+namespace Assets.Project.Scripts.AddressablesModule
 {
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+    using UnityEngine.AddressableAssets;
+    using UnityEngine.ResourceManagement.ResourceProviders;
+    using UnityEngine.SceneManagement;
+
     public class AddressableUtility
     {
         public static async UniTask<T> Load<T>(AssetReference assetReference)

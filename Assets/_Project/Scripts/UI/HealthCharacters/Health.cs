@@ -1,23 +1,21 @@
-using Assets.Scripts.UI.HealthCharacters;
 using System;
+using Assets.Scripts.UI.HealthCharacters;
 using UnityEngine;
 
 public abstract class Health : MonoBehaviour, IHealth
 {
     public event Action<float, float> HealthChanged;
 
-    private float _maxHealth;
+    private float _maxHealth = 100;
     private float _currentHealth;
     protected bool _isDead;
 
     public float CurrentHealth => _currentHealth;
+
     public float MaxHealth => _maxHealth;
 
-    protected virtual void Awake()
-    {
-        _maxHealth = 100;
+    protected void Awake() =>
         _currentHealth = _maxHealth;
-    }
 
     public virtual void TakeDamage(float damage) =>
         SetHealth(_currentHealth - damage);
@@ -25,6 +23,7 @@ public abstract class Health : MonoBehaviour, IHealth
     protected void SetHealth(float value)
     {
         float clamped = Mathf.Clamp(value, 0, _maxHealth);
+
         if (Mathf.Approximately(_currentHealth, clamped))
             return;
 

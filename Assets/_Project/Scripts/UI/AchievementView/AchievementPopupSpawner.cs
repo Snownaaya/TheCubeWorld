@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Achievements;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Service.Audio;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-
 namespace Assets.Scripts.UI.AchievementView
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Scripts.Achievements;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Service.Audio;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class AchievementPopupSpawner : MonoBehaviour
     {
         [SerializeField] private RectTransform _popupParent;

@@ -1,9 +1,9 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.Other
 {
+    using System;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     [RequireComponent(typeof(RawImage))]
     public class ImageScroller : MonoBehaviour
     {
@@ -19,11 +19,11 @@ namespace Assets.Scripts.Other
 
         private void Update()
         {
-            _rawImage.uvRect = new Rect(_rawImage.uvRect.position + new Vector2(_xDirection
+            _rawImage.uvRect = new Rect(_rawImage.uvRect.position + (new Vector2(_xDirection
                    * _scrollSpeed,
                    _yDirection *
                    _scrollSpeed) *
-                   Time.unscaledDeltaTime,
+                   Time.unscaledDeltaTime),
                    _rawImage.uvRect.size);
         }
     }

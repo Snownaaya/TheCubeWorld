@@ -1,10 +1,10 @@
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Visitor;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Visitor;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ShopBootstrap : MonoBehaviour
     {
         [SerializeField] private BaseShop _shop;
@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         private IPersistentCharacterData _persistentCharacterData;
         private ITransientCharacterData _transientCharacterData;
 
-        private void Start() =>
+        private void Awake() =>
             Initialize();
 
         [Inject]
@@ -26,6 +26,7 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             _persistentCharacterData = persistentCharacterData;
             _transientCharacterData = transientCharacterData;
         }
+
         public void Initialize()
 
         {

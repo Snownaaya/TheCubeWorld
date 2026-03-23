@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Interfaces;
-using System.Linq;
-using System;
-
 namespace Assets.Scripts.Achievements.Observers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Scripts.Interfaces;
+
     public class AchievementDeathObserver
     {
-        private List<int> _deaths = new();
+        private List<int> _deaths = new ();
 
         private int _deathCount = 1;
         private int _maxDeathCount = 10;

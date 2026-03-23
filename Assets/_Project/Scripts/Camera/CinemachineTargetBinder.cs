@@ -1,8 +1,8 @@
-﻿using Cinemachine;
-using UnityEngine;
-
 namespace Assets.Scripts.Camera
 {
+    using Cinemachine;
+    using UnityEngine;
+
     public class CinemachineTargetBinder : IVirtualCamera
     {
         private CinemachineVirtualCamera _virtualCamera;

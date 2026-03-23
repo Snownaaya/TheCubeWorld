@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.UI.FinishedUI;
-using Assets.Scripts.UI.GameUI;
-using UnityEngine;
-using YG;
-
 namespace Assets.Scripts.PluginYG
 {
+    using Assets.Scripts.UI.FinishedUI;
+    using Assets.Scripts.UI.GameUI;
+    using Assets.Scripts.UI.Loss;
+    using UnityEngine;
+    using YG;
+
     public class RewardedVideoAds : MonoBehaviour, IRewarderVideoAds
     {
         [SerializeField] private UIAutoHide _auitoHide;

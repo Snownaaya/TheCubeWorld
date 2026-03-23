@@ -1,17 +1,18 @@
-﻿using Object = UnityEngine.Object;
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop
 {
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using UnityEngine;
+    using Object = UnityEngine.Object;
+
     public class ShopItemFactory
     {
         private ShopItemView _abilityPrefab;
         private ShopItemView _characterPrefab;
         private VisitorFactory _visitorFactory;
 
-        public ShopItemFactory(ShopItemView abilityPrefab,
+        public ShopItemFactory(
+            ShopItemView abilityPrefab,
             VisitorFactory visitorFactory,
             ShopItemView characterPrefab)
         {

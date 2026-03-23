@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Scripts.Ground
 {
+    using System.Collections.Generic;
+    using UnityEngine;
+
     public class Ground : MonoBehaviour
     {
         [SerializeField] private List<Transform> _spawnPoints;
@@ -10,6 +10,7 @@ namespace Assets.Scripts.Ground
         private List<Transform> _availablePoints = new(); 
 
         public int AvailableCount => _availablePoints.Count;
+
         public int TotalCount => _spawnPoints?.Count ?? 0;
 
         private void Awake()

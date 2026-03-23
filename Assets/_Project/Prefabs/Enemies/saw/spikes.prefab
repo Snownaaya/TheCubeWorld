@@ -48,9 +48,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3490166515563472362, guid: 777a054616a49ea43b07a72157d7ffaa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 777a054616a49ea43b07a72157d7ffaa, type: 3}
       propertyPath: m_Name
       value: spikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 777a054616a49ea43b07a72157d7ffaa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841960713290868259, guid: 777a054616a49ea43b07a72157d7ffaa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

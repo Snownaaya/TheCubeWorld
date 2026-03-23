@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using Assets.Scripts.Datas;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.Enemies.Boss
 {
+    using System;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+    using UnityEngine;
+
     [Serializable]
     public class BossAttacker
     {

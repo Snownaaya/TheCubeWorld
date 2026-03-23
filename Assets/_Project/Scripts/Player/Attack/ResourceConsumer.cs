@@ -1,13 +1,12 @@
-using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Items;
-using Reflex.Attributes;
-using UnityEngine;
-using Random = UnityEngine.Random;
-using UniRx;
-
 namespace Assets.Scripts.Player.Attack
 {
+    using Assets.Scripts.Enemies.Boss.Target;
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Player.Inventory;
+    using Reflex.Attributes;
+    using UnityEngine;
+    using Random = UnityEngine.Random;
+
     public class ResourceConsumer : MonoBehaviour
     {
         [Header("Settings")]

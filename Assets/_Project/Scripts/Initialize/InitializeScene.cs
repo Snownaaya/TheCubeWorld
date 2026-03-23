@@ -1,8 +1,8 @@
-using Reflex.Attributes;
-using UnityEngine;
+using Assets.Scripts.Input;
 using Assets.Scripts.UseCase;
 using Cysharp.Threading.Tasks;
-using Assets.Scripts.Input;
+using Reflex.Attributes;
+using UnityEngine;
 
 public class InitializeScene : MonoBehaviour
 {
@@ -18,7 +18,6 @@ public class InitializeScene : MonoBehaviour
         Application.targetFrameRate = 60;
 
         LoadMenu().Forget();
-
         joystickInput.Hide();
     }
 

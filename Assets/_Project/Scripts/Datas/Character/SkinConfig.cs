@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Player.Skins;
-using UnityEngine;
-
 namespace Assets.Scripts.Datas.Character
 {
+    using Assets.Scripts.Player.Skins;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "CharacterSkins", menuName = "CharacterSkin/ScriptableObject")]
     public class SkinConfig : ScriptableObject
     {

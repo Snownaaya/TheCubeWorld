@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop
 {
+    using System.Collections.Generic;
+    using Assets.Project.Scripts.UI.GameUI;
+    using UnityEngine;
+
     public abstract class BaseShopPanel : MonoBehaviour
     {
-        protected List<ShopItemView> Items = new();
+        [field: SerializeField] public CloseButton CloseButton { get; private set; }
+
+        protected List<ShopItemView> Items = new ();
 
         protected void Highlight(ShopItemView shopItemView)
         {
@@ -15,7 +18,7 @@ namespace Assets.Scripts.UI.Shop
             shopItemView.Highlight();
         }
 
-        protected void Clear()
+        protected virtual void Clear()
         {
             foreach (ShopItemView item in Items)
             {

@@ -1,11 +1,12 @@
-using Assets.Scripts.Items;
-using Assets.Scripts.UseCase;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.SettingsMenu
 {
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Service.Audio;
+    using Assets.Scripts.UseCase;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ReturnMenu : MonoBehaviour
     {
         private const string MainMenu = nameof(MainMenu);
@@ -14,14 +15,17 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         private IResourceService _resourceService;
         private SceneTransitions _sceneTransitions;
+        private ForegroundAudioService _foregroundAudioService;
 
         [Inject]
         private void Construct(
             IResourceService resourceService,
-            SceneTransitions sceneTransitions)
+            SceneTransitions sceneTransitions,
+            ForegroundAudioService foregroundAudioService)
         {
             _resourceService = resourceService;
             _sceneTransitions = sceneTransitions;
+            _foregroundAudioService = foregroundAudioService;
         }
 
         private void OnEnable() =>
@@ -32,6 +36,7 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         private void OnLoadMenu()
         {
+            _foregroundAudioService.PlaySound(AudioTypes.Buttons);
             _resourceService.Clear();
             _sceneTransitions.GetMainMenu().Forget();
             _settings.SetPause(false);

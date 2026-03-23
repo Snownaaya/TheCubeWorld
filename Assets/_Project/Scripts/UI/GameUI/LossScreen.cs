@@ -1,21 +1,23 @@
-﻿using Assets.Scripts.Service.Pause;
-using Reflex.Attributes;
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace Assets.Scripts.UI.GameUI
+namespace Assets.Scripts.UI.Loss
 {
+    using System;
+    using Assets.Project.Scripts.UI.GameUI;
+    using Assets.Scripts.Service.Pause;
+    using Reflex.Attributes;
+    using UnityEngine;
+    using UnityEngine.UI;
+    using Screen = Assets.Scripts.UI.GameUI.Screen;
+
     public class LossScreen : Screen, IPause
     {
         [SerializeField] private Button _respawn;
         [SerializeField] private Button _exitMenu;
-
-        private bool _isPause;
-        private float _time;
+        [SerializeField] private HudLayer _hudLayer;
 
         public event Action RewardAdsRequested;
+
         public event Action RespawnRequested;
+
         public event Action ExitMenuRequested;
 
         [Inject]
@@ -45,7 +47,7 @@ namespace Assets.Scripts.UI.GameUI
             RectTransform.gameObject.SetActive(true);
             CanvasGroup.blocksRaycasts = true;
             SetPause(true);
-        }
+            _hudLayer.Hide();        }
 
         public override void Close()
         {
@@ -53,7 +55,7 @@ namespace Assets.Scripts.UI.GameUI
             RectTransform.gameObject.SetActive(false);
             CanvasGroup.blocksRaycasts = false;
             SetPause(false);
-
+            _hudLayer.Show();
         }
 
         public void SetPause(bool isPaused) =>

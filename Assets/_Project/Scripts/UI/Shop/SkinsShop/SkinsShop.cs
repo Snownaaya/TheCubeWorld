@@ -1,14 +1,15 @@
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.UI.Shop.AbilitiesShop;
-using Assets.Scripts.UI.Shop.Buttons;
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using Reflex.Attributes;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.SkinsShop
 {
+    using System;
+    using Assets.Project.Scripts.UI.Shop.SkinsShop;
+    using Assets.Scripts.Player.Wallet;
+    using Assets.Scripts.UI.Shop.AbilitiesShop;
+    using Assets.Scripts.UI.Shop.Buttons;
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class SkinsShop : BaseShop
     {
         [SerializeField] private SkinsShopPanel _panel;
@@ -17,6 +18,7 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
         [SerializeField] private BuyButton _buyButton;
         [SerializeField] private ShopContent _shopContent;
         [SerializeField] private OwnedImage _ownedImage;
+        [SerializeField] private SkinPlacement _skinPlacement;
 
         private VisitorsHolder _visitorsHolder;
         private IWallet _wallet;
@@ -24,27 +26,31 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
 
         public event Action<CharacterSkinsItem> CharacterSkinsItemClicked;
 
+        [Inject]
+        private void Construct(IWallet wallet)
+        {
+            _wallet = wallet;
+            _walletView.Initialize(_wallet);
+        }
+
         public override void Initialize(
             VisitorsHolder visitorsHolder,
             VisitorFactory visitorFactory)
         {
             _visitorsHolder = visitorsHolder;
             _panel.Initialize(_visitorsHolder, visitorFactory);
-            _walletView.Initialize(_wallet);
 
             _panel.Populate(_shopContent.CharacterSkinItem);
 
             _panel.ItemViewClicked += OnItemViewClick;
         }
 
-        [Inject]
-        private void Construct(IWallet wallet) =>
-            _wallet = wallet;
-
         private void OnEnable()
         {
             _buyButton.Clicked += OnBuyClicked;
             _selectionButton.Clicked += OnSelectionButtonClick;
+
+            _panel.Populate(_shopContent.CharacterSkinItem);
         }
 
         private void OnDisable()
@@ -58,6 +64,10 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
             if (_currentItemView == null)
                 return;
 
+            if (_currentItemView.Item is CharacterSkinsItem characterSkinsItem)
+                CharacterSkinsItemClicked?.Invoke(characterSkinsItem);
+
+            _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
             _currentItemView.Entry.Accept(_visitorsHolder.Purchase);
 
             _ownedImage.Show();
@@ -75,11 +85,11 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
                 _currentItemView.Entry.Accept(_visitorsHolder.ContentUnlock);
                 _currentItemView.Entry.Accept(_visitorsHolder.Purchase);
 
+                _panel.Populate(_shopContent.CharacterSkinItem);
                 _wallet.RemoveCoins(_currentItemView.Price);
 
-                _panel.Populate(_shopContent.CharacterSkinItem);
+                _ownedImage.Show();
                 _selectionButton.Hide();
-                _ownedImage.Hide();
             }
         }
 
@@ -87,22 +97,27 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
         {
             _currentItemView = view;
 
+            if (_currentItemView.Item is CharacterSkinsItem skinsItem)
+                _skinPlacement.SkinsShow(skinsItem);
+
             _currentItemView.Entry.Accept(_visitorsHolder.UnlockChecker);
 
             if (_visitorsHolder.UnlockChecker.IsUnlock)
             {
+                ShowSelectionButton();
+
                 _currentItemView.Entry.Accept(_visitorsHolder.PurchaseChecker);
 
                 if (_visitorsHolder.PurchaseChecker.IsOwned)
                 {
-                    if (_currentItemView.Item is CharacterSkinsItem skinItem)
-                        CharacterSkinsItemClicked?.Invoke(skinItem);
+                    if (_currentItemView.Item is CharacterSkinsItem characterSkinsItem)
+                        CharacterSkinsItemClicked?.Invoke(characterSkinsItem);
 
                     _ownedImage.Show();
+                    _selectionButton.Hide();
+
                     return;
                 }
-
-                _selectionButton.Show();
             }
             else
             {
@@ -114,6 +129,13 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
         {
             _buyButton.Show();
             _selectionButton.Hide();
+            _ownedImage.Hide();
+        }
+
+        private void ShowSelectionButton()
+        {
+            _selectionButton.Show();
+            _buyButton.Hide();
             _ownedImage.Hide();
         }
     }

@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Service.GameMessage;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.UI.FinishedUI
 {
+    using Assets.Scripts.Service.GameMessage;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     [RequireComponent(typeof(Button))]
     public class AddDefaultCoin : MonoBehaviour
     {

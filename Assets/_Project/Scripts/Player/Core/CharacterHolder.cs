@@ -1,16 +1,20 @@
-using Assets.Scripts.Player.Attack;
-using Assets.Scripts.Player.Move;
-
 namespace Assets.Scripts.Player.Core
 {
+    using Assets.Scripts.Player.Attack;
+    using Assets.Scripts.Player.Move;
+
     public class CharacterHolder : ICharacterHolder
     {
         public Character Character { get; private set; }
+
         public Movement Movement { get; private set; }
+
         public CharacterAttacker Attacker { get; private set; }
+
         public SkinChanger SkinChanger { get; private set; }
 
         public bool Initilized => Character != null && Movement != null && Attacker != null && SkinChanger != null;
+
 
         public void Initialize(
             Character characterAttacker,

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
 namespace Assets.Scripts.Player.Attack
 {
+    using UnityEngine;
+
     public class AttackAnimationActive : MonoBehaviour
     {
         [SerializeField] private CharacterAttacker _characterAttacker;

@@ -1,32 +1,22 @@
-using Assets.Scripts.Datas;
-using UnityEngine;
-using DG.Tweening;
-
 namespace Assets.Scripts.Achievements
 {
+    using Assets.Project.Scripts.Other;
+    using Assets.Scripts.Datas;
+    using UnityEngine;
+
     public class Achievement : MonoBehaviour
     {
         [SerializeField] private AchievementConfig _achievementConfig;
         [SerializeField] private RectTransform _achievementTransform;
         [SerializeField] private CanvasGroup _achievementCanvasGroup;
 
-        private Sequence _animation;
-
-        public AchievementConfig AchievementConfig => _achievementConfig;
-
         public void Show()
         {
             if (_achievementCanvasGroup == null || this == null)
                 return;
 
-            _animation = DOTween.Sequence();
-
-            _animation
-                .Append(_achievementTransform.transform.DOScale(1f, 0.5f)
-                .From(0)
-                .SetEase(Ease.Linear))
-                .SetUpdate(true)
-                .Restart();
+            _achievementTransform.gameObject.SetActive(true);
+            TweenHelper.ScaleUI(_achievementTransform);
         }
 
         public void Hide()
@@ -34,29 +24,8 @@ namespace Assets.Scripts.Achievements
             if (_achievementCanvasGroup == null || this == null)
                 return;
 
-            KillCurrentAnimationIfActive();
-
-            _animation = DOTween.Sequence();
-
-            _animation
-                .Append(_achievementCanvasGroup.DOFade(1f, 0f)
-                .From(1f))
-                .Join(_achievementTransform.DOScale(0f, 1f))
-                .OnComplete(() =>
-                {
-                    gameObject.SetActive(false);
-                })
-                .SetAutoKill()
-                .Restart();
+            _achievementTransform.gameObject.SetActive(true);
+            TweenHelper.HideUI(_achievementTransform);
         }
-
-        private void KillCurrentAnimationIfActive()
-        {
-            if (InAnimation())
-                _animation.Kill();
-        }
-
-        private bool InAnimation() =>
-             _animation != null && _animation.active;
     }
 }

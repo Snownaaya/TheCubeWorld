@@ -7,7 +7,7 @@ namespace Assets.Project.Scripts.Ground.Filler
         public LevelHazard(ILevelHazard levelHazard) =>
             _levelHazard = levelHazard;
 
-        public void StartLevel() =>
+        public void StartScale() =>
             _levelHazard.StartScale();
 
         public void Stop() =>

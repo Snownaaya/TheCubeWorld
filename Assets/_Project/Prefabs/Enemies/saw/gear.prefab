@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3652816934448234667, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 115395459198046163, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.709
@@ -71,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
       propertyPath: m_Name
       value: gear
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c755722c4dfdef64d89e6f257c71bad4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

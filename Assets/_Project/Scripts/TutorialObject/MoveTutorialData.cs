@@ -1,7 +1,7 @@
-using System;
-
 namespace Assets.Scripts.TutorialObject
 {
+    using System;
+
     [Serializable]
     public class MoveTutorialData
     {

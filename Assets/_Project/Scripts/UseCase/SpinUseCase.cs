@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.FinishedUI;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Threading;
+using Assets.Scripts.UI.FinishedUI;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class SpinUseCase
@@ -13,13 +13,15 @@ public class SpinUseCase
     public SpinUseCase(RewardSlotView[] slots) =>
         _slots = slots;
 
-    public event Action<float> OnPositionChanged; 
+    public event Action<float> OnPositionChanged;
+
     public event Action<int> OnSlotChanged;
 
     public async UniTask StartSpin(CancellationToken token)
     {
         float minX = _slots.First().Anchor.position.x;
         float maxX = _slots.Last().Anchor.position.x;
+
         int slotsCount = _slots.Length - 1;
 
         float progress = 0f;

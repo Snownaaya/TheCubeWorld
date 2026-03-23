@@ -1,13 +1,13 @@
-using Assets.Scripts.Input;
-using Assets.Scripts.Particles;
-using Assets.Scripts.Player.Attack;
-using Assets.Scripts.Player.Move;
-using Assets.Scripts.Service.AchievementServices;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Player.Core
 {
+    using Assets.Scripts.Input;
+    using Assets.Scripts.Particles;
+    using Assets.Scripts.Player.Attack;
+    using Assets.Scripts.Player.Move;
+    using Assets.Scripts.Service.AchievementServices;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class CharacterFactory : MonoBehaviour
     {
         [SerializeField] private Character _characterPrefab;
@@ -18,7 +18,8 @@ namespace Assets.Scripts.Player.Core
         private ICharacterDeathTracker _deathTrackerService;
 
         [Inject]
-        public void Construct(IInput input,
+        public void Construct(
+            IInput input,
             IParticleSpawner particleSpawner,
             PlayerInput playerInput,
             ICharacterDeathTracker deathTrackerService)
@@ -41,6 +42,7 @@ namespace Assets.Scripts.Player.Core
             character.Construct(_particleSpawner, _deathTrackerService);
 
             ICharacterHolder holder = new CharacterHolder();
+
             holder.Initialize(character,
                 movement,
                 attacker,

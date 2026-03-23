@@ -1,64 +1,46 @@
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.PluginYG;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.TutorialObject
 {
+    using Assets.Scripts.PluginYG;
+    using UnityEngine;
+
     public class TutorialBridgeStep : MonoBehaviour
     {
-        [SerializeField] private BridgeSpawner _bridgeSpawner;
+        [SerializeField] private RectTransform _rectTransform;
         [SerializeField] private TextBuildBridge _buildBridgeText;
+        [SerializeField] private float _openDistance;
 
-        private ICharacterHolder _characterHolder;
-        private int _distance = 4;
         private bool _isShown;
 
-        [Inject]
-        private void Construct(ICharacterHolder characterHolder) =>
-            _characterHolder = characterHolder;
-
-        private void OnEnable()
+        public bool IsSetPosition(Vector3 position)
         {
-            _bridgeSpawner.OnSpawned += OnBridgeCompleted;
-            _characterHolder.Movement.PositionChanged += OnSetCharacterPosition;
-        }
+            float distanceSqr = _openDistance * _openDistance;
+            float currentDistanceSqr = (transform.position - position).sqrMagnitude;
 
-        private void OnDisable()
-        {
-            _bridgeSpawner.OnSpawned -= OnBridgeCompleted;
-            _characterHolder.Movement.PositionChanged -= OnSetCharacterPosition;
-        }
+            bool inRange = currentDistanceSqr < distanceSqr;
 
-        public void OnBridgeCompleted(Bridge.Bridge bridge)
-        {
-            gameObject.SetActive(false);
-            _buildBridgeText.Hide();
-        }
-
-        private void OnSetCharacterPosition()
-        {
-            bool isNear = Vector3.Distance(
-                _characterHolder.Movement.transform.position,
-                transform.position) < _distance;
-
-            if (isNear && _isShown == false)
+            if (inRange && _isShown == false)
             {
                 _isShown = true;
-
                 _buildBridgeText.SetText(LocalizedText.Get(
                     english: "Bridge Construction",
                     russia: "Постройка моста",
                     turkish: "Köprü inşaatı"));
-
                 _buildBridgeText.Show();
             }
-            else if (isNear == false && _isShown)
+            else if (inRange == false && _isShown)
             {
                 _isShown = false;
                 _buildBridgeText.Hide();
             }
+
+            return inRange;
+        }
+
+        public void ForceHide()
+        {
+            _isShown = false;
+            _buildBridgeText?.Hide();
+            _rectTransform.gameObject.SetActive(false);
         }
     }
 }

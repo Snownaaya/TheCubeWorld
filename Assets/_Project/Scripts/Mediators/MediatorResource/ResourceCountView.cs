@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Datas;
-using TMPro;
-using UnityEngine;
-
 namespace Assets.Scripts.Domain.MediatorResource
 {
+    using Assets.Scripts.Datas;
+    using TMPro;
+    using UnityEngine;
+
     public class ResourceCountView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _countText;

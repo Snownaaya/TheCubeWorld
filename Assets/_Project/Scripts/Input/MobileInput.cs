@@ -7,12 +7,16 @@ namespace Assets.Scripts.Input
     public class MobileInput : IInput
     {
         private PlayerInput _playerInput;
+        private IJoystickInput _joystickInput;
+
         public event Action<Vector3> Moved;
         public event Action Stopped;
 
-        public MobileInput(PlayerInput playerInput)
+        public MobileInput(PlayerInput playerInput, IJoystickInput joystickInput)
         {
             _playerInput = playerInput;
+            _joystickInput = joystickInput;
+            _joystickInput.SetInteractable(true);
 
             _playerInput.Character.Move.performed += context => OnMove(context);
             _playerInput.Character.Move.canceled += context => OnStop(context);

@@ -1,17 +1,17 @@
-using Assets.Project.Scripts.Datas;
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Items;
-using Assets.Scripts.Other;
-using Assets.Scripts.Particles;
-using Assets.Scripts.Service.GameMessage;
-using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.UseCase;
-using Reflex.Core;
-using UnityEngine;
-
 namespace Assets.Scripts.Installers
 {
+    using Assets.Project.Scripts.Datas;
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Enemies.Boss.Target;
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Other;
+    using Assets.Scripts.Particles;
+    using Assets.Scripts.Service.GameMessage;
+    using Assets.Scripts.Service.LevelLoaderService;
+    using Assets.Scripts.UseCase;
+    using Reflex.Core;
+    using UnityEngine;
+
     public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private StartLevel _startLevelPrefab;
@@ -63,5 +63,7 @@ namespace Assets.Scripts.Installers
                 return new SceneTransitions(_sceneConfig);
             });
         }
+
+        
     }
 }

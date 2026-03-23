@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using Assets.Scripts.Achievements.Observers;
-
 namespace Assets.Scripts.Service.AchievementServices
 {
+    using Assets.Scripts.Achievements.Observers;
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+
     public class DeathTrackerService : ICharacterDeathTracker
     {
         private AchievementDeathObserver _achievementDeathObserver;

@@ -1,13 +1,11 @@
-﻿using Assets.Scripts.PluginYG;
-using Assets.Scripts.Service.GameMessage;
-using Reflex.Attributes;
-using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.UI.FinishedUI
 {
+    using System;
+    using Assets.Scripts.Service.GameMessage;
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     [RequireComponent(typeof(Button))]
     public class AdsCoinButton : MonoBehaviour
     {
@@ -35,6 +33,7 @@ namespace Assets.Scripts.UI.FinishedUI
         private void OnClick()
         {
             _messageBus.MessageBroker.Publish(_currentCoin);
+
             OnClicked?.Invoke();
 
             _button.interactable = false;

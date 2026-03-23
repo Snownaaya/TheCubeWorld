@@ -1,8 +1,7 @@
-using UnityEngine;
-
 namespace Assets.Scripts.Particles
 {
-    [RequireComponent(typeof(ParticleSystem))]
+    using UnityEngine;
+
     public class PooledParticle : MonoBehaviour
     {
         [SerializeField] private ParticleTypes _particleType;

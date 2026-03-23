@@ -1,14 +1,12 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Loss;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.UI.HealthCharacters.Characters
 {
+    using System;
+    using Assets.Scripts.Interfaces;
+    using Assets.Scripts.Loss;
+    using UnityEngine;
+
     public class CharacterHealth : Health
     {
-        public bool IsDead => _isDead;
-
         public event Action<ILoss> Died;
 
         private void OnTriggerEnter(Collider other)

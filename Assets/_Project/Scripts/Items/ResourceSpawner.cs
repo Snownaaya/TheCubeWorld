@@ -1,9 +1,9 @@
-using Assets.Scripts.Ground;
-using Assets.Scripts.Items;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Assets.Scripts.Ground;
+using Assets.Scripts.Items;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -60,6 +60,7 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
             Resource resourceInstance = Pull(resourcePrefab);
             resourceInstance.SetSpawnPoint(spawnPoint);
             resourceInstance.transform.position = spawnPoint.position;
+            resourceInstance.transform.rotation = spawnPoint.rotation;  
 
             _activeResources.Add(resourceInstance);
         }

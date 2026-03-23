@@ -1,35 +1,32 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Items;
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Service.Pause;
-using Assets.Scripts.UI.GameUI;
-using Assets.Scripts.UseCase;
-using Cysharp.Threading.Tasks;
-using System;
-using System.Threading;
-
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
+    using System;
+    using System.Threading;
+    using Assets.Project.Scripts.GameStateMachine.States.MainMenu;
+    using Assets.Scripts.Interfaces;
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Player.Inventory;
+    using Assets.Scripts.Service.Pause;
+    using Assets.Scripts.UseCase;
+    using Cysharp.Threading.Tasks;
+
     public class LossState : PhasesState
     {
         private PauseHandler _pauseHandler;
-        private LossScreen _lossScreen;
         private CancellationTokenSource _cancellationTokenSource;
 
         private float _delay = 2f;
 
         public LossState(
             ISwitcher switcher,
-            EntryPointState entryPoint,
             IInventory inventory,
             IResourceService resourceService,
             PauseHandler pauseHandler,
-            LossScreen lossScreen,
-            SceneTransitions sceneTransitions)
-            : base(switcher, entryPoint, inventory, resourceService, sceneTransitions)
+            SceneTransitions sceneTransitions,
+            GameEntryPointState gameEntryPointState)
+            : base(switcher, inventory, resourceService, sceneTransitions, gameEntryPointState)
         {
             _pauseHandler = pauseHandler;
-            _lossScreen = lossScreen;
         }
 
         public override void Enter()
@@ -38,20 +35,19 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
             _cancellationTokenSource = new CancellationTokenSource();
 
-            _lossScreen.RewardAdsRequested += OnRespawnAdsState;
-            _lossScreen.RespawnRequested += OnRespawnState;
-            _lossScreen.ExitMenuRequested += OnExitMenu;
+            GameEntryPointState.LossScreen.RewardAdsRequested += OnRespawnAdsState;
+            GameEntryPointState.LossScreen.RespawnRequested += OnRespawnState;
+            GameEntryPointState.LossScreen.ExitMenuRequested += OnExitMenu;
 
             DelayPause(_cancellationTokenSource.Token).Forget();
         }
 
         public override void Exit()
-        {
-            base.Exit();
+        { base.Exit();
 
-            _lossScreen.RewardAdsRequested -= OnRespawnAdsState;
-            _lossScreen.RespawnRequested -= OnRespawnState;
-            _lossScreen.ExitMenuRequested -= OnExitMenu;
+            GameEntryPointState.LossScreen.RewardAdsRequested -= OnRespawnAdsState;
+            GameEntryPointState.LossScreen.RespawnRequested -= OnRespawnState;
+            GameEntryPointState.LossScreen.ExitMenuRequested -= OnExitMenu;
 
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
@@ -67,7 +63,7 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
                 return;
 
             _pauseHandler.SetPause(true);
-            _lossScreen.Open();
+            GameEntryPointState.LossScreen.Open();
         }
 
         private void OnRespawnAdsState()
@@ -85,8 +81,8 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
 
         private void OnExitMenu()
         {
+            Switcher.SwitchState<MainMenuState>();
             ResourceService.Clear();
-           SceneTransitions.GetMainMenu().Forget();
         }
     }
 }

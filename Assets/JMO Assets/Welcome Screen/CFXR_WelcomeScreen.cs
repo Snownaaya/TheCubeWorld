@@ -1,9 +1,9 @@
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.UIElements;
-
 namespace CartoonFX
 {
+    using UnityEditor;
+    using UnityEngine;
+    using UnityEngine.UIElements;
+
     [InitializeOnLoad]
     public class CFXR_WelcomeScreen : EditorWindow
     {

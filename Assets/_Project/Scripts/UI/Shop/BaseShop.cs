@@ -1,11 +1,9 @@
-﻿using Assets.Scripts.Enemies.Obstacles;
-using Assets.Scripts.Player.Skins;
-using Assets.Scripts.Visitor;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
+    using System;
+    using Assets.Scripts.Visitor;
+    using UnityEngine;
+
     public abstract class BaseShop : MonoBehaviour, IDisposable
     {
         public abstract void Initialize(
@@ -18,6 +16,7 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         }
 
         protected abstract void OnBuyClicked();
+
         protected abstract void ShowBuyButton();
 
         public void Dispose() { }

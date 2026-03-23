@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Visitor.Visitors;
-
 namespace Assets.Scripts.Visitor
 {
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Visitor.Visitors;
+
     public class VisitorsHolder
     {
         public VisitorsHolder(IPersistentCharacterData persistentCharacterData, ITransientCharacterData transientCharacterData)
@@ -14,8 +14,11 @@ namespace Assets.Scripts.Visitor
         }
 
         public ContentUnlock ContentUnlock { get; private set; }
+
         public Purchase Purchase { get; private set; }
+
         public PurchaseChecker PurchaseChecker { get; private set; }
+
         public UnlockChecker UnlockChecker { get; private set; }
     }
 }

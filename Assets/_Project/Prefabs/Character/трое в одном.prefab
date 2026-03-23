@@ -610,6 +610,7 @@ MonoBehaviour:
   _characterConfig: {fileID: 11400000, guid: cbd7306c45a46d84a9937de668645b5f, type: 2}
   _characterModel: {fileID: 714617433521010315}
   _currentCharacterView: {fileID: 2748873089544609920}
+  _rigidbody: {fileID: 2678066689371085946}
 --- !u!114 &2748873089544609920
 MonoBehaviour:
   m_ObjectHideFlags: 0

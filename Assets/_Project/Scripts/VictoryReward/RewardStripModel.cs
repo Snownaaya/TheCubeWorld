@@ -1,15 +1,17 @@
-﻿using UnityEngine;
-
 namespace Assets.Scripts.VictoryReward
 {
+    using UnityEngine;
+
     public class RewardStripModel
     {
         public int BaseCoins;
+
         public float[] Multipliers;
+
         public int CurrentIndex;
 
-        public RewardStripModel
-            (int baseCoins, 
+        public RewardStripModel(
+            int baseCoins, 
             float[] multipliers, 
             int currentIndex)
         {

@@ -1,12 +1,13 @@
-using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Items;
+using Assets.Scripts.UI.BridgeBuilder;
 using DG.Tweening;
 
 public class DirtSelectedState : BaseBridgeState
 {
     private ResourceTypes _dirtType = ResourceTypes.Dirt;
 
-    public DirtSelectedState(BuildButton buildButton) : base(buildButton) { }
+    public DirtSelectedState(BuildButton buildButton)
+        : base(buildButton) { }
 
     public override void Enter()
     {
@@ -23,6 +24,8 @@ public class DirtSelectedState : BaseBridgeState
         base.Exit();
 
         BuildButton.DirtButton.transform.DOKill();
-        BuildButton.DirtButton.transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
+        BuildButton.DirtButton.transform.DOScale(1, 0.25f)
+            .From(0.8f)
+            .SetEase(Ease.OutBack);
     }
 }

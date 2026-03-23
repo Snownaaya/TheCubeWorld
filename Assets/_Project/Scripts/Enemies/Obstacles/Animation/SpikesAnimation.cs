@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Obstacles.Animation
 {
+    using UnityEngine;
+
     [RequireComponent(typeof(Animator))]
     public class SpikesAnimation : MonoBehaviour
     {

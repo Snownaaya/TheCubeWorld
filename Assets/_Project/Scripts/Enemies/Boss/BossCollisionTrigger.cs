@@ -1,12 +1,12 @@
-using Assets.Scripts.Player;
-using Assets.Scripts.UI.HealthCharacters.Characters;
-using Cysharp.Threading.Tasks;
-using System;
-using System.Threading;
-using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Boss
 {
+    using System;
+    using System.Threading;
+    using Assets.Scripts.Player;
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     [RequireComponent(typeof(BossView), typeof(BossHealth))]
     public class BossCollisionTrigger : MonoBehaviour
     {
@@ -27,15 +27,18 @@ namespace Assets.Scripts.Enemies.Boss
         private void OnEnable()
         {
             _cancellationTokenSource = new CancellationTokenSource();
+
             StartAttackLoop(_cancellationTokenSource.Token).Forget();
+
             _bossHealth.Died += OnDeath;
         }
 
         private void OnDisable()
         {
-            _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
             _bossHealth.Died -= OnDeath;
+
+            _cancellationTokenSource?.Cancel();
+            _cancellationTokenSource = null;
         }
 
         private void OnTriggerEnter(Collider other)

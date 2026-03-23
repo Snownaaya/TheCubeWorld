@@ -1,7 +1,7 @@
-﻿using System;
-
 namespace Assets.Scripts.Visitor
 {
+    using System;
+
     public class ShopItemEntry : IShopElement
     {
         private Action<IShopVisitor> _acceptMethod;

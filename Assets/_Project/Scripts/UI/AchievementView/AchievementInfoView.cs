@@ -1,9 +1,9 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 namespace Assets.Scripts.UI.AchievementView
 {
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+
     public class AchievementInfoView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private TextMeshProUGUI _achieveText;

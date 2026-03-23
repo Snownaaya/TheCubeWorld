@@ -17,6 +17,9 @@ namespace Assets.Scripts.Input
         public void SetInteractable(bool interactable) =>
              _backgroundImage.raycastTarget = interactable;
 
+        public void Show() =>
+            _joystick.gameObject.SetActive(true);
+
         public void Hide() =>
             _joystick.gameObject.SetActive(false);
     }

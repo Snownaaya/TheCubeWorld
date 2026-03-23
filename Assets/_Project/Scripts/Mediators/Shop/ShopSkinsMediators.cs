@@ -1,12 +1,12 @@
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.UI.Shop.SkinsShop;
-using Assets.Scripts.UI.Shop.SO;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Mediators.Shop
 {
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Service.AchievementServices;
+    using Assets.Scripts.UI.Shop.SkinsShop;
+    using Assets.Scripts.UI.Shop.SO;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ShopSkinsMediators : MonoBehaviour
     {
         [SerializeField] private SkinsShop _shop;

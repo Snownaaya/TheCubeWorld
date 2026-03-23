@@ -9,6 +9,7 @@ namespace Assets.Scripts.Input
         private PlayerInput _playerInput;
 
         public event Action<Vector3> Moved;
+
         public event Action Stopped;
 
         public DesktopInput(PlayerInput playerInput)

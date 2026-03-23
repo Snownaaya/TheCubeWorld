@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Achievements.Observers;
-using Assets.Scripts.UI.Shop.AbilitiesShop;
-
 namespace Assets.Scripts.Service.AchievementServices
 {
+    using Assets.Scripts.Achievements.Observers;
+    using Assets.Scripts.UI.Shop.AbilitiesShop;
+
     public class AbilitiesBuyTarckerService : IAbilitiesBuyTracker
     {
         private AchievemntBuyObserver _achievemntBuyObserver;

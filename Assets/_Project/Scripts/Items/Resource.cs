@@ -7,6 +7,7 @@ public class Resource : MonoBehaviour
     [SerializeField] private float _speed;
 
     public Transform SpawnPoint { get; private set; }
+
     public ResourceConfig Config => _config;
 
     public void MovePosition(Vector3 position)

@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Boss.Target
 {
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     [RequireComponent(typeof(BossHealth))]
     public class BossTarget : MonoBehaviour, IBossTarget
     {
@@ -13,8 +13,6 @@ namespace Assets.Scripts.Enemies.Boss.Target
 
         private Transform _transform;
         private BossHealth _bossHealth;
-
-        public BossHealth BossHealth => _bossHealth;
 
         private void Awake()
         {

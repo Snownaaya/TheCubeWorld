@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Datas.Character;
-
 namespace Assets.Scripts.Visitor.Visitors
 {
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.UI.Shop.SO;
+
     public class ContentUnlock : IShopVisitor
     {
         private IPersistentCharacterData _persistentCharacterData;

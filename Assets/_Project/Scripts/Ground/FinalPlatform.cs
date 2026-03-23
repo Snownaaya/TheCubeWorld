@@ -1,15 +1,15 @@
-using Assets.Scripts.Camera;
-using Assets.Scripts.Items;
-using Assets.Scripts.Player;
-using Assets.Scripts.Player.Attack;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.GameMessage;
-using Reflex.Attributes;
-using UniRx;
-using UnityEngine;
-
 namespace Assets.Scripts.Ground
 {
+    using Assets.Scripts.Camera;
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Player;
+    using Assets.Scripts.Player.Attack;
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Service.GameMessage;
+    using Reflex.Attributes;
+    using UniRx;
+    using UnityEngine;
+
     public class FinalPlatform : MonoBehaviour
     {
         [SerializeField] private Transform _cameraPoint;

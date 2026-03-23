@@ -1,14 +1,14 @@
-﻿using Assets.Scripts.Bridge.Factory;
-using System.Collections.Generic;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Items;
-using System;
-
 namespace Assets.Scripts.Achievements.Observers
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Bridge.Factory;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Items;
+
     public class AchievementBridgeObserver
     {
-        private Queue<BridgeData> _bridges = new();
+        private Queue<BridgeData> _bridges = new ();
         private int _maxCountBridges = 10;
 
         private IEnumerable<Action<Queue<BridgeData>>> _bridgeCheckers;

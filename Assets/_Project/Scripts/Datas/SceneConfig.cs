@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-
 namespace Assets.Project.Scripts.Datas
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Service.LevelLoaderService.Loader;
+    using UnityEngine;
+    using UnityEngine.AddressableAssets;
+
     [CreateAssetMenu(fileName = "SceneConfig", menuName = "SceneConfig/ScriptableObject")]
     public class SceneConfig : ScriptableObject
     {

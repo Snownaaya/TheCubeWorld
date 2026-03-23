@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-
 namespace Assets.Scripts.UI.Shop
 {
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+
     public class ViewSelectorVisitor : IShopVisitor
     {
         private ShopItemView _abilityItemPrefab;

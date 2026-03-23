@@ -1,7 +1,8 @@
-﻿namespace Assets.Scripts.Interfaces
+namespace Assets.Scripts.Interfaces
 {
     public interface ISwitcher
     {
-        void SwitchState<T>() where T : IStates;
+        void SwitchState<T>()
+            where T : IStates;
     }
 }

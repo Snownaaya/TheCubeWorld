@@ -1,7 +1,7 @@
-using YG;
-
 namespace Assets.Scripts.PluginYG
 {
+    using YG;
+
     public static class LocalizedText
     {
         public const string Russian = "ru";

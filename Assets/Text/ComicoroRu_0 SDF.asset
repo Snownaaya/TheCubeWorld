@@ -6762,9 +6762,9 @@ MonoBehaviour:
     atlasWidth: 1024
     atlasHeight: 1024
     characterSetSelectionMode: 6
-    characterSequence: 000-0FF,400-4FF,500-52F
+    characterSequence: 000-00FF,400-4FF,500-52F
     referencedFontAssetGUID: 
-    referencedTextAssetGUID: 
+    referencedTextAssetGUID: efe0bf4ac872451e91612d1ae593f480
     fontStyle: 0
     fontStyleModifier: 0
     renderMode: 4165

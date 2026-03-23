@@ -1,10 +1,10 @@
-using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Scripts.Particles
 {
+    using System;
+    using System.Collections.Generic;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     public class ParticleSpawner : PoolObject<PooledParticle>, IParticleSpawner
     {
         [SerializeField] private List<ParticlePrefabEntry> _particleEntries = new();
@@ -54,6 +54,7 @@ namespace Assets.Scripts.Particles
             [SerializeField] private PooledParticle _pooledParticle;
 
             public PooledParticle Prefab => _pooledParticle;
+
             public ParticleTypes Type => _particleType;
         }
     }

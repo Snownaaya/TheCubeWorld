@@ -1,8 +1,7 @@
-using TMPro;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.SO
 {
+    using UnityEngine;
+
     public abstract class ShopItem : ScriptableObject
     {
         [field: SerializeField] public int Price { get; private set; }

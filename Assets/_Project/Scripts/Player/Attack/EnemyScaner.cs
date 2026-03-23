@@ -1,8 +1,8 @@
-using Assets.Scripts.Datas.Character;
-using UnityEngine;
-
 namespace Assets.Scripts.Player.Attack
 {
+    using Assets.Scripts.Datas.Character;
+    using UnityEngine;
+
     public class EnemyScaner : MonoBehaviour
     {
         [SerializeField] private Transform _playerModel;
@@ -22,6 +22,7 @@ namespace Assets.Scripts.Player.Attack
             for (int i = 0; i < colliders.Length; i++)
             {
                 Vector3 toCollider = colliders[i].transform.position - _playerModel.position;
+
                 float distanceSqr = toCollider.sqrMagnitude;
 
                 if (distanceSqr <= detectionRadiusSqr)

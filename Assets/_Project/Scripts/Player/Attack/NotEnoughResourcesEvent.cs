@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Items;
-
 namespace Assets.Scripts.Player.Attack
 {
+    using Assets.Scripts.Items;
+
     public readonly struct NotEnoughResourcesEvent
     {
         public readonly ResourceTypes ResourceType;

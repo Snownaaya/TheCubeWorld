@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Achievements.Observers;
-
 namespace Assets.Scripts.Service.AchievementServices
 {
+    using Assets.Scripts.Achievements.Observers;
+
     public class BridgeTrackerService : IBridgeBuildTracker
     {
         private AchievementBridgeObserver _achievementBridgeObserver;

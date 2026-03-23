@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Service.Audio;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-
 namespace Assets.Scripts.UI.AudioUI
 {
+    using Assets.Scripts.Service.Audio;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+
     public class BackgroundVolumeHandler : VolumeSliderView
     {
         private BackgroundAudioService _audioService;

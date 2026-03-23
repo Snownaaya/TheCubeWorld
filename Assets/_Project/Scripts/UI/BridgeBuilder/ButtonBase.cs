@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Interfaces;
-using DG.Tweening;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-
 namespace Assets.Scripts.UI.BridgeBuilder
 {
+    using Assets.Project.Scripts.Other;
+    using Assets.Scripts.Interfaces;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+
     public abstract class ButtonBase : MonoBehaviour, IButtonWidget
     {
         [field: SerializeField] public Button Button { get; private set; }
@@ -22,14 +22,12 @@ namespace Assets.Scripts.UI.BridgeBuilder
 
         public void AnimatePress()
         {
-            transform.DOKill();
-            transform.DOScale(0.8f, 0);
+            TweenHelper.ButtonShake(transform);
         }
 
         public void AnimateRelease()
         {
-            transform.DOKill();
-            transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
+            TweenHelper.HideButton(transform);
         }
 
         protected abstract void OnClickButton();

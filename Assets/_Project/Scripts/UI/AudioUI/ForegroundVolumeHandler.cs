@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Service.Audio;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.AudioUI
 {
+    using Assets.Scripts.Service.Audio;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ForegroundVolumeHandler : VolumeSliderView
     {
         [SerializeField] private AudioTypes[] _audioTypes;

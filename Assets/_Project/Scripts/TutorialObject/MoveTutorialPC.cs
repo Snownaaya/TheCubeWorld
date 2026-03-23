@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace Assets.Scripts.TutorialObject
 {
+    using UnityEngine;
+
     public class MoveTutorialPC : MonoBehaviour
     {
         [SerializeField] private RectTransform[] _rectTransforms;

@@ -1,10 +1,10 @@
-using Assets.Scripts.Enemies.Boss.Target;
-using Assets.Scripts.Particles;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Player
 {
+    using Assets.Scripts.Enemies.Boss.Target;
+    using Assets.Scripts.Particles;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     [RequireComponent(typeof(Animator))]
     public class CharacterView : MonoBehaviour, ICharacterView
     {

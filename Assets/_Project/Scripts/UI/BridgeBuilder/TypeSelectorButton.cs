@@ -1,11 +1,11 @@
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Other;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.BridgeBuilder
 {
+    using Assets.Scripts.Bridge;
+    using Assets.Scripts.Bridge.Factory;
+    using Assets.Scripts.Player.Core;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class TypeSelectorButton : ButtonBase
     {
         [SerializeField] private BridgeConfig _bridgeConfig;

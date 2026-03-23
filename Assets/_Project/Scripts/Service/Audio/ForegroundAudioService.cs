@@ -1,13 +1,13 @@
-using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using UniRx;
-using UnityEngine;
-using UnityEngine.Pool;
-using static Assets.Scripts.Datas.AudioConfig;
-
 namespace Assets.Scripts.Service.Audio
 {
+    using System;
+    using System.Collections.Generic;
+    using Cysharp.Threading.Tasks;
+    using UniRx;
+    using UnityEngine;
+    using UnityEngine.Pool;
+    using static Assets.Scripts.Datas.AudioConfig;
+
     public class ForegroundAudioService
     {
         private CompositeDisposable _compositeDisposable = new();

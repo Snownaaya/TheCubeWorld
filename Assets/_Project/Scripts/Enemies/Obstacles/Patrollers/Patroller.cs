@@ -1,11 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading;
-using System.Linq;
-using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Obstacles.Patrollers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     [RequireComponent(typeof(Collider))]
     public class Patroller : MonoBehaviour
     {

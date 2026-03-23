@@ -1,15 +1,16 @@
-using Assets.Project.Scripts.Ground.Filler;
-using Assets.Scripts.Enemies.Obstacles;
-using Assets.Scripts.Enemies.Obstacles.Animation;
-using Assets.Scripts.Enemies.Obstacles.Patrollers;
-using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.UI.Shop.AbilitiesShop;
-using Assets.Scripts.UI.Shop.SO;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Mediators
 {
+    using Assets.Project.Scripts.Ground.Filler;
+    using Assets.Project.Scripts.UI.Shop.AbilitiesShop;
+    using Assets.Scripts.Enemies.Obstacles;
+    using Assets.Scripts.Enemies.Obstacles.Animation;
+    using Assets.Scripts.Enemies.Obstacles.Patrollers;
+    using Assets.Scripts.Service.AchievementServices;
+    using Assets.Scripts.UI.Shop.AbilitiesShop;
+    using Assets.Scripts.UI.Shop.SO;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ShopAbilitiesMediator : MonoBehaviour
     {
         [SerializeField] private AbilitiesShop _shop;
@@ -36,7 +37,7 @@ namespace Assets.Scripts.Mediators
 
         private void OnDisable()
         {
-            _shop.AbilityItemClicked -= OnDeactive; 
+            _shop.AbilityItemClicked -= OnDeactive;
             _achievementTracker.Unregister(_shop);
         }
 

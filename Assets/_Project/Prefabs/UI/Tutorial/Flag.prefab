@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6334959362359271245}
   - component: {fileID: 7342406381723143550}
   - component: {fileID: 6240688780607718152}
+  - component: {fileID: 4457167793633011623}
   m_Layer: 5
   m_Name: Flag
   m_TagString: Untagged
@@ -85,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6240688780607718152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,11 +99,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4457167793633011623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081832009236704516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d0587191a9ca3d4483927a0ed1cd147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildBridgeText: {fileID: 4705218361535012657}
+  _openDistance: 2
 --- !u!1 &4935300700397491168
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tutorBuildBridgeText: {fileID: 5856535122072648887}
+  _rectTransform: {fileID: 2270998787190007471}
 --- !u!1 &8031361145404969029
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +279,6 @@ GameObject:
   - component: {fileID: 1213452856257534038}
   - component: {fileID: 8252461711895753449}
   - component: {fileID: 3789432868755964081}
-  - component: {fileID: 3292985423835512366}
   m_Layer: 5
   m_Name: Exceletion
   m_TagString: Untagged
@@ -349,17 +364,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3292985423835512366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8031361145404969029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d0587191a9ca3d4483927a0ed1cd147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bridgeSpawner: {fileID: 0}
-  _buildBridgeText: {fileID: 4705218361535012657}

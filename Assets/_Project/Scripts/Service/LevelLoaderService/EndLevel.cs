@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.UI.HealthCharacters.Characters;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.Service.LevelLoaderService
 {
+    using System;
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+    using UnityEngine;
+
     [RequireComponent(typeof(BossHealth))]
     public class EndLevel : MonoBehaviour
     {

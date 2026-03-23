@@ -1,13 +1,13 @@
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Service.Saves;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-using System;
-using UnityEngine;
-using YG;
-
 namespace Assets.Scripts.TutorialObject
 {
+    using System;
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.Saves;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+    using UnityEngine;
+    using YG;
+
     [RequireComponent(typeof(MoveTutorialPC))]
     public class TutorialRoot : MonoBehaviour
     {

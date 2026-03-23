@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System;
-
 namespace Assets.Scripts.Bridge.Factory
 {
+    using System;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "BridgeFactory", menuName = "Factory/BridgeFactory")]
     public class BridgeFactory : ScriptableObject
     {

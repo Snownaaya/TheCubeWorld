@@ -1,7 +1,8 @@
-﻿using UnityEngine;
 
 namespace Assets.Scripts.UI.GameUI
 {
+    using UnityEngine;
+
     public class UIAutoHide : MonoBehaviour
     {
         [SerializeField] private int _duration;

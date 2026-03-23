@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace Assets.Scripts.Bridge
 {
+    using UnityEngine;
+
     public class BridgeBlock : MonoBehaviour
     {
         [SerializeField] private Renderer _renderer;

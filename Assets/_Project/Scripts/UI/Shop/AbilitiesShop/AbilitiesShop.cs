@@ -1,13 +1,15 @@
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.UI.Shop.Buttons;
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using Reflex.Attributes;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
+    using System;
+    using Assets.Project.Scripts.UI.Shop.AbilitiesShop;
+    using Assets.Scripts.Player.Wallet;
+    using Assets.Scripts.Service.Audio;
+    using Assets.Scripts.UI.Shop.Buttons;
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class AbilitiesShop : BaseShop
     {
         [SerializeField] private ShopPanel _shopPanel;
@@ -15,21 +17,29 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         [SerializeField] private WalletView _walletView;
         [SerializeField] private OwnedImage _ownedImage;
         [SerializeField] private ShopContent _shopContent;
+        [SerializeField] private ShopAbilityInfo _abilityInfo;
 
         private IWallet _wallet;
+        private ForegroundAudioService _foregroundAudioService;
         private VisitorsHolder _visitorsHolder;
         private ShopItemView _currentItemView;
 
         public event Action<AbilityItem> AbilityItemClicked;
 
         [Inject]
-        private void Construct(IWallet wallet)
+        private void Construct(
+            IWallet wallet,
+            ForegroundAudioService foregroundAudioService)
         {
             _wallet = wallet;
             _walletView.Initialize(_wallet);
+
+            _foregroundAudioService = foregroundAudioService;
         }
 
-        public override void Initialize(VisitorsHolder visitorsHolder, VisitorFactory visitorFactory)
+        public override void Initialize(
+            VisitorsHolder visitorsHolder,
+            VisitorFactory visitorFactory)
         {
             _visitorsHolder = visitorsHolder;
             _shopPanel.Initialize(_visitorsHolder, visitorFactory);
@@ -42,12 +52,15 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         private void OnEnable()
         {
             _buyButton.Clicked += OnBuyClicked;
-
+            _shopPanel.CloseButton.Clicked += OnClickClose;
             ShowBuyButton();
         }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _buyButton.Clicked -= OnBuyClicked;
+            _shopPanel.ItemViewClicked -= OnItemViewClick;
+        }
 
         protected override void OnBuyClicked()
         {
@@ -69,6 +82,9 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         protected override void OnItemViewClick(ShopItemView view)
         {
             _currentItemView = view;
+
+            if (_currentItemView.Item is AbilityItem abilityItem)
+                _abilityInfo.Initialize(abilityItem);
 
             _currentItemView.Entry.Accept(_visitorsHolder.UnlockChecker);
 
@@ -94,7 +110,12 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             _ownedImage.Hide();
         }
 
-        public void ShowOnwedImage() =>
+        private void ShowOnwedImage() =>
             _ownedImage.Show();
+
+        private void OnClickClose()
+        {
+            _foregroundAudioService.PlaySound(AudioTypes.Buttons);
+        }
     }
 }

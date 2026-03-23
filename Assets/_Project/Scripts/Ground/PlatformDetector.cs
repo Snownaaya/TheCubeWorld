@@ -1,9 +1,9 @@
+using System.Threading;
 using Assets.Scripts.Ground;
 using Assets.Scripts.Items;
 using Assets.Scripts.Player;
 using Cysharp.Threading.Tasks;
 using Reflex.Attributes;
-using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Ground))]

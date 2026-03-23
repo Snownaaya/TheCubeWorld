@@ -1,11 +1,11 @@
-using UniRx;
-using Assets.Scripts.UI.BridgeBuilder;
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Bridge;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Items;
 using System.Linq;
+using Assets.Scripts.Bridge;
+using Assets.Scripts.Bridge.Factory;
+using Assets.Scripts.Datas;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.Items;
+using Assets.Scripts.UI.BridgeBuilder;
+using UniRx;
 
 public abstract class BaseBridgeState : IStates
 {
@@ -19,6 +19,7 @@ public abstract class BaseBridgeState : IStates
     public BuildButton BuildButton => _buildButton;
 
     public virtual void Enter() { }
+
     public virtual void Exit() { }
 
     public void DeliverResourceToBridge(ResourceTypes resourceType)

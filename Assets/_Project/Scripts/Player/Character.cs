@@ -19,10 +19,12 @@ namespace Assets.Scripts.Player
         private ICharacterDeathTracker _deathTracker;
 
         public Transform CharacterModel => _characterModel;
+
         public CharacterHealth Health => _characterHealth;
 
         [Inject]
-        public void Construct(IParticleSpawner particleSpawner,
+        public void Construct(
+            IParticleSpawner particleSpawner,
             ICharacterDeathTracker deathTracker)
         {
             _characterEffects = particleSpawner;

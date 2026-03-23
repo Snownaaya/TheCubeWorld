@@ -1,10 +1,10 @@
-using Assets.Scripts.Player.Core;
-using Reflex.Attributes;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.Camera
 {
+    using System;
+    using Assets.Scripts.Player.Core;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class CameraBinderMediator : MonoBehaviour
     {
         private IVirtualCamera _virtualCamera;

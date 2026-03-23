@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Enemies.Obstacles;
-using System;
-using System.Collections.Generic;
-
 namespace Assets.Scripts.Datas.Character
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Enemies.Obstacles;
+
     public class TransientCharacterData : ITransientCharacterData
     {
         private ObstacleTypes _obstacleTypes;

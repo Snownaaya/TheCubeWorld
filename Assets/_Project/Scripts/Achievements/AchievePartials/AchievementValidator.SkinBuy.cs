@@ -1,9 +1,9 @@
-using Assets.Scripts.Player.Skins;
-using System;
-using System.Collections.Generic;
-
 namespace Assets.Scripts.Achievements.AchievePartials
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Player.Skins;
+
     public partial class AchievementValidator
     {
         public Action<HashSet<CharacterSkins>> GetSkinBuyValidators()

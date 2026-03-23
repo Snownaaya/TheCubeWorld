@@ -1,10 +1,10 @@
-using Assets.Scripts.Items;
-using System;
-using System.Collections.Generic;
-using UniRx;
-
 namespace Assets.Scripts.Player.Inventory
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Items;
+    using UniRx;
+
     [Serializable]
     public class PlayerInventory : IInventory
     {

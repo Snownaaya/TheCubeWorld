@@ -1,9 +1,9 @@
-using Assets.Scripts.Datas;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.Bridge
 {
+    using System;
+    using Assets.Scripts.Datas;
+    using UnityEngine;
+
     public class BuildingArea : MonoBehaviour
     {
         [SerializeField] private Transform _nextPositionPoint;

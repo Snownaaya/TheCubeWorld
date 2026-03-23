@@ -1,12 +1,13 @@
-using Assets.Scripts.UI.BridgeBuilder;
 using Assets.Scripts.Items;
+using Assets.Scripts.UI.BridgeBuilder;
 using DG.Tweening;
 
 public class StoneSelectedState : BaseBridgeState
 {
     private ResourceTypes _stoneType = ResourceTypes.Stone;
 
-    public StoneSelectedState(BuildButton buildButton) : base(buildButton) { }
+    public StoneSelectedState(BuildButton buildButton)
+        : base(buildButton) { }
 
     public override void Enter()
     {
@@ -23,6 +24,8 @@ public class StoneSelectedState : BaseBridgeState
         base.Exit();
 
         BuildButton.StoneButton.transform.DOKill();
-        BuildButton.StoneButton.transform.DOScale(1, 0.25f).From(0.8f).SetEase(Ease.OutBack);
+        BuildButton.StoneButton.transform.DOScale(1, 0.25f)
+            .From(0.8f)
+            .SetEase(Ease.OutBack);
     }
 }

@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Achievements.Observers;
-using Assets.Scripts.UI.Shop.SkinsShop;
-
 namespace Assets.Scripts.Service.AchievementServices
 {
+    using Assets.Scripts.Achievements.Observers;
+    using Assets.Scripts.UI.Shop.SkinsShop;
+
     public class SkinBuyTracker : ISkinsBuyTracker
     {
         private AchievemntBuyObserver _achievemntBuyObserver;

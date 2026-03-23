@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Items;
-using UnityEngine;
-
 namespace Assets.Scripts.Datas
 {
+    using Assets.Scripts.Items;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "ResourceConfig", menuName = "Resource/ResourceConfig")]
     public class ResourceConfig : ScriptableObject
     {
@@ -11,7 +11,9 @@ namespace Assets.Scripts.Datas
         [SerializeField] private float _speed;
 
         public ResourceTypes ResourceType => _type;
+
         public Material Material => _material;
+
         public float Speed => _speed;
     }
 }

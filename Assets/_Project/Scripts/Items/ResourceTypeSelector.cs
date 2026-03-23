@@ -1,8 +1,8 @@
-﻿using System;
-using Random = UnityEngine.Random;
-
 namespace Assets.Scripts.Items
 {
+    using System;
+    using Random = UnityEngine.Random;
+
     public static class ResourceTypeSelector
     {
         public static ResourceTypes GetRandomTypes() =>

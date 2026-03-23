@@ -1,11 +1,12 @@
-﻿using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.Particles;
-using Reflex.Attributes;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.Bridge.Factory
 {
+    using System;
+    using Assets.Project.Scripts.Bridge;
+    using Assets.Scripts.Particles;
+    using Assets.Scripts.Service.AchievementServices;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class BridgeSpawner : MonoBehaviour
     {
         [SerializeField] private BridgeFactory _factory;
@@ -16,10 +17,11 @@ namespace Assets.Scripts.Bridge.Factory
         private IParticleSpawner _bridgeEffect;
         private IBridgeBuildTracker _trackerService;
 
-        public Transform Point => _point;
-        public Bridge CurrentBridge => _currentBridge;
-
         public event Action<Bridge> OnSpawned;
+
+        public Transform Point => _point;
+
+        public Bridge CurrentBridge => _currentBridge;
 
         [Inject]
         private void Construct(

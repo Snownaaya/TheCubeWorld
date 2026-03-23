@@ -1,17 +1,18 @@
-using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.Service.GameMessage;
-using Assets.Scripts.UI.FinishedUI;
-using Assets.Scripts.UseCase;
-using Assets.Scripts.VictoryReward;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-using System.Threading;
-using UniRx;
-using UnityEngine;
-
 namespace Assets.Scripts.Mediators.LevelCompletedMediator
 {
-    public class WinLevelWindowMediator : MonoBehaviour
+    using System.Threading;
+    using Assets.Project.Scripts.Mediators.LevelCompletedMediator;
+    using Assets.Scripts.Player.Wallet;
+    using Assets.Scripts.Service.GameMessage;
+    using Assets.Scripts.UI.FinishedUI;
+    using Assets.Scripts.UseCase;
+    using Assets.Scripts.VictoryReward;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+    using UniRx;
+    using UnityEngine;
+
+    public class WinLevelWindowMediator : MonoBehaviour, IWinLevelWindowMediator
     {
         [SerializeField] private AddDefaultCoin _addDefaultCoin;
         [SerializeField] private AdsCoinButton _adsCoinButton;
@@ -90,12 +91,6 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
         public void Show() =>
             _canvas.gameObject.SetActive(true);
 
-        private void OnDefaultCoinReceived(int coins)
-        {
-            _wallet.AddCoins(coins);
-            _sceneTransitions.GetNextLevel().Forget();
-        }
-
         public void OnRewardReceived(RewardStripModel model)
         {
             _wallet.AddCoins(model.FinalCoins);
@@ -114,6 +109,12 @@ namespace Assets.Scripts.Mediators.LevelCompletedMediator
             _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
             _adsCoinButton.UpdateCoinsText(_rewardStripModel.FinalCoins);
+        }
+
+        private void OnDefaultCoinReceived(int coins)
+        {
+            _wallet.AddCoins(coins);
+            _sceneTransitions.GetNextLevel().Forget();
         }
     }
 }

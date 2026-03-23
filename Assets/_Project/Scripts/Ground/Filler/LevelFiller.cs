@@ -1,35 +1,43 @@
-using System.Threading;
-using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using Assets.Project.Scripts.Ground.Filler;
-
 namespace Assets.Scripts.Ground.Filler
 {
+    using System.Threading;
+    using Assets.Project.Scripts.Ground.Filler;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     public class LevelFiller : MonoBehaviour, ILevelHazard
     {
         [SerializeField] private float _delay;
-        [SerializeField] private Transform _transform;
+        [SerializeField] private Vector3 _scaleY;
 
-        private Vector3 _scaleUp = Vector3.up;
-        private CancellationTokenSource _cancellationTokenSource;
+        private Transform _transform;
+        private Vector3 _startScale;
+        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
 
-        private void Awake()
+        private void Start()
         {
-            _transform.position = transform.position;
+            _transform = transform;
+            _startScale = transform.localScale;
+        }
+
+        private void OnDestroy()
+        {
+            if (_cancellationTokenSource != null)
+            {
+                _cancellationTokenSource.Cancel();
+                _cancellationTokenSource = null;
+            }
         }
 
         public void ResetFiller() =>
-            _transform.position = new Vector3(0, -11, 0);
+            transform.localScale = _startScale;
 
         public void Stop()
         {
             if (_cancellationTokenSource != null)
             {
                 _cancellationTokenSource.Cancel();
-                _cancellationTokenSource.Dispose();
                 _cancellationTokenSource = null;
-                ResetFiller();
             }
         }
 
@@ -43,8 +51,14 @@ namespace Assets.Scripts.Ground.Filler
         {
             while (cancellationToken.IsCancellationRequested == false)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_delay), cancellationToken: cancellationToken);
-                _transform.position += _scaleUp;
+                await UniTask.Yield();
+
+                if (_transform == null)
+                    return;
+
+                _startScale = _transform.localScale;
+                _startScale.y += Time.deltaTime * _scaleY.y;
+                _transform.localScale = _startScale;
             }
         }
     }

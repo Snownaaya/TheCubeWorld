@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>

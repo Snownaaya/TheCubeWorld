@@ -1,17 +1,17 @@
-using Assets._Project.Scripts.AddressablesModule;
-using Assets.Project.Scripts.Datas;
-using Assets.Scripts.Service.LevelLoaderService.Loader;
-using Cysharp.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
-
 namespace Assets.Scripts.UseCase
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Project.Scripts.AddressablesModule;
+    using Assets.Project.Scripts.Datas;
+    using Assets.Scripts.Service.LevelLoaderService.Loader;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine.AddressableAssets;
+    using UnityEngine.ResourceManagement.ResourceProviders;
+    using UnityEngine.SceneManagement;
+    using Random = UnityEngine.Random;
+
     public class SceneTransitions
     {
         private SceneID _currentSceneID;
@@ -55,7 +55,7 @@ namespace Assets.Scripts.UseCase
             SceneID sceneID = availableLevels[randomIndex];
 
             await UniTask.Delay(TimeSpan.FromSeconds(_delay));
-            await LoadLevel(sceneID);
+            await LoadLevel(SceneID.Level_3);
 
             return sceneID;
         }

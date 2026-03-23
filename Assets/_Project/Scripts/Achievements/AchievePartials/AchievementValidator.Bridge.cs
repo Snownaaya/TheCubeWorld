@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Bridge.Factory;
-using System.Collections.Generic;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Items;
-using System;
-
 namespace Assets.Scripts.Achievements.AchievePartials
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Bridge.Factory;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Items;
+
     public partial class AchievementValidator
     {
         private AchievementService _achievementService;
@@ -46,7 +46,7 @@ namespace Assets.Scripts.Achievements.AchievePartials
                     bridgesCount: 10,
                     isCorrectBridge: bridge => bridge.ResourceTypes == ResourceTypes.Dirt,
                     writeAchive: () => _achievementService.Achieve(AchievementNames.Mud)
-                )
+                ),
             };
         }
 

@@ -1,15 +1,14 @@
-﻿using Assets.Scripts.Player.Wallet;
-using Assets.Scripts.UI.GameUI;
-using Assets.Scripts.UI.Shop;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.MainMenu
 {
+    using Assets.Scripts.Player.Wallet;
+    using Assets.Scripts.UI.GameUI;
+    using Assets.Scripts.UI.Shop;
+    using UnityEngine;
+
     public class ShopButton : WindowView
     {
         [SerializeField] private BackgroundPanel _backgroundPanel;
         [SerializeField] private BaseShopPanel _shopPanel;
-        [SerializeField] private RectTransform _buttons;
         [SerializeField] private WalletView _walletView;
 
         protected override void Close()
@@ -19,7 +18,7 @@ namespace Assets.Scripts.UI.MainMenu
             _backgroundPanel.Hide();
             _walletView.Hide();
             _shopPanel.gameObject.SetActive(false);
-            _buttons.gameObject.SetActive(false);
+            RectTransform.gameObject.SetActive(false);
         }
 
         protected override void Open()
@@ -27,7 +26,7 @@ namespace Assets.Scripts.UI.MainMenu
             base.Open();
 
             _shopPanel.gameObject.SetActive(true);
-            _buttons.gameObject.SetActive(true);
+            RectTransform.gameObject.SetActive(true);
             _walletView.Show();
             _backgroundPanel.Show();
         }

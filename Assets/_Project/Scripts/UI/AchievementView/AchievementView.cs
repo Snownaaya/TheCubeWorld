@@ -1,17 +1,17 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Datas;
-using System;
-using UnityEngine.UI;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.AchievementView
 {
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Interfaces;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class AchievementView : MonoBehaviour, ILockable
     {
         [SerializeField] private AchievementConfig _achieveNames;
         [SerializeField] private Image _lockImage;
 
         public AchievementConfig AchievementConfig => _achieveNames;
+
         public bool IsLock { get; private set; }
 
         public void Lock()

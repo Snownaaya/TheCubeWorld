@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Player.Attack;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.HealthCharacters
 {
+    using Assets.Scripts.Player.Attack;
+    using UnityEngine;
+
     public class PlayerHealthUIActivator : MonoBehaviour
     {
         [SerializeField] private RectTransform _rectTransform;

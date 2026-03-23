@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Items;
-using Assets.Scripts.Player.Inventory;
-using Cysharp.Threading.Tasks;
-using Reflex.Attributes;
-using UniRx;
-using UnityEngine;
-
 namespace Assets.Scripts.Domain.MediatorResource
 {
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Player.Inventory;
+    using Cysharp.Threading.Tasks;
+    using Reflex.Attributes;
+    using UniRx;
+    using UnityEngine;
+
     public class ResourceMediator : MonoBehaviour
     {
         [SerializeField] private ResourceCountView[] _view;
@@ -18,7 +18,10 @@ namespace Assets.Scripts.Domain.MediatorResource
         private void Construct(IInventory inventory)
         {
             _playerInventory = inventory;
+        }
 
+        private void OnEnable()
+        {
             foreach (ResourceTypes resourceType in _playerInventory.ResourceStacks.Keys)
             {
                 UpdateCountText(resourceType, _playerInventory.ResourceStacks[resourceType].Value);
@@ -34,7 +37,7 @@ namespace Assets.Scripts.Domain.MediatorResource
             if (_playerInventory == null)
                 return;
 
-            _compositeDisposable.Dispose();
+            _compositeDisposable.Clear();
         }
 
         public void UpdateCountText(ResourceTypes type, int count)

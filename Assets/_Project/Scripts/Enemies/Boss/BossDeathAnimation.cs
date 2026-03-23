@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Service.LevelLoaderService;
-using Cysharp.Threading.Tasks;
-using Assets.Scripts.Datas;
-using System.Threading;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.Enemies.Boss
 {
+    using System;
+    using System.Threading;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Service.LevelLoaderService;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     [RequireComponent(typeof(EndLevel), typeof(BossView))]
     public class BossDeathAnimation : MonoBehaviour
     {
@@ -29,8 +29,8 @@ namespace Assets.Scripts.Enemies.Boss
         private void OnDisable()
         {
             _endlevel.LevelEnded -= OnLevelEnded;
+
             _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
         }
 
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Enemies.Boss
 
         private async UniTask DieDelay(CancellationToken cancellationToken)
         {
-            if(cancellationToken.IsCancellationRequested)
+            if (cancellationToken.IsCancellationRequested)
                 return;
 
             _bossView.StopAttack();

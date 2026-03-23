@@ -1,12 +1,12 @@
-using Assets.Scripts.GameStateMachine.States.Phases;
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.Player.Attack;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.GameMessage;
-using UniRx;
-
 namespace Assets.Scripts.GameStateMachine.States.Runtime
 {
+    using Assets.Scripts.GameStateMachine.States.Phases;
+    using Assets.Scripts.Interfaces;
+    using Assets.Scripts.Player.Attack;
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Service.GameMessage;
+    using UniRx;
+
     public abstract class RuntimeState : BaseGameState
     {
         private ICharacterHolder _characterHolder;
@@ -15,10 +15,10 @@ namespace Assets.Scripts.GameStateMachine.States.Runtime
 
         protected RuntimeState(
             ISwitcher switcher,
-            EntryPointState entryPoint,
+            GameEntryPointState gameEntryPointState,
             ICharacterHolder characterHolder,
             GameMessageBus gameMessageBus)
-            : base(switcher, entryPoint)
+            : base(switcher)
         {
             _characterHolder = characterHolder;
             _messageBus = gameMessageBus;

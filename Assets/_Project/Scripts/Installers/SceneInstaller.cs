@@ -1,21 +1,24 @@
-using Assets.Project.Scripts.Ground.Filler;
-using Assets.Scripts.Camera;
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.GameStateMachine;
-using Assets.Scripts.Ground;
-using Assets.Scripts.Ground.Filler;
-using Assets.Scripts.Interfaces;
-using Cinemachine;
-using Reflex.Core;
-using UnityEngine;
-
 namespace Assets.Scripts.Installers
 {
+    using Assets.Project.Scripts.Ground.Filler;
+    using Assets.Project.Scripts.Mediators.LevelCompletedMediator;
+    using Assets.Scripts.Camera;
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.GameStateMachine;
+    using Assets.Scripts.Ground;
+    using Assets.Scripts.Ground.Filler;
+    using Assets.Scripts.Interfaces;
+    using Assets.Scripts.Mediators.LevelCompletedMediator;
+    using Cinemachine;
+    using Reflex.Core;
+    using UnityEngine;
+
     public class SceneInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private FinalPlatform _finalPlatform;
         [SerializeField] private CinemachineVirtualCamera _cinemachineVirtualCamera;
         [SerializeField] private LevelFiller _levelFiller;
+        [SerializeField] private WinLevelWindowMediator _windowMediator;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
@@ -24,6 +27,7 @@ namespace Assets.Scripts.Installers
             BindVirtualCamera(containerBuilder);
             BindTransientData(containerBuilder);
             BindLevelFiller(containerBuilder);
+            BindWinLevel(containerBuilder);
         }
 
         private void BindSwitcher(ContainerBuilder containerBuilder) =>
@@ -40,6 +44,12 @@ namespace Assets.Scripts.Installers
             containerBuilder.AddSingleton(new TransientCharacterData(), typeof(ITransientCharacterData));
 
         private void BindLevelFiller(ContainerBuilder containerBuilder) =>
-            containerBuilder.AddSingleton(new LevelHazard(_levelFiller));
+            containerBuilder.AddTransient(container =>
+            {
+                return new LevelHazard(_levelFiller);
+            });
+
+        private void BindWinLevel(ContainerBuilder containerBuilder) =>
+            containerBuilder.AddSingleton(new WinLevelHandler(_windowMediator));
     }
 }

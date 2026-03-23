@@ -1,60 +1,33 @@
-using DG.Tweening;
-using TMPro;
-using UnityEngine;
-
 namespace Assets.Scripts.TutorialObject
 {
+    using Assets.Project.Scripts.Other;
+    using DG.Tweening;
+    using TMPro;
+    using UnityEngine;
+
     public class TextBuildBridge : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _tutorBuildBridgeText;
-
-        private Sequence _animation;
+        [SerializeField] private RectTransform _rectTransform;
 
         public void SetText(string message)
         {
-            transform.gameObject.SetActive(true);
-            _tutorBuildBridgeText.text = message.ToString();
+            _rectTransform.gameObject.SetActive(true);
+            _tutorBuildBridgeText.text = message;
         }
 
         public void Show()
         {
-            _animation = DOTween.Sequence();
-
-            _animation
-                .Append(_tutorBuildBridgeText.transform.DOScale(1f, 0.3f)
-                .From(0)
-                .SetEase(Ease.Linear))
-                .SetUpdate(true)
-                .Restart();
+            _rectTransform.gameObject.SetActive(true);
+            TweenHelper.ScaleUI(_rectTransform);
         }
 
         public void Hide()
         {
-            if (gameObject.activeSelf == false)
-                return;
+            TweenHelper.HideUI(_rectTransform);
 
-            KillCurrentAnimationIfActive();
-
-            _animation = DOTween.Sequence();
-
-            _animation.Append(_tutorBuildBridgeText.transform.DOScale(1f, 0f)
-                .From()
-                .SetEase(Ease.Linear)
-                .SetUpdate(true)
-                .OnComplete(() =>
-                {
-                    gameObject.SetActive(false);
-                }))
-                .SetAutoKill();
+            DOTween.To(() => 0, x => { }, 1f, 0.5f)
+                .OnComplete(() => _rectTransform.gameObject.SetActive(false));
         }
-
-        private void KillCurrentAnimationIfActive()
-        {
-            if (InAnimation())
-                _animation.Kill();
-        }
-
-        private bool InAnimation() =>
-             _animation != null && _animation.active;
     }
 }

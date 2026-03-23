@@ -1,15 +1,15 @@
-﻿using Assets.Scripts.Enemies.Obstacles;
-using Assets.Scripts.Player.Skins;
-using Assets.Scripts.UI.Shop.SO;
-using System;
-using System.Collections.Generic;
-
 namespace Assets.Scripts.Achievements.Observers
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Enemies.Obstacles;
+    using Assets.Scripts.Player.Skins;
+    using Assets.Scripts.UI.Shop.SO;
+
     public class AchievemntBuyObserver
     {
-        private HashSet<CharacterSkins> _buySkinsCounts = new();
-        private HashSet<ObstacleTypes> _buyAbilityCounts = new();
+        private HashSet<CharacterSkins> _buySkinsCounts = new ();
+        private HashSet<ObstacleTypes> _buyAbilityCounts = new ();
 
         private Action<HashSet<ObstacleTypes>> _abilityBuyCheckers;
         private Action<HashSet<CharacterSkins>> _skinBuyCheckers;

@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: WebGL
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 1024
       m_ResizeAlgorithm: 0
       m_TextureFormat: 12
       m_TextureCompression: 1
@@ -47,7 +47,6 @@ SpriteAtlas:
     packables:
     - {fileID: 2800000, guid: 73455b68e2f3a684ab1f3e2d5d8dfa17, type: 3}
     - {fileID: 2800000, guid: 7a575d7da5b667244bc15c42e6844c1a, type: 3}
-    - {fileID: 2800000, guid: 0b8da0f64822c024caacb18dd7684d1f, type: 3}
     - {fileID: 2800000, guid: c7b0c7d45c38e2d49a415a1986a66759, type: 3}
     - {fileID: 2800000, guid: 81d6bf892f2edf640b416fa22e5c97de, type: 3}
     - {fileID: 2800000, guid: 6c64094895ba37d43a055e9b7a0de587, type: 3}
@@ -65,6 +64,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: ab05f7843433c9743b80537d709accb0, type: 3}
     - {fileID: 2143726855, guid: 1a03182648b22ba439a0e346858cb0ff, type: 3}
     - {fileID: 2800000, guid: 79142e3992b900e4fbbe20e898babf73, type: 3}
+    - {fileID: 2800000, guid: 047bc2688c46a3c4893a2aa4b4d0af62, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteAtlas:
     - ab05f7843433c9743b80537d709accb0: 21300000
     - c7b0c7d45c38e2d49a415a1986a66759: 21300000
     - 1a03182648b22ba439a0e346858cb0ff: 2143726855
-    - 0b8da0f64822c024caacb18dd7684d1f: 21300000
     - 6c64094895ba37d43a055e9b7a0de587: 21300000
+    - 047bc2688c46a3c4893a2aa4b4d0af62: 21300000
     - 73455b68e2f3a684ab1f3e2d5d8dfa17: -2089614963
     - f7c53a29d15829d4eab9e2c0892b6576: 21300000
     - 79142e3992b900e4fbbe20e898babf73: 21300000
@@ -95,8 +95,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ab05f7843433c9743b80537d709accb0, type: 3}
   - {fileID: 21300000, guid: c7b0c7d45c38e2d49a415a1986a66759, type: 3}
   - {fileID: 2143726855, guid: 1a03182648b22ba439a0e346858cb0ff, type: 3}
-  - {fileID: 21300000, guid: 0b8da0f64822c024caacb18dd7684d1f, type: 3}
   - {fileID: 21300000, guid: 6c64094895ba37d43a055e9b7a0de587, type: 3}
+  - {fileID: 21300000, guid: 047bc2688c46a3c4893a2aa4b4d0af62, type: 3}
   - {fileID: -2089614963, guid: 73455b68e2f3a684ab1f3e2d5d8dfa17, type: 3}
   - {fileID: 21300000, guid: f7c53a29d15829d4eab9e2c0892b6576, type: 3}
   - {fileID: 21300000, guid: 79142e3992b900e4fbbe20e898babf73, type: 3}
@@ -116,8 +116,8 @@ SpriteAtlas:
   - "\u0442\u0440\u0435\u0443\u0433\u043E\u043B\u044C\u043D\u0438\u043A"
   - c92085e91d246b9
   - ExclamationMark_grayscale_0
-  - building-icon-1
   - settings-icon-1
+  - "\u0435\u0431\u0443\u0447\u0430\u044F \u0442\u0430\u0431\u043B\u0438\u0447\u043A\u0430"
   - 8dcef20c5c009a8_0
   - "\u043A\u0443\u0431\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u043C\u0438\u0440
     \u043A\u043D\u043E\u043F\u043A\u0430"

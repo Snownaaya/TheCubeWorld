@@ -1,7 +1,7 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.UI.BridgeBuilder;
 using System;
 using System.Collections.Generic;
+using Assets.Scripts.Interfaces;
+using Assets.Scripts.UI.BridgeBuilder;
 
 public class BuildBridgeState : ISwitcher
 {

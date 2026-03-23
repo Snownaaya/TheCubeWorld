@@ -1,12 +1,12 @@
-using System;
-using System.Threading;
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.UI.HealthCharacters.Characters;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-
 namespace Assets.Scripts.Player.Attack
 {
+    using System;
+    using System.Threading;
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.UI.HealthCharacters.Characters;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     public class CharacterAttacker : MonoBehaviour
     {
         [Header("Dependencies")]
@@ -18,10 +18,11 @@ namespace Assets.Scripts.Player.Attack
         private bool _isAttacking = false;
         private CancellationTokenSource _cancellationToken;
 
-        public ResourceConsumer ResourceConsumer => _resourceConsumer;
-
         public event Action AttackStarted;
+
         public event Action AttackEnded;
+
+        public ResourceConsumer ResourceConsumer => _resourceConsumer;
 
         private void Awake() =>
             _enemyScaner.Initialize(_characterConfig);

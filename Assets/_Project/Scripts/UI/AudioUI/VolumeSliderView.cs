@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.UI.AudioUI
 {
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public abstract class VolumeSliderView : MonoBehaviour
     {
         [field: SerializeField] protected Slider VolumeSlider { get; private set; }

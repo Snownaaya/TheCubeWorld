@@ -1,13 +1,13 @@
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Player.Skins;
-using Assets.Scripts.Service.GameMessage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UniRx;
-
 namespace Assets.Scripts.Player.Saves
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Player.Skins;
+    using Assets.Scripts.Service.GameMessage;
+    using UniRx;
+
     public class CharacterPersistentLinker : IDisposable
     {
         private const string MoneyKey = nameof(MoneyKey); 
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Player.Saves
         private readonly IPersistentCharacterData _data;
 
         private GameMessageBus _gameMessageBus;
-        private CompositeDisposable _compositeDisposable = new();
+        private CompositeDisposable _compositeDisposable = new ();
 
         public CharacterPersistentLinker(
             ICharacterSaveRepository repository,
@@ -28,6 +28,9 @@ namespace Assets.Scripts.Player.Saves
             _repository = repository;
             _data = data;
             _gameMessageBus = gameMessageBus;
+
+            //ResetSkins();
+            //ResetMoney();
         }
 
         public void Dispose() =>
@@ -39,7 +42,7 @@ namespace Assets.Scripts.Player.Saves
 
             _data.SelectedCharacterSkin = _repository.Load(SelectedSkinKey, CharacterSkins.Bunny);
 
-            _data.Money.Value = _repository.Load(MoneyKey, 10000);
+            _data.Money.Value = _repository.Load(MoneyKey, 100000000);
 
             _data.SetOpenSkins(savedSkins);
 
@@ -53,5 +56,10 @@ namespace Assets.Scripts.Player.Saves
                 })
                 .AddTo(_compositeDisposable);
         }
+
+        private void ResetSkins() =>
+            _repository.Delete(OpenSkinsKey);
+
+        private void ResetMoney() => _repository.Delete(MoneyKey);
     }
 }

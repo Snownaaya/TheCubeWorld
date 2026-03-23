@@ -1,16 +1,14 @@
-using Assets.Scripts.Datas.Character;
-using System;
-
 namespace Assets.Scripts.Player.Wallet
 {
+    using System;
+    using Assets.Scripts.Datas.Character;
+
     public class CharacterWallet : IWallet
     {
         private IPersistentCharacterData _persistentCharacterData;
 
-        public CharacterWallet(IPersistentCharacterData characterData)
-        {
+        public CharacterWallet(IPersistentCharacterData characterData) =>
             _persistentCharacterData = characterData;
-        }
 
         public IPersistentCharacterData PersistentCharacterData => _persistentCharacterData;
 

@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.UI.AchievementView;
-using Assets.Scripts.Achievements;
-using System.Collections.Generic;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Domain
 {
+    using System.Collections.Generic;
+    using Assets.Scripts.Achievements;
+    using Assets.Scripts.UI.AchievementView;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class AchievementViewMediator : MonoBehaviour
     {
         [SerializeField] private List<AchievementView> _achieveView;

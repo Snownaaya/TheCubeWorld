@@ -1,10 +1,10 @@
-using Assets.Scripts.Datas.Character;
-using Assets.Scripts.Player.Saves;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Initialize
 {
+    using Assets.Scripts.Datas.Character;
+    using Assets.Scripts.Player.Saves;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class GameBootstrap : MonoBehaviour
     {
         private ICharacterSaveRepository _characterSaveRepository;

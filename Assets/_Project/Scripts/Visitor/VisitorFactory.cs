@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.UI.Shop.SO;
-using System;
-
 namespace Assets.Scripts.Visitor
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.UI.Shop.SO;
+
     public class VisitorFactory
     {
         private readonly Dictionary<Type, Func<ShopItem, ShopItemEntry>> _factoryMap;
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Visitor
             {
                 typeof(CharacterSkinsItem),
                 sciptableObject => new ShopItemEntry(visitor => visitor.Visit((CharacterSkinsItem)sciptableObject))
-            }
+            },
         };
         }
 

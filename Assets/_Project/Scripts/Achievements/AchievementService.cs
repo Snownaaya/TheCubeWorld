@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
-
 namespace Assets.Scripts.Achievements
 {
+    using System;
+    using System.Collections.Generic;
+
     public class AchievementService
     {
         private readonly Dictionary<AchievementNames, bool> _achievementsStatuses;

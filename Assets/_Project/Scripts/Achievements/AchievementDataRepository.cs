@@ -1,9 +1,9 @@
-using Assets.Scripts.Service.Saves;
-using Assets.Scripts.Service.Json;
-using System.Collections.Generic;
-
 namespace Assets.Scripts.Achievements
 {
+    using System.Collections.Generic;
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.Saves;
+
     public class AchievementDataRepository
     {
         private const string Achievements = nameof(Achievements);
@@ -16,7 +16,7 @@ namespace Assets.Scripts.Achievements
             _saveService = saveService;
             _jsonService = jsonService;
 
-           // ResetAchievements();
+            //ResetAchievements();
         }
 
         public Dictionary<AchievementNames, bool> GetAchievements()

@@ -1,7 +1,7 @@
-using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Boss
 {
+    using UnityEngine;
+
     public class BossView : MonoBehaviour
     {
         private const string IsIdle = nameof(IsIdle);

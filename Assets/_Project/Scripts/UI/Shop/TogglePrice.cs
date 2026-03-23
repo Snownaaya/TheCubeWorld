@@ -1,8 +1,8 @@
-using Assets.Scripts.UI.GameUI;
-using UnityEngine;
-
-namespace Assets._Project.Scripts.UI.Shop
+namespace Assets.Project.Scripts.UI.Shop
 {
+    using Assets.Scripts.UI.GameUI;
+    using UnityEngine;
+
     public class TogglePrice : UIElement
     {
         [SerializeField] private RectTransform _rectTransform;

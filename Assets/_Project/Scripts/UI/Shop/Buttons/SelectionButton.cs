@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.UI.GameUI;
-using System;
-using UnityEngine;
-using UnityEngine.UI;
-
 namespace Assets.Scripts.UI.Shop.Buttons
 {
+    using System;
+    using Assets.Scripts.UI.GameUI;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class SelectionButton : UIElement
     {
         [SerializeField] private Button _select;
@@ -17,11 +17,17 @@ namespace Assets.Scripts.UI.Shop.Buttons
         private void OnDisable() =>
             _select.onClick.RemoveListener(OnSelectionButtonClick);
 
-        public override void Show() =>
+        public override void Show()
+        {
+            base.Show();
             _select.gameObject.SetActive(true);
+        }
 
-        public override void Hide() =>
+        public override void Hide()
+        {
+            base.Hide();
             _select.gameObject.SetActive(false);
+        }
 
         private void OnSelectionButtonClick() =>
             Clicked?.Invoke();

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
-
 namespace Assets.Scripts.Achievements.AchievePartials
 {
+    using System;
+    using System.Collections.Generic;
+
     public partial class AchievementValidator
     {
         public List<Action<List<int>>> GetDeathValidators()
@@ -17,8 +17,8 @@ namespace Assets.Scripts.Achievements.AchievePartials
                 DeathChecker
                 (
                    deathCount: 10,
-                   writeAchieve: () =>_achievementService.Achieve(AchievementNames.SkillIssue)
-                )
+                   writeAchieve: () => _achievementService.Achieve(AchievementNames.SkillIssue)
+                ),
             };
         }
 

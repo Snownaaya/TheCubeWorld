@@ -1,12 +1,12 @@
-using Assets.Scripts.Bridge.Factory;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Items;
-using System;
-using UniRx;
-using UnityEngine;
-
 namespace Assets.Scripts.Bridge
 {
+    using System;
+    using Assets.Scripts.Bridge.Factory;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Items;
+    using UniRx;
+    using UnityEngine;
+
     public class Bridge : MonoBehaviour
     {
         [SerializeField] private BridgeType _bridgeType;

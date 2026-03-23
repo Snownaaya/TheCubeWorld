@@ -1,22 +1,30 @@
-﻿using Assets.Scripts.Service.Pause;
-using Screen = Assets.Scripts.UI.GameUI.Screen;
-using System;
-using Reflex.Attributes;
-using UnityEngine.UI;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.SettingsMenu
 {
+    using System;
+    using Assets.Scripts.Service.Audio;
+    using Assets.Scripts.Service.Pause;
+    using Reflex.Attributes;
+    using UnityEngine;
+    using UnityEngine.UI;
+    using Screen = Assets.Scripts.UI.GameUI.Screen;
+
     public class Settings : Screen, IPause
     {
         [SerializeField] private Button _settingsButton;
         [SerializeField] private Button _exitMainMenu;
 
+        private ForegroundAudioService _audioService;
+
         public event Action MainMenuRequested;
 
         [Inject]
-        private void Construct(PauseHandler pauseHandler) =>
+        private void Construct(
+            PauseHandler pauseHandler,
+            ForegroundAudioService foregroundAudioService)
+        {
             pauseHandler.Add(this);
+            _audioService = foregroundAudioService;
+        }
 
         private void OnEnable()
         {
@@ -34,6 +42,7 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         public override void Open()
         {
+            _audioService.PlaySound(AudioTypes.Buttons);
             RectTransform.gameObject.SetActive(true);
             CanvasGroup.alpha = 1;
             SetPause(true);
@@ -41,6 +50,7 @@ namespace Assets.Scripts.UI.SettingsMenu
 
         public override void Close()
         {
+            _audioService.PlaySound(AudioTypes.Buttons);
             RectTransform.gameObject.SetActive(false);
             CanvasGroup.alpha = 0;
             SetPause(false);

@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Assets.Scripts.GameStateMachine
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Scripts.Interfaces;
+
     public class GameState : ISwitcher
     {
-        private Dictionary<Type ,IStates> _states = new Dictionary<Type, IStates>();
+        private Dictionary<Type, IStates> _states = new Dictionary<Type, IStates>();
         private IStates _currentState;
 
         public void Initialize(params IStates[] states)
@@ -21,7 +21,8 @@ namespace Assets.Scripts.GameStateMachine
             _currentState?.Enter();
         }
 
-        public void SwitchState<T>() where T : IStates
+        public void SwitchState<T>()
+            where T : IStates
         {
             if (_states.TryGetValue(typeof(T), out IStates newState))
             {

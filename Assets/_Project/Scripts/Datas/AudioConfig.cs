@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
-using Assets.Scripts.Service.Audio;
-using UnityEngine;
-
 namespace Assets.Scripts.Datas
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.Service.Audio;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "Audio", menuName = "Audio/ScriptableObject")]
     public class AudioConfig : ScriptableObject
     {

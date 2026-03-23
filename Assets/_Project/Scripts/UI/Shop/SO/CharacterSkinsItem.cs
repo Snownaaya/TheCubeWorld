@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Player.Skins;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.SO
 {
+    using Assets.Scripts.Player.Skins;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "CharacterSkinsItem", menuName = "Shop/CharacterSkinsItem")]
     public class CharacterSkinsItem : ShopItem
     {

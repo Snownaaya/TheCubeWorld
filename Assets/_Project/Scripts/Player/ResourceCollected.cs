@@ -1,17 +1,19 @@
-using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Items;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.Player
 {
+    using Assets.Scripts.Items;
+    using Assets.Scripts.Player.Inventory;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public class ResourceCollected : MonoBehaviour
     {
         private IInventory _playerInventory;
         private IResourceService _resourceSpawner;
 
         [Inject]
-        private void Construct(IResourceService resourceSpawner,IInventory inventory)
+        private void Construct(
+            IResourceService resourceSpawner,
+            IInventory inventory)
         {
             _resourceSpawner = resourceSpawner;
             _playerInventory = inventory;

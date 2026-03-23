@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.UI.FinishedUI;
-using UnityEngine;
-
 namespace Assets.Scripts.VictoryReward
 {
+    using Assets.Scripts.UI.FinishedUI;
+    using UnityEngine;
+
     public class RewardStripArrow : MonoBehaviour
     {
         [SerializeField] private RewardSlotView[] _slots;

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Achievements;
-
 namespace Assets.Scripts.UseCase
 {
+    using Assets.Scripts.Achievements;
+
     public class WinLevelUseCase
     {
         private readonly AchievementService _achievementService;

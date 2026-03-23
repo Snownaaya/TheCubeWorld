@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf91a3bf62c4b9546a62a166bae40a04, type: 3}
   m_Name: Cat
   m_EditorClassIdentifier: 
-  <Price>k__BackingField: 0
+  <Price>k__BackingField: 2000
   <Image>k__BackingField: {fileID: 21300000, guid: 7a1b7cf627d50814bb4055dff7379ea2, type: 3}
   <CharacterSkins>k__BackingField: 2
+  <Skin>k__BackingField: {fileID: 7072087703587200820, guid: 6cbd4aa3433097742a8aec767016c044, type: 3}

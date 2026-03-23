@@ -1,9 +1,9 @@
-using Assets.Scripts.Service.Audio;
-using Reflex.Attributes;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.GameUI
 {
+    using Assets.Scripts.Service.Audio;
+    using Reflex.Attributes;
+    using UnityEngine;
+
     public abstract class UIElement : MonoBehaviour
     {  
         private ForegroundAudioService _audioService;

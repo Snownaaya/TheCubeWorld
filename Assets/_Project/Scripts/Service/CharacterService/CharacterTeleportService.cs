@@ -1,8 +1,8 @@
-using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Player.Core;
-
 namespace Assets.Scripts.Service.CharacterService
 {
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Service.LevelLoaderService;
+
     public class CharacterTeleportService : ICharacterTeleportService
     {
         private ICharacterHolder _player;

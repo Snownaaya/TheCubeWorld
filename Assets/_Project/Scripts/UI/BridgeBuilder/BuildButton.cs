@@ -1,18 +1,22 @@
-﻿using Assets.Scripts.Player.Inventory;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Other;
-using Reflex.Attributes;
-using UnityEngine.UI;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.BridgeBuilder
 {
+    using Assets.Scripts.Bridge;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Player.Inventory;
+    using Reflex.Attributes;
+    using UnityEngine;
+    using UnityEngine.UI;
+
     public class BuildButton : MonoBehaviour
     {
         [field: SerializeField] public ResourceConfig[] ResourceConfig { get; private set; }
+
         [field: SerializeField] public SpawnerSelector SpawnerSelector { get; private set; }
+
         [field: SerializeField] public Button DirtButton { get; private set; }
+
         [field: SerializeField] public Button WoodButton { get; private set; }
+
         [field: SerializeField] public Button StoneButton { get; private set; }
 
         private IInventory _inventory;
@@ -26,6 +30,7 @@ namespace Assets.Scripts.UI.BridgeBuilder
             _inventory = inventory;
 
         public IInventory Inventory => _inventory;
+
         public BuildBridgeState State => _state;
 
         protected void OnEnable()

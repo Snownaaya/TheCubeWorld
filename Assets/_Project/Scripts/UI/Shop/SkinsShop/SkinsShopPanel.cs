@@ -1,11 +1,11 @@
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.SkinsShop
 {
+    using System;
+    using System.Collections.Generic;
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using UnityEngine;
+
     public class SkinsShopPanel : BaseShopPanel
     {
         [SerializeField] private Transform _itemsParent;
@@ -35,7 +35,6 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
                 spawnedItem.ItemClicked += OnItemViewClick;
 
                 spawnedItem.UnHighlight();
-
                 spawnedItem.Entry.Accept(_visitors.UnlockChecker);
 
                 if (_visitors.UnlockChecker.IsUnlock)

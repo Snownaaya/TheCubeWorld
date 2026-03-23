@@ -1,11 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
-using System.Threading;
-using System;
-using UnityEngine;
-
 namespace Assets.Scripts.Enemies.Obstacles.Patrollers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     public class WaypointPatroller
     {
         private const float MinDistanceToTarget = 0.05f;

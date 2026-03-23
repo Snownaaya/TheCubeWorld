@@ -1,12 +1,12 @@
-using Assets._Project.Scripts.AddressablesModule;
-using Assets.Scripts.Achievements;
-using Assets.Scripts.Datas;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-
 namespace Assets.Scripts.UI.AchievementView
 {
+    using Assets.Project.Scripts.AddressablesModule;
+    using Assets.Scripts.Achievements;
+    using Assets.Scripts.Datas;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+    using UnityEngine.AddressableAssets;
+
     public class AchievementFactory
     {
         public async UniTask<Achievement> GetAsync(AchievementConfig achievementConfig, Transform parent)

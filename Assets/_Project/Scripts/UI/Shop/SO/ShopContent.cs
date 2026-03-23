@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using System;
-
 namespace Assets.Scripts.UI.Shop.SO
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using UnityEngine;
+
     [CreateAssetMenu(fileName = "ShopContent", menuName = "Shop/ShopContent")]
     public class ShopContent : ScriptableObject
     {
@@ -12,6 +12,7 @@ namespace Assets.Scripts.UI.Shop.SO
         [SerializeField] private List<CharacterSkinsItem> _characterSkinsItems;
 
         public IEnumerable<CharacterSkinsItem> CharacterSkinItem => _characterSkinsItems;
+
         public IEnumerable<AbilityItem> AbilityItems => _abilityItems;
 
         private void OnValidate()

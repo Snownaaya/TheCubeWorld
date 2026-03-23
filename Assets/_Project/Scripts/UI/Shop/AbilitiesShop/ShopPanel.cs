@@ -1,25 +1,25 @@
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
 namespace Assets.Scripts.UI.Shop.AbilitiesShop
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Assets.Scripts.Service.Audio;
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using UnityEngine;
+
     public class ShopPanel : BaseShopPanel
     {
         [SerializeField] private Transform _itemsParent;
-
         [SerializeField] private ShopItemView _abilityPrefab;
 
         private ShopItemFactory _shopItemFactory;
-
         private VisitorsHolder _visitors;
 
         public event Action<ShopItemView> ItemViewClicked;
 
-        public void Initialize(VisitorsHolder visitorsHolder,
+        public void Initialize(
+            VisitorsHolder visitorsHolder,
             VisitorFactory visitorFactory)
         {
             _visitors = visitorsHolder;

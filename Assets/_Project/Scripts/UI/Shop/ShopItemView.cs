@@ -1,16 +1,15 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.UI.Shop.SO;
-using Assets.Scripts.Visitor;
-using DG.Tweening;
-using System;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine;
-using TMPro;
-using Assets._Project.Scripts.UI.Shop;
-
 namespace Assets.Scripts.UI.Shop
 {
+    using System;
+    using Assets.Project.Scripts.UI.Shop;
+    using Assets.Scripts.Interfaces;
+    using Assets.Scripts.UI.Shop.SO;
+    using Assets.Scripts.Visitor;
+    using DG.Tweening;
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+    using UnityEngine.UI;
+
     public class ShopItemView : MonoBehaviour, ILockable, IPointerClickHandler
     {
         [SerializeField] private Image _lockImage;
@@ -18,14 +17,19 @@ namespace Assets.Scripts.UI.Shop
         [SerializeField] private Image _contentImage;
         [SerializeField] private TogglePrice _price;
 
-        public ShopItem Item { get; private set; }
-        public ShopItemEntry Entry { get; private set; }
-        public bool IsLock { get; private set; }
-        public int Price => Item.Price;
-
         public event Action<ShopItemView> ItemClicked;
 
-        public void Initialize(ShopItem shopItem, ShopItemEntry entry)
+        public ShopItem Item { get; private set; }
+
+        public ShopItemEntry Entry { get; private set; }
+
+        public bool IsLock { get; private set; }
+
+        public int Price => Item.Price;
+
+        public void Initialize(
+            ShopItem shopItem,
+            ShopItemEntry entry)
         {
             Item = shopItem;
             Entry = entry;
@@ -39,25 +43,25 @@ namespace Assets.Scripts.UI.Shop
         public void Lock()
         {
             IsLock = true;
-            _lockImage.gameObject.SetActive(IsLock);
+            _lockImage.gameObject.SetActive(true);
         }
 
         public void Unlock()
         {
             IsLock = false;
-            _lockImage.gameObject.SetActive(IsLock);
+            _lockImage.gameObject.SetActive(false);
         }
 
         public void HidePrice()
         {
             IsLock = false;
-            _price.gameObject.SetActive(IsLock);
+            _price.gameObject.SetActive(false);
         }
 
         public void ShowPrice()
         {
             IsLock = true;
-            _price.gameObject.SetActive(IsLock);
+            _price.gameObject.SetActive(true);
         }
 
         public void UnHighlight()
@@ -67,6 +71,8 @@ namespace Assets.Scripts.UI.Shop
         }
 
         public void Highlight() =>
-            _backgroundImage.DOColor(Color.gray, 0.3f).DOTimeScale(15, 2);
+            _backgroundImage
+            .DOColor(Color.gray, 0.3f)
+            .DOTimeScale(15, 2);
     }
 }
