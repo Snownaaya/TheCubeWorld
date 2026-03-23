@@ -5,7 +5,9 @@ namespace Assets.Scripts.Visitor
 
     public class VisitorsHolder
     {
-        public VisitorsHolder(IPersistentCharacterData persistentCharacterData, ITransientCharacterData transientCharacterData)
+        public VisitorsHolder(
+            IPersistentCharacterData persistentCharacterData,
+            ITransientCharacterData transientCharacterData)
         {
             ContentUnlock = new ContentUnlock(persistentCharacterData, transientCharacterData);
             Purchase = new Purchase(persistentCharacterData, transientCharacterData);

@@ -1524,6 +1524,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3976878288656648190, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4160203107632665273, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
       propertyPath: m_Name
       value: BuildCanvas (1)
@@ -2868,6 +2872,10 @@ PrefabInstance:
       propertyPath: _bridgeSpawner
       value: 
       objectReference: {fileID: 768033588}
+    - target: {fileID: 3789432868755964081, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d2bb5820132effa4398e7234b329e998, type: 2}
     - target: {fileID: 4457167793633011623, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
       propertyPath: _transform
       value: 
@@ -2884,6 +2892,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8252461711895753449, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 325678875, guid: c27c619b9f6c1fd44b1b608170475c2e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2984,6 +2996,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2879332760550407094, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976878288656648190, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4160203107632665273, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
@@ -4560,6 +4576,10 @@ PrefabInstance:
       propertyPath: _bridgeSpawner
       value: 
       objectReference: {fileID: 699997102}
+    - target: {fileID: 3789432868755964081, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d2bb5820132effa4398e7234b329e998, type: 2}
     - target: {fileID: 4457167793633011623, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
       propertyPath: _transform
       value: 
@@ -4576,6 +4596,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8252461711895753449, guid: 5ff35144d4a00fe45913760d615eb94d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 325678875, guid: c27c619b9f6c1fd44b1b608170475c2e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4725,7 +4749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b810dbec1614b354fb94a91d210bcada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RectTransform: {fileID: 0}
+  RectTransform: {fileID: 7110405011381109531}
   <ButtonOpen>k__BackingField: {fileID: 1695378445}
   <ButtonClose>k__BackingField: {fileID: 1075688860706021345}
   _backgroundPanel: {fileID: 2591419866198276429}
@@ -5007,6 +5031,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3976878288656648190, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4160203107632665273, guid: d654a6bb988b24d448e3087f1f3564e1, type: 3}
       propertyPath: m_Name
       value: BuildCanvas (1)
@@ -5227,7 +5255,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1841592497 stripped
 RectTransform:

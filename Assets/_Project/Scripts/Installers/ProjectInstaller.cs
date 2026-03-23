@@ -52,7 +52,10 @@ namespace Assets.Scripts.Installers
             containerBuilder.AddSingleton<IPersistentCharacterData>(container =>
             {
                 GameMessageBus gameMessageBus = container.Resolve<GameMessageBus>();
-                return new PersistentCharacterData(gameMessageBus);
+
+                PersistentCharacterData persistentCharacterData = new PersistentCharacterData(gameMessageBus);
+                persistentCharacterData.Initialize();
+                return persistentCharacterData;
             });
         }
 
@@ -63,7 +66,5 @@ namespace Assets.Scripts.Installers
                 return new SceneTransitions(_sceneConfig);
             });
         }
-
-        
     }
 }

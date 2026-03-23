@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0587191a9ca3d4483927a0ed1cd147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rectTransform: {fileID: 7719510173280571445}
   _buildBridgeText: {fileID: 4705218361535012657}
   _openDistance: 2
 --- !u!1 &4935300700397491168
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2143726855, guid: 1a03182648b22ba439a0e346858cb0ff, type: 3}
+  m_Sprite: {fileID: 325678875, guid: c27c619b9f6c1fd44b1b608170475c2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -353,7 +354,7 @@ Animator:
   m_GameObject: {fileID: 8031361145404969029}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8fbfd0a1e8d94cf4e90939d4ad68d2a5, type: 2}
+  m_Controller: {fileID: 9100000, guid: d2bb5820132effa4398e7234b329e998, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

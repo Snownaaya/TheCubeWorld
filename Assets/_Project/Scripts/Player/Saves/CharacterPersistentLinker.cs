@@ -42,7 +42,7 @@ namespace Assets.Scripts.Player.Saves
 
             _data.SelectedCharacterSkin = _repository.Load(SelectedSkinKey, CharacterSkins.Bunny);
 
-            _data.Money.Value = _repository.Load(MoneyKey, 100000000);
+            _data.Money.Value = _repository.Load(MoneyKey, 0);
 
             _data.SetOpenSkins(savedSkins);
 

@@ -35,7 +35,10 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
             _shop.Initialize(_visitorsHolder, _visitorFactory);
         }
 
-        private void OnDestroy() =>
+        private void OnDestroy()
+        {
             _shop.Dispose();
+            _persistentCharacterData.Dispose();
+        }
     }
 }

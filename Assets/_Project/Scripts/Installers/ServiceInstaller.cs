@@ -1,23 +1,23 @@
-using Assets.Scripts.Achievements.AchievePartials;
-using Assets.Scripts.Achievements.Observers;
-using Assets.Scripts.Datas;
-using Assets.Scripts.Player.Core;
-using Assets.Scripts.Service.AchievementServices;
-using Assets.Scripts.Service.Audio;
-using Assets.Scripts.Service.CharacterService;
-using Assets.Scripts.Service.GameMessage;
-using Assets.Scripts.Service.Json;
-using Assets.Scripts.Service.LevelLoaderService;
-using Assets.Scripts.Service.Pause;
-using Assets.Scripts.Service.Saves;
-using Reflex.Core;
-using System.Collections.Generic;
-using UniRx;
-using UnityEngine;
-using static Assets.Scripts.Datas.AudioConfig;
-
 namespace Assets.Scripts.Installers
 {
+    using System.Collections.Generic;
+    using Assets.Scripts.Achievements.AchievePartials;
+    using Assets.Scripts.Achievements.Observers;
+    using Assets.Scripts.Datas;
+    using Assets.Scripts.Player.Core;
+    using Assets.Scripts.Service.AchievementServices;
+    using Assets.Scripts.Service.Audio;
+    using Assets.Scripts.Service.CharacterService;
+    using Assets.Scripts.Service.GameMessage;
+    using Assets.Scripts.Service.Json;
+    using Assets.Scripts.Service.LevelLoaderService;
+    using Assets.Scripts.Service.Pause;
+    using Assets.Scripts.Service.Saves;
+    using Reflex.Core;
+    using UniRx;
+    using UnityEngine;
+    using static Assets.Scripts.Datas.AudioConfig;
+
     public class ServiceInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private AudioConfig _audioConfig;

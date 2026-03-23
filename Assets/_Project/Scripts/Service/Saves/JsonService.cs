@@ -1,8 +1,8 @@
-using Assets.Scripts.Service.Json;
-using Newtonsoft.Json;
-
 namespace Assets.Scripts.Service.Saves
 {
+    using Assets.Scripts.Service.Json;
+    using Newtonsoft.Json;
+
     public class JsonService : IJsonService
     {
         public T Deserialize<T>(string json)

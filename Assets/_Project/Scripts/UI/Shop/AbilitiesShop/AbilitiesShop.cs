@@ -116,6 +116,7 @@ namespace Assets.Scripts.UI.Shop.AbilitiesShop
         private void OnClickClose()
         {
             _foregroundAudioService.PlaySound(AudioTypes.Buttons);
+            _abilityInfo.Hide();
         }
     }
 }

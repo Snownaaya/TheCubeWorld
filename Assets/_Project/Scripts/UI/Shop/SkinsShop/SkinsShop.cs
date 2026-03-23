@@ -57,6 +57,8 @@ namespace Assets.Scripts.UI.Shop.SkinsShop
         {
             _buyButton.Clicked -= OnBuyClicked;
             _selectionButton.Clicked -= OnSelectionButtonClick;
+
+            _panel.ItemViewClicked -= OnItemViewClick;
         }
 
         private void OnSelectionButtonClick()

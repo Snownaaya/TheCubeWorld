@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a03182648b22ba439a0e346858cb0ff
+guid: c27c619b9f6c1fd44b1b608170475c2e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,14 +95,14 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 50
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -123,127 +123,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_0
+      name: '!Assets_0'
       rect:
         serializedVersion: 2
         x: 0
-        y: 330
-        width: 310
-        height: 310
+        y: 0
+        width: 1002
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f93fc23c99e99ab4ab8e27b7fd10b819
-      internalID: 2143726855
+      spriteID: 5bcb19a04fda8e5449c22823a04ba02a
+      internalID: 325678875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_1
+      name: '!Assets_2'
       rect:
         serializedVersion: 2
-        x: 340
-        y: 330
-        width: 270
-        height: 310
+        x: 1070
+        y: 0
+        width: 890
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23408dad3c84b774d93287f40c19da47
-      internalID: -1237822392
+      spriteID: d95414c803e07844295c3268f765f8c8
+      internalID: -1368988028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_2
+      name: '!Assets_4'
       rect:
         serializedVersion: 2
-        x: 670
-        y: 340
-        width: 250
-        height: 300
+        x: 2136
+        y: 0
+        width: 816
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c5465b87f85be8488f0a7412ba25277
-      internalID: -856530049
+      spriteID: cb529e6567e450f4e98a1c0270aa3e28
+      internalID: -1629362373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_3
+      name: '!Assets_6'
       rect:
         serializedVersion: 2
-        x: 80
-        y: 9
-        width: 150
-        height: 310
+        x: 3318
+        y: 0
+        width: 500
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17f3388c7d1f86b4c9a9da464aa358e6
-      internalID: -1912850238
+      spriteID: bfe1b909a52e7bd4092a5795f8c43262
+      internalID: 1862684274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_4
+      name: '!Assets_8'
       rect:
         serializedVersion: 2
-        x: 441
-        y: 10
-        width: 70
-        height: 300
+        x: 4472
+        y: 22
+        width: 236
+        height: 980
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c234ab04f75d534bb1eb2a33b5ee169
-      internalID: 9950575
+      spriteID: 2242f306dfb8d734f9a76fc6ae87fd3e
+      internalID: -119990434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ExclamationMark_grayscale_5
+      name: '!Assets_9'
       rect:
         serializedVersion: 2
-        x: 682
-        y: 10
-        width: 250
-        height: 310
+        x: 5370
+        y: 0
+        width: 482
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 679e352985c1d0a4e9f0e9372b48b0ba
-      internalID: 2096086914
+      spriteID: 363bee6242077904f8b54e499cf673a5
+      internalID: 1976321377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!Assets_11'
+      rect:
+        serializedVersion: 2
+        x: 6273
+        y: 0
+        width: 816
+        height: 1024
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a198bad58f4bd024288a20731f4f2664
+      internalID: -841604783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!Assets_14'
+      rect:
+        serializedVersion: 2
+        x: 7229
+        y: 2
+        width: 873
+        height: 1022
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8196be688cfb84b8b9f459321698ed
+      internalID: 216359671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '!Assets_16'
+      rect:
+        serializedVersion: 2
+        x: 4463
+        y: 70
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0a60a964247874685ce33952e83003
+      internalID: -649618450
       vertices: []
       indices: 
       edges: []
@@ -251,7 +314,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5238448a3f197d94fa135e01cdb912b6
+    spriteID: a4203b22aee432e45916122fcdddcbb8
     internalID: 0
     vertices: []
     indices: 
@@ -259,12 +322,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ExclamationMark_grayscale_0: 2143726855
-      ExclamationMark_grayscale_1: -1237822392
-      ExclamationMark_grayscale_2: -856530049
-      ExclamationMark_grayscale_3: -1912850238
-      ExclamationMark_grayscale_4: 9950575
-      ExclamationMark_grayscale_5: 2096086914
+      '!Assets_0': 325678875
+      '!Assets_1': -623323032
+      '!Assets_10': -1424782718
+      '!Assets_11': -841604783
+      '!Assets_12': -73229034
+      '!Assets_13': 647786259
+      '!Assets_14': 216359671
+      '!Assets_15': 1407502132
+      '!Assets_16': -649618450
+      '!Assets_2': -1368988028
+      '!Assets_3': -138553787
+      '!Assets_4': -1629362373
+      '!Assets_5': 772663568
+      '!Assets_6': 1862684274
+      '!Assets_7': 2087360883
+      '!Assets_8': -119990434
+      '!Assets_9': 1976321377
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

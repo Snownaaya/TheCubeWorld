@@ -58,7 +58,6 @@ namespace Assets.Scripts.UI.HealthCharacters
         private void CancelAnimation()
         {
             _cancellationTokenSource?.Cancel();
-            _cancellationTokenSource?.Dispose();
             _cancellationTokenSource = null;
         }
     }

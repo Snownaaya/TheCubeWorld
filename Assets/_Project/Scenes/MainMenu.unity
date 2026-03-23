@@ -2469,8 +2469,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282219452
-  m_fontColor: {r: 0.7372549, g: 0.48235294, b: 0.23921569, a: 1}
+    rgba: 4279770160
+  m_fontColor: {r: 0.1882353, g: 0.10980392, b: 0.09411765, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2669,7 +2669,7 @@ MonoBehaviour:
       de: 
       hi: 
   text: 
-  ru: "\u0412 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0441\u0442\u0438"
+  ru: "\u0412\u044B\u0431\u0440\u0430\u043D\u043E"
   en: Owned
   tr: Sahip olunan
   az: 
@@ -9407,8 +9407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23867588, y: 0.2508585}
   m_AnchorMax: {x: 0.23867588, y: 0.2508585}
-  m_AnchoredPosition: {x: 9.242004, y: 6.1369934}
-  m_SizeDelta: {x: 706.483, y: 208.274}
+  m_AnchoredPosition: {x: 0.9996338, y: 1.5}
+  m_SizeDelta: {x: 502, y: 199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &437679612574732284
 GameObject:
@@ -27270,7 +27270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &6908090885335422047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30502,7 +30502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.23867588, y: 0.2508585}
   m_AnchorMax: {x: 0.23867588, y: 0.2508585}
-  m_AnchoredPosition: {x: 7, y: 1.6600342}
+  m_AnchoredPosition: {x: 0, y: 1.6600342}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!33 &7991808865203044463
@@ -32178,8 +32178,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4282219452
-  m_fontColor: {r: 0.735849, g: 0.4839065, b: 0.23949803, a: 1}
+    rgba: 4279770160
+  m_fontColor: {r: 0.1882353, g: 0.10980392, b: 0.09411765, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -32370,7 +32370,7 @@ MonoBehaviour:
       de: 
       hi: 
   text: 
-  ru: "\u0432\u044B\u0431\u0440\u0430\u043D\u043E"
+  ru: "\u041A\u0443\u043F\u043B\u0435\u043D\u043E"
   en: selected
   tr: "se\xE7ilmi\u015F"
   az: 

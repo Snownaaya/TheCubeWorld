@@ -60,7 +60,6 @@ public class ResourceSpawner : PoolObject<Resource>, IResourceService
             Resource resourceInstance = Pull(resourcePrefab);
             resourceInstance.SetSpawnPoint(spawnPoint);
             resourceInstance.transform.position = spawnPoint.position;
-            resourceInstance.transform.rotation = spawnPoint.rotation;  
 
             _activeResources.Add(resourceInstance);
         }
