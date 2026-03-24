@@ -7,14 +7,14 @@ public abstract class Health : MonoBehaviour, IHealth
     public event Action<float, float> HealthChanged;
 
     private float _maxHealth = 100;
-    private float _currentHealth;
+    private float _currentHealth = 100;
     protected bool _isDead;
 
     public float CurrentHealth => _currentHealth;
 
     public float MaxHealth => _maxHealth;
 
-    protected void Awake() =>
+    private void Awake() =>
         _currentHealth = _maxHealth;
 
     public virtual void TakeDamage(float damage) =>

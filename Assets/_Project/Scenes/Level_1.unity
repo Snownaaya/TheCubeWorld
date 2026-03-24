@@ -4210,10 +4210,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1553532767611697949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.075, y: 0.11000001}
-  m_AnchorMax: {x: 0.9250001, y: 0.92}
-  m_AnchoredPosition: {x: -1.4950027, y: -0.4640007}
-  m_SizeDelta: {x: 2.8180008, y: 2.2719994}
+  m_AnchorMin: {x: 0.22083335, y: 0.15}
+  m_AnchorMax: {x: 0.79583335, y: 0.88000005}
+  m_AnchoredPosition: {x: -0.91179657, y: -1.7781982}
+  m_SizeDelta: {x: 2.5230026, y: 2.4435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &50909205745564363
 GameObject:
@@ -11061,7 +11061,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.35
+  m_fontSize: 30.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11638,7 +11638,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.5, y: -18.536}
+  m_AnchoredPosition: {x: -48.5, y: -15.4}
   m_SizeDelta: {x: 41.347, y: 37.073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4204650655915459772
@@ -14464,7 +14464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMPComponent: {fileID: 2696579856604771887}
-  uniqueFontTMP: {fileID: 11400000, guid: 7f6411cbaedd0ed419e86c7fa4782c0d, type: 2}
+  uniqueFontTMP: {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
   textLComponent: {fileID: 0}
   info:
     domainAutoLocalization: com
@@ -18348,7 +18348,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3275047774039101468}
   m_FillRect: {fileID: 6100871304442127602}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
