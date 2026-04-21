@@ -1,6 +1,7 @@
 namespace Assets.Scripts.GameStateMachine.States.Phases
 {
     using Assets.Project.Scripts.Ground.Filler;
+    using Assets.Scripts.Camera;
     using Assets.Scripts.GameStateMachine.States.Runtime;
     using Assets.Scripts.Interfaces;
     using Assets.Scripts.Items;
@@ -12,8 +13,9 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
     public class RespawnState : PhasesState
     {
         private PauseHandler _pauseHandler;
-        private ICharacterHolder _characterHolder;
         private LevelHazard _levelHazard;
+        private ICharacterHolder _characterHolder;
+        private IVirtualCamera _virtualCamera;
 
         public RespawnState(
             ISwitcher switcher,
@@ -23,12 +25,14 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             ICharacterHolder characterHolder,
             SceneTransitions sceneTransitions,
             LevelHazard level,
-            GameEntryPointState gameEntryPointState)
+            GameEntryPointState gameEntryPointState,
+            IVirtualCamera virtualCamera)
             : base(switcher, inventory, resourceService, sceneTransitions, gameEntryPointState)
         {
             _pauseHandler = pauseHandler;
             _characterHolder = characterHolder;
-            _levelHazard = level;   
+            _levelHazard = level;
+            _virtualCamera = virtualCamera;
         }
 
         public override void Enter()
@@ -38,9 +42,12 @@ namespace Assets.Scripts.GameStateMachine.States.Phases
             GameEntryPointState.LossScreen.Close();
             SceneTransitions.GetCurrentLevel();
             _pauseHandler.Remove(GameEntryPointState.LossScreen);
-            _characterHolder.Character.CharacterModel.gameObject.SetActive(true);
-            _characterHolder.Character.Health.ResetHealth();
             _levelHazard.Reset();
+
+            _virtualCamera.ResetTransform();
+            _characterHolder.Character.Health.ResetHealth();
+            _characterHolder.Character.CharacterModel.gameObject.SetActive(true);
+            _virtualCamera.SetTarget(_characterHolder.Character.CharacterModel);
             Switcher.SwitchState<StartLevelState>();
         }
 

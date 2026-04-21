@@ -16,17 +16,14 @@ namespace Assets.Scripts.Player.Attack
 
         private IInventory _inventory;
         private IBossTargetService _bossTargetService;
-        private IResourceService _resourceService;
 
         [Inject]
         private void Construct(
             IInventory inventory,
-            IBossTargetService bossTargetService,
-            IResourceService resourceService)
+            IBossTargetService bossTargetService)
         {
             _inventory = inventory;
             _bossTargetService = bossTargetService;
-            _resourceService = resourceService;
         }
 
         public bool TryConsumeResource()
@@ -34,12 +31,12 @@ namespace Assets.Scripts.Player.Attack
             if (HasEnoughTotalResources(1) == false)
                 return false;
 
-            var type = ResourceTypeSelector.GetRandomTypes();
+            ResourceTypes type = ResourceTypeSelector.GetRandomTypes();
+
             SpawnResource(type);
             _inventory.UseResource(type);
             return true;
         }
-
 
         public bool HasEnoughTotalResources(int requiredAmount)
         {
@@ -49,13 +46,10 @@ namespace Assets.Scripts.Player.Attack
 
         private void SpawnResource(ResourceTypes resourceType)
         {
-            if (_resourceService.ActiveResources.Count >= 16)
-                return;
-
             int prefabIndex = Random.Range(0, _resourcePrefabs.Length);
             Resource resource = _resourcePrefabs[prefabIndex];
 
-            Resource resourcePrefab = _resourceService.Pull(resource);
+            Resource resourcePrefab = Instantiate(resource);
 
             resourcePrefab.transform.position = GetPosition(resourcePrefab);
             MoveToBossTarget(resourcePrefab);

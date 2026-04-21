@@ -30,24 +30,14 @@ namespace Assets.Scripts.Player.Attack
         private void OnEnable()
         {
             _cancellationToken = new CancellationTokenSource();
+
             AttackLoop(_cancellationToken.Token).Forget();
         }
 
         private void OnDisable()
         {
             _cancellationToken?.Cancel();
-            _cancellationToken?.Dispose();
             _cancellationToken = null;
-        }
-
-        private async UniTask AttackLoop(CancellationToken cancellationToken)
-        {
-            while (cancellationToken.IsCancellationRequested == false)
-            {
-                AttackStart();
-                await UniTask.Delay(TimeSpan.FromSeconds(_characterConfig.AttackTimer), cancellationToken: cancellationToken);
-                AttackEnd();
-            }
         }
 
         public void AttackEnd()
@@ -72,6 +62,16 @@ namespace Assets.Scripts.Player.Attack
                 _isAttacking = true;
                 boss.TakeDamage(_characterConfig.Damage);
                 AttackStarted?.Invoke();
+            }
+        }
+
+        private async UniTask AttackLoop(CancellationToken cancellationToken)
+        {
+            while (cancellationToken.IsCancellationRequested == false)
+            {
+                AttackStart();
+                await UniTask.Delay(TimeSpan.FromSeconds(_characterConfig.AttackTimer), cancellationToken: cancellationToken);
+                AttackEnd();
             }
         }
     }

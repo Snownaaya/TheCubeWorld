@@ -21,10 +21,12 @@ namespace Assets.Scripts.TutorialObject
             if (inRange && _isShown == false)
             {
                 _isShown = true;
+
                 _buildBridgeText.SetText(LocalizedText.Get(
                     english: "Bridge Construction",
                     russia: "Постройка моста",
                     turkish: "Köprü inşaatı"));
+
                 _buildBridgeText.Show();
             }
             else if (inRange == false && _isShown)

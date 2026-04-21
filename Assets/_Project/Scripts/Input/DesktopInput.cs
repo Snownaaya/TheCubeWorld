@@ -23,6 +23,8 @@ namespace Assets.Scripts.Input
             _playerInput.Character.Desktop.canceled += context => OnStop(context);
         }
 
+        public Vector2 Move => _playerInput.Character.Desktop.ReadValue<Vector2>();
+
         public void Dispose()
         {
             _playerInput.Character.Move.performed -= context => OnMove(context);
@@ -39,12 +41,7 @@ namespace Assets.Scripts.Input
             Moved?.Invoke(direction);
         }
 
-        private void OnStop(InputAction.CallbackContext context)
-        {
+        private void OnStop(InputAction.CallbackContext context) =>
             Stopped?.Invoke();
-        }
-
-        public Vector2 Move => _playerInput.Character.Desktop.ReadValue<Vector2>();
-        public Vector2 DesktopMove => _playerInput.Character.Move.ReadValue<Vector2>();
     }
 }

@@ -20,6 +20,8 @@ namespace Assets.Scripts.Camera
         {
             _virtualCamera.Follow = null;
             _virtualCamera.LookAt = null;
+
+            _virtualCamera.transform.eulerAngles = new Vector3(20, 90, 0);
         }
 
         public void ChangeRotate()

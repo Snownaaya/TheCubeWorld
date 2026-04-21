@@ -37,6 +37,7 @@ namespace Assets.Scripts.Service.Audio
         public async UniTask BackgroundSetVolume(float value = 0)
         {
             await UniTask.Yield();
+
             AudioData audioData = _audioData[AudioTypes.Background];
             float logVolume = Mathf.Log10(audioData.Volume) * 20;
             _backgroundSource.volume = Mathf.Lerp(logVolume, value, 1);

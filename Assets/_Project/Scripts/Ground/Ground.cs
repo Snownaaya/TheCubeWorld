@@ -7,16 +7,14 @@ namespace Assets.Scripts.Ground
     {
         [SerializeField] private List<Transform> _spawnPoints;
 
-        private List<Transform> _availablePoints = new(); 
+        private Queue<Transform> _availablePoints = new ();
 
         public int AvailableCount => _availablePoints.Count;
 
         public int TotalCount => _spawnPoints?.Count ?? 0;
 
-        private void Awake()
-        {
+        private void Awake() =>
             ResetPoints();
-        }
 
 #if UNITY_EDITOR
         [ContextMenu("Refresh Spawn Points")]
@@ -28,25 +26,23 @@ namespace Assets.Scripts.Ground
             {
                 _spawnPoints.Add(transform.GetChild(i));
             }
+
+            ResetPoints();
         }
 #endif
 
         public void ResetPoints()
         {
-            _availablePoints.Clear();
-            if (_spawnPoints != null)
-                _availablePoints.AddRange(_spawnPoints);
+            foreach (Transform point in _spawnPoints)
+                _availablePoints.Enqueue(point);
         }
 
-        public Transform GetRandomPoint()
+        public Transform GetPoint()
         {
             if (_availablePoints.Count == 0)
                 return null;
 
-            int randomIndex = Random.Range(0, _availablePoints.Count);
-            Transform point = _availablePoints[randomIndex];
-            _availablePoints.RemoveAt(randomIndex);
-            return point;
+            return _availablePoints.Dequeue();
         }
 
         public void ReturnPoint(Transform point)
@@ -54,8 +50,10 @@ namespace Assets.Scripts.Ground
             if (point == null)
                 return;
 
-            if (_availablePoints.Contains(point) == false)
-                _availablePoints.Add(point);
+            if (_availablePoints.Contains(point))
+                return;
+
+            _availablePoints.Enqueue(point);
         }
     }
 }

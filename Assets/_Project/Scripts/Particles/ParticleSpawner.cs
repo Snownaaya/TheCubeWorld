@@ -9,10 +9,10 @@ namespace Assets.Scripts.Particles
     {
         [SerializeField] private List<ParticlePrefabEntry> _particleEntries = new();
 
+        private readonly Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
+
         private Transform _transform;
         private float _delay = 2f;
-
-        private readonly Dictionary<ParticleTypes, PooledParticle> _partilclies = new();
 
         public void Initialize(Transform position) =>
             _transform = position;
@@ -33,6 +33,7 @@ namespace Assets.Scripts.Particles
             pooledParticle.Play();
 
             ReturnPool(pooledParticle).Forget();
+
             return pooledParticle;
         }
 
@@ -44,6 +45,7 @@ namespace Assets.Scripts.Particles
                 return;
 
             Push(particle);
+
             particle.Stop();
         }
 
@@ -51,6 +53,7 @@ namespace Assets.Scripts.Particles
         private struct ParticlePrefabEntry
         {
             [SerializeField] private ParticleTypes _particleType;
+
             [SerializeField] private PooledParticle _pooledParticle;
 
             public PooledParticle Prefab => _pooledParticle;

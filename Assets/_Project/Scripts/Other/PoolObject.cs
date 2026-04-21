@@ -3,28 +3,35 @@ using UnityEngine;
 
 public class PoolObject<T> : MonoBehaviour where T : MonoBehaviour
 {
-    [SerializeField] private Transform _container;
-
     private Stack<T> _pool = new Stack<T>();
-    private List<T> _active = new List<T>();
+    private List<T> _active = new();
 
     public T Pull(T prefab)
     {
         T instance;
 
-        if (_pool.TryPop(out instance) == false)
-            instance = Instantiate(prefab, _container);
+        while (_pool.Count > 0)
+        {
+            instance = _pool.Pop();
 
-        _active.Add(instance);
-        instance.gameObject.SetActive(true);
+            if (instance != null)
+            {
+                instance.gameObject.SetActive(true);
+                _active.Add(instance);
+                return instance;
+            }
+        }
 
-        return instance;
+        var newInstance = Instantiate(prefab);
+
+        _active.Add(newInstance);
+        return newInstance;
     }
 
     public void Push(T instance)
     {
-        instance.gameObject.SetActive(false);
         _pool.Push(instance);
         _active.Remove(instance);
+        instance.gameObject.SetActive(false);
     }
 }

@@ -35,7 +35,7 @@ namespace Assets.Scripts.Player.Move
             _input = input;
             _playerInput = playerInput;
 
-            _playerInput.Enable();
+            Enable();
             _input.Moved += OnMove;
             _input.Stopped += StopMove;
         }
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Player.Move
 
         public void OnDestroy()
         {
-            _playerInput.Disable();
+            Disable();
             _input.Moved -= OnMove;
             _input.Dispose();
             _input.Stopped -= StopMove;
@@ -87,5 +87,11 @@ namespace Assets.Scripts.Player.Move
             _currentCharacterView.StartIdle();
             _currentCharacterView.StopWalk();
         }
+
+        public void Enable() =>
+            _playerInput.Enable();
+
+        public void Disable() =>
+            _playerInput.Disable();
     }
 }

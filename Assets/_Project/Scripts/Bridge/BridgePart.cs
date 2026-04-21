@@ -10,15 +10,11 @@ namespace Assets.Scripts.Bridge
 
         public bool IsBuilded => _buildedBlocksCount == _bridgeBlocks.Length;
 
-        private void OnValidate()
-        {
+        private void OnValidate() =>
             _bridgeBlocks = GetComponentsInChildren<BridgeBlock>();
-        }
 
-        public void TryBuild(Material material)
-        {
+        public void TryBuild(Material material) =>
             _bridgeBlocks[_buildedBlocksCount++].SetMaterial(material);
-        }
 
         public void SetMaterial(Material material)
         {

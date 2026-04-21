@@ -22,6 +22,8 @@ namespace Assets.Scripts.UI.HealthCharacters.Characters
         {
             _isDead = true;
             Died?.Invoke(new LossHealth());
+
+                //var message = () => Debug.Log("");
         }
     }
 }

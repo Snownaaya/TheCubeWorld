@@ -3,9 +3,6 @@ namespace Assets.Scripts.Installers
     using Assets.Project.Scripts.Datas;
     using Assets.Scripts.Datas.Character;
     using Assets.Scripts.Enemies.Boss.Target;
-    using Assets.Scripts.Items;
-    using Assets.Scripts.Other;
-    using Assets.Scripts.Particles;
     using Assets.Scripts.Service.GameMessage;
     using Assets.Scripts.Service.LevelLoaderService;
     using Assets.Scripts.UseCase;
@@ -15,13 +12,11 @@ namespace Assets.Scripts.Installers
     public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         [SerializeField] private StartLevel _startLevelPrefab;
-        [SerializeField] private SpawnerRoot _spawnerRoot;
         [SerializeField] private SceneConfig _sceneConfig;
 
         public void InstallBindings(ContainerBuilder containerBuilder)
         {
             BindStartLevel(containerBuilder);
-            InitSpawner(containerBuilder);
             BindPersistentData(containerBuilder);
             BindCurrentBoss(containerBuilder);
             BindSceneTransition(containerBuilder);
@@ -29,15 +24,6 @@ namespace Assets.Scripts.Installers
 
         private void BindCurrentBoss(ContainerBuilder containerBuilder) =>
             containerBuilder.AddSingleton(new CurrentBossService(), typeof(IBossTargetService));
-
-        private void InitSpawner(ContainerBuilder containerBuilder)
-        {
-            SpawnerRoot spawnerRoot = Instantiate(_spawnerRoot);
-            DontDestroyOnLoad(spawnerRoot);
-
-            containerBuilder.AddSingleton(spawnerRoot.GetComponent<ResourceSpawner>(), typeof(IResourceService));
-            containerBuilder.AddSingleton(spawnerRoot.GetComponent<ParticleSpawner>(), typeof(IParticleSpawner));
-        }
 
         private void BindStartLevel(ContainerBuilder containerBuilder)
         {

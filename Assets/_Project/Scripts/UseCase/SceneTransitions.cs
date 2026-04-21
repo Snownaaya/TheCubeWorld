@@ -54,8 +54,11 @@ namespace Assets.Scripts.UseCase
             int randomIndex = Random.Range(0, availableLevels.Count);
             SceneID sceneID = availableLevels[randomIndex];
 
+            if (sceneID == _currentSceneID)
+                return availableLevels[randomIndex];
+
             await UniTask.Delay(TimeSpan.FromSeconds(_delay));
-            await LoadLevel(SceneID.Level_3);
+            await LoadLevel(sceneID);
 
             return sceneID;
         }
@@ -87,7 +90,9 @@ namespace Assets.Scripts.UseCase
                 SceneInstance nextScene =
                     await AddressableUtility.LoadSceneAdditive(assetReference);
 
-                await nextScene.ActivateAsync(); SceneManager.SetActiveScene(nextScene.Scene);
+                await nextScene.ActivateAsync();
+
+                SceneManager.SetActiveScene(nextScene.Scene);
 
                 if (_currentScene.Scene.IsValid())
                     await Addressables.UnloadSceneAsync(_currentScene)

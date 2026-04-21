@@ -16,8 +16,8 @@ namespace Assets.Scripts.Ground
 
         private CompositeDisposable _disposables = new CompositeDisposable();
         private IVirtualCamera _targetBinder;
-        private GameMessageBus _messageBus;
         private ICharacterHolder _characterHolder;
+        private GameMessageBus _messageBus;
 
         private int _resourceAmount = 10;
 
@@ -50,8 +50,11 @@ namespace Assets.Scripts.Ground
             _targetBinder.SetTarget(_cameraPoint);
             _targetBinder.ChangeRotate();
 
+            _characterHolder.Movement.Disable();
+
             if (HasAllResources() == false)
-                _messageBus.MessageBroker.Publish(new NotEnoughResourcesEvent(ResourceTypeSelector.GetRandomTypes()));
+                _messageBus.MessageBroker
+                    .Publish(new NotEnoughResourcesEvent(ResourceTypeSelector.GetRandomTypes()));
         }
 
         private bool HasAllResources()

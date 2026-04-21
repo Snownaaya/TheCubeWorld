@@ -1016,6 +1016,7 @@ MonoBehaviour:
   - {fileID: 5607715065121819118, guid: 2b2667d7b6a50b646af8afbd80524558, type: 3}
   _resourceType: 000000000100000002000000
   _attackPoint: {fileID: 8013813783400693585}
+  _container: {fileID: 4981092134977827712}
 --- !u!114 &8783716149143354069
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,8 +26,6 @@ namespace Assets.Scripts.Initialize
         {
             _persistentLinker.Link();
             _persistentCharacterData.Initialize();
-
-            DontDestroyOnLoad(this.gameObject);
         }
 
         private void OnDestroy()

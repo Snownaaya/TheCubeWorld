@@ -10,9 +10,12 @@ namespace Assets.Scripts.Input
         private IJoystickInput _joystickInput;
 
         public event Action<Vector3> Moved;
+
         public event Action Stopped;
 
-        public MobileInput(PlayerInput playerInput, IJoystickInput joystickInput)
+        public MobileInput(
+            PlayerInput playerInput,
+            IJoystickInput joystickInput)
         {
             _playerInput = playerInput;
             _joystickInput = joystickInput;
@@ -21,6 +24,8 @@ namespace Assets.Scripts.Input
             _playerInput.Character.Move.performed += context => OnMove(context);
             _playerInput.Character.Move.canceled += context => OnStop(context);
         }
+
+        public Vector2 Move => _playerInput.Character.Move.ReadValue<Vector2>();
 
         public void Dispose()
         {
@@ -37,7 +42,5 @@ namespace Assets.Scripts.Input
 
         private void OnStop(InputAction.CallbackContext context) =>
             Stopped?.Invoke();
-
-        public Vector2 Move => _playerInput.Character.Move.ReadValue<Vector2>();
     }
 }

@@ -3,6 +3,7 @@ namespace Assets.Scripts.GameStateMachine
     using Assets.Project.Scripts.Ground.Filler;
     using Assets.Project.Scripts.Mediators.LevelCompletedMediator;
     using Assets.Scripts.Achievements;
+    using Assets.Scripts.Camera;
     using Assets.Scripts.GameStateMachine.States.Phases;
     using Assets.Scripts.GameStateMachine.States.Runtime;
     using Assets.Scripts.Input;
@@ -24,19 +25,20 @@ namespace Assets.Scripts.GameStateMachine
         [SerializeField] private LossScreen _lossScreen;
         [SerializeField] private EndLevel _endLevel;
 
+        private GameMessageBus _gameMessageBus;
+        private SceneTransitions _sceneTransitions;
+        private LevelHazard _levelHazard;
+        private WinLevelHandler _levelHandler;
         private PauseHandler _pauseHandler;
-        private ICharacterHolder _characterHolder;
         private AchievementService _achievementService;
 
+        private ICharacterHolder _characterHolder;
         private ISwitcher _switcher;
         private IInventory _inventory;
         private ICharacterTeleportService _characterTeleportService;
         private IResourceService _resourceService;
         private IJoystickInput _joystickInput;
-        private GameMessageBus _gameMessageBus;
-        private SceneTransitions _sceneTransitions;
-        private LevelHazard _levelHazard;
-        private WinLevelHandler _levelHandler;
+        private IVirtualCamera _virtualCamera;
 
         public LossScreen LossScreen => _lossScreen;
 
@@ -58,7 +60,8 @@ namespace Assets.Scripts.GameStateMachine
             SceneTransitions sceneTransitions,
             LevelHazard level,
             IJoystickInput joystickInput,
-            WinLevelHandler winLevelHandler)
+            WinLevelHandler winLevelHandler,
+            IVirtualCamera virtualCamera)
         {
             _switcher = switcher;
             _pauseHandler = pauseHandler;
@@ -72,6 +75,7 @@ namespace Assets.Scripts.GameStateMachine
             _levelHazard = level;
             _joystickInput = joystickInput;
             _levelHandler = winLevelHandler;
+            _virtualCamera = virtualCamera;
         }
 
         private void InitializeStates()
@@ -79,10 +83,10 @@ namespace Assets.Scripts.GameStateMachine
             if (_switcher is GameState gameState)
             {
                 gameState.Initialize(
-                    new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder, _gameMessageBus, _levelHazard, _joystickInput),
-                    new WinLevelState(_switcher, this, _characterHolder, _achievementService, _gameMessageBus, _levelHandler),
+                    new StartLevelState(_switcher, this, _characterTeleportService, _characterHolder, _gameMessageBus, _levelHazard, _joystickInput, _resourceService),
+                    new WinLevelState(_switcher, _characterHolder, _resourceService, _gameMessageBus, this, _achievementService, _levelHandler),
                     new LossState(_switcher, _inventory, _resourceService, _pauseHandler, _sceneTransitions, this),
-                    new RespawnState(_switcher, _pauseHandler, _inventory, _resourceService, _characterHolder, _sceneTransitions, _levelHazard, this)
+                    new RespawnState(_switcher, _pauseHandler, _inventory, _resourceService, _characterHolder, _sceneTransitions, _levelHazard, this, _virtualCamera)
                 );
 
                 _switcher.SwitchState<StartLevelState>();

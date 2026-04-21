@@ -1,7 +1,6 @@
 namespace Assets.Scripts.Bridge.Factory
 {
     using System;
-    using Assets.Project.Scripts.Bridge;
     using Assets.Scripts.Particles;
     using Assets.Scripts.Service.AchievementServices;
     using Reflex.Attributes;
