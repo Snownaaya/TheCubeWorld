@@ -15,10 +15,8 @@ namespace Assets.Scripts.Domain.MediatorResource
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
         [Inject]
-        private void Construct(IInventory inventory)
-        {
+        private void Construct(IInventory inventory) =>
             _playerInventory = inventory;
-        }
 
         private void OnEnable()
         {
@@ -40,7 +38,7 @@ namespace Assets.Scripts.Domain.MediatorResource
             _compositeDisposable.Clear();
         }
 
-        public void UpdateCountText(ResourceTypes type, int count)
+        private void UpdateCountText(ResourceTypes type, int count)
         {
             foreach (ResourceCountView view in _view)
             {

@@ -19,12 +19,9 @@ namespace Assets.Scripts.Particles
 
         public PooledParticle SpawnParticle(ParticleTypes particleType, Vector3 position)
         {
-            foreach (ParticlePrefabEntry entry in _particleEntries)
-            {
-                if (_partilclies.ContainsKey(entry.Type) == false)
-                    _partilclies.Add(entry.Type, entry.Prefab);
-            }
-             
+            foreach (var entry in _particleEntries)
+                _partilclies[entry.Type] = entry.Prefab;
+
             if (_partilclies.TryGetValue(particleType, out PooledParticle prefab) == false)
                 return null;
 

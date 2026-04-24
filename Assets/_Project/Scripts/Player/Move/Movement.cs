@@ -52,7 +52,6 @@ namespace Assets.Scripts.Player.Move
 
                 PositionChanged?.Invoke(transform.position);
             }
-
         }
 
         public void OnDestroy()

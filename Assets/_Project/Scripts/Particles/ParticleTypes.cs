@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Particles
+namespace Assets.Scripts.Particles
 {
     public enum ParticleTypes
     {
@@ -7,5 +7,6 @@
         BossDeath,
         BossAttack,
         BridgeBuild,
+        CollectResource
     }
 }

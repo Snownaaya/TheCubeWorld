@@ -12,7 +12,7 @@ namespace Assets.Scripts.Player.Inventory
 
         public void UseResource(ResourceTypes resourceType);
 
-        public bool HasResource(ResourceTypes resourceType, ReactiveProperty<int> amount);
+        public bool HasResource(ResourceTypes resourceType, int amount);
 
         public int GetTotalResourcesAmount();
 

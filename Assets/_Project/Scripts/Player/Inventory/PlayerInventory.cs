@@ -38,10 +38,10 @@ namespace Assets.Scripts.Player.Inventory
                 resource.Value--;
         }
 
-        public bool HasResource(ResourceTypes resourceType, ReactiveProperty<int> amount)
+        public bool HasResource(ResourceTypes resourceType, int amount) 
         {
             if (_resources.TryGetValue(resourceType, out ReactiveProperty<int> resource))
-                return resource.Value > amount.Value;
+                return resource.Value >= amount;
 
             return false;
         }

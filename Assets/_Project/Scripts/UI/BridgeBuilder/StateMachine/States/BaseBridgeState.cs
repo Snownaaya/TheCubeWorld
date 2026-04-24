@@ -40,15 +40,15 @@ public abstract class BaseBridgeState : IStates
             return;
 
         ResourceConfig selectedConfig = BuildButton.ResourceConfig
-            .FirstOrDefault(config => config.ResourceType == resourceType);
+                .FirstOrDefault(config => config.ResourceType == resourceType);
 
         if (selectedConfig == null)
             return;
 
-        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, new ReactiveProperty<int>(_resourceCost)))
+        if (BuildButton.Inventory.HasResource(selectedConfig.ResourceType, _resourceCost))
         {
-            BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
             buildingArea.DeliveResource(selectedConfig);
+            BuildButton.Inventory.UseResource(selectedConfig.ResourceType);
         }
     }
 }

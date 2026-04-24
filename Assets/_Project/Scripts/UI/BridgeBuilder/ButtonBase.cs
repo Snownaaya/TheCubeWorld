@@ -16,19 +16,17 @@ namespace Assets.Scripts.UI.BridgeBuilder
         protected virtual void OnDisable() =>
             Button.onClick.RemoveListener(OnClickButton);
 
-        public void OnPointerDown(PointerEventData eventData) => AnimatePress();
+        public void OnPointerDown(PointerEventData eventData) =>
+            AnimatePress();
 
-        public void OnPointerUp(PointerEventData eventData) => AnimateRelease();
+        public void OnPointerUp(PointerEventData eventData) =>
+            AnimateRelease();
 
-        public void AnimatePress()
-        {
+        public void AnimatePress() =>
             TweenHelper.ButtonShake(transform);
-        }
 
-        public void AnimateRelease()
-        {
+        public void AnimateRelease() =>
             TweenHelper.HideButton(transform);
-        }
 
         protected abstract void OnClickButton();
     }

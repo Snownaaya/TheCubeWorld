@@ -11,7 +11,7 @@ namespace Assets.Scripts.Domain.MediatorResource
 
         public ResourceConfig Config => _config;
 
-        public void UpdateText(int count) =>
-            _countText.text = $"{count}:{_config.ResourceType}";
+        public void UpdateText(int count = 0) =>
+            _countText.text = $"{count}:{_config.TextResource}";
     }
 }

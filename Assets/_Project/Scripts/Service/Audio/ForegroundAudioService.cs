@@ -10,7 +10,7 @@ namespace Assets.Scripts.Service.Audio
 
     public class ForegroundAudioService
     {
-        private CompositeDisposable _compositeDisposable = new();
+        private CompositeDisposable _compositeDisposable = new ();
         private AudioSource _foregroundSource;
 
         private Dictionary<AudioTypes, AudioData> _audioData;

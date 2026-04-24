@@ -1,12 +1,12 @@
-using System;
-using System.Linq;
-using System.Threading;
-using Assets.Scripts.UI.FinishedUI;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
-
-namespace Assets._Project.Scripts.UseCase
+namespace Assets.Project.Scripts.UseCase
 {
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using Assets.Scripts.UI.FinishedUI;
+    using Cysharp.Threading.Tasks;
+    using UnityEngine;
+
     public class SpinUseCase
     {
         private RewardSlotView[] _slots;

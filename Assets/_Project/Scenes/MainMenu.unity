@@ -2053,13 +2053,14 @@ GameObject:
   - component: {fileID: 709055097}
   - component: {fileID: 709055099}
   - component: {fileID: 709055098}
+  - component: {fileID: 709055100}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &709055097
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2067,17 +2068,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709055096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 901760715456218405}
+  m_Children:
+  - {fileID: 1630641280}
+  m_Father: {fileID: 2092920924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1000, y: 67.9494}
-  m_SizeDelta: {x: 540, y: 553.8872}
+  m_AnchorMin: {x: 0.25, y: 0}
+  m_AnchorMax: {x: 0.25, y: 0}
+  m_AnchoredPosition: {x: 16, y: 610}
+  m_SizeDelta: {x: 519.2, y: 509.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709055098
 MonoBehaviour:
@@ -2117,6 +2119,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709055096}
   m_CullTransparentMesh: 1
+--- !u!114 &709055100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709055096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e757a9a111163784ba6a7a23742af311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &709185120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5389,7 +5403,6 @@ GameObject:
   - component: {fileID: 1630641280}
   - component: {fileID: 1630641282}
   - component: {fileID: 1630641281}
-  - component: {fileID: 1630641283}
   m_Layer: 5
   m_Name: ModelViewSkin
   m_TagString: Untagged
@@ -5405,16 +5418,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630641279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 901760715456218405}
+  m_Father: {fileID: 709055097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1000, y: 75}
-  m_SizeDelta: {x: 540, y: 540}
+  m_AnchorMin: {x: 0.5, y: 0.45940766}
+  m_AnchorMax: {x: 0.5, y: 0.45940766}
+  m_AnchoredPosition: {x: -0.00027561, y: 20.698}
+  m_SizeDelta: {x: 519.2, y: 509.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1630641281
 MonoBehaviour:
@@ -5451,18 +5464,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1630641279}
   m_CullTransparentMesh: 1
---- !u!114 &1630641283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630641279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e757a9a111163784ba6a7a23742af311, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1636647905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5644,8 +5645,7 @@ MonoBehaviour:
       de: 0
       hi: 0
     fonts:
-      defaultFont:
-      - {fileID: 12800000, guid: ec89fba4f20dd19489250ae058b3c5ad, type: 3}
+      defaultFont: []
       ru: []
       en: []
       tr: []
@@ -5674,17 +5674,10 @@ MonoBehaviour:
       de: []
       hi: []
     fontsTMP:
-      defaultFont:
-      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
-      ru:
-      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
-      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-      en:
-      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
-      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
-      tr:
-      - {fileID: 11400000, guid: 25070356dfa718640afd7dff1fdc7509, type: 2}
-      - {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+      defaultFont: []
+      ru: []
+      en: []
+      tr: []
       az: []
       be: []
       he: []
@@ -5770,9 +5763,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 3/3 completed
+  processTranslateLabel: 0/3 completed
   componentTextField: 1
-  countLang: 3
+  countLang: 0
 --- !u!1 &1675689346
 GameObject:
   m_ObjectHideFlags: 0
@@ -6638,9 +6631,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 3/3 completed
+  processTranslateLabel: 0/3 completed
   componentTextField: 1
-  countLang: 3
+  countLang: 0
 --- !u!1 &1765622254
 GameObject:
   m_ObjectHideFlags: 0
@@ -7045,9 +7038,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 20
-  processTranslateLabel: 3/3 completed
+  processTranslateLabel: 0/3 completed
   componentTextField: 1
-  countLang: 3
+  countLang: 0
 --- !u!1 &1792218194
 GameObject:
   m_ObjectHideFlags: 0
@@ -7085,7 +7078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.48144653}
   m_AnchorMax: {x: 0.5, y: 0.48144653}
-  m_AnchoredPosition: {x: 15.588209, y: -158.94145}
+  m_AnchoredPosition: {x: 2, y: -158.94145}
   m_SizeDelta: {x: 450, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1792218196
@@ -8501,6 +8494,7 @@ RectTransform:
   - {fileID: 7290206297217801122}
   - {fileID: 640956598156121917}
   - {fileID: 7893547170746298803}
+  - {fileID: 709055097}
   - {fileID: 901760715456218405}
   - {fileID: 220408510}
   - {fileID: 930618669}
@@ -9471,8 +9465,6 @@ RectTransform:
   - {fileID: 5067289365431883259}
   - {fileID: 5707012072713645985}
   - {fileID: 1688434773}
-  - {fileID: 709055097}
-  - {fileID: 1630641280}
   m_Father: {fileID: 2092920924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.73530763, y: 0.48144653}
@@ -11497,6 +11489,9 @@ MonoBehaviour:
     \u043C\u043E\u0441\u0442\u044B."
   en: 'Bricklayer:
 
+    Complete all three levels in a row by building only stone
+    bridges.
+
 '
   tr: "Duvarc\u0131:\nYaln\u0131zca ta\u015F k\xF6pr\xFCler in\u015Fa ederek \xFC\xE7
     seviyeyi de arka arkaya tamamlay\u0131n."
@@ -12613,9 +12608,7 @@ MonoBehaviour:
     \u0432\u0435\u0441\u044C \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0441\u0442\u0440\u043E\u044F
     \u0442\u043E\u043B\u044C\u043A\u043E \u0434\u0435\u0440\u0435\u0432\u044F\u043D\u043D\u044B\u0435
     \u043C\u043E\u0441\u0442\u044B, \u0432\u044B\u0441\u043E\u043A\u043E\u0439 \u0441\u043B\u043E\u0436\u043D\u043E\u0441\u0442\u0438."
-  en: 'Esthete:
-
-'
+  en: "Esthete:\nComplete the entire level using only wooden bridges\u2014high difficulty.\n"
   tr: "Estetik:\nSadece y\xFCksek zorluk derecesine sahip ah\u015Fap k\xF6pr\xFCler
     in\u015Fa ederek t\xFCm seviyeyi tamamlay\u0131n."
   az: 
@@ -12647,9 +12640,9 @@ MonoBehaviour:
   uniqueFont: {fileID: 0}
   additionalText: {fileID: 0}
   textHeight: 107
-  processTranslateLabel: 3/3 completed
+  processTranslateLabel: 0/3 completed
   componentTextField: 1
-  countLang: 3
+  countLang: 0
 --- !u!1 &4817813927726644659
 GameObject:
   m_ObjectHideFlags: 0
@@ -15867,7 +15860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _background: {fileID: 7290206297217801122}
-  _foreground: {fileID: 1630641283}
+  _foreground: {fileID: 709055100}
 --- !u!1 &7786969187849694528
 GameObject:
   m_ObjectHideFlags: 0

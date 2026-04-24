@@ -8,12 +8,12 @@ namespace Assets.Scripts.Datas
     {
         [SerializeField] private ResourceTypes _type;
         [SerializeField] private Material _material;
-        [SerializeField] private float _speed;
+        [SerializeField] private string _textResource;
 
         public ResourceTypes ResourceType => _type;
 
         public Material Material => _material;
 
-        public float Speed => _speed;
+        public string TextResource => _textResource;
     }
 }

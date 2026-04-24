@@ -1,9 +1,8 @@
 namespace Assets.Scripts.Mediators.LevelCompletedMediator
 {
     using System.Threading;
-    using Assets._Project.Scripts.UseCase;
     using Assets.Project.Scripts.Mediators.LevelCompletedMediator;
-    using Assets.Scripts.Items;
+    using Assets.Project.Scripts.UseCase;
     using Assets.Scripts.Player.Wallet;
     using Assets.Scripts.Service.GameMessage;
     using Assets.Scripts.UI.FinishedUI;

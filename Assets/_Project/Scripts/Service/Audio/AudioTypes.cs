@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Service.Audio
+namespace Assets.Scripts.Service.Audio
 {
     public enum AudioTypes
     {
@@ -6,6 +6,7 @@
         Buttons,
         Loss,
         Victory,
-        PopupAchieve
+        PopupAchieve,
+        ResourceCollected
     }
 }

@@ -1,23 +1,23 @@
 namespace Assets.Project.Scripts.Mediators.BridgeMediator
 {
+    using System.Linq;
     using Assets.Project.Scripts.Bridge;
+    using Assets.Project.Scripts.UI.SelectButtons;
     using Assets.Scripts.Bridge;
     using Assets.Scripts.Bridge.Factory;
     using Assets.Scripts.Player.Core;
     using Assets.Scripts.TutorialObject;
-    using Assets.Scripts.UI.SelectButtons;
     using Reflex.Attributes;
     using UnityEngine;
 
     public class BridgeInfoMediator : MonoBehaviour
     {
         [SerializeField] private BridgeSpawner _bridgeSpawner;
-        [SerializeField] private BridgeChoicePanel _bridgeChoicePanel;
+        [SerializeField] private BridgeChoiceStrategy[] _bridgeChoicePanels;
         [SerializeField] private TutorialBridgeStep _tutorialBridgeStep;
         [SerializeField] private Wall _wall;
 
         private ICharacterHolder _characterHolder;
-        private float _closeDelay = 0.2f;
 
         [Inject]
         private void Construct(ICharacterHolder characterHolder) =>
@@ -39,15 +39,20 @@ namespace Assets.Project.Scripts.Mediators.BridgeMediator
         {
             _wall.gameObject.SetActive(false);
             _tutorialBridgeStep.ForceHide();
-            _bridgeChoicePanel.Close();
+
+            foreach (var bridgeChoicePanel in _bridgeChoicePanels.OfType<BridgeChoicePanel>())
+                bridgeChoicePanel.Destroyed();
         }
 
         private void OnSetCharacterPosition(Vector3 position)
         {
-            if (_tutorialBridgeStep.IsSetPosition(position))
-                _bridgeChoicePanel.Open();
-            else
-                _bridgeChoicePanel.Close();
+            foreach (var panel in _bridgeChoicePanels)
+            {
+                if (_tutorialBridgeStep.IsSetPosition(position))
+                    panel.Open();
+                else
+                    panel.Close();
+            }
         }
     }
 }
