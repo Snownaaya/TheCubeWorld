@@ -3,33 +3,27 @@ namespace Assets._Project.Scripts.Items
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using Assets.Project.Scripts.Items;
     using Assets.Scripts.Ground;
     using Assets.Scripts.Items;
     using Cysharp.Threading.Tasks;
     using UnityEngine;
-    using Random = UnityEngine.Random;
 
     public class ResourceSpawner : PoolObject<Resource>, IResourceService
     {
         [SerializeField] private Resource[] _resource;
         [SerializeField] private int _maxResources = 16;
         [SerializeField] private float _delay;
+        [SerializeField] private float[] _weights;
 
-        private readonly List<Resource> _activeResources = new ();
+        ChanceResourceSpawn _chance;
+        private readonly List<Resource> _activeResources = new();
         private Ground _currentGround;
-        private Dictionary<ResourceTypes, Resource> _resources;
 
+        private void Awake() =>
+            _chance = new ChanceResourceSpawn(_weights);
+       
         public List<Resource> ActiveResources => _activeResources;
-
-        private void Awake()
-        {
-            _resources = new Dictionary<ResourceTypes, Resource>()
-            {
-                {ResourceTypes.Dirt, _resource[0]},
-                {ResourceTypes.Wood, _resource[1]},
-                {ResourceTypes.Stone, _resource[2]}
-            };
-        }
 
         public async UniTask SpawnRoutine(Ground currentGround, CancellationToken cancellationToken)
         {
@@ -88,8 +82,9 @@ namespace Assets._Project.Scripts.Items
             {
                 Transform spawnPoint = currentGround.GetPoint();
 
-                int randomPrefab = Random.Range(0, _resource.Length);
-                Resource resourcePrefab = _resource[randomPrefab];
+
+                int index = _chance.GetResource();
+                Resource resourcePrefab = _resource[index];
 
                 Resource resourceInstance = Pull(resourcePrefab);
                 resourceInstance.SetSpawnPoint(spawnPoint);

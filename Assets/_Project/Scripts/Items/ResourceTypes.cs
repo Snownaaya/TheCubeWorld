@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Items
+namespace Assets.Scripts.Items
 {
     public enum ResourceTypes
     {

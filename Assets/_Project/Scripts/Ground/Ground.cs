@@ -33,6 +33,8 @@ namespace Assets.Scripts.Ground
 
         public void ResetPoints()
         {
+            _availablePoints.Clear();
+
             foreach (Transform point in _spawnPoints)
                 _availablePoints.Enqueue(point);
         }

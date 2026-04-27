@@ -27,7 +27,6 @@ public class PlatformDetector : MonoBehaviour
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource = new CancellationTokenSource();
             _spawner.SpawnRoutine(_currentGround, _cancellationTokenSource.Token).Forget();
-            _currentGround.ResetPoints();
         }
     }
 
@@ -35,7 +34,6 @@ public class PlatformDetector : MonoBehaviour
     {
         if (other.TryGetComponent(out Character character))
         {
-            _currentGround.ResetPoints();
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource = null;
             _spawner.Clear();

@@ -72,3 +72,7 @@ MonoBehaviour:
   - {fileID: 200318883929492410, guid: 267a44787ab96a64c835185ab966ad32, type: 3}
   _maxResources: 16
   _delay: 7
+  _weights:
+  - 50
+  - 20
+  - 10

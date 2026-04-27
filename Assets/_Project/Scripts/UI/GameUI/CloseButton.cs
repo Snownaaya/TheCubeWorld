@@ -20,9 +20,11 @@
         private void OnDisable() =>
             _button.onClick.RemoveListener(OnClick);
 
-        public void OnPointerDown(PointerEventData eventData) => AnimatePress();
+        public void OnPointerDown(PointerEventData eventData) =>
+            AnimatePress();
 
-        public void OnPointerUp(PointerEventData eventData) => AnimateRelease();
+        public void OnPointerUp(PointerEventData eventData) =>
+            AnimateRelease();
 
         public void AnimatePress()
         {
